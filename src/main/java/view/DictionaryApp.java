@@ -32,7 +32,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         labelTraCuu = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         btn_TraCuu = new javax.swing.JButton();
-        cbb_QuanLy = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         btn_Infor = new javax.swing.JButton();
         btn_Exit = new javax.swing.JButton();
@@ -40,6 +39,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollBar1 = new javax.swing.JScrollBar();
         jPanel2 = new javax.swing.JPanel();
+        btn_Manager = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItem_Open = new javax.swing.JMenuItem();
@@ -63,7 +63,7 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelName.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        labelName.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelName.setText("TỰ ĐIỂN ANH - VIỆT");
 
         labelTraCuu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -76,14 +76,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         btn_TraCuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_TraCuuActionPerformed(evt);
-            }
-        });
-
-        cbb_QuanLy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbb_QuanLy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quản lý tự điển", "Thêm từ", "Câp nhật từ", "Xóa từ" }));
-        cbb_QuanLy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbb_QuanLyActionPerformed(evt);
             }
         });
 
@@ -117,8 +109,11 @@ public class DictionaryApp extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        btn_Manager.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_Manager.setText("Quản lý tự điển");
 
         jMenu1.setText("File");
 
@@ -162,9 +157,9 @@ public class DictionaryApp extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_TraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(cbb_QuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
+                                .addGap(75, 75, 75)
+                                .addComponent(btn_Manager)
+                                .addGap(85, 85, 85)
                                 .addComponent(btn_Infor)
                                 .addGap(46, 46, 46)
                                 .addComponent(btn_Exit))))
@@ -186,9 +181,9 @@ public class DictionaryApp extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_TraCuu)
-                    .addComponent(cbb_QuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Infor)
-                    .addComponent(btn_Exit))
+                    .addComponent(btn_Exit)
+                    .addComponent(btn_Manager))
                 .addGap(13, 13, 13)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,10 +197,6 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbb_QuanLyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_QuanLyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbb_QuanLyActionPerformed
 
     private void btn_TraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraCuuActionPerformed
         // TODO add your handling code here:
@@ -249,8 +240,8 @@ public class DictionaryApp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Exit;
     private javax.swing.JButton btn_Infor;
+    private javax.swing.JButton btn_Manager;
     private javax.swing.JButton btn_TraCuu;
-    private javax.swing.JComboBox<String> cbb_QuanLy;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
