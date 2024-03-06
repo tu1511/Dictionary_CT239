@@ -4,8 +4,12 @@
  */
 package view;
 
-import javax.swing.JFrame;
 
+import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.swing.*;
 /**
  *
  * @author LENOVO
@@ -20,7 +24,6 @@ public class DictionaryManager extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,6 +96,11 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         btn_Add.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Add.setText("Thêm từ");
+        btn_Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddActionPerformed(evt);
+            }
+        });
 
         btn_Update.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Update.setText("Cập nhật từ");
@@ -230,7 +238,26 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+    private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
+        String tiengAnh = tF_tiengAnh.getText();
+        String loaiTu = tF_LoaiTu.getText();
+        String tiengViet = tF_TiengViet.getText();
+        String viDu = tF_TViDu.getText();
 
+        String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
+        try {
+            FileWriter writer = new FileWriter("data.txt", true);
+            writer.write(data + "\n");
+            writer.close();
+            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_AddActionPerformed
+    
     /**
      * @param args the command line arguments
      */
