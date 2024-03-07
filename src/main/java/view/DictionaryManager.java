@@ -311,53 +311,59 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_UpdateActionPerformed
     
    
-    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // Lấy chỉ số của dòng được chọn
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-            // Lấy từ tiếng Anh của dòng được chọn
-            String tiengAnh = table_Data.getValueAt(selectedRow, 1).toString();
+ private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    // Lấy chỉ số của dòng được chọn
+    int selectedRow = table_Data.getSelectedRow();
+    if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+        // Lấy từ tiếng Anh của dòng được chọn
+        String tiengAnh = table_Data.getValueAt(selectedRow, 1).toString();
 
-            // Tạo một tệp tạm thời để ghi dữ liệu
-            File tempFile = new File("temp.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
 
-            try {
-                BufferedReader br = new BufferedReader(new FileReader("data.txt"));
-                BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
-
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] parts = line.split("-");
-                    // Ghi tất cả các dòng ngoại trừ dòng cần xóa vào tệp tạm thời
-                    if (!parts[0].equals(tiengAnh)) {
-                        bw.write(line + "\n");
-                    }
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("-");
+                // Ghi tất cả các dòng ngoại trừ dòng cần xóa vào tệp tạm thời
+                if (!parts[1].equals(tiengAnh)) {
+                    bw.write(line + "\n");
                 }
-                br.close();
-                bw.close();
-
-                // Xóa tệp gốc
-                File originalFile = new File("data.txt");
-                if (originalFile.delete()) {
-                    // Đổi tên tệp tạm thời thành tên tệp gốc
-                    if (!tempFile.renameTo(originalFile)) {
-                        throw new IOException("Could not rename temp file to original file");
-                    }
-                    JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-
-                    // Load lại dữ liệu từ tệp tin sau khi xóa
-                    loadDataFromFile();
-                } else {
-                    throw new IOException("Could not delete original file");
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi xóa dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            br.close();
+            bw.close();
+
+            // Xóa tệp gốc (data.txt)
+            File originalFile = new File("data.txt");
+            if (originalFile.delete()) {
+                // Đổi tên tệp tạm thời thành tên tệp gốc
+                File tempFile = new File("temp.txt");
+                if (!tempFile.renameTo(originalFile)) {
+                    throw new IOException("Could not rename temp file to original file");
+                }
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                // Load lại dữ liệu từ tệp tin sau khi xóa
+                loadDataFromFile();
+                
+                // Xóa dữ liệu trên các JTextField
+                tF_tiengAnh.setText("");
+                tF_LoaiTu.setText("");
+                tF_TiengViet.setText("");
+                tF_TViDu.setText("");
+            } else {
+                throw new IOException("Could not delete original file");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi xóa dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
+    } else {
+        JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
     }
+}
+
+
 
 
 
