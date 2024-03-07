@@ -5,11 +5,14 @@
 package view;
 
 
-import javax.swing.JFrame;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JFrame;
 /**
  *
  * @author LENOVO
@@ -23,6 +26,9 @@ public class DictionaryManager extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
+        // Gọi phương thức để load dữ liệu khi ứng dụng được khởi động
+        loadDataFromFile();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,7 +60,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_Delete = new javax.swing.JButton();
         btn_Exit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_Data = new javax.swing.JTable();
         tF_tiengAnh = new javax.swing.JTextField();
 
         jLabel2.setText("jLabel2");
@@ -104,6 +110,11 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         btn_Update.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Update.setText("Cập nhật từ");
+        btn_Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_UpdateActionPerformed(evt);
+            }
+        });
 
         btn_reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_reload.setText("Reload");
@@ -119,31 +130,31 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Exit.setText("Thoát");
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_Data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        table_Data.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã từ", "Từ tiếng Anh", "Loại từ", "Nghĩa", "Ví dụ"
+                "STT", "Từ tiếng Anh", "Loại từ", "Nghĩa", "Ví dụ"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_Data);
 
         tF_tiengAnh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -244,7 +255,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
+//    chức năng thêm từ
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         String tiengAnh = tF_tiengAnh.getText();
         String loaiTu = tF_LoaiTu.getText();
@@ -257,19 +268,124 @@ public class DictionaryManager extends javax.swing.JFrame {
             writer.write(data + "\n");
             writer.close();
             JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        
+            // Load lại dữ liệu lên bảng sau khi thêm từ mới
+            loadDataFromFile();
         } catch (IOException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
-
+//Chức năng reload
     private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
         tF_tiengAnh.setText("");
         tF_LoaiTu.setText("");
         tF_TiengViet.setText("");
         tF_TViDu.setText("");
     }//GEN-LAST:event_btn_reloadActionPerformed
+//chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
+    private void table_DataMouseClicked(java.awt.event.MouseEvent evt) {                                       
+        // Lấy chỉ số của dòng được chọn
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
+            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
+            tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
+            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
+            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
+        }
+    }
+//    Chức năng bấm đưa dữ liệu lên textfield
+    private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
+        // Lấy chỉ số của dòng được chọn
+      int selectedRow = table_Data.getSelectedRow();
+      if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+          // Lấy dữ liệu từ dòng được chọn và hiển thị lên các JTextField
+          DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+          tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
+          tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
+          tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
+          tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
+      }
+    }//GEN-LAST:event_btn_UpdateActionPerformed
     
+   
+    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // Lấy chỉ số của dòng được chọn
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+            // Lấy từ tiếng Anh của dòng được chọn
+            String tiengAnh = table_Data.getValueAt(selectedRow, 1).toString();
+
+            // Tạo một tệp tạm thời để ghi dữ liệu
+            File tempFile = new File("temp.txt");
+
+            try {
+                BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split("-");
+                    // Ghi tất cả các dòng ngoại trừ dòng cần xóa vào tệp tạm thời
+                    if (!parts[0].equals(tiengAnh)) {
+                        bw.write(line + "\n");
+                    }
+                }
+                br.close();
+                bw.close();
+
+                // Xóa tệp gốc
+                File originalFile = new File("data.txt");
+                if (originalFile.delete()) {
+                    // Đổi tên tệp tạm thời thành tên tệp gốc
+                    if (!tempFile.renameTo(originalFile)) {
+                        throw new IOException("Could not rename temp file to original file");
+                    }
+                    JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                    // Load lại dữ liệu từ tệp tin sau khi xóa
+                    loadDataFromFile();
+                } else {
+                    throw new IOException("Could not delete original file");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi xóa dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+
+
+//    Chức năng load dữ liệu từ file lưu trữ lên
+    private void loadDataFromFile() {
+        DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+        model.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
+
+        try {
+            File file = new File("data.txt");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] rowData = line.split("-");
+                Object[] row = new Object[rowData.length + 1];
+                row[0] = model.getRowCount() + 1; // Số thứ tự
+                System.arraycopy(rowData, 0, row, 1, rowData.length);
+                model.addRow(row);
+            }
+
+            br.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -296,7 +412,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DictionaryManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -320,7 +436,6 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel label_LoaiTu;
     private javax.swing.JLabel label_TiengAnh;
     private javax.swing.JLabel label_TiengViet;
@@ -329,5 +444,6 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JTextField tF_TViDu;
     private javax.swing.JTextField tF_TiengViet;
     private javax.swing.JTextField tF_tiengAnh;
+    private javax.swing.JTable table_Data;
     // End of variables declaration//GEN-END:variables
 }
