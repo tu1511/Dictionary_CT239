@@ -12,4 +12,5 @@ model\DictionaryModel.class
 view\DictionaryApp$6.class
 view\DictionaryApp$4.class
 model\Dictionary.class
+view\DictionaryManager$4.class
 view\DictionaryApp$3.class

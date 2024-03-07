@@ -107,6 +107,11 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         btn_reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_reload.setText("Reload");
+        btn_reload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reloadActionPerformed(evt);
+            }
+        });
 
         btn_Delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Delete.setText("Xóa từ");
@@ -257,6 +262,13 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
+
+    private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
+        tF_tiengAnh.setText("");
+        tF_LoaiTu.setText("");
+        tF_TiengViet.setText("");
+        tF_TViDu.setText("");
+    }//GEN-LAST:event_btn_reloadActionPerformed
     
     /**
      * @param args the command line arguments
