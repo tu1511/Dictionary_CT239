@@ -267,24 +267,28 @@ public class DictionaryManager extends javax.swing.JFrame {
     
 //    chức năng thêm từ
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
-        String tiengAnh = tF_tiengAnh.getText();
-        String loaiTu = tF_LoaiTu.getText();
-        String tiengViet = tF_TiengViet.getText();
-        String viDu = tF_TViDu.getText();
+       String tiengAnh = tF_tiengAnh.getText();
+    String loaiTu = tF_LoaiTu.getText();
+    String tiengViet = tF_TiengViet.getText();
+    String viDu = tF_TViDu.getText();
 
-        String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
-        try {
-            FileWriter writer = new FileWriter("data.txt", true);
-            writer.write(data + "\n");
-            writer.close();
-            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        
-            // Load lại dữ liệu lên bảng sau khi thêm từ mới
-            loadDataFromFile();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
+    String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
+    try {
+        // Sử dụng OutputStreamWriter và FileOutputStream để ghi dữ liệu với mã hóa UTF-8
+        OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("data.txt", true), "UTF-8");
+        // Sử dụng BufferedWriter để viết dữ liệu vào tệp
+        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+        bufferedWriter.write(data); // Ghi dữ liệu vào tệp
+        bufferedWriter.newLine(); // Thêm ký tự xuống dòng sau mỗi lần ghi
+        bufferedWriter.close(); // Đóng BufferedWriter
+        JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    
+        // Load lại dữ liệu lên bảng sau khi thêm từ mới
+        loadDataFromFile();
+    } catch (IOException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btn_AddActionPerformed
 //Chức năng reload
     private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
@@ -418,8 +422,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         model.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
 
         try {
-            File file = new File("data.txt");
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("data.txt"), "UTF-8"));
 
             String line;
             while ((line = br.readLine()) != null) {

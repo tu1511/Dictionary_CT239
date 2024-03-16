@@ -1,3 +1,94 @@
--grerg-greger-ffergrgrgrer-
-rtg-tgf-gtre-vfdfgrejifeew-
-�fwe-grerg-greger-ffergrgrgrer-
+apple - noun - quả táo - My apple is delicious. - false
+banana - noun - chuối - I eat a banana every morning. - false
+cat - noun - con mèo - My cat is sleeping on the couch. - false
+dog - noun - con chó - My dog loves to play fetch. - false
+elephant - noun - con voi - Elephants have long trunks. - false
+fish - noun - con cá - The fish swims gracefully in the tank. - false
+guitar - noun - cây đàn guitar - He plays the guitar beautifully. - false
+house - noun - ngôi nhà - Our house is painted blue. - false
+ice cream - noun - kem - I like vanilla ice cream. - false
+jacket - noun - áo khoác - She wears a warm jacket in winter. - false
+kite - noun - cánh diều - Let's fly a kite at the park. - false
+lion - noun - con sư tử - The lion roars loudly in the zoo. - false
+moon - noun - mặt trăng - The moon shines brightly at night. - false
+notebook - noun - sổ tay - I write my thoughts in a notebook. - false
+orange - noun - quả cam - Oranges are a good source of vitamin C. - false
+pencil - noun - bút chì - Can I borrow your pencil, please? - false
+queen - noun - nữ hoàng - The queen waved to the crowd. - false
+rabbit - noun - con thỏ - The rabbit hops around the garden. - false
+sun - noun - mặt trời - The sun is shining in the sky. - false
+table - noun - cái bàn - We eat dinner at the table. - false
+umbrella - noun - cây ô - Don't forget to bring your umbrella. - false
+violin - noun - cây đàn viôlông - She plays the violin beautifully. - false
+watermelon - noun - dưa hấu - Watermelon is refreshing in summer. - false
+xylophone - noun - xylophone - The xylophone makes a pleasant sound. - false
+yak - noun - con bò lạc - Yaks live in the mountains. - false
+zebra - noun - con ngựa vằn - Zebras have black and white stripes. - false
+ant - noun - con kiến - The ant carries food to its nest. - false
+butterfly - noun - bướm - The butterfly flutters its wings gracefully. - false
+candle - noun - nến - We light a candle on the cake. - false
+dolphin - noun - cá heo - Dolphins are intelligent marine mammals. - false
+elephant - noun - con voi - Elephants have long trunks. - false
+fox - noun - con cáo - The fox has a bushy tail. - false
+giraffe - noun - hươu cao cổ - Giraffes have long necks. - false
+hedgehog - noun - con nhím - The hedgehog curls into a ball when threatened. - false
+iguana - noun - con kỳ nhông - The iguana basks in the sun. - false
+jaguar - noun - hươu sừng gai - The jaguar is a powerful predator. - false
+kangaroo - noun - con kangaroo - Kangaroos hop to move around. - false
+leopard - noun - con báo - The leopard has beautiful spots. - false
+monkey - noun - con khỉ - Monkeys swing from tree to tree. - false
+narwhal - noun - cá voi sừng - Narwhals have long tusks. - false
+ostrich - noun - đà điểu - Ostriches cannot fly but can run very fast. - false
+penguin - noun - chim cánh cụt - Penguins are excellent swimmers. - false
+quail - noun - con cút - Quails are small game birds. - false
+rhinoceros - noun - con tê giác - Rhinoceroses have thick, protective skin. - false
+snake - noun - con rắn - Snakes slither on the ground. - false
+tiger - noun - con hổ - Tigers have striped fur. - false
+unicorn - noun - kỳ lân - Unicorns are mythical creatures. - false
+vulture - noun - con kền kền - Vultures feed on carrion. - false
+walrus - noun - con hải mã - Walruses have long tusks and blubber. - false
+xenopus - noun - con ếch - Xenopus is a genus of aquatic frogs. - false
+yak - noun - con bò lạc - Yaks are adapted to living in high altitudes. - false
+zebu - noun - con trâu - Zebus are domesticated cattle in Asia. - false
+aardvark - noun - con khủng long - Aardvarks have long snouts for digging. - false
+badger - noun - con lạc đà - Badgers are nocturnal animals. - false
+crocodile - noun - con cá sấu - Crocodiles are skilled hunters. - false
+dinosaur - noun - khủng long - Dinosaurs lived millions of years ago. - false
+eagle - noun - đại bàng - Eagles have keen eyesight. - false
+falcon - noun - con diều - Falcons are fast-flying birds of prey. - false
+gazelle - noun - con linh dương - Gazelles are known for their speed and agility. - false
+hedgehog - noun - con nhím - Hedgehogs roll into a ball when threatened. - false
+ibis - noun - con hạc - Ibises have long curved bills. - false
+jackal - noun - con chó rừng - Jackals are carnivorous mammals. - false
+kangaroo - noun - con kangaroo - Kangaroos carry their babies in pouches. - false
+lemur - noun - con vượn - Lemurs are primates found in Madagascar. - false
+mongoose - noun - con dê - Mongooses are known for their agility and speed. - false
+narwhal - noun - cá voi sừng - Narwhals have long tusks protruding from their heads. - false
+octopus - noun - bạch tuộc - Octopuses have eight tentacles. - false
+pangolin - noun - con tê tê - Pangolins are covered in scales made of keratin. - false
+quokka - noun - con quokka - Quokkas are small marsupials known for their smile. - false
+rhinoceros - noun - con tê giác - Rhinoceroses have thick, protective skin. - false
+salamander - noun - con kỳ nhông - Salamanders are amphibians found in moist habitats. - false
+tapir - noun - con tapir - Tapirs have short, prehensile trunks. - false
+uakari - noun - con khỉ đuôi dài - Uakaris have bald heads and bright faces. - false
+viper - noun - con rắn lục - Vipers are venomous snakes. - false
+walrus - noun - con hải mã - Walruses use their tusks to break through ice. - false
+xenopus - noun - con ếch - Xenopus is a genus of aquatic frogs. - false
+yak - noun - con bò lạc - Yaks are adapted to living in high altitudes. - false
+zebra - noun - con ngựa vằn - Zebras have black and white stripes. - false
+antelope - noun - con linh dương - Antelopes are herbivorous mammals. - false
+baboon - noun - con linh cẩu - Baboons are highly social primates. - false
+cheetah - noun - con báo - Cheetahs are the fastest land animals. - false
+dolphin - noun - cá heo - Dolphins are intelligent marine mammals. - false
+elephant - noun - con voi - Elephants have long trunks. - false
+falcon - noun - con diều - Falcons are fast-flying birds of prey. - false
+gazelle - noun - con linh dương - Gazelles are known for their speed and agility. - false
+hedgehog - noun - con nhím - Hedgehogs roll into a ball when threatened. - false
+ibis - noun - con hạc - Ibises have long curved bills. - false
+jackal - noun - con chó rừng - Jackals are carnivorous mammals. - false
+kangaroo - noun - con kangaroo - Kangaroos carry their babies in pouches. - false
+lemur - noun - con vượn - Lemurs are primates found in Madagascar. - false
+mongoose - noun - con dê - Mongooses are known for their agility and speed. - false
+narwhal - noun - cá voi sừng - Narwhals have long tusks protruding from their heads. - false
+octopus - noun - bạch tuộc - Octopuses have eight tentacles. - false
+hi-động từ-xin chào-hi i am tu-false
