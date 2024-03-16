@@ -57,11 +57,11 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_Add = new javax.swing.JButton();
         btn_Update = new javax.swing.JButton();
         btn_reload = new javax.swing.JButton();
-        btn_Delete = new javax.swing.JButton();
         btn_Exit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_Data = new javax.swing.JTable();
         tF_tiengAnh = new javax.swing.JTextField();
+        btn_Delete = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -96,6 +96,11 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         btn_Save.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Save.setText("Lưu");
+        btn_Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SaveActionPerformed(evt);
+            }
+        });
 
         btn_Cancer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Cancer.setText("Hủy");
@@ -123,9 +128,6 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_reloadActionPerformed(evt);
             }
         });
-
-        btn_Delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_Delete.setText("Xóa từ");
 
         btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Exit.setText("Thoát");
@@ -157,6 +159,14 @@ public class DictionaryManager extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table_Data);
 
         tF_tiengAnh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        btn_Delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Delete.setText("Xóa từ");
+        btn_Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,9 +216,9 @@ public class DictionaryManager extends javax.swing.JFrame {
                                 .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
                                 .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
                                 .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -245,8 +255,8 @@ public class DictionaryManager extends javax.swing.JFrame {
                     .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -296,74 +306,110 @@ public class DictionaryManager extends javax.swing.JFrame {
             tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
         }
     }
+    private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+            // Lấy thông tin từ các JTextField
+            String tiengAnh = tF_tiengAnh.getText();
+            String loaiTu = tF_LoaiTu.getText();
+            String tiengViet = tF_TiengViet.getText();
+            String viDu = tF_TViDu.getText();
+
+            // Cập nhật thông tin của từ trong bảng dữ liệu
+            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+            model.setValueAt(tiengAnh, selectedRow, 1);
+            model.setValueAt(loaiTu, selectedRow, 2);
+            model.setValueAt(tiengViet, selectedRow, 3);
+            model.setValueAt(viDu, selectedRow, 4);
+
+            // Lưu lại các thay đổi vào tệp tin dữ liệu
+            try {
+                FileWriter fileWriter = new FileWriter("data.txt");
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    for (int j = 1; j < model.getColumnCount(); j++) {
+                        bufferedWriter.write(model.getValueAt(i, j).toString());
+                        bufferedWriter.write("-");
+                    }
+                    bufferedWriter.newLine();
+                }
+
+                bufferedWriter.close();
+                fileWriter.close();
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật và lưu lại!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+               
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để cập nhật!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_SaveActionPerformed
+
 //    Chức năng bấm đưa dữ liệu lên textfield
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
         // Lấy chỉ số của dòng được chọn
-      int selectedRow = table_Data.getSelectedRow();
-      if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-          // Lấy dữ liệu từ dòng được chọn và hiển thị lên các JTextField
-          DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-          tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
-          tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
-          tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
-          tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
-      }
-    }//GEN-LAST:event_btn_UpdateActionPerformed
-    
-   
-
- private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {                                           
-    // Lấy chỉ số của dòng được chọn
-    int selectedRow = table_Data.getSelectedRow();
-    if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-        // Lấy từ tiếng Anh của dòng được chọn
-        String tiengAnh = table_Data.getValueAt(selectedRow, 1).toString();
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("data.txt"));
-            BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
-
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split("-");
-                // Ghi tất cả các dòng ngoại trừ dòng cần xóa vào tệp tạm thời
-                if (!parts[1].equals(tiengAnh)) {
-                    bw.write(line + "\n");
-                }
-            }
-            br.close();
-            bw.close();
-
-            // Xóa tệp gốc (data.txt)
-            File originalFile = new File("data.txt");
-            if (originalFile.delete()) {
-                // Đổi tên tệp tạm thời thành tên tệp gốc
-                File tempFile = new File("temp.txt");
-                if (!tempFile.renameTo(originalFile)) {
-                    throw new IOException("Could not rename temp file to original file");
-                }
-                JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-
-                // Load lại dữ liệu từ tệp tin sau khi xóa
-                loadDataFromFile();
-                
-                // Xóa dữ liệu trên các JTextField
-                tF_tiengAnh.setText("");
-                tF_LoaiTu.setText("");
-                tF_TiengViet.setText("");
-                tF_TViDu.setText("");
-            } else {
-                throw new IOException("Could not delete original file");
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi xóa dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+            // Lấy dữ liệu từ dòng được chọn và hiển thị lên các JTextField
+            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
+            tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
+            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
+            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-    }
-}
+    }//GEN-LAST:event_btn_UpdateActionPerformed
 
+    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
+        String[] options = {"Có", "Không"};
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
+            int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+                String selectedWord = model.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
+
+                model.removeRow(selectedRow); // Xóa dòng từ bảng
+
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+                    BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
+
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        String[] parts = line.split("-");
+                        if (!parts[1].equals(selectedWord)) { // Bỏ qua dòng chứa từ tiếng Anh cần xóa
+                            bw.write(line);
+                            bw.newLine();
+                        }
+                    }
+                    br.close();
+                    bw.close();
+
+                    File originalFile = new File("data.txt");
+                    if (originalFile.delete()) {
+                        File tempFile = new File("temp.txt");
+                        if (!tempFile.renameTo(originalFile)) {
+                            throw new IOException("Could not rename temp file to original file");
+                        }
+
+                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi tệp tin và bảng!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        throw new IOException("Could not delete original file");
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi xóa dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_DeleteActionPerformed
+
+ 
 
 
 //    Chức năng load dữ liệu từ file lưu trữ lên

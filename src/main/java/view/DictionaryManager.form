@@ -114,9 +114,9 @@
                               <Component id="btn_Add" min="-2" pref="115" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="btn_Update" min="-2" pref="115" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="btn_Delete" min="-2" pref="115" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btn_Delete" min="-2" pref="115" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="btn_Exit" min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="741" max="-2" attributes="0"/>
@@ -165,8 +165,8 @@
                   <Component id="btn_Add" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btn_reload" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btn_Update" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btn_Delete" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btn_Exit" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btn_Delete" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="12" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="234" max="-2" attributes="0"/>
@@ -236,6 +236,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SaveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Cancer">
       <Properties>
@@ -277,14 +280,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_reloadActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btn_Delete">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="X&#xf3;a t&#x1eeb;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Exit">
       <Properties>
@@ -357,6 +352,17 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Delete">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="X&#xf3;a t&#x1eeb;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_DeleteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
