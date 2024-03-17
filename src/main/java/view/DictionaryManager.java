@@ -53,7 +53,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         label_ViDu = new javax.swing.JLabel();
         tF_TViDu = new javax.swing.JTextField();
         btn_Save = new javax.swing.JButton();
-        btn_Cancer = new javax.swing.JButton();
+        btn_Return = new javax.swing.JButton();
         btn_Add = new javax.swing.JButton();
         btn_Update = new javax.swing.JButton();
         btn_reload = new javax.swing.JButton();
@@ -102,8 +102,14 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         });
 
-        btn_Cancer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_Cancer.setText("Hủy");
+        btn_Return.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_Return.setText("<");
+        btn_Return.setAlignmentY(0.0F);
+        btn_Return.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ReturnActionPerformed(evt);
+            }
+        });
 
         btn_Add.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Add.setText("Thêm từ");
@@ -131,6 +137,11 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Exit.setText("Thoát");
+        btn_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ExitActionPerformed(evt);
+            }
+        });
 
         table_Data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table_Data.setModel(new javax.swing.table.DefaultTableModel(
@@ -195,14 +206,14 @@ public class DictionaryManager extends javax.swing.JFrame {
                             .addComponent(tF_TiengViet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label_TiengViet))))
                 .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Cancer, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(311, 311, 311)
+                        .addGap(45, 45, 45)
+                        .addComponent(btn_Return, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(223, 223, 223)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -227,8 +238,10 @@ public class DictionaryManager extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jLabel1)
-                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btn_Return))
+                .addGap(9, 9, 9)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(label_TiengAnh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -247,9 +260,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                             .addComponent(tF_LoaiTu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tF_TViDu, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Cancer, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tF_TViDu, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,7 +268,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                     .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -413,6 +424,27 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
+    private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
+         String[] options = {"Có", "Không"};
+        int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
+              JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
+        if (choice == JOptionPane.YES_OPTION) {
+            // Có
+            System.exit(0);
+        } else {
+            // Không
+            // Close the window without exiting the program
+            WindowEvent windowClosing = new WindowEvent((Window)evt.getSource(), WindowEvent.WINDOW_CLOSING);
+            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
+        }
+    }//GEN-LAST:event_btn_ExitActionPerformed
+
+    private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
+        DictionaryApp dictionaryApp = new DictionaryApp();
+        dictionaryApp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_ReturnActionPerformed
+
  
 
 
@@ -477,9 +509,9 @@ public class DictionaryManager extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Add;
-    private javax.swing.JButton btn_Cancer;
     private javax.swing.JButton btn_Delete;
     private javax.swing.JButton btn_Exit;
+    private javax.swing.JButton btn_Return;
     private javax.swing.JButton btn_Save;
     private javax.swing.JButton btn_Update;
     private javax.swing.JButton btn_reload;

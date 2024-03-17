@@ -1,3 +1,4 @@
+view\DictionaryManager$8.class
 view\DictionaryApp$2.class
 view\DictionaryManager$2.class
 view\DictionaryManager$1.class
@@ -15,5 +16,6 @@ view\DictionaryApp$6.class
 view\DictionaryApp$4.class
 view\DictionaryManager$5.class
 model\Dictionary.class
+view\DictionaryManager$9.class
 view\DictionaryManager$4.class
 view\DictionaryApp$3.class
