@@ -7,7 +7,12 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JFrame;
 
 
 /**
@@ -16,9 +21,8 @@ import javax.swing.*;
  */
 public class DictionaryApp extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DictionaryApp
-     */
+    
+    
     public DictionaryApp() {
 
         initComponents();
@@ -47,7 +51,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         labelName = new javax.swing.JLabel();
         labelTraCuu = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tF_Infor = new javax.swing.JTextField();
         btn_TraCuu = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btn_Infor = new javax.swing.JButton();
@@ -59,7 +63,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         label_Nghia = new java.awt.Label();
         label_TiengAnh = new java.awt.Label();
         label_LoaiTu = new java.awt.Label();
-        label_Nghia1 = new java.awt.Label();
+        label_Vidu = new java.awt.Label();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItem_Open = new javax.swing.JMenuItem();
@@ -95,7 +99,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         labelTraCuu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelTraCuu.setText("Nhập từ cần tra cứu");
 
-        jTextField1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        tF_Infor.setDisabledTextColor(new java.awt.Color(204, 204, 204));
 
         btn_TraCuu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_TraCuu.setText("Tra cứu");
@@ -122,7 +126,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Danh sách từ:");
+        jLabel1.setText("Danh sách từ đã tìm kiếm:");
 
         btn_Manager.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_Manager.setText("Quản lý tự điển");
@@ -130,14 +134,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        label_Nghia.setText("3");
-
-        label_TiengAnh.setText("1");
-
-        label_LoaiTu.setText("2");
-
-        label_Nghia1.setText("4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,7 +144,7 @@ public class DictionaryApp extends javax.swing.JFrame {
                     .addComponent(label_Nghia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                     .addComponent(label_TiengAnh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label_LoaiTu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_Nghia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(label_Vidu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,18 +152,18 @@ public class DictionaryApp extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(label_TiengAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label_LoaiTu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
+                .addComponent(label_LoaiTu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_Nghia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(label_Nghia1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_Vidu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
+        jMenu1.setText("Tài liệu");
 
-        menuItem_Open.setText("Open File");
+        menuItem_Open.setText("Mở tài liệu");
         menuItem_Open.setActionCommand("");
         menuItem_Open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,11 +172,11 @@ public class DictionaryApp extends javax.swing.JFrame {
         });
         jMenu1.add(menuItem_Open);
 
-        menuItem_Save.setText("Save");
+        menuItem_Save.setText("Lưu");
         jMenu1.add(menuItem_Save);
         jMenu1.add(jSeparator3);
 
-        menuItem_Exit.setText("Exit");
+        menuItem_Exit.setText("Thoát");
         menuItem_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItem_ExitActionPerformed(evt);
@@ -190,7 +186,7 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        menu_AboutMe.setText("About me");
+        menu_AboutMe.setText("Thông tin");
         menu_AboutMe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_AboutMeActionPerformed(evt);
@@ -234,7 +230,7 @@ public class DictionaryApp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tF_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_TraCuu)
                                 .addGap(61, 61, 61)
@@ -250,10 +246,10 @@ public class DictionaryApp extends javax.swing.JFrame {
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(265, 265, 265)
-                                .addComponent(labelName)))
+                                .addComponent(labelName))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -267,7 +263,7 @@ public class DictionaryApp extends javax.swing.JFrame {
                 .addComponent(labelTraCuu)
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tF_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_TraCuu)
                     .addComponent(btn_Manager)
                     .addComponent(btn_Infor)
@@ -284,13 +280,112 @@ public class DictionaryApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_TraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraCuuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_TraCuuActionPerformed
+    private String currentFilePath = "data.txt";
+    private  List<String> recentSearches = new ArrayList<>();
 
+    private void btn_TraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraCuuActionPerformed
+         // Lấy từ cần tra từ text field
+        String tuCanTim = tF_Infor.getText().trim();
+
+        if (tuCanTim.isEmpty()) {
+            // Hiển thị thông báo nếu không nhập từ cần tra
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Tìm kiếm từ trong file data.txt
+        boolean timThay = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(currentFilePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Tách dữ liệu trên mỗi dòng bằng dấu gạch ngang
+                String[] parts = line.split("-");
+                if (parts.length >= 4) { // Đảm bảo có đủ thông tin về từ vựng
+                    String tiengAnh = parts[0].trim();
+
+                    // Kiểm tra nếu từ tiếng Anh trong dòng hiện tại trùng với từ cần tìm
+                    if (tiengAnh.equalsIgnoreCase(tuCanTim)) {
+                        // Hiển thị thông tin từ vựng tìm thấy
+                        String loaiTu = parts[1].trim();
+                        String tiengViet = parts[2].trim();
+                        String viDu = parts[3].trim();
+
+                        // Hiển thị thông tin từ vựng
+                        label_TiengAnh.setText("Tiếng Anh: " + tiengAnh);
+                        label_LoaiTu.setText("Loại từ: " + loaiTu);
+                        label_Nghia.setText("Nghĩa: " + tiengViet);
+                        label_Vidu.setText("Ví dụ: " + viDu);
+
+                        timThay = true;
+                        performSearch(tuCanTim);
+                        break; // Dừng vòng lặp khi tìm thấy từ vựng
+                    }
+                }
+            }
+
+            if (!timThay) {
+                // Hiển thị thông báo nếu không tìm thấy từ trong từ điển
+                JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi đọc file từ điển!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_TraCuuActionPerformed
+   
+    
+    private void performSearch(String keyword) {
+        // Thêm từ tìm kiếm mới vào danh sách
+        recentSearches.add(keyword);
+
+        // Cập nhật hiển thị trong jScrollPane1
+        updateRecentSearches();
+    }
+
+    // Hàm cập nhật hiển thị của jScrollPane1 dựa trên danh sách các từ đã tìm kiếm gần đây
+    private void updateRecentSearches() {
+    // Tạo một StringBuilder để xây dựng nội dung cần hiển thị
+    StringBuilder sb = new StringBuilder();
+
+    // Duyệt qua danh sách các từ đã tìm kiếm gần đây và thêm chúng vào StringBuilder
+    for (String search : recentSearches) {
+        sb.append(search).append("\n"); // Thêm từ và một dòng xuống mới
+    }
+
+    // Tạo một JTextArea để hiển thị nội dung
+    JTextArea textArea = new JTextArea(sb.toString());
+    textArea.setFont(new Font("Arial", Font.PLAIN, 14));
+    textArea.setEditable(false); // Đảm bảo không thể chỉnh sửa nội dung
+
+    // Đặt textArea vào jScrollPane1
+    jScrollPane1.setViewportView(textArea);
+}
+    
     private void menuItem_OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_OpenActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "Quản lý tự điển version 1.0!");
+         JFileChooser fileChooser = new JFileChooser(); // Tạo một đối tượng JFileChooser
+
+        int returnValue = fileChooser.showOpenDialog(null); // Hiển thị hộp thoại mở tệp và chờ người dùng chọn tệp
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile(); // Lấy tệp mà người dùng đã chọn
+
+            // Cập nhật đường dẫn file hiện tại
+            currentFilePath = selectedFile.getAbsolutePath();
+
+            // Xử lý dữ liệu từ tệp đã chọn ở đây
+            try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+                // Đọc từng dòng của tệp và xử lý dữ liệu
+                String line;
+                while ((line = br.readLine()) != null) {
+                    // Xử lý dữ liệu ở đây
+                    System.out.println(line); // In dữ liệu ra màn hình như là một ví dụ
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi đọc file!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_menuItem_OpenActionPerformed
 
     private void menu_AboutMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_AboutMeActionPerformed
@@ -403,18 +498,18 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelTraCuu;
     private java.awt.Label label_LoaiTu;
     private java.awt.Label label_Nghia;
-    private java.awt.Label label_Nghia1;
     private java.awt.Label label_TiengAnh;
+    private java.awt.Label label_Vidu;
     private javax.swing.JMenuItem menuItem_Exit;
     private javax.swing.JMenuItem menuItem_Infor;
     private javax.swing.JMenuItem menuItem_Open;
     private javax.swing.JMenuItem menuItem_Save;
     private javax.swing.JMenuItem menuItem_UserManual;
     private javax.swing.JMenu menu_AboutMe;
+    private javax.swing.JTextField tF_Infor;
     // End of variables declaration//GEN-END:variables
 }

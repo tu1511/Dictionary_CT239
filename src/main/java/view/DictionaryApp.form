@@ -30,12 +30,12 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="T&#xe0;i li&#x1ec7;u"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem_Open">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Open File"/>
+                <Property name="text" type="java.lang.String" value="M&#x1edf; t&#xe0;i li&#x1ec7;u"/>
                 <Property name="actionCommand" type="java.lang.String" value=""/>
               </Properties>
               <Events>
@@ -44,14 +44,14 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem_Save">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Save"/>
+                <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem_Exit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Exit"/>
+                <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItem_ExitActionPerformed"/>
@@ -61,7 +61,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menu_AboutMe">
           <Properties>
-            <Property name="text" type="java.lang.String" value="About me"/>
+            <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_AboutMeActionPerformed"/>
@@ -136,7 +136,7 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jTextField1" min="-2" pref="229" max="-2" attributes="0"/>
+                              <Component id="tF_Infor" min="-2" pref="229" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btn_TraCuu" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
@@ -156,11 +156,11 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="98" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="265" pref="265" max="-2" attributes="0"/>
                               <Component id="labelName" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jLabel1" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -179,7 +179,7 @@
               <Component id="labelTraCuu" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField1" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="tF_Infor" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="btn_TraCuu" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_Manager" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_Infor" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -214,7 +214,7 @@
         <Property name="text" type="java.lang.String" value="Nh&#x1ead;p t&#x1eeb; c&#x1ea7;n tra c&#x1ee9;u"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="tF_Infor">
       <Properties>
         <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -261,7 +261,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch t&#x1eeb;:"/>
+        <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch t&#x1eeb; &#x111;&#xe3; t&#xec;m ki&#x1ebf;m:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_Manager">
@@ -300,7 +300,7 @@
                       <Component id="label_Nghia" alignment="1" pref="469" max="32767" attributes="0"/>
                       <Component id="label_TiengAnh" alignment="0" max="32767" attributes="0"/>
                       <Component id="label_LoaiTu" alignment="1" max="32767" attributes="0"/>
-                      <Component id="label_Nghia1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="label_Vidu" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -311,37 +311,25 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="label_TiengAnh" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="label_LoaiTu" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  <Component id="label_LoaiTu" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="label_Nghia" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="label_Nghia1" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace pref="180" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="label_Vidu" min="-2" pref="63" max="-2" attributes="0"/>
+                  <EmptySpace pref="164" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Component class="java.awt.Label" name="label_Nghia">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="3"/>
-          </Properties>
         </Component>
         <Component class="java.awt.Label" name="label_TiengAnh">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="1"/>
-          </Properties>
         </Component>
         <Component class="java.awt.Label" name="label_LoaiTu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="2"/>
-          </Properties>
         </Component>
-        <Component class="java.awt.Label" name="label_Nghia1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="4"/>
-          </Properties>
+        <Component class="java.awt.Label" name="label_Vidu">
         </Component>
       </SubComponents>
     </Container>

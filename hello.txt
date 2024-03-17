@@ -1,0 +1,94 @@
+apple -danh t?- qu? táo - My apple is delicious. -
+banana - noun - chu?i - I eat a banana every morning. -
+cat - noun - con mèo - My cat is cute on the couch. -
+dog - noun - con chó - My dog loves to play fetch. -
+elephant - noun - con voi - Elephants have long trunks. -
+fish - noun - con cá - The fish swims gracefully in the tank. -
+guitar - noun - cây ðàn guitar - He plays the guitar beautifully. -
+house - noun - ngôi nhà - Our house is painted blue. -
+ice cream - noun - kem - I like vanilla ice cream. -
+jacket - noun - áo khoác - She wears a warm jacket in winter. -
+kite - noun - cánh di?u - Let's fly a kite at the park. -
+lion - noun - con sý t? - The lion roars loudly in the zoo. -
+moon - noun - m?t trãng - The moon shines brightly at night. -
+notebook -danh t?- s? tay - I write my thoughts in a notebook. -
+orange - noun - qu? cam - Oranges are a good source of vitamin C. -
+pencil - noun - bút ch? - Can I borrow your pencil, please? -
+queen - noun - n? hoàng - The queen waved to the crowd. -
+rabbit - noun - con th? - The rabbit hops around the garden. -
+sun - noun - m?t tr?i - The sun is shining in the sky. -
+table - noun - cái bàn - We eat dinner at the table. -
+umbrella - noun - cây ô - Don't forget to bring your umbrella. -
+violin - noun - cây ðàn viôlông - She plays the violin beautifully. -
+watermelon - noun - dýa h?u - Watermelon is refreshing in summer. -
+xylophone - noun - xylophone - The xylophone makes a pleasant sound. -
+yak - noun - con b? l?c - Yaks live in the mountains. -
+zebra - noun - con ng?a v?n - Zebras have black and white stripes. -
+ant - noun - con ki?n - The ant carries food to its nest. -
+butterfly - noun - bý?m - The butterfly flutters its wings gracefully. -
+candle - noun - n?n - We light a candle on the cake. -
+dolphin - noun - cá heo - Dolphins are intelligent marine mammals. -
+elephant - noun - con voi - Elephants have long trunks. -
+fox - noun - con cáo - The fox has a bushy tail. -
+giraffe - noun - hýõu cao c? - Giraffes have long necks. -
+hedgehog - noun - con nhím - The hedgehog curls into a ball when threatened. -
+iguana - noun - con k? nhông - The iguana basks in the sun. -
+jaguar - noun - hýõu s?ng gai - The jaguar is a powerful predator. -
+kangaroo - noun - con kangaroo - Kangaroos hop to move around. -
+leopard - noun - con báo - The leopard has beautiful spots. -
+monkey - noun - con kh? - Monkeys swing from tree to tree. -
+narwhal - noun - cá voi s?ng - Narwhals have long tusks. -
+ostrich - noun - ðà ði?u - Ostriches cannot fly but can run very fast. -
+penguin - noun - chim cánh c?t - Penguins are excellent swimmers. -
+quail - noun - con cút - Quails are small game birds. -
+rhinoceros - noun - con tê giác - Rhinoceroses have thick, protective skin. -
+snake - noun - con r?n - Snakes slither on the ground. -
+tiger - noun - con h? - Tigers have striped fur. -
+unicorn - noun - k? lân - Unicorns are mythical creatures. -
+vulture - noun - con k?n k?n - Vultures feed on carrion. -
+walrus - noun - con h?i m? - Walruses have long tusks and blubber. -
+xenopus - noun - con ?ch - Xenopus is a genus of aquatic frogs. -
+yak - noun - con b? l?c - Yaks are adapted to living in high altitudes. -
+zebu - noun - con trâu - Zebus are domesticated cattle in Asia. -
+aardvark - noun - con kh?ng long - Aardvarks have long snouts for digging. -
+badger - noun - con l?c ðà - Badgers are nocturnal animals. -
+crocodile - noun - con cá s?u - Crocodiles are skilled hunters. -
+dinosaur - noun - kh?ng long - Dinosaurs lived millions of years ago. -
+eagle - noun - ð?i bàng - Eagles have keen eyesight. -
+falcon - noun - con di?u - Falcons are fast-
+gazelle - noun - con linh dýõng - Gazelles are known for their speed and agility. -
+hedgehog - noun - con nhím - Hedgehogs roll into a ball when threatened. -
+ibis - noun - con h?c - Ibises have long curved bills. -
+jackal - noun - con chó r?ng - Jackals are carnivorous mammals. -
+kangaroo - noun - con kangaroo - Kangaroos carry their babies in pouches. -
+lemur - noun - con vý?n - Lemurs are primates found in Madagascar. -
+mongoose - noun - con dê - Mongooses are known for their agility and speed. -
+narwhal - noun - cá voi s?ng - Narwhals have long tusks protruding from their heads. -
+octopus - noun - b?ch tu?c - Octopuses have eight tentacles. -
+pangolin - noun - con tê tê - Pangolins are covered in scales made of keratin. -
+quokka - noun - con quokka - Quokkas are small marsupials known for their smile. -
+rhinoceros - noun - con tê giác - Rhinoceroses have thick, protective skin. -
+salamander - noun - con k? nhông - Salamanders are amphibians found in moist habitats. -
+tapir - noun - con tapir - Tapirs have short, prehensile trunks. -
+uakari - noun - con kh? ðuôi dài - Uakaris have bald heads and bright faces. -
+viper - noun - con r?n l?c - Vipers are venomous snakes. -
+walrus - noun - con h?i m? - Walruses use their tusks to break through ice. -
+xenopus - noun - con ?ch - Xenopus is a genus of aquatic frogs. -
+yak - noun - con b? l?c - Yaks are adapted to living in high altitudes. -
+zebra - noun - con ng?a v?n - Zebras have black and white stripes. -
+antelope - noun - con linh dýõng - Antelopes are herbivorous mammals. -
+baboon - noun - con linh c?u - Baboons are highly social primates. -
+cheetah - noun - con báo - Cheetahs are the fastest land animals. -
+dolphin - noun - cá heo - Dolphins are intelligent marine mammals. -
+elephant - noun - con voi - Elephants have long trunks. -
+falcon - noun - con di?u - Falcons are fast-
+gazelle - noun - con linh dýõng - Gazelles are known for their speed and agility. -
+hedgehog - noun - con nhím - Hedgehogs roll into a ball when threatened. -
+ibis - noun - con h?c - Ibises have long curved bills. -
+jackal - noun - con chó r?ng - Jackals are carnivorous mammals. -
+kangaroo - noun - con kangaroo - Kangaroos carry their babies in pouches. -
+lemur - noun - con vý?n - Lemurs are primates found in Madagascar. -
+mongoose - noun - con dê - Mongooses are known for their agility and speed. -
+narwhal - noun - cá voi s?ng - Narwhals have long tusks protruding from their heads. -
+octopus - noun - b?ch tu?c - Octopuses have eight tentacles. -
+hi-ð?ng t?-xin chào-hi i am tu-

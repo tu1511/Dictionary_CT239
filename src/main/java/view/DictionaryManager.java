@@ -43,6 +43,10 @@ public class DictionaryManager extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         label_TiengAnh = new javax.swing.JLabel();
@@ -62,6 +66,13 @@ public class DictionaryManager extends javax.swing.JFrame {
         table_Data = new javax.swing.JTable();
         tF_tiengAnh = new javax.swing.JTextField();
         btn_Delete = new javax.swing.JButton();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
+        menuItem_Save = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        menuItem_Exit = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        menuItem_UserManual = new javax.swing.JMenuItem();
 
         jLabel2.setText("jLabel2");
 
@@ -70,6 +81,14 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+
+        jMenu5.setText("jMenu5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý tự điển");
@@ -179,6 +198,36 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         });
 
+        jMenu6.setText("Tài liệu");
+
+        menuItem_Save.setText("Lưu");
+        jMenu6.add(menuItem_Save);
+        jMenu6.add(jSeparator2);
+
+        menuItem_Exit.setText("Thoát");
+        menuItem_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItem_ExitActionPerformed(evt);
+            }
+        });
+        jMenu6.add(menuItem_Exit);
+
+        jMenuBar3.add(jMenu6);
+
+        jMenu7.setText("Thông tin");
+
+        menuItem_UserManual.setText("Hướng dẫn sử dụng");
+        menuItem_UserManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItem_UserManualActionPerformed(evt);
+            }
+        });
+        jMenu7.add(menuItem_UserManual);
+
+        jMenuBar3.add(jMenu7);
+
+        setJMenuBar(jMenuBar3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,7 +286,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btn_Return))
@@ -425,7 +474,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
     private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
-         String[] options = {"Có", "Không"};
+        String[] options = {"Có", "Không"};
         int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
               JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
         if (choice == JOptionPane.YES_OPTION) {
@@ -444,6 +493,32 @@ public class DictionaryManager extends javax.swing.JFrame {
         dictionaryApp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_ReturnActionPerformed
+
+    private void menuItem_UserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_UserManualActionPerformed
+        JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
+                 + "1. Thêm từ mới: Nhập từ tiếng Anh, loại từ, nghĩa tiếng Việt và ví dụ, sau đó nhấn nút Thêm từ.\n"
+                 + "2. Cập nhật từ: Chọn một dòng trong bảng, nhấn nút cập nhật từ để hiển thị thông tin và thay đổi\nthông tin và nhấn nút Lưu để cập nhật lại thông tin từ vựng.\n"
+                 + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút Xóa từ.\n"
+                 + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu.\n"
+                 + "5. Thoát: Đóng chương trình.\n\n"
+                 + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
+                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_menuItem_UserManualActionPerformed
+
+    private void menuItem_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_ExitActionPerformed
+        String[] options = {"Có", "Không"};
+        int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
+              JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
+        if (choice == JOptionPane.YES_OPTION) {
+            // Có
+            System.exit(0);
+        } else {
+            // Không
+            // Close the window without exiting the program
+            WindowEvent windowClosing = new WindowEvent((Window)evt.getSource(), WindowEvent.WINDOW_CLOSING);
+            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
+        }
+    }//GEN-LAST:event_menuItem_ExitActionPerformed
 
  
 
@@ -519,13 +594,24 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel label_LoaiTu;
     private javax.swing.JLabel label_TiengAnh;
     private javax.swing.JLabel label_TiengViet;
     private javax.swing.JLabel label_ViDu;
+    private javax.swing.JMenuItem menuItem_Exit;
+    private javax.swing.JMenuItem menuItem_Save;
+    private javax.swing.JMenuItem menuItem_UserManual;
     private javax.swing.JTextField tF_LoaiTu;
     private javax.swing.JTextField tF_TViDu;
     private javax.swing.JTextField tF_TiengViet;
