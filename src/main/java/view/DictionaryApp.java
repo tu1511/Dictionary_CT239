@@ -67,6 +67,8 @@ public class DictionaryApp extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         menuItem_Exit = new javax.swing.JMenuItem();
         menu_AboutMe = new javax.swing.JMenu();
+        menuItem_UserManual = new javax.swing.JMenuItem();
+        menuItem_Infor = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -105,6 +107,11 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         btn_Infor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_Infor.setText("Thông tin");
+        btn_Infor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_InforActionPerformed(evt);
+            }
+        });
 
         btn_Exit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_Exit.setText("Thoát");
@@ -174,6 +181,11 @@ public class DictionaryApp extends javax.swing.JFrame {
         jMenu1.add(jSeparator3);
 
         menuItem_Exit.setText("Exit");
+        menuItem_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItem_ExitActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuItem_Exit);
 
         jMenuBar1.add(jMenu1);
@@ -184,6 +196,23 @@ public class DictionaryApp extends javax.swing.JFrame {
                 menu_AboutMeActionPerformed(evt);
             }
         });
+
+        menuItem_UserManual.setText("Hướng dẫn sử dụng");
+        menuItem_UserManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItem_UserManualActionPerformed(evt);
+            }
+        });
+        menu_AboutMe.add(menuItem_UserManual);
+
+        menuItem_Infor.setText("Thông tin phần mềm");
+        menuItem_Infor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItem_InforActionPerformed(evt);
+            }
+        });
+        menu_AboutMe.add(menuItem_Infor);
+
         jMenuBar1.add(menu_AboutMe);
 
         setJMenuBar(jMenuBar1);
@@ -282,6 +311,47 @@ public class DictionaryApp extends javax.swing.JFrame {
             Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
         }
     }//GEN-LAST:event_btn_ExitActionPerformed
+
+    private void btn_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InforActionPerformed
+         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
+                 + "1. Thêm từ mới: Nhập từ tiếng Anh, loại từ, nghĩa tiếng Việt và ví dụ, sau đó nhấn nút Thêm từ.\n"
+                 + "2. Cập nhật từ: Chọn một dòng trong bảng, nhấn nút cập nhật từ để hiển thị thông tin và thay đổi\nthông tin và nhấn nút Lưu để cập nhật lại thông tin từ vựng.\n"
+                 + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút Xóa từ.\n"
+                 + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu.\n"
+                 + "5. Thoát: Đóng chương trình.\n\n"
+                 + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
+                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btn_InforActionPerformed
+
+    private void menuItem_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_ExitActionPerformed
+        String[] options = {"Có", "Không"};
+        int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
+              JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
+        if (choice == JOptionPane.YES_OPTION) {
+            // Có
+            System.exit(0);
+        } else {
+            // Không
+            // Close the window without exiting the program
+            WindowEvent windowClosing = new WindowEvent((Window)evt.getSource(), WindowEvent.WINDOW_CLOSING);
+            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
+        }
+    }//GEN-LAST:event_menuItem_ExitActionPerformed
+
+    private void menuItem_UserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_UserManualActionPerformed
+        JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
+                 + "1. Thêm từ mới: Nhập từ tiếng Anh, loại từ, nghĩa tiếng Việt và ví dụ, sau đó nhấn nút Thêm từ.\n"
+                 + "2. Cập nhật từ: Chọn một dòng trong bảng, nhấn nút cập nhật từ để hiển thị thông tin và thay đổi\nthông tin và nhấn nút Lưu để cập nhật lại thông tin từ vựng.\n"
+                 + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút Xóa từ.\n"
+                 + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu.\n"
+                 + "5. Thoát: Đóng chương trình.\n\n"
+                 + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
+                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_menuItem_UserManualActionPerformed
+
+    private void menuItem_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_InforActionPerformed
+        JOptionPane.showMessageDialog(this, "Phiên bản phần mềm: \n"+"Quản lý tự điển version 1.0!","Phiên bản", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_menuItem_InforActionPerformed
             
     /**
      * @param args the command line arguments
@@ -341,8 +411,10 @@ public class DictionaryApp extends javax.swing.JFrame {
     private java.awt.Label label_Nghia1;
     private java.awt.Label label_TiengAnh;
     private javax.swing.JMenuItem menuItem_Exit;
+    private javax.swing.JMenuItem menuItem_Infor;
     private javax.swing.JMenuItem menuItem_Open;
     private javax.swing.JMenuItem menuItem_Save;
+    private javax.swing.JMenuItem menuItem_UserManual;
     private javax.swing.JMenu menu_AboutMe;
     // End of variables declaration//GEN-END:variables
 }
