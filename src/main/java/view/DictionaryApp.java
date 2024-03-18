@@ -409,8 +409,8 @@ public class DictionaryApp extends javax.swing.JFrame {
 
     private void btn_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InforActionPerformed
          JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
-                 + "1. Thêm từ mới: Nhập từ tiếng Anh, loại từ, nghĩa tiếng Việt và ví dụ, sau đó nhấn nút Thêm từ.\n"
-                 + "2. Cập nhật từ: Chọn một dòng trong bảng, nhấn nút cập nhật từ để hiển thị thông tin và thay đổi\nthông tin và nhấn nút Lưu để cập nhật lại thông tin từ vựng.\n"
+                 + "1. Tra cứu từ: Nhập từ tiếng Anh vào trong thanh tìm kiếm sau đó nhấn nút Tra cứu.\n"
+                 + "2. Quản lý tự điển: chọn vào nút đó để chuyển sang giao diện điều chỉnh thông tin từ vựng.\n"
                  + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút Xóa từ.\n"
                  + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu.\n"
                  + "5. Thoát: Đóng chương trình.\n\n"
@@ -435,11 +435,9 @@ public class DictionaryApp extends javax.swing.JFrame {
 
     private void menuItem_UserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_UserManualActionPerformed
         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
-                 + "1. Thêm từ mới: Nhập từ tiếng Anh, loại từ, nghĩa tiếng Việt và ví dụ, sau đó nhấn nút Thêm từ.\n"
-                 + "2. Cập nhật từ: Chọn một dòng trong bảng, nhấn nút cập nhật từ để hiển thị thông tin và thay đổi\nthông tin và nhấn nút Lưu để cập nhật lại thông tin từ vựng.\n"
-                 + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút Xóa từ.\n"
-                 + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu.\n"
-                 + "5. Thoát: Đóng chương trình.\n\n"
+                + "1. Tra cứu từ: Nhập từ tiếng Anh vào trong thanh tìm kiếm sau đó nhấn nút Tra cứu.\n"
+                 + "2. Quản lý tự điển: chọn vào nút đó để chuyển sang giao diện điều chỉnh thông tin từ vựng.\n"
+                 + "3. Thoát: Đóng chương trình.\n\n"
                  + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
                  + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_UserManualActionPerformed

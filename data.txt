@@ -1,94 +1,95 @@
-apple -danh t?- qu? t√°o - My apple is delicious. -
+apple -danh t?- qu? t·o - My apple is delicious. -
 banana - noun - chu?i - I eat a banana every morning. -
-cat - noun - con m√®o - My cat is sleeping on the couch. -
-dog - noun - con ch√≥ - My dog loves to play fetch. -
+cat - noun - con mËo - My cat is sleeping on the couch. -
+dog - noun - con chÛ - My dog loves to play fetch. -
 elephant - noun - con voi - Elephants have long trunks. -
-fish - noun - con c√° - The fish swims gracefully in the tank. -
-guitar - noun - c√¢y √∞√†n guitar - He plays the guitar beautifully. -
-house - noun - ng√¥i nh√† - Our house is painted blue. -
+fish - noun - con c· - The fish swims gracefully in the tank. -
+guitar - noun - c‚y ?‡n guitar - He plays the guitar beautifully. -
+house - noun - ngÙi nh‡ - Our house is painted blue. -
 ice cream - noun - kem - I like vanilla ice cream. -
-jacket - noun - √°o kho√°c - She wears a warm jacket in winter. -
-kite - noun - c√°nh di?u - Let's fly a kite at the park. -
-lion - noun - con s√Ω t? - The lion roars loudly in the zoo. -
-moon - noun - m?t tr√£ng - The moon shines brightly at night. -
+jacket - noun - ·o kho·c - She wears a warm jacket in winter. -
+kite - noun - c·nh di?u - Let's fly a kite at the park. -
+lion - noun - con s? t? - The lion roars loudly in the zoo. -
+moon - noun - m?t tr?ng - The moon shines brightly at night. -
 notebook -danh t?- s? tay - I write my thoughts in a notebook. -
 orange - noun - qu? cam - Oranges are a good source of vitamin C. -
-pencil - noun - b√∫t ch? - Can I borrow your pencil, please? -
-queen - noun - n? ho√†ng - The queen waved to the crowd. -
+pencil - noun - b˙t ch? - Can I borrow your pencil, please? -
+queen - noun - n? ho‡ng - The queen waved to the crowd. -
 rabbit - noun - con th? - The rabbit hops around the garden. -
 sun - noun - m?t tr?i - The sun is shining in the sky. -
-table - noun - c√°i b√†n - We eat dinner at the table. -
-umbrella - noun - c√¢y √¥ - Don't forget to bring your umbrella. -
-violin - noun - c√¢y √∞√†n vi√¥l√¥ng - She plays the violin beautifully. -
-watermelon - noun - d√Ωa h?u - Watermelon is refreshing in summer. -
+table - noun - c·i b‡n - We eat dinner at the table. -
+umbrella - noun - c‚y Ù - Don't forget to bring your umbrella. -
+violin - noun - c‚y ?‡n viÙlÙng - She plays the violin beautifully. -
+watermelon - noun - d?a h?u - Watermelon is refreshing in summer. -
 xylophone - noun - xylophone - The xylophone makes a pleasant sound. -
 yak - noun - con b? l?c - Yaks live in the mountains. -
 zebra - noun - con ng?a v?n - Zebras have black and white stripes. -
 ant - noun - con ki?n - The ant carries food to its nest. -
-butterfly - noun - b√Ω?m - The butterfly flutters its wings gracefully. -
+butterfly - noun - b??m - The butterfly flutters its wings gracefully. -
 candle - noun - n?n - We light a candle on the cake. -
-dolphin - noun - c√° heo - Dolphins are intelligent marine mammals. -
+dolphin - noun - c· heo - Dolphins are intelligent marine mammals. -
 elephant - noun - con voi - Elephants have long trunks. -
-fox - noun - con c√°o - The fox has a bushy tail. -
-giraffe - noun - h√Ω√µu cao c? - Giraffes have long necks. -
-hedgehog - noun - con nh√≠m - The hedgehog curls into a ball when threatened. -
-iguana - noun - con k? nh√¥ng - The iguana basks in the sun. -
-jaguar - noun - h√Ω√µu s?ng gai - The jaguar is a powerful predator. -
+fox - noun - con c·o - The fox has a bushy tail. -
+giraffe - noun - h??u cao c? - Giraffes have long necks. -
+hedgehog - noun - con nhÌm - The hedgehog curls into a ball when threatened. -
+iguana - noun - con k? nhÙng - The iguana basks in the sun. -
+jaguar - noun - h??u s?ng gai - The jaguar is a powerful predator. -
 kangaroo - noun - con kangaroo - Kangaroos hop to move around. -
-leopard - noun - con b√°o - The leopard has beautiful spots. -
+leopard - noun - con b·o - The leopard has beautiful spots. -
 monkey - noun - con kh? - Monkeys swing from tree to tree. -
-narwhal - noun - c√° voi s?ng - Narwhals have long tusks. -
-ostrich - noun - √∞√† √∞i?u - Ostriches cannot fly but can run very fast. -
-penguin - noun - chim c√°nh c?t - Penguins are excellent swimmers. -
-quail - noun - con c√∫t - Quails are small game birds. -
-rhinoceros - noun - con t√™ gi√°c - Rhinoceroses have thick, protective skin. -
+narwhal - noun - c· voi s?ng - Narwhals have long tusks. -
+ostrich - noun - ?‡ ?i?u - Ostriches cannot fly but can run very fast. -
+penguin - noun - chim c·nh c?t - Penguins are excellent swimmers. -
+quail - noun - con c˙t - Quails are small game birds. -
+rhinoceros - noun - con tÍ gi·c - Rhinoceroses have thick, protective skin. -
 snake - noun - con r?n - Snakes slither on the ground. -
 tiger - noun - con h? - Tigers have striped fur. -
-unicorn - noun - k? l√¢n - Unicorns are mythical creatures. -
+unicorn - noun - k? l‚n - Unicorns are mythical creatures. -
 vulture - noun - con k?n k?n - Vultures feed on carrion. -
 walrus - noun - con h?i m? - Walruses have long tusks and blubber. -
 xenopus - noun - con ?ch - Xenopus is a genus of aquatic frogs. -
 yak - noun - con b? l?c - Yaks are adapted to living in high altitudes. -
-zebu - noun - con tr√¢u - Zebus are domesticated cattle in Asia. -
+zebu - noun - con tr‚u - Zebus are domesticated cattle in Asia. -
 aardvark - noun - con kh?ng long - Aardvarks have long snouts for digging. -
-badger - noun - con l?c √∞√† - Badgers are nocturnal animals. -
-crocodile - noun - con c√° s?u - Crocodiles are skilled hunters. -
+badger - noun - con l?c ?‡ - Badgers are nocturnal animals. -
+crocodile - noun - con c· s?u - Crocodiles are skilled hunters. -
 dinosaur - noun - kh?ng long - Dinosaurs lived millions of years ago. -
-eagle - noun - √∞?i b√†ng - Eagles have keen eyesight. -
+eagle - noun - ??i b‡ng - Eagles have keen eyesight. -
 falcon - noun - con di?u - Falcons are fast-
-gazelle - noun - con linh d√Ω√µng - Gazelles are known for their speed and agility. -
-hedgehog - noun - con nh√≠m - Hedgehogs roll into a ball when threatened. -
+gazelle - noun - con linh d??ng - Gazelles are known for their speed and agility. -
+hedgehog - noun - con nhÌm - Hedgehogs roll into a ball when threatened. -
 ibis - noun - con h?c - Ibises have long curved bills. -
-jackal - noun - con ch√≥ r?ng - Jackals are carnivorous mammals. -
+jackal - noun - con chÛ r?ng - Jackals are carnivorous mammals. -
 kangaroo - noun - con kangaroo - Kangaroos carry their babies in pouches. -
-lemur - noun - con v√Ω?n - Lemurs are primates found in Madagascar. -
-mongoose - noun - con d√™ - Mongooses are known for their agility and speed. -
-narwhal - noun - c√° voi s?ng - Narwhals have long tusks protruding from their heads. -
+lemur - noun - con v??n - Lemurs are primates found in Madagascar. -
+mongoose - noun - con dÍ - Mongooses are known for their agility and speed. -
+narwhal - noun - c· voi s?ng - Narwhals have long tusks protruding from their heads. -
 octopus - noun - b?ch tu?c - Octopuses have eight tentacles. -
-pangolin - noun - con t√™ t√™ - Pangolins are covered in scales made of keratin. -
+pangolin - noun - con tÍ tÍ - Pangolins are covered in scales made of keratin. -
 quokka - noun - con quokka - Quokkas are small marsupials known for their smile. -
-rhinoceros - noun - con t√™ gi√°c - Rhinoceroses have thick, protective skin. -
-salamander - noun - con k? nh√¥ng - Salamanders are amphibians found in moist habitats. -
+rhinoceros - noun - con tÍ gi·c - Rhinoceroses have thick, protective skin. -
+salamander - noun - con k? nhÙng - Salamanders are amphibians found in moist habitats. -
 tapir - noun - con tapir - Tapirs have short, prehensile trunks. -
-uakari - noun - con kh? √∞u√¥i d√†i - Uakaris have bald heads and bright faces. -
+uakari - noun - con kh? ?uÙi d‡i - Uakaris have bald heads and bright faces. -
 viper - noun - con r?n l?c - Vipers are venomous snakes. -
 walrus - noun - con h?i m? - Walruses use their tusks to break through ice. -
 xenopus - noun - con ?ch - Xenopus is a genus of aquatic frogs. -
 yak - noun - con b? l?c - Yaks are adapted to living in high altitudes. -
 zebra - noun - con ng?a v?n - Zebras have black and white stripes. -
-antelope - noun - con linh d√Ω√µng - Antelopes are herbivorous mammals. -
+antelope - noun - con linh d??ng - Antelopes are herbivorous mammals. -
 baboon - noun - con linh c?u - Baboons are highly social primates. -
-cheetah - noun - con b√°o - Cheetahs are the fastest land animals. -
-dolphin - noun - c√° heo - Dolphins are intelligent marine mammals. -
+cheetah - noun - con b·o - Cheetahs are the fastest land animals. -
+dolphin - noun - c· heo - Dolphins are intelligent marine mammals. -
 elephant - noun - con voi - Elephants have long trunks. -
 falcon - noun - con di?u - Falcons are fast-
-gazelle - noun - con linh d√Ω√µng - Gazelles are known for their speed and agility. -
-hedgehog - noun - con nh√≠m - Hedgehogs roll into a ball when threatened. -
+gazelle - noun - con linh d??ng - Gazelles are known for their speed and agility. -
+hedgehog - noun - con nhÌm - Hedgehogs roll into a ball when threatened. -
 ibis - noun - con h?c - Ibises have long curved bills. -
-jackal - noun - con ch√≥ r?ng - Jackals are carnivorous mammals. -
+jackal - noun - con chÛ r?ng - Jackals are carnivorous mammals. -
 kangaroo - noun - con kangaroo - Kangaroos carry their babies in pouches. -
-lemur - noun - con v√Ω?n - Lemurs are primates found in Madagascar. -
-mongoose - noun - con d√™ - Mongooses are known for their agility and speed. -
-narwhal - noun - c√° voi s?ng - Narwhals have long tusks protruding from their heads. -
+lemur - noun - con v??n - Lemurs are primates found in Madagascar. -
+mongoose - noun - con dÍ - Mongooses are known for their agility and speed. -
+narwhal - noun - c· voi s?ng - Narwhals have long tusks protruding from their heads. -
 octopus - noun - b?ch tu?c - Octopuses have eight tentacles. -
-hi-√∞?ng t?-xin ch√†o-hi i am tu-
+hi-??ng t?-xin ch‡o-hi i am tu-
+ice-danh t?-n˝?c · -my ice is so cute hhehe-
