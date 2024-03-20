@@ -114,6 +114,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         label_ViDu.setText("Ví dụ : ");
 
         btn_Save.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Save.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\save.png"));
         btn_Save.setText("Lưu");
         btn_Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +123,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         });
 
         btn_Return.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btn_Return.setText("<");
+        btn_Return.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\back.png"));
         btn_Return.setAlignmentY(0.0F);
         btn_Return.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +142,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         btn_Update.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Update.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\update.png"));
-        btn_Update.setText("Cập nhật từ");
+        btn_Update.setText("Cập nhật");
         btn_Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_UpdateActionPerformed(evt);
@@ -149,6 +150,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         });
 
         btn_reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_reload.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\reload.png"));
         btn_reload.setText("Reload");
         btn_reload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +159,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         });
 
         btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\exit.png"));
         btn_Exit.setText("Thoát");
         btn_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +196,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         tF_tiengAnh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btn_Delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Delete.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\delete.png"));
         btn_Delete.setText("Xóa từ");
         btn_Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,8 +260,8 @@ public class DictionaryManager extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tF_TiengViet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label_TiengViet))))
-                .addGap(66, 66, 66)
-                .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
