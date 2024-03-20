@@ -131,6 +131,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         });
 
         btn_Add.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Add.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\add.png"));
         btn_Add.setText("Thêm từ");
         btn_Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
