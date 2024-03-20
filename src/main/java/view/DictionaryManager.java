@@ -140,6 +140,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         });
 
         btn_Update.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Update.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\update.png"));
         btn_Update.setText("Cập nhật từ");
         btn_Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
