@@ -89,6 +89,7 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý tự điển");
+        setBackground(new java.awt.Color(51, 255, 204));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(850, 604));
         setPreferredSize(new java.awt.Dimension(850, 604));
@@ -102,6 +103,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         tF_Infor.setDisabledTextColor(new java.awt.Color(204, 204, 204));
 
         btn_TraCuu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_TraCuu.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\search.png"));
         btn_TraCuu.setText("Tra cứu");
         btn_TraCuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +120,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         });
 
         btn_Exit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\exit.png"));
         btn_Exit.setText("Thoát");
         btn_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +132,13 @@ public class DictionaryApp extends javax.swing.JFrame {
         jLabel1.setText("Danh sách từ đã tìm kiếm:");
 
         btn_Manager.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_Manager.setText("Quản lý tự điển");
+        btn_Manager.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\setting.png"));
+        btn_Manager.setText("Quản lý");
+        btn_Manager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ManagerActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -232,10 +241,10 @@ public class DictionaryApp extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tF_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_TraCuu)
-                                .addGap(61, 61, 61)
-                                .addComponent(btn_Manager)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                                .addComponent(btn_TraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(btn_Manager, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                                 .addComponent(btn_Infor)
                                 .addGap(47, 47, 47)
                                 .addComponent(btn_Exit))
@@ -445,6 +454,10 @@ public class DictionaryApp extends javax.swing.JFrame {
     private void menuItem_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_InforActionPerformed
         JOptionPane.showMessageDialog(this, "Phiên bản phần mềm: \n"+"Quản lý tự điển version 1.0!","Phiên bản", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_InforActionPerformed
+
+    private void btn_ManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManagerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ManagerActionPerformed
             
     /**
      * @param args the command line arguments
