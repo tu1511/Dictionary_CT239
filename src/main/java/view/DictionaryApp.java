@@ -21,7 +21,9 @@ import javax.swing.event.DocumentListener;
  */
 public class DictionaryApp extends javax.swing.JFrame {
     
-    private List<String> dictionary;
+    private List<String> dictionary = new ArrayList<>();
+    private String currentFilePath = "data.txt";
+    private  List<String> recentSearches = new ArrayList<>();
     
     public DictionaryApp() {
 
@@ -37,8 +39,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        dictionary = new ArrayList<>();
-        loadDictionaryFromFile("data.txt");
+        loadDictionaryFromFile(currentFilePath);
 
         // Listen for changes in tF_Infor
         tF_Infor.getDocument().addDocumentListener(new DocumentListener() {
@@ -326,9 +327,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private String currentFilePath = "data.txt";
-    private  List<String> recentSearches = new ArrayList<>();
-
     private void btn_TraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraCuuActionPerformed
          // Lấy từ cần tra từ text field
         String tuCanTim = tF_Infor.getText().trim();
@@ -443,8 +441,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         return input.trim(); // Trả về toàn bộ chuỗi nếu không có dấu gạch ngang
     }
 
-
-    
     private void menuItem_OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_OpenActionPerformed
          JFileChooser fileChooser = new JFileChooser(); // Tạo một đối tượng JFileChooser
 
