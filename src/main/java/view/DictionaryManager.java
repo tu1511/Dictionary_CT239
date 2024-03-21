@@ -152,6 +152,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_reload.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\reload.png"));
         btn_reload.setText("Reload");
+        btn_reload.setToolTipText("");
         btn_reload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_reloadActionPerformed(evt);
