@@ -25,6 +25,10 @@ public class DictionaryApp extends javax.swing.JFrame {
     private String currentFilePath = "data.txt";
     private  List<String> recentSearches = new ArrayList<>();
     
+    public String getCurrentFilePath() {
+        return currentFilePath;
+    }
+    
     public DictionaryApp() {
 
         initComponents();
