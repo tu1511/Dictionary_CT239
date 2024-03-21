@@ -11,17 +11,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
-
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
  * @author LENOVO
  */
 public class DictionaryApp extends javax.swing.JFrame {
-
     
+    private List<String> dictionary;
     
     public DictionaryApp() {
 
@@ -36,6 +36,27 @@ public class DictionaryApp extends javax.swing.JFrame {
         });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        
+        dictionary = new ArrayList<>();
+        loadDictionaryFromFile("data.txt");
+
+        // Listen for changes in tF_Infor
+        tF_Infor.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateSuggestions();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateSuggestions();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateSuggestions();
+            }
+        });
     }
 
     /**
@@ -64,6 +85,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         label_TiengAnh = new java.awt.Label();
         label_LoaiTu = new java.awt.Label();
         label_Vidu = new java.awt.Label();
+        cbB_Infor = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItem_Open = new javax.swing.JMenuItem();
@@ -172,7 +194,7 @@ public class DictionaryApp extends javax.swing.JFrame {
                 .addComponent(label_Nghia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_Vidu, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Tài liệu");
@@ -241,7 +263,19 @@ public class DictionaryApp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(tF_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1)
+                                        .addGap(52, 52, 52)))
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cbB_Infor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tF_Infor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_TraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
@@ -249,20 +283,14 @@ public class DictionaryApp extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                                 .addComponent(btn_Infor)
                                 .addGap(47, 47, 47)
-                                .addComponent(btn_Exit))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
-                                .addGap(50, 50, 50)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btn_Exit)))
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(265, 265, 265)
                         .addComponent(labelName)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelTraCuu))
+                        .addComponent(labelTraCuu)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -286,10 +314,12 @@ public class DictionaryApp extends javax.swing.JFrame {
                         .addGap(66, 66, 66)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbB_Infor)
+                        .addGap(72, 72, 72)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29))
         );
 
@@ -349,8 +379,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi đọc file từ điển!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_TraCuuActionPerformed
-   
-    
+
     private void performSearch(String keyword) {
         // Thêm từ tìm kiếm mới vào danh sách
         recentSearches.add(keyword);
@@ -361,22 +390,60 @@ public class DictionaryApp extends javax.swing.JFrame {
 
     // Hàm cập nhật hiển thị của jScrollPane1 dựa trên danh sách các từ đã tìm kiếm gần đây
     private void updateRecentSearches() {
-    // Tạo một StringBuilder để xây dựng nội dung cần hiển thị
-    StringBuilder sb = new StringBuilder();
+        // Tạo một StringBuilder để xây dựng nội dung cần hiển thị
+        StringBuilder sb = new StringBuilder();
 
-    // Duyệt qua danh sách các từ đã tìm kiếm gần đây và thêm chúng vào StringBuilder
-    for (String search : recentSearches) {
-        sb.append(search).append("\n"); // Thêm từ và một dòng xuống mới
+        // Duyệt qua danh sách các từ đã tìm kiếm gần đây và thêm chúng vào StringBuilder
+        for (String search : recentSearches) {
+            sb.append(search).append("\n"); // Thêm từ và một dòng xuống mới
+        }
+
+        // Tạo một JTextArea để hiển thị nội dung
+        JTextArea textArea = new JTextArea(sb.toString());
+        textArea.setFont(new Font("Arial", Font.PLAIN, 14));
+        textArea.setEditable(false); // Đảm bảo không thể chỉnh sửa nội dung
+
+        // Đặt textArea vào jScrollPane1
+        jScrollPane1.setViewportView(textArea);
     }
 
-    // Tạo một JTextArea để hiển thị nội dung
-    JTextArea textArea = new JTextArea(sb.toString());
-    textArea.setFont(new Font("Arial", Font.PLAIN, 14));
-    textArea.setEditable(false); // Đảm bảo không thể chỉnh sửa nội dung
+    private void loadDictionaryFromFile(String filePath) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                dictionary.add(line.trim());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occurred while reading the dictionary file!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
-    // Đặt textArea vào jScrollPane1
-    jScrollPane1.setViewportView(textArea);
-}
+    private void updateSuggestions() {
+        String input = tF_Infor.getText().trim().toLowerCase();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+
+        for (String word : dictionary) {
+            String englishWord = getEnglishWord(word); // Lấy từ tiếng Anh từ chuỗi
+            if (englishWord.toLowerCase().startsWith(input)) {
+                model.addElement(englishWord);
+            }
+        }
+
+        cbB_Infor.setModel(model);
+        cbB_Infor.setPopupVisible(!input.isEmpty());
+    }
+
+    // Phương thức để lấy từ tiếng Anh từ chuỗi có định dạng "từ - mô tả"
+    private String getEnglishWord(String input) {
+        int dashIndex = input.indexOf('-');
+        if (dashIndex != -1) {
+            return input.substring(0, dashIndex).trim();
+        }
+        return input.trim(); // Trả về toàn bộ chuỗi nếu không có dấu gạch ngang
+    }
+
+
     
     private void menuItem_OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_OpenActionPerformed
          JFileChooser fileChooser = new JFileChooser(); // Tạo một đối tượng JFileChooser
@@ -511,6 +578,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JButton btn_Infor;
     private javax.swing.JButton btn_Manager;
     private javax.swing.JButton btn_TraCuu;
+    private javax.swing.JComboBox<String> cbB_Infor;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
