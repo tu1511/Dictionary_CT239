@@ -1,81 +1,85 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author LENOVO
- */
 public class Dictionary {
-    private String english;
+    private String word;
     private String type;
-    private String mean;
+    private String meaning;
     private String example;
-    private boolean status = false;
+    private boolean isActive;
 
-    public Dictionary(String english, String type, String mean, String example) {
-        this.english = english;
+    public Dictionary(String word, String type, String meaning, String example) {
+        this.word = word;
         this.type = type;
-        this.mean = mean;
+        this.meaning = meaning;
         this.example = example;
     }
 
-    public String getEnglish() {
-        return english;
+    public String getWord() {
+        return word;
     }
 
     public String getType() {
         return type;
     }
 
-    public String getMean() {
-        return mean;
+    public String getMeaning() {
+        return meaning;
     }
 
     public String getExample() {
         return example;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setEnglish(String english) {
-        this.english = english;
+    public void setWord(String word) {
+        this.word = word;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    public void setMean(String mean) {
-        this.mean = mean;
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
     }
 
     public void setExample(String example) {
         this.example = example;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
     public String toString() {
-        return "Dictionary{" + "english=" + english + ", type=" + type + ", mean=" + mean + ", example=" + example + ", status=" + status + '}';
+        return "Word: " + word + "\nType: " + type + "\nMeaning: " + meaning + "\nExample: " + example + "\nActive: " + isActive;
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Dictionary that = (Dictionary) obj;
+        return isActive == that.isActive && 
+               word.equals(that.word) && 
+               type.equals(that.type) && 
+               meaning.equals(that.meaning) && 
+               example.equals(that.example);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        int result = word.hashCode();
+        result = 31 * result + type.hashCode();
+        result = 31 * result + meaning.hashCode();
+        result = 31 * result + example.hashCode();
+        result = 31 * result + (isActive ? 1 : 0);
+        return result;
     }
-    
-   
 }
