@@ -5,7 +5,7 @@ public class HashTable {
     private Node[] table;
 
     // Constructor
-    public HashTable() {
+    public HashTable(int size) {
         table = new Node[SIZE];
         // Khởi tạo mỗi phần tử trong bảng băm là null
         for (int i = 0; i < SIZE; i++) {

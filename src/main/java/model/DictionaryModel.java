@@ -14,7 +14,7 @@ public class DictionaryModel {
     }
 
     // Tìm kiếm một từ trong từ điển
-    public String searchWord(String english) {
+    public Dictionary searchWord(String english) {
         return hashTable.get(english);
     }
 
