@@ -1,19 +1,44 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author LENOVO
- */
 public class Node {
-//    public TuDien key;
-    public Node next;
+    private String key;
+    private String value;
+    private Node next;
 
-    public Node() {
-//        this.key = null;
+    // Constructor
+    public Node(String key, String value) {
+        this.key = key;
+        this.value = value;
         this.next = null;
+    }
+
+    // Getter for key
+    public String getKey() {
+        return key;
+    }
+
+    // Setter for key
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    // Getter for value
+    public String getValue() {
+        return value;
+    }
+
+    // Setter for value
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    // Getter for next node
+    public Node getNext() {
+        return next;
+    }
+
+    // Setter for next node
+    public void setNext(Node next) {
+        this.next = next;
     }
 }
