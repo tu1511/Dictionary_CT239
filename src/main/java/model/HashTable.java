@@ -1,27 +1,31 @@
 package model;
 
 public class HashTable {
-    private int size;
+    private final int SIZE = 100; // Số lượng buckets
     private Node[] table;
 
     // Constructor
-    public HashTable(int size) {
-        this.size = size;
-        this.table = new Node[size];
+    public HashTable() {
+        table = new Node[SIZE];
         // Khởi tạo mỗi phần tử trong bảng băm là null
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < SIZE; i++) {
             table[i] = null;
         }
     }
 
     // Hàm băm
     private int hashFunction(String key) {
-        // Thực hiện hàm băm đơn giản
-        return key.hashCode() % size;
+        int sum = 0;
+        // Tính tổng mã ASCII của các ký tự trong key
+        for (int i = 0; i < key.length(); i++) {
+            sum += (int) key.charAt(i);
+        }
+        // Chiết lượng sum để phù hợp với SIZE
+        return sum % SIZE;
     }
 
     // Thêm một cặp khóa-giá trị vào bảng băm
-    public void put(String key, String value) {
+    public void put(String key, Dictionary value) {
         int index = hashFunction(key);
         Node newNode = new Node(key, value);
         // Nếu vị trí không có nút nào, thêm nút mới
@@ -37,7 +41,7 @@ public class HashTable {
     }
 
     // Lấy giá trị tương ứng với khóa từ bảng băm
-    public String get(String key) {
+    public Dictionary get(String key) {
         int index = hashFunction(key);
         Node current = table[index];
         // Duyệt danh sách liên kết tại vị trí index để tìm giá trị

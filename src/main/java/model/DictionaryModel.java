@@ -14,8 +14,8 @@ public class DictionaryModel {
     }
 
     // Tìm kiếm một từ trong từ điển
-    public Dictionary searchWord(String english) {
-        return (Dictionary) hashTable.get(english);
+    public String searchWord(String english) {
+        return hashTable.get(english);
     }
 
     // Xóa một từ khỏi từ điển
@@ -28,7 +28,7 @@ public class DictionaryModel {
         Dictionary word = searchWord(english);
         if (word != null) {
             word.setType(type);
-            word.setMean(mean);
+            word.setMeaning(mean);
             word.setExample(example);
         } else {
             // Xử lý khi từ cần cập nhật không tồn tại

@@ -82,4 +82,8 @@ public class Dictionary {
         result = 31 * result + (isActive ? 1 : 0);
         return result;
     }
+
+    void setMean(String mean) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
