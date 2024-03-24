@@ -2,11 +2,11 @@ package model;
 
 public class Node {
     private String key;
-    private String value;
+    private Dictionary value;
     private Node next;
 
     // Constructor
-    public Node(String key, String value) {
+    public Node(String key, Dictionary value) {
         this.key = key;
         this.value = value;
         this.next = null;
@@ -23,12 +23,12 @@ public class Node {
     }
 
     // Getter for value
-    public String getValue() {
+    public Dictionary getValue() {
         return value;
     }
 
     // Setter for value
-    public void setValue(String value) {
+    public void setValue(Dictionary value) {
         this.value = value;
     }
 
