@@ -16,12 +16,11 @@ import javax.swing.JFrame;
 
 import model.Dictionary;
 import model.DictionaryModel;
-import model.HashTable;
 import model.Node;
 
 public class DictionaryManager extends javax.swing.JFrame {
 
-   
+    DictionaryModel model = new DictionaryModel();
     public String currentFilePath = "data.txt";
     
     public DictionaryManager() {
@@ -339,12 +338,13 @@ public class DictionaryManager extends javax.swing.JFrame {
         String tiengViet = tF_TiengViet.getText();
         String viDu = tF_TViDu.getText();
 
-        String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
+        model.addWord(tiengAnh, loaiTu, tiengViet, viDu);
         try {
             // Sử dụng OutputStreamWriter và FileOutputStream để ghi dữ liệu với mã hóa UTF-8
-            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("data.txt", true), "UTF-8");
+            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("datatest.txt", true), "UTF-8");
             // Sử dụng BufferedWriter để viết dữ liệu vào tệp
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
             bufferedWriter.write(data); // Ghi dữ liệu vào tệp
             bufferedWriter.newLine(); // Thêm ký tự xuống dòng sau mỗi lần ghi
             bufferedWriter.close(); // Đóng BufferedWriter
@@ -355,7 +355,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         } catch (IOException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-      }
+        }
     }//GEN-LAST:event_btn_AddActionPerformed
 
 //chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
