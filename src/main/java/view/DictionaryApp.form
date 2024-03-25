@@ -237,9 +237,6 @@
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tF_InforActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_TraCuu">
       <Properties>

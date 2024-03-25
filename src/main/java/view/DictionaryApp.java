@@ -128,11 +128,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         labelTraCuu.setText("Nhập từ cần tra cứu");
 
         tF_Infor.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        tF_Infor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tF_InforActionPerformed(evt);
-            }
-        });
 
         btn_TraCuu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btn_TraCuu.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\search.png"));
@@ -532,10 +527,6 @@ public class DictionaryApp extends javax.swing.JFrame {
     private void btn_ManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManagerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ManagerActionPerformed
-
-    private void tF_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tF_InforActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tF_InforActionPerformed
             
     /**
      * @param args the command line arguments
