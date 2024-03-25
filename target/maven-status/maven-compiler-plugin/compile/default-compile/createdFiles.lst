@@ -6,7 +6,6 @@ view\DictionaryApp$9.class
 view\DictionaryManager.class
 view\DictionaryManager$11.class
 model\Node.class
-view\DictionaryApp$13.class
 view\DictionaryApp.class
 view\DictionaryManager$10.class
 model\DictionaryModel.class
@@ -17,6 +16,7 @@ view\DictionaryApp$11.class
 view\DictionaryApp$7.class
 view\DictionaryApp$8.class
 view\DictionaryManager$8.class
+controller\DictionaryController.class
 view\DictionaryManager$1.class
 view\DictionaryManager$3.class
 view\DictionaryApp$1.class

@@ -99,3 +99,6 @@ data-danh từ-file data-đang ở file data-false
 data-danh từ-file hello--false
 dog-danh từ-con chó-my dog is cow-false
 bird-danh từ-con chim-my bird is so cute-false
+banana - noun - chu?i - I eat a banana every morning. -false
+----false
+----false

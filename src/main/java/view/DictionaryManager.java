@@ -13,19 +13,16 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
-/**
- *
- * @author LENOVO
- */
+
+import model.Dictionary;
+import model.DictionaryModel;
+import model.HashTable;
+import model.Node;
+
 public class DictionaryManager extends javax.swing.JFrame {
 
-//    private DictionaryApp manager; // Khai báo biến manager ở đầu lớp
-//
-//    public DictionaryManager(DictionaryApp manager) {
-//        this.manager = manager; // Gán tham chiếu từ constructor
-//    }
-//    
-    private String currentFilePath = "data.txt";
+   
+    public String currentFilePath = "data.txt";
     
     public DictionaryManager() {
         initComponents();
@@ -36,7 +33,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         loadDataFromFile();
     }
     
-    
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -337,38 +334,32 @@ public class DictionaryManager extends javax.swing.JFrame {
     
 //    chức năng thêm từ
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
-       String tiengAnh = tF_tiengAnh.getText();
-    String loaiTu = tF_LoaiTu.getText();
-    String tiengViet = tF_TiengViet.getText();
-    String viDu = tF_TViDu.getText();
+        String tiengAnh = tF_tiengAnh.getText();
+        String loaiTu = tF_LoaiTu.getText();
+        String tiengViet = tF_TiengViet.getText();
+        String viDu = tF_TViDu.getText();
 
-    String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
-    try {
-        // Sử dụng OutputStreamWriter và FileOutputStream để ghi dữ liệu với mã hóa UTF-8
-        OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("data.txt", true), "UTF-8");
-        // Sử dụng BufferedWriter để viết dữ liệu vào tệp
-        BufferedWriter bufferedWriter = new BufferedWriter(writer);
-        bufferedWriter.write(data); // Ghi dữ liệu vào tệp
-        bufferedWriter.newLine(); // Thêm ký tự xuống dòng sau mỗi lần ghi
-        bufferedWriter.close(); // Đóng BufferedWriter
-        JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-    
-        // Load lại dữ liệu lên bảng sau khi thêm từ mới
-        loadDataFromFile();
-    } catch (IOException ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    }
+        String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
+        try {
+            // Sử dụng OutputStreamWriter và FileOutputStream để ghi dữ liệu với mã hóa UTF-8
+            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("data.txt", true), "UTF-8");
+            // Sử dụng BufferedWriter để viết dữ liệu vào tệp
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            bufferedWriter.write(data); // Ghi dữ liệu vào tệp
+            bufferedWriter.newLine(); // Thêm ký tự xuống dòng sau mỗi lần ghi
+            bufferedWriter.close(); // Đóng BufferedWriter
+            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+            // Load lại dữ liệu lên bảng sau khi thêm từ mới
+            loadDataFromFile();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+      }
     }//GEN-LAST:event_btn_AddActionPerformed
-//Chức năng reload
-    private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
-        tF_tiengAnh.setText("");
-        tF_LoaiTu.setText("");
-        tF_TiengViet.setText("");
-        tF_TViDu.setText("");
-    }//GEN-LAST:event_btn_reloadActionPerformed
+
 //chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
-    private void table_DataMouseClicked(java.awt.event.MouseEvent evt) {                                       
+    public void table_DataMouseClicked(java.awt.event.MouseEvent evt) {                                       
         // Lấy chỉ số của dòng được chọn
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) { // Đảm bảo có dòng được chọn
@@ -530,11 +521,18 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuItem_ExitActionPerformed
 
+    private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
+        tF_tiengAnh.setText("");
+        tF_LoaiTu.setText("");
+        tF_TiengViet.setText("");
+        tF_TViDu.setText("");
+    }//GEN-LAST:event_btn_reloadActionPerformed
+
  
 
 
 //    Chức năng load dữ liệu từ file lưu trữ lên
- private void loadDataFromFile() {
+ public void loadDataFromFile() {
     DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
     model.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
 
@@ -602,7 +600,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JButton btn_Return;
     private javax.swing.JButton btn_Save;
     private javax.swing.JButton btn_Update;
-    private javax.swing.JButton btn_reload;
+    public javax.swing.JButton btn_reload;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -623,12 +621,15 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JLabel label_TiengViet;
     private javax.swing.JLabel label_ViDu;
     private javax.swing.JMenuItem menuItem_Exit;
-    private javax.swing.JMenuItem menuItem_Save;
+    public javax.swing.JMenuItem menuItem_Save;
     private javax.swing.JMenuItem menuItem_UserManual;
-    private javax.swing.JTextField tF_LoaiTu;
-    private javax.swing.JTextField tF_TViDu;
-    private javax.swing.JTextField tF_TiengViet;
-    private javax.swing.JTextField tF_tiengAnh;
+    public javax.swing.JTextField tF_LoaiTu;
+    public javax.swing.JTextField tF_TViDu;
+    public javax.swing.JTextField tF_TiengViet;
+    public javax.swing.JTextField tF_tiengAnh;
     private javax.swing.JTable table_Data;
     // End of variables declaration//GEN-END:variables
+
+   
+    
 }
