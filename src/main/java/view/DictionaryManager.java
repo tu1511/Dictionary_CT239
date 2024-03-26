@@ -373,44 +373,49 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-            // Lấy thông tin từ các JTextField
-            String tiengAnh = tF_tiengAnh.getText();
-            String loaiTu = tF_LoaiTu.getText();
-            String tiengViet = tF_TiengViet.getText();
-            String viDu = tF_TViDu.getText();
+        int selectedRow = table_Data.getSelectedRow();   
+        // Lấy thông tin từ các JTextField
+        String tiengAnh = tF_tiengAnh.getText();
+        String loaiTu = tF_LoaiTu.getText();
+        String tiengViet = tF_TiengViet.getText();
+        String viDu = tF_TViDu.getText();
 
-            // Cập nhật thông tin của từ trong bảng dữ liệu
-            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-            model.setValueAt(tiengAnh, selectedRow, 1);
-            model.setValueAt(loaiTu, selectedRow, 2);
-            model.setValueAt(tiengViet, selectedRow, 3);
-            model.setValueAt(viDu, selectedRow, 4);
+        // Kiểm tra xem các trường dữ liệu có trống không
+        if (tiengAnh.isEmpty() || loaiTu.isEmpty() || tiengViet.isEmpty() || viDu.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-            // Lưu lại các thay đổi vào tệp tin dữ liệu
-            try {
-                FileWriter fileWriter = new FileWriter("data.txt");
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
+        data.setValueAt(tiengAnh, selectedRow, 1);
+        data.setValueAt(loaiTu, selectedRow, 2);
+        data.setValueAt(tiengViet, selectedRow, 3);
+        data.setValueAt(viDu, selectedRow, 4);
+        
+        // Cập nhật thông tin từ trong DictionaryModel
+        model.updateWord(tiengAnh, loaiTu, tiengViet, viDu);
 
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    for (int j = 1; j < model.getColumnCount(); j++) {
-                        bufferedWriter.write(model.getValueAt(i, j).toString());
-                        bufferedWriter.write("-");
-                    }
-                    bufferedWriter.newLine();
+        // Lưu lại các thay đổi vào tệp tin dữ liệu
+        try {
+            FileWriter fileWriter = new FileWriter("datatest.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            // Ghi lại toàn bộ dữ liệu từ bảng vào tệp tin
+            for (int i = 0; i < model.getRowCount(); i++) {
+                for (int j = 1; j < model.getColumnCount(); j++) {
+                    bufferedWriter.write(model.getValueAt(i, j).toString());
+                    bufferedWriter.write("-");
                 }
-
-                bufferedWriter.close();
-                fileWriter.close();
-                JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật và lưu lại!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-               
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                bufferedWriter.newLine();
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để cập nhật!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+
+            bufferedWriter.close();
+            fileWriter.close();
+            JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật và lưu lại!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_SaveActionPerformed
 

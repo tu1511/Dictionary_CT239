@@ -70,7 +70,53 @@ public class DictionaryModel {
             word.setMeaning(mean);
             word.setExample(example);
         } else {
-            // Xử lý khi từ cần cập nhật không tồn tại
+           
         }
+    }
+
+    public int getRowCount() {
+        int count = 0;
+        for (List<Node> bucket : table) {
+            count += bucket.size();
+        }
+        return count;
+    }
+
+    public int getColumnCount() {
+        // Số cột của dữ liệu
+        return 5; // Ví dụ: Tiếng Anh, Loại từ, Tiếng Việt, Ví dụ, Trạng thái
+    }
+
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        // Kiểm tra rowIndex và columnIndex nếu nó hợp lệ hoặc không
+        if (rowIndex < 0 || rowIndex >= getRowCount() || columnIndex < 0 || columnIndex >= getColumnCount()) {
+            throw new IllegalArgumentException("Invalid row or column index");
+        }
+
+        // Tìm bucket chứa dữ liệu cho rowIndex
+        int currentRow = 0;
+        for (List<Node> bucket : table) {
+            int bucketSize = bucket.size();
+            if (rowIndex < currentRow + bucketSize) {
+                Node node = bucket.get(rowIndex - currentRow);
+                switch (columnIndex) {
+                    case 0:
+                        return rowIndex + 1; // Số thứ tự
+                    case 1:
+                        return node.getKey(); // Tiếng Anh
+                    case 2:
+                        return node.getValue().getType(); // Loại từ
+                    case 3:
+                        return node.getValue().getMeaning(); // Tiếng Việt
+                    case 4:
+                        return node.getValue().getExample(); // Ví dụ
+                    default:
+                        return null;
+                }
+            }
+            currentRow += bucketSize;
+        }
+
+        return null;
     }
 }
