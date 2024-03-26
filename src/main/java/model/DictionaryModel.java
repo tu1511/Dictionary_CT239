@@ -31,6 +31,7 @@ public class DictionaryModel {
     public void addWord(String english, String type, String mean, String example) {
         int index = hashFunction(english);
         Dictionary word = new Dictionary(english, type, mean, example);
+        word.setActive(false); // Đặt trạng thái mặc định là "false"
         Node newNode = new Node(english, word);
         table[index].add(newNode);
     }
@@ -49,18 +50,22 @@ public class DictionaryModel {
     }
 
     // Xóa một từ khỏi từ điển
-    public void removeWord(String english) {
-        int index = hashFunction(english);
-        List<Node> bucket = table[index];
-        // Duyệt từng node trong bucket để tìm và xóa từ cần xóa
-        for (int i = 0; i < bucket.size(); i++) {
-            Node node = bucket.get(i);
-            if (node.getKey().equals(english)) {
-                bucket.remove(i);
-                return; // Đã xóa
-            }
-        }
-    }
+    public void removeWord(String english, boolean isDeleted) {
+       int index = hashFunction(english);
+       List<Node> bucket = table[index];
+       // Duyệt từng node trong bucket để tìm và xóa từ cần xóa
+       for (int i = 0; i < bucket.size(); i++) {
+           Node node = bucket.get(i);
+           if (node.getKey().equals(english)) {
+               // Thay đổi trạng thái của từ
+               node.getValue().setActive(isDeleted);
+               // Xóa nút từ danh sách liên kết
+               bucket.remove(i);
+               return; // Đã xóa
+           }
+       }
+   }   
+
 
     // Cập nhật thông tin của một từ trong từ điển
     public void updateWord(String english, String type, String mean, String example) {

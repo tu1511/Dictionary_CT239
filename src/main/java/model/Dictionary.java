@@ -5,7 +5,7 @@ public class Dictionary {
     private String type;
     private String meaning;
     private String example;
-    private boolean isActive;
+    private boolean isActive = false;
 
     public Dictionary(String word, String type, String meaning, String example) {
         this.word = word;
@@ -53,6 +53,10 @@ public class Dictionary {
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
+    
+    public void setIsDeleted(boolean isDeleted) {
+    this.isActive = !isDeleted;
+    }
 
     @Override
     public String toString() {
@@ -86,4 +90,5 @@ public class Dictionary {
     void setMean(String mean) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

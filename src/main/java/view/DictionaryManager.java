@@ -340,18 +340,15 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         model.addWord(tiengAnh, loaiTu, tiengViet, viDu);
         try {
-            // Sử dụng OutputStreamWriter và FileOutputStream để ghi dữ liệu với mã hóa UTF-8
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("datatest.txt", true), "UTF-8");
-            try ( // Sử dụng BufferedWriter để viết dữ liệu vào tệp
-                BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+            try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
                 String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
-                bufferedWriter.write(data); // Ghi dữ liệu vào tệp
-                bufferedWriter.newLine(); // Thêm ký tự xuống dòng sau mỗi lần ghi
-                // Đóng BufferedWriter
+                bufferedWriter.write(data);
+                bufferedWriter.newLine();
             }
             JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
-            // Load lại dữ liệu lên bảng sau khi thêm từ mới
+            // Sau khi thêm từ mới, load lại dữ liệu từ tệp tin
             loadDataFromFile(currentFilePath);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -426,41 +423,16 @@ public class DictionaryManager extends javax.swing.JFrame {
         if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
             int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
             if (dialogResult == JOptionPane.YES_OPTION) {
-                DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-                String selectedWord = model.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
+                DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
+                String selectedWord = data.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
 
-                model.removeRow(selectedRow); // Xóa dòng từ bảng
+                // Cập nhật trạng thái của từ thành "đã xóa" bằng cách gọi phương thức setActive
+                model.searchWord(selectedWord).setActive(false);
 
-                try {
-                    BufferedReader br = new BufferedReader(new FileReader("data.txt"));
-                    BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
+                // Cập nhật dữ liệu từ trong DictionaryModel và đánh dấu từ đã bị xóa
+                 model.removeWord(selectedWord, true);
 
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        String[] parts = line.split("-");
-                        if (!parts[1].equals(selectedWord)) { // Bỏ qua dòng chứa từ tiếng Anh cần xóa
-                            bw.write(line);
-                            bw.newLine();
-                        }
-                    }
-                    br.close();
-                    bw.close();
-
-                    File originalFile = new File("data.txt");
-                    if (originalFile.delete()) {
-                        File tempFile = new File("temp.txt");
-                        if (!tempFile.renameTo(originalFile)) {
-                            throw new IOException("Could not rename temp file to original file");
-                        }
-
-                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi tệp tin và bảng!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        throw new IOException("Could not delete original file");
-                    }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi xóa dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                }
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
@@ -472,11 +444,8 @@ public class DictionaryManager extends javax.swing.JFrame {
         int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
               JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
         if (choice == JOptionPane.YES_OPTION) {
-            // Có
             System.exit(0);
         } else {
-            // Không
-            // Close the window without exiting the program
             WindowEvent windowClosing = new WindowEvent((Window)evt.getSource(), WindowEvent.WINDOW_CLOSING);
             Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
         }
@@ -536,31 +505,31 @@ public class DictionaryManager extends javax.swing.JFrame {
 
 
 //    Chức năng load dữ liệu từ file lưu trữ lên
-    public void loadDataFromFile(String filePath) {
+   public void loadDataFromFile(String filePath) {
         DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
         model.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
 
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
-
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"))) {
             String line;
             int bucket = 0; // Biến lưu trữ số bucket
             while ((line = br.readLine()) != null) {
                 String[] rowData = line.split("-");
-                Object[] row = new Object[rowData.length + 1];
-                row[0] = bucket; // Số bucket
-                System.arraycopy(rowData, 0, row, 1, rowData.length);
-                model.addRow(row);
-                bucket++; // Tăng số bucket sau mỗi từ
+                if (rowData.length >= 4) { // Kiểm tra xem dòng có đúng định dạng dữ liệu hay không
+                    Object[] row = new Object[rowData.length + 1];
+                    row[0] = bucket; // Số bucket
+                    System.arraycopy(rowData, 0, row, 1, rowData.length);
+                    model.addRow(row);
+                    bucket++; // Tăng số bucket sau mỗi từ
+                } else {
+                    System.err.println("Dòng không hợp lệ: " + line); // In ra thông báo lỗi nếu dòng không đúng định dạng
+                }
             }
-
-            br.close();
         } catch (IOException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+   
 
 
 
