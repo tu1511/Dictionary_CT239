@@ -357,18 +357,18 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AddActionPerformed
 
 //chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
-//    public void table_DataMouseClicked(java.awt.event.MouseEvent evt) {                                       
-//        // Lấy chỉ số của dòng được chọn
-//        int selectedRow = table_Data.getSelectedRow();
-//        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-//            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
-//            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-//            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
-//            tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
-//            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
-//            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
-//        }
-//    }
+    public void table_DataMouseClicked(java.awt.event.MouseEvent evt) {                                       
+        // Lấy chỉ số của dòng được chọn
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
+            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
+            tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
+            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
+            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
+        }
+    }
     
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
         int selectedRow = table_Data.getSelectedRow();   
@@ -418,25 +418,53 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SaveActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-        String[] options = {"Có", "Không"};
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
-            int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-            if (dialogResult == JOptionPane.YES_OPTION) {
-                DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-                String selectedWord = data.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
+     String[] options = {"Có", "Không"};
+    int selectedRow = table_Data.getSelectedRow();
+    if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
+        int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
+            String selectedWord = data.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
 
-                // Cập nhật trạng thái của từ thành "đã xóa" bằng cách gọi phương thức setActive
-                model.searchWord(selectedWord).setActive(false);
+            // Lấy trạng thái từ từ dòng được chọn
+            String isActiveString = data.getValueAt(selectedRow, 4).toString();
+            boolean isActive = Boolean.parseBoolean(isActiveString);
 
-                // Cập nhật dữ liệu từ trong DictionaryModel và đánh dấu từ đã bị xóa
-                 model.removeWord(selectedWord, true);
-
-                JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            // Nếu trạng thái là false, chuyển thành true và thực hiện xóa dòng
+            if (!isActive) {
+                // Thay đổi trạng thái thành true
+                data.setValueAt(true, selectedRow, 4);
+                
+                // Thay đổi dữ liệu trong file từ "-false" thành "-true"
+                try {
+                    File file = new File("datatest.txt");
+                    BufferedReader reader = new BufferedReader(new FileReader(file));
+                    String line;
+                    String input = "";
+                    while ((line = reader.readLine()) != null) {
+                        if (line.contains(selectedWord)) {
+                            line = line.replace("-false", "-true");
+                        }
+                        input += line + '\n';
+                    }
+                    reader.close();
+                    FileWriter writer = new FileWriter(file);
+                    writer.write(input);
+                    writer.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi cập nhật dữ liệu trong tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+
+            // Xóa dòng khỏi bảng
+            data.removeRow(selectedRow);
+
+            JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         }
+    } else {
+        JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+    }
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
     private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
@@ -505,7 +533,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 
 
 //    Chức năng load dữ liệu từ file lưu trữ lên
-   public void loadDataFromFile(String filePath) {
+    public void loadDataFromFile(String filePath) {
         DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
         model.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
 
@@ -514,14 +542,18 @@ public class DictionaryManager extends javax.swing.JFrame {
             int bucket = 0; // Biến lưu trữ số bucket
             while ((line = br.readLine()) != null) {
                 String[] rowData = line.split("-");
-                if (rowData.length >= 4) { // Kiểm tra xem dòng có đúng định dạng dữ liệu hay không
-                    Object[] row = new Object[rowData.length + 1];
-                    row[0] = bucket; // Số bucket
-                    System.arraycopy(rowData, 0, row, 1, rowData.length);
-                    model.addRow(row);
-                    bucket++; // Tăng số bucket sau mỗi từ
+                if (rowData.length >= 5) { // Kiểm tra xem dòng có đúng định dạng dữ liệu hay không
+                    String isActiveString = rowData[4]; // Trạng thái từ
+                    boolean isActive = Boolean.parseBoolean(isActiveString);
+                    if (!isActive) { // Chỉ thêm dòng có trạng thái là false vào bảng
+                        Object[] row = new Object[rowData.length + 1];
+                        row[0] = bucket; // Số bucket
+                        System.arraycopy(rowData, 0, row, 1, rowData.length);
+                        model.addRow(row);
+                        bucket++; // Tăng số bucket sau mỗi từ
+                    }
                 } else {
-                    System.err.println("Dòng không hợp lệ: " + line); // In ra thông báo lỗi nếu dòng không đúng định dạng
+                    // System.err.println("Dòng không hợp lệ: " + line); // In ra thông báo lỗi nếu dòng không đúng định dạng
                 }
             }
         } catch (IOException ex) {
@@ -529,6 +561,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
+
    
 
 
