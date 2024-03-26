@@ -360,18 +360,19 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AddActionPerformed
 
 //chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
-    public void table_DataMouseClicked(java.awt.event.MouseEvent evt) {                                       
-        // Lấy chỉ số của dòng được chọn
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
-            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
-            tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
-            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
-            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
-        }
-    }
+//    public void table_DataMouseClicked(java.awt.event.MouseEvent evt) {                                       
+//        // Lấy chỉ số của dòng được chọn
+//        int selectedRow = table_Data.getSelectedRow();
+//        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+//            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
+//            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+//            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
+//            tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
+//            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
+//            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
+//        }
+//    }
+    
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
         int selectedRow = table_Data.getSelectedRow();   
         // Lấy thông tin từ các JTextField
@@ -418,20 +419,6 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_SaveActionPerformed
-
-//    Chức năng bấm đưa dữ liệu lên textfield
-    private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
-        // Lấy chỉ số của dòng được chọn
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-            // Lấy dữ liệu từ dòng được chọn và hiển thị lên các JTextField
-            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
-            tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
-            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
-            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
-        }
-    }//GEN-LAST:event_btn_UpdateActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
         String[] options = {"Có", "Không"};
@@ -533,6 +520,18 @@ public class DictionaryManager extends javax.swing.JFrame {
         tF_TiengViet.setText("");
         tF_TViDu.setText("");
     }//GEN-LAST:event_btn_reloadActionPerformed
+
+    private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
+            DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
+            tF_tiengAnh.setText(data.getValueAt(selectedRow, 1).toString());
+            tF_LoaiTu.setText(data.getValueAt(selectedRow, 2).toString());
+            tF_TiengViet.setText(data.getValueAt(selectedRow, 3).toString());
+            tF_TViDu.setText(data.getValueAt(selectedRow, 4).toString());
+        }
+    }//GEN-LAST:event_btn_UpdateActionPerformed
 
 
 
