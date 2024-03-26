@@ -21,7 +21,7 @@ import model.Node;
 public class DictionaryManager extends javax.swing.JFrame {
 
     DictionaryModel model = new DictionaryModel();
-    public String currentFilePath = "data.txt";
+    public String currentFilePath = "datatest.txt";
     
     public DictionaryManager() {
         initComponents();
@@ -29,7 +29,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         // Gọi phương thức để load dữ liệu khi ứng dụng được khởi động
-        loadDataFromFile();
+        loadDataFromFile(currentFilePath);
     }
     
    
@@ -342,16 +342,17 @@ public class DictionaryManager extends javax.swing.JFrame {
         try {
             // Sử dụng OutputStreamWriter và FileOutputStream để ghi dữ liệu với mã hóa UTF-8
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("datatest.txt", true), "UTF-8");
-            // Sử dụng BufferedWriter để viết dữ liệu vào tệp
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
-            bufferedWriter.write(data); // Ghi dữ liệu vào tệp
-            bufferedWriter.newLine(); // Thêm ký tự xuống dòng sau mỗi lần ghi
-            bufferedWriter.close(); // Đóng BufferedWriter
+            try ( // Sử dụng BufferedWriter để viết dữ liệu vào tệp
+                BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+                String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
+                bufferedWriter.write(data); // Ghi dữ liệu vào tệp
+                bufferedWriter.newLine(); // Thêm ký tự xuống dòng sau mỗi lần ghi
+                // Đóng BufferedWriter
+            }
             JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
             // Load lại dữ liệu lên bảng sau khi thêm từ mới
-            loadDataFromFile();
+            loadDataFromFile(currentFilePath);
         } catch (IOException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -528,32 +529,34 @@ public class DictionaryManager extends javax.swing.JFrame {
         tF_TViDu.setText("");
     }//GEN-LAST:event_btn_reloadActionPerformed
 
- 
 
 
 //    Chức năng load dữ liệu từ file lưu trữ lên
- public void loadDataFromFile() {
-    DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-    model.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
+    public void loadDataFromFile(String filePath) {
+        DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+        model.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
 
-    try {
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(currentFilePath), "UTF-8"));
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
 
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] rowData = line.split("-");
-            Object[] row = new Object[rowData.length + 1];
-            row[0] = model.getRowCount() + 1; // Số thứ tự
-            System.arraycopy(rowData, 0, row, 1, rowData.length);
-            model.addRow(row);
+            String line;
+            int bucket = 0; // Biến lưu trữ số bucket
+            while ((line = br.readLine()) != null) {
+                String[] rowData = line.split("-");
+                Object[] row = new Object[rowData.length + 1];
+                row[0] = bucket; // Số bucket
+                System.arraycopy(rowData, 0, row, 1, rowData.length);
+                model.addRow(row);
+                bucket++; // Tăng số bucket sau mỗi từ
+            }
+
+            br.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
-
-        br.close();
-    } catch (IOException ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
     }
-}
+
 
 
 
