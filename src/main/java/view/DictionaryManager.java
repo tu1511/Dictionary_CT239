@@ -91,6 +91,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý tự điển");
+        setBackground(new java.awt.Color(102, 255, 204));
         setMinimumSize(new java.awt.Dimension(850, 604));
         setPreferredSize(new java.awt.Dimension(863, 605));
         setSize(new java.awt.Dimension(850, 604));
@@ -150,7 +151,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         btn_reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_reload.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\reload.png"));
-        btn_reload.setText("Reload");
+        btn_reload.setText("Đặt lại");
         btn_reload.setToolTipText("");
         btn_reload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

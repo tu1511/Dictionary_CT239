@@ -33,7 +33,7 @@ public class DictionaryModel {
         Dictionary word = new Dictionary(english, type, mean, example);
         word.setActive(false); // Đặt trạng thái mặc định là "false"
         Node newNode = new Node(english, word);
-        table[index].add(newNode);
+        table[index].add(newNode);    
     }
 
     // Tìm kiếm một từ trong từ điển

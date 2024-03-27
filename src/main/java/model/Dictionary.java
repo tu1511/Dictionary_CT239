@@ -83,7 +83,7 @@ public class Dictionary {
         result = 31 * result + type.hashCode();
         result = 31 * result + meaning.hashCode();
         result = 31 * result + example.hashCode();
-        result = 31 * result + (isActive ? 1 : 0);
+        result = 31 * result + (isActive ? true : false);
         return result;
     }
 

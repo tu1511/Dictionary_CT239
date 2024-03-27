@@ -22,7 +22,7 @@ import javax.swing.event.DocumentListener;
 public class DictionaryApp extends javax.swing.JFrame {
     
     private List<String> dictionary = new ArrayList<>();
-    private String currentFilePath = "data.txt";
+    private String currentFilePath = "datatest.txt";
     private  List<String> recentSearches = new ArrayList<>();
     
     public String getCurrentFilePath() {
