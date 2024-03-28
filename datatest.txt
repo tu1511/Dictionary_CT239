@@ -1,95 +1,76 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-  <parent>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-parent</artifactId>
-    <version>1.7.2</version>
-  </parent>
-
-  <modelVersion>4.0.0</modelVersion>
-
-  <groupId>org.slf4j</groupId>
-  <artifactId>slf4j-api</artifactId>
-  <packaging>jar</packaging>
-  <name>SLF4J API Module</name>
-  <description>The slf4j API</description>
-
-  <url>http://www.slf4j.org</url>
-
-  <dependencies>
-	<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
-	<dependency>
-  	  <groupId>org.slf4j</groupId>
-   	 <artifactId>slf4j-simple</artifactId>
-   	 <version>2.1.0-alpha0</version>
-   	 <scope>test</scope>
-</dependency>
-  </dependencies> 
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <forkMode>once</forkMode>
-          <reportFormat>plain</reportFormat>
-          <trimStackTrace>false</trimStackTrace>
-          <excludes>
-            <exclude>**/AllTest.java</exclude>
-            <exclude>**/PackageTest.java</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifestEntries>
-              <Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
-              <Bundle-Description>${project.description}</Bundle-Description>
-              <Implementation-Version>${project.version}</Implementation-Version>
-            </manifestEntries>
-            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-          </archive>
-        </configuration>
-        <executions>
-          <execution>
-            <id>bundle-test-jar</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>process-classes</phase>
-            <goals>
-             <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <tasks>
-            <echo>Removing slf4j-api's dummy StaticLoggerBinder and StaticMarkerBinder</echo>
-            <delete dir="target/classes/org/slf4j/impl"/>
-          </tasks>
-        </configuration>
-      </plugin>
-
-    </plugins>
-
-  </build>
-
-</project>
+Abandon - �?ộng từ - B�? rơi, từ b�? - He abandoned his family. -true
+Ability - Danh từ - Khả năng, năng lực - She has a natural ability for music. - false
+Abundant - Tính từ - Dồi dào, phong phú - The country is abundant in natural resources. - false
+Accept - �?ộng từ - Chấp nhận, nhận - I accept your apology. - false
+Access - Danh từ - Tiếp cận, quy�?n truy cập - We need access to the internet. - false
+Accident - Danh từ - Tai nạn, sự cố - It was a terrible accident. - false
+Accompany - �?ộng từ - �?i cùng, tháp tùng - He accompanied her to the party. - false
+Accomplish - �?ộng từ - Hoàn thành, đạt được - He accomplished his goal. - false
+Accurate - Tính từ - Chính xác, đúng đắn - The information is accurate. - false
+Achieve - �?ộng từ - �?ạt được, thành tựu - She achieved great success in her career. - false
+Backpack - Danh từ - Ba lô - He carried his backpack on his back. - false
+Bacteria - Danh từ - Vi khuẩn - Bacteria can cause disease. - false
+Balance - Danh từ - Sự cân bằng - She lost her balance and fell. - false
+Balloon - Danh từ - Bong bóng - The children played with balloons. - false
+Banana - Danh từ - Chuối - I like to eat bananas. - false
+Band - Danh từ - Nhóm nhạc, ban nhạc - The band played a concert. - false
+Bank - Danh từ - Ngân hàng - She went to the bank to deposit money. - false
+Barbecue - Danh từ - Tiệc nướng - We had a barbecue in the backyard. - false
+Bargain - Danh từ - Món h�?i, th�?a thuận - He got a bargain on the car. - false
+Bark - Danh từ - V�? cây - The dog barked at the tree. - false
+Calculate - �?ộng từ - Tính toán, suy tính - He calculated the cost of the project. - false
+Calendar - Danh từ - Lịch - She marked the date on the calendar. - false
+Call - �?ộng từ - G�?i điện, g�?i - He called her on the phone. - false
+Calm - Tính từ - Bình tĩnh, êm đ�?m - The sea was calm and peaceful. - false
+Camera - Danh từ - Máy ảnh - He took a picture with his camera. - false
+Campaign - Danh từ - Chiến dịch - They campaigned for a better environment. - false
+Can - Danh từ - Lon, hộp - He opened a can of soup. - false
+Cancel - �?ộng từ - Hủy b�?, thu hồi - He canceled the meeting. - false
+Candy - Danh từ - Kẹo - The children love candy. - false
+Captain - Danh từ - Thuy�?n trưởng, đội trưởng - He was the captain of the ship. - false
+Danger - Danh từ - Nguy hiểm - It is dangerous to swim in the ocean. - false
+Dare - �?ộng từ - Dám, thách thức - I dare you to jump off the cliff. - false
+Dark - Tính từ - Tối, đen - It was a dark and stormy night. - false
+Daughter - Danh từ - Con gái - She has two daughters. - false
+Day - Danh từ - Ngày - Today is a beautiful day. - false
+Dead - Tính từ - Chết, đã chết - The animal was dead. - false
+Deal - Danh từ - Th�?a thuận, giao dịch - They made a deal. - false
+Dear - Tính từ - Quý mến, yêu thương - She is a dear friend. - false
+Decision - Danh từ - Quyết định - He made a difficult decision. - false
+Deep - Tính từ - Sâu - The ocean is very deep. - false
+Earth - Danh từ - Trái đất - We live on Earth. - false
+Easy - Tính từ - Dễ dàng - The test was easy. - false
+Face - Danh từ - Khuôn mặt, gương mặt - He had a kind face. - false
+Factory - Danh từ - Nhà máy - He worked in a factory. - false
+Fail - �?ộng từ - Thất bại, không thành công - He failed the test. - false
+Fair - Tính từ - Công bằng, hợp lý - It was a fair deal. - false
+Fall - �?ộng từ - Rơi, ngã - She fell down the stairs. - false
+Family - Danh từ - Gia đình - He has a large family. - false
+Famous - Tính từ - Nổi tiếng, danh tiếng - He is a famous actor. - false
+Fan - Danh từ - Quạt, ngư�?i hâm mộ - She is a fan of the band. - false
+Fantastic - Tính từ - Tuyệt v�?i, phi thư�?ng - It was a fantastic experience. - false
+Far - Tính từ - Xa - The house is far from the city. - false
+Fast - Tính từ - Nhanh, tốc độ - He ran fast. - false
+Fat - Tính từ - Béo, mập - He is a fat man. - false
+Father - Danh từ - Cha, bố - He is a good father. - false
+Fear - Danh từ - Nỗi sợ hãi - He was afraid of the dark. - false
+Feel - �?ộng từ - Cảm thấy, cảm nhận - She felt happy. - false
+Female - Tính từ - Giống cái - She is a female dog. - false
+Few - Tính từ - �?t - He has few friends. - false
+Field - Danh từ - Cánh đồng, sân vận động - He played football in the field. - false
+Fight - �?ộng từ - �?ánh nhau, chiến đấu - They fought for their freedom. - false
+Film - Danh từ - Phim, màng phim - He watched a movie on film. - false
+Find - �?ộng từ - Tìm thấy, phát hiện - He found the lost dog. - false
+Fine - Tính từ - Tốt, đẹp - It was a fine day. - false
+Finger - Danh từ - Ngón tay - He has five fingers on each hand. - false
+Finish - �?ộng từ - Hoàn thành, kết thúc - He finished his homework. - false
+Fire - Danh từ - Lửa - He lit a fire. - false
+First - Tính từ - �?ầu tiên, thứ nhất - He was the first to arrive. - false
+Fish - Danh từ - Cá - He caught a fish. - false
+Fit - Tính từ - Vừa vặn, phù hợp - The dress fits her perfectly. - false
+Five - Số từ - Năm - He has five children. - false
+Flag - Danh từ - C�? - The flag was flying high. - false
+Floor - Danh từ - Sàn nhà, tầng nhà - He lives on the third floor. - false
+add-�?ộng Từ-thêm-I add a lot of items to table-true
+add-�?ộng Từ-thêm-I add a lot of items to table-true
+add-Danh từ-thêm-i add you-true

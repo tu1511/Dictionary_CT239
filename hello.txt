@@ -1,94 +1,415 @@
-apple -danh t?- qu? táo - My apple is delicious. -
-banana - noun - chu?i - I eat a banana every morning. -
-cat - noun - con mèo - My cat is cute on the couch. -
-dog - noun - con chó - My dog loves to play fetch. -
-elephant - noun - con voi - Elephants have long trunks. -
-fish - noun - con cá - The fish swims gracefully in the tank. -
-guitar - noun - cây ðàn guitar - He plays the guitar beautifully. -
-house - noun - ngôi nhà - Our house is painted blue. -
-ice cream - noun - kem - I like vanilla ice cream. -
-jacket - noun - áo khoác - She wears a warm jacket in winter. -
-kite - noun - cánh di?u - Let's fly a kite at the park. -
-lion - noun - con sý t? - The lion roars loudly in the zoo. -
-moon - noun - m?t trãng - The moon shines brightly at night. -
-notebook -danh t?- s? tay - I write my thoughts in a notebook. -
-orange - noun - qu? cam - Oranges are a good source of vitamin C. -
-pencil - noun - bút ch? - Can I borrow your pencil, please? -
-queen - noun - n? hoàng - The queen waved to the crowd. -
-rabbit - noun - con th? - The rabbit hops around the garden. -
-sun - noun - m?t tr?i - The sun is shining in the sky. -
-table - noun - cái bàn - We eat dinner at the table. -
-umbrella - noun - cây ô - Don't forget to bring your umbrella. -
-violin - noun - cây ðàn viôlông - She plays the violin beautifully. -
-watermelon - noun - dýa h?u - Watermelon is refreshing in summer. -
-xylophone - noun - xylophone - The xylophone makes a pleasant sound. -
-yak - noun - con b? l?c - Yaks live in the mountains. -
-zebra - noun - con ng?a v?n - Zebras have black and white stripes. -
-ant - noun - con ki?n - The ant carries food to its nest. -
-butterfly - noun - bý?m - The butterfly flutters its wings gracefully. -
-candle - noun - n?n - We light a candle on the cake. -
-dolphin - noun - cá heo - Dolphins are intelligent marine mammals. -
-elephant - noun - con voi - Elephants have long trunks. -
-fox - noun - con cáo - The fox has a bushy tail. -
-giraffe - noun - hýõu cao c? - Giraffes have long necks. -
-hedgehog - noun - con nhím - The hedgehog curls into a ball when threatened. -
-iguana - noun - con k? nhông - The iguana basks in the sun. -
-jaguar - noun - hýõu s?ng gai - The jaguar is a powerful predator. -
-kangaroo - noun - con kangaroo - Kangaroos hop to move around. -
-leopard - noun - con báo - The leopard has beautiful spots. -
-monkey - noun - con kh? - Monkeys swing from tree to tree. -
-narwhal - noun - cá voi s?ng - Narwhals have long tusks. -
-ostrich - noun - ðà ði?u - Ostriches cannot fly but can run very fast. -
-penguin - noun - chim cánh c?t - Penguins are excellent swimmers. -
-quail - noun - con cút - Quails are small game birds. -
-rhinoceros - noun - con tê giác - Rhinoceroses have thick, protective skin. -
-snake - noun - con r?n - Snakes slither on the ground. -
-tiger - noun - con h? - Tigers have striped fur. -
-unicorn - noun - k? lân - Unicorns are mythical creatures. -
-vulture - noun - con k?n k?n - Vultures feed on carrion. -
-walrus - noun - con h?i m? - Walruses have long tusks and blubber. -
-xenopus - noun - con ?ch - Xenopus is a genus of aquatic frogs. -
-yak - noun - con b? l?c - Yaks are adapted to living in high altitudes. -
-zebu - noun - con trâu - Zebus are domesticated cattle in Asia. -
-aardvark - noun - con kh?ng long - Aardvarks have long snouts for digging. -
-badger - noun - con l?c ðà - Badgers are nocturnal animals. -
-crocodile - noun - con cá s?u - Crocodiles are skilled hunters. -
-dinosaur - noun - kh?ng long - Dinosaurs lived millions of years ago. -
-eagle - noun - ð?i bàng - Eagles have keen eyesight. -
-falcon - noun - con di?u - Falcons are fast-
-gazelle - noun - con linh dýõng - Gazelles are known for their speed and agility. -
-hedgehog - noun - con nhím - Hedgehogs roll into a ball when threatened. -
-ibis - noun - con h?c - Ibises have long curved bills. -
-jackal - noun - con chó r?ng - Jackals are carnivorous mammals. -
-kangaroo - noun - con kangaroo - Kangaroos carry their babies in pouches. -
-lemur - noun - con vý?n - Lemurs are primates found in Madagascar. -
-mongoose - noun - con dê - Mongooses are known for their agility and speed. -
-narwhal - noun - cá voi s?ng - Narwhals have long tusks protruding from their heads. -
-octopus - noun - b?ch tu?c - Octopuses have eight tentacles. -
-pangolin - noun - con tê tê - Pangolins are covered in scales made of keratin. -
-quokka - noun - con quokka - Quokkas are small marsupials known for their smile. -
-rhinoceros - noun - con tê giác - Rhinoceroses have thick, protective skin. -
-salamander - noun - con k? nhông - Salamanders are amphibians found in moist habitats. -
-tapir - noun - con tapir - Tapirs have short, prehensile trunks. -
-uakari - noun - con kh? ðuôi dài - Uakaris have bald heads and bright faces. -
-viper - noun - con r?n l?c - Vipers are venomous snakes. -
-walrus - noun - con h?i m? - Walruses use their tusks to break through ice. -
-xenopus - noun - con ?ch - Xenopus is a genus of aquatic frogs. -
-yak - noun - con b? l?c - Yaks are adapted to living in high altitudes. -
-zebra - noun - con ng?a v?n - Zebras have black and white stripes. -
-antelope - noun - con linh dýõng - Antelopes are herbivorous mammals. -
-baboon - noun - con linh c?u - Baboons are highly social primates. -
-cheetah - noun - con báo - Cheetahs are the fastest land animals. -
-dolphin - noun - cá heo - Dolphins are intelligent marine mammals. -
-elephant - noun - con voi - Elephants have long trunks. -
-falcon - noun - con di?u - Falcons are fast-
-gazelle - noun - con linh dýõng - Gazelles are known for their speed and agility. -
-hedgehog - noun - con nhím - Hedgehogs roll into a ball when threatened. -
-ibis - noun - con h?c - Ibises have long curved bills. -
-jackal - noun - con chó r?ng - Jackals are carnivorous mammals. -
-kangaroo - noun - con kangaroo - Kangaroos carry their babies in pouches. -
-lemur - noun - con vý?n - Lemurs are primates found in Madagascar. -
-mongoose - noun - con dê - Mongooses are known for their agility and speed. -
-narwhal - noun - cá voi s?ng - Narwhals have long tusks protruding from their heads. -
-octopus - noun - b?ch tu?c - Octopuses have eight tentacles. -
-hi-ð?ng t?-xin chào-hi i am tu-
+Abandon - Động từ - Bỏ rơi, từ bỏ - He abandoned his family. - false
+Ability - Danh từ - Khả năng, năng lực - She has a natural ability for music. - false
+Abundant - Tính từ - Dồi dào, phong phú - The country is abundant in natural resources. - false
+Accept - Động từ - Chấp nhận, nhận - I accept your apology. - false
+Access - Danh từ - Tiếp cận, quyền truy cập - We need access to the internet. - false
+Accident - Danh từ - Tai nạn, sự cố - It was a terrible accident. - false
+Accompany - Động từ - Đi cùng, tháp tùng - He accompanied her to the party. - false
+Accomplish - Động từ - Hoàn thành, đạt được - He accomplished his goal. - false
+Accurate - Tính từ - Chính xác, đúng đắn - The information is accurate. - false
+Achieve - Động từ - Đạt được, thành tựu - She achieved great success in her career. - false
+Backpack - Danh từ - Ba lô - He carried his backpack on his back. - false
+Bacteria - Danh từ - Vi khuẩn - Bacteria can cause disease. - false
+Balance - Danh từ - Sự cân bằng - She lost her balance and fell. - false
+Balloon - Danh từ - Bong bóng - The children played with balloons. - false
+Banana - Danh từ - Chuối - I like to eat bananas. - false
+Band - Danh từ - Nhóm nhạc, ban nhạc - The band played a concert. - false
+Bank - Danh từ - Ngân hàng - She went to the bank to deposit money. - false
+Barbecue - Danh từ - Tiệc nướng - We had a barbecue in the backyard. - false
+Bargain - Danh từ - Món hời, thỏa thuận - He got a bargain on the car. - false
+Bark - Danh từ - Vỏ cây - The dog barked at the tree. - false
+Calculate - Động từ - Tính toán, suy tính - He calculated the cost of the project. - false
+Calendar - Danh từ - Lịch - She marked the date on the calendar. - false
+Call - Động từ - Gọi điện, gọi - He called her on the phone. - false
+Calm - Tính từ - Bình tĩnh, êm đềm - The sea was calm and peaceful. - false
+Camera - Danh từ - Máy ảnh - He took a picture with his camera. - false
+Campaign - Danh từ - Chiến dịch - They campaigned for a better environment. - false
+Can - Danh từ - Lon, hộp - He opened a can of soup. - false
+Cancel - Động từ - Hủy bỏ, thu hồi - He canceled the meeting. - false
+Candy - Danh từ - Kẹo - The children love candy. - false
+Captain - Danh từ - Thuyền trưởng, đội trưởng - He was the captain of the ship. - false
+Danger - Danh từ - Nguy hiểm - It is dangerous to swim in the ocean. - false
+Dare - Động từ - Dám, thách thức - I dare you to jump off the cliff. - false
+Dark - Tính từ - Tối, đen - It was a dark and stormy night. - false
+Daughter - Danh từ - Con gái - She has two daughters. - false
+Day - Danh từ - Ngày - Today is a beautiful day. - false
+Dead - Tính từ - Chết, đã chết - The animal was dead. - false
+Deal - Danh từ - Thỏa thuận, giao dịch - They made a deal. - false
+Dear - Tính từ - Quý mến, yêu thương - She is a dear friend. - false
+Decision - Danh từ - Quyết định - He made a difficult decision. - false
+Deep - Tính từ - Sâu - The ocean is very deep. - false
+Earth - Danh từ - Trái đất - We live on Earth. - false
+Easy - Tính từ - Dễ dàng - The test was easy. - false
+Face - Danh từ - Khuôn mặt, gương mặt - He had a kind face. - false
+Factory - Danh từ - Nhà máy - He worked in a factory. - false
+Fail - Động từ - Thất bại, không thành công - He failed the test. - false
+Fair - Tính từ - Công bằng, hợp lý - It was a fair deal. - false
+Fall - Động từ - Rơi, ngã - She fell down the stairs. - false
+Family - Danh từ - Gia đình - He has a large family. - false
+Famous - Tính từ - Nổi tiếng, danh tiếng - He is a famous actor. - false
+Fan - Danh từ - Quạt, người hâm mộ - She is a fan of the band. - false
+Fantastic - Tính từ - Tuyệt vời, phi thường - It was a fantastic experience. - false
+Far - Tính từ - Xa - The house is far from the city. - false
+Fast - Tính từ - Nhanh, tốc độ - He ran fast. - false
+Fat - Tính từ - Béo, mập - He is a fat man. - false
+Father - Danh từ - Cha, bố - He is a good father. - false
+Fear - Danh từ - Nỗi sợ hãi - He was afraid of the dark. - false
+Feel - Động từ - Cảm thấy, cảm nhận - She felt happy. - false
+Female - Tính từ - Giống cái - She is a female dog. - false
+Few - Tính từ - Ít - He has few friends. - false
+Field - Danh từ - Cánh đồng, sân vận động - He played football in the field. - false
+Fight - Động từ - Đánh nhau, chiến đấu - They fought for their freedom. - false
+Film - Danh từ - Phim, màng phim - He watched a movie on film. - false
+Find - Động từ - Tìm thấy, phát hiện - He found the lost dog. - false
+Fine - Tính từ - Tốt, đẹp - It was a fine day. - false
+Finger - Danh từ - Ngón tay - He has five fingers on each hand. - false
+Finish - Động từ - Hoàn thành, kết thúc - He finished his homework. - false
+Fire - Danh từ - Lửa - He lit a fire. - false
+First - Tính từ - Đầu tiên, thứ nhất - He was the first to arrive. - false
+Fish - Danh từ - Cá - He caught a fish. - false
+Fit - Tính từ - Vừa vặn, phù hợp - The dress fits her perfectly. - false
+Five - Số từ - Năm - He has five children. - false
+Flag - Danh từ - Cờ - The flag was flying high. - false
+Floor - Danh từ - Sàn nhà, tầng nhà - He lives on the third floor. - false
+Flower - Danh từ - Hoa - She loves flowers. - False
+Fly - Động từ - Bay - The bird flew away. - False
+Follow - Động từ - Đi theo, tuân theo - He followed her instructions. - False
+Food - Danh từ - Thức ăn - He ate a lot of food. - False
+Foot - Danh từ - Bàn chân - He has big feet. - False
+For - Giới từ - Cho, vì - He did it for me. - False
+Forest - Danh từ - Rừng - He went for a walk in the forest. - False
+Forget - Động từ - Quên - He forgot his keys. - False
+Forgive - Động từ - Tha thứ - She forgave him for his mistake. - False
+Friend - Danh từ - Bạn bè - He is my best friend. - False
+From - Giới từ - Từ, xuất phát từ - He came from Vietnam. - False
+Front - Danh từ - Mặt trước, phía trước - He stood in front of the house. - False
+Ice - Danh từ - Đá, băng - The water turned to ice. - False
+Idea - Danh từ - Ý tưởng, ý kiến - He had a great idea. - False
+If - Liên từ - Nếu - If I were you, I would do it. - False
+Imagine - Động từ - Tưởng tượng, hình dung - I can imagine what it would be like. - False
+Important - Tính từ - Quan trọng - It is important to be on time. - False
+In - Giới từ - Trong, ở - He is in the house. - False
+Include - Động từ - Bao gồm, gộp lại - The price includes taxes. - False
+Increase - Động từ - Tăng, gia tăng - The population is increasing. - False
+Indeed - Trạng từ - Thật vậy, quả thực - He is indeed a talented artist. - False
+Information - Danh từ - Thông tin - He gave me some useful information. - False
+Insect - Danh từ - Côn trùng - The butterfly is an insect. - False
+Instead - Trạng từ - Thay vì - He went to the park instead of the library. - False
+Instrument - Danh từ - Dụng cụ, nhạc cụ - He played the piano. - False
+Interesting - Tính từ - Thú vị, hấp dẫn - It was an interesting book. - False
+Into - Giới từ - Vào trong - He went into the room. - False
+Introduce - Động từ - Giới thiệu - He introduced me to his friend. - False
+Invent - Động từ - Phát minh, sáng chế - He invented a new machine. - False
+Invite - Động từ - Mời - She invited me to her party. - False
+Island - Danh từ - Đảo - They live on an island. - False
+It - Đại từ - Nó - It is a beautiful day. - False
+Join - Động từ - Tham gia, kết hợp - He joined the club. - False
+Journey - Danh từ - Hành trình, chuyến đi - It was a long journey. - False
+Joy - Danh từ - Niềm vui, sự sung sướng - She felt joy when she saw her child. - False
+Judge - Danh từ - Thẩm phán, quan tòa - He is a judge in the court. - False
+Jump - Động từ - Nhảy - He jumped over the fence. - False
+Just - Trạng từ - Vừa, chỉ - He just arrived. - False
+Keep - Động từ - Giữ, giữ lại - He kept the money. - False
+Key - Danh từ - Chìa khóa - He lost his keys. - False
+Kill - Động từ - Giết, tiêu diệt - He killed the animal. - False
+Kind - Tính từ - Tử tế, tốt bụng - She is a kind person. - False
+King - Danh từ - Vua - He was the king of the country. - False
+Kiss - Động từ - Hôn - He kissed her on the cheek. - False
+Know - Động từ - Biết, hiểu - He knows how to do it. - False
+Land - Danh từ - Đất liền, đất nước - He arrived in the land of his ancestors. - False
+Language - Danh từ - Ngôn ngữ - He speaks English fluently. - False
+Large - Tính từ - Lớn - He is a large man. - False
+Last - Tính từ - Cuối cùng, sau cùng - He was the last to arrive. - False
+Late - Tính từ - Muộn - He arrived late for the meeting. - False
+Laugh - Động từ - Cười - She laughed at his joke. - False
+Law - Danh từ - Luật pháp, quy định - He broke the law. - False
+Lay - Động từ - Đặt, để - He laid the book on the table. - False
+Machine - Danh từ - Máy móc - He works in a machine shop. - False
+Make - Động từ - Làm, chế tạo - He made a cake. - False
+Male - Tính từ - Giống đực - He is a male dog. - False
+Man - Danh từ - Người đàn ông - He is a tall man. - False
+Many - Tính từ - Nhiều - He has many friends. - False
+Map - Danh từ - Bản đồ - He looked at the map to find his way. - False
+Marry - Động từ - Kết hôn - He married his girlfriend. - False
+Match - Danh từ - Trận đấu, cuộc thi - It was a close match. - False
+Matter - Danh từ - Vấn đề, sự việc - It is a matter of life and death. - False
+May - Động từ - Có thể, được phép - He may go to the party. - False
+Mean - Tính từ - Trung bình, tầm thường - He is a mean person. - False
+Measure - Danh từ - Đo lường, phép đo - He measured the distance. - False
+Meat - Danh từ - Thịt - He eats a lot of meat. - False
+Meet - Động từ - Gặp gỡ, gặp - He met her at the park. - False
+Member - Danh từ - Thành viên - He is a member of the club. - False
+Memory - Danh từ - Ký ức, trí nhớ - He has a good memory. - False
+Men - Danh từ - Đàn ông - There were many men at the meeting. - False
+Mention - Động từ - Nhắc đến, đề cập đến - He mentioned it in his speech. - False
+Message - Danh từ - Tin nhắn, thông điệp - He sent her a message. - False
+Metal - Danh từ - Kim loại - Iron is a metal. - False
+Middle - Danh từ - Giữa, trung tâm - He stood in the middle of the room. - False
+Might - Động từ - Có thể, có khả năng - He might come to the party. - False
+Milk - Danh từ - Sữa - He drinks milk every day. - False
+Mind - Danh từ - Tâm trí, trí óc - He has a brilliant mind. - False
+Minute - Danh từ - Phút - He waited for a minute. - False
+Miss - Động từ - Nhớ, bỏ lỡ - He misses his family. - False
+Money - Danh từ - Tiền - He has a lot of money. - False
+Month - Danh từ - Tháng - He was born in January. - False
+Moon - Danh từ - Mặt trăng - The moon is beautiful tonight. - False
+More - Tính từ - Nhiều hơn - He wants more food. - False
+Morning - Danh từ - Buổi sáng - He woke up in the morning. - False
+Mother - Danh từ - Mẹ - He loves his mother. - False
+Mountain - Danh từ - Núi - He climbed the mountain. - False
+Mouth - Danh từ - Miệng - He opened his mouth to speak. - False
+Move - Động từ - Di chuyển, chuyển động - He moved the table. - False
+Much - Tính từ - Nhiều - He has much to learn. - False
+Music - Danh từ -  m nhạc - He loves music. - False
+Must - Động từ - Phải, cần phải - He must go to school. - False
+My - Đại từ sở hữu - Của tôi - This is my book. - False
+Name - Danh từ - Tên - His name is John. - False
+Narrow - Tính từ - Hẹp, chật - The road was narrow. - False
+Nation - Danh từ - Quốc gia, dân tộc - He is a citizen of the United States. - False
+Natural - Tính từ - Tự nhiên, nguyên bản - It is a natural product. - False
+Near - Tính từ - Gần - He lives near me. - False
+Neat - Tính từ - Gọn gàng, sạch sẽ - She is a neat person. - False
+Necessary - Tính từ - Cần thiết, bắt buộc - It is necessary to wear a seatbelt. - False
+Neck - Danh từ - Cổ - He has a long neck. - False
+Need - Danh từ - Nhu cầu, cần thiết - He has a need for love. - False
+Neighbor - Danh từ - Người hàng xóm - He is a good neighbor. - False
+Neither - Đại từ - Không ai trong hai - Neither of them is going to the party. - False
+Never - Trạng từ - Không bao giờ - He never goes to the gym. - False
+New - Tính từ - Mới, hiện đại - He bought a new car. - False
+News - Danh từ - Tin tức - He watched the news on TV. - False
+Next - Tính từ - Tiếp theo - He is the next in line. - False
+Nice - Tính từ - Tốt đẹp, dễ chịu - She is a nice person. - False
+Night - Danh từ - Buổi tối - He went for a walk at night. - False
+No - Trạng từ - Không - He said no to the offer. - False
+Noise - Danh từ - Tiếng ồn, âm thanh - He made a lot of noise. - False
+None - Đại từ - Không ai, không cái gì - None of them are going to the party. - False
+North - Danh từ - Phía bắc - He traveled north. - False
+Not - Trạng từ - Không - He is not going to the party. - False
+Note - Danh từ - Ghi chú, lưu ý - He took a note of the address. - False
+Nothing - Đại từ - Không gì - He said nothing. - False
+Notice - Danh từ - Thông báo, ghi chú - He put up a notice. - False
+Now - Trạng từ - Bây giờ - He is here now. - False
+Number - Danh từ - Số lượng, con số - He has a large number of friends. - False
+Of - Giới từ - Của, thuộc về - This is a book of poems. - False
+Off - Trạng từ - Tắt, rời khỏi - He turned off the light. - False
+Often - Trạng từ - Thường xuyên - He often goes to the gym. - False
+Oil - Danh từ - Dầu - He poured oil on the fire. - False
+Old - Tính từ - Cũ, già - He is an old man. - False
+On - Giới từ - Trên, tại - He is on the phone. - False
+Once - Trạng từ - Một lần - He has been to Europe once. - False
+One - Số từ - Một - He has one brother. - False
+Only - Trạng từ - Chỉ, duy nhất - He only has one brother. - False
+Open - Động từ - Mở - He opened the door. - False
+Or - Liên từ - Hoặc - He likes coffee or tea. - False
+Order - Danh từ - Thứ tự, mệnh lệnh - He gave an order. - False
+Other - Đại từ - Khác - He has other friends. - False
+Our - Đại từ sở hữu - Của chúng ta - This is our house. - False
+Out - Trạng từ - Ra ngoài - He went out for a walk. - False
+Over - Giới từ - Trên, qua - He flew over the ocean. - False
+Pack - Danh từ - Bầy đàn, gói hàng - He packed his suitcase. - False
+Page - Danh từ - Trang - He turned the page. - False
+Pain - Danh từ - Nỗi đau - He felt pain in his arm. - False
+Paint - Danh từ - Sơn, màu vẽ - He painted the house. - False
+Pair - Danh từ - Cặp - He bought a pair of shoes. - False
+Paper - Danh từ - Giấy - He wrote on a piece of paper. - False
+Parent - Danh từ - Cha mẹ - He has two parents. - False
+Park - Danh từ - Công viên - He went for a walk in the park. - False
+Part - Danh từ - Phần, bộ phận - He is a part of the team. - False
+Pass - Động từ - Vượt qua, chuyền bóng - He passed the ball to his teammate. - False
+Past - Tính từ - Quá khứ - He is a man of the past. - False
+Path - Danh từ - Con đường, lối đi - He followed the path through the forest. - False
+Patient - Danh từ - Bệnh nhân - He is a patient at the hospital. - False
+Pay - Động từ - Trả tiền - He paid for the meal. - False
+Peace - Danh từ - Hòa bình, yên bình - He lives in a peaceful country. - False
+Pen - Danh từ - Bút - He wrote with a pen. - False
+People - Danh từ - Mọi người, con người - He met many people at the party. - False
+Percent - Danh từ - Phần trăm - He scored 90 percent on the test. - False
+Person - Danh từ - Người - He is a kind person. - False
+Pet - Danh từ - Thú cưng - He has a dog as a pet. - False
+Pick - Động từ - Chọn, nhặt - He picked a flower. - False
+Picture - Danh từ - Hình ảnh, bức tranh - He took a picture. - False
+Piece - Danh từ - Mảnh, phần - He ate a piece of cake. - False
+Pig - Danh từ - Con lợn - He raised pigs. - False
+Place - Danh từ - Nơi chốn, địa điểm - He put the book in its place. - False
+Plan - Danh từ - Kế hoạch, dự định - He made a plan for the trip. - False
+Plant - Danh từ - Cây cối, thực vật - He planted a tree. - False
+Play - Động từ - Chơi, đùa - He played with his dog. - False
+Please - Trạng từ - Xin vui lòng - Please help me. - False
+Point - Danh từ - Điểm, mũi nhọn - He pointed at the map. - False
+Police - Danh từ - Cảnh sát - He called the police. - False
+Pool - Danh từ - Bể bơi, hồ bơi - He went swimming in the pool. - False
+Poor - Tính từ - Nghèo, túng quẫn - He is a poor man. - False
+Possible - Tính từ - Có thể, khả thi - It is possible that he will come. - False
+Post - Danh từ - Bưu điện, bài đăng - He sent a letter in the post. - False
+Pot - Danh từ - Cái nồi, chậu cây - He cooked soup in a pot. - False
+Potato - Danh từ - Khoai tây - He ate a potato. - False
+Pound - Danh từ - Đơn vị tiền tệ Anh - He paid one pound for the book. - False
+Pour - Động từ - Rót, đổ - He poured water into the glass. - False
+Power - Danh từ - Sức mạnh, năng lượng - He has a lot of power. - False
+Queen - Danh từ - Nữ hoàng - She is the queen of the country. - False
+Question - Danh từ - Câu hỏi, vấn đề - He asked her a question. - False
+Quick - Tính từ - Nhanh chóng, vội vã - He ran quickly. - False
+Quiet - Tính từ - Yên tĩnh, im lặng - He is a quiet person. - False
+Rain - Danh từ - Mưa - It is raining outside. - False
+Raise - Động từ - Nâng lên, tăng cao - He raised his hand. - False
+Read - Động từ - Đọc - He read a book. - False
+Ready - Tính từ - Sẵn sàng, chuẩn bị - He is ready to go. - False
+Real - Tính từ - Thật, thực sự - He is a real friend. - False
+Reason - Danh từ - Lý do, nguyên nhân - He had a good reason for being late. - False
+Receive - Động từ - Nhận, tiếp nhận - He received a gift. - False
+Recent - Tính từ - Gần đây, mới đây - He bought a recent book. - False
+Record - Danh từ - Kỷ lục, bản ghi âm - He set a new record. - False
+Red - Tính từ - Màu đỏ - He wore a red shirt. - False
+Reduce - Động từ - Giảm, giảm bớt - He reduced the price of the car. - False
+Refer - Động từ - Tham khảo, đề cập đến - He referred to the book for information. - False
+Refuse - Động từ - Từ chối, khước từ - He refused to go. - False
+Regarding - Giới từ - Liên quan đến - He spoke regarding the matter. - False
+Region - Danh từ - Vùng, khu vực - He lives in a remote region. - False
+Regular - Tính từ - Thường xuyên, đều đặn - He goes to the gym regularly. - False
+Reject - Động từ - Từ chối, bác bỏ - He rejected her proposal. - False
+Relate - Động từ - Kể lại, liên quan đến - He related the story to his friends. - False
+Relation - Danh từ - Mối quan hệ, liên hệ - He has a good relation with his boss. - False
+Relative - Danh từ - Người thân, họ hàng - He visited his relatives. - False
+Relax - Động từ - Thư giãn, thoải mái - He relaxed after a long day. - False
+Release - Động từ - Giải phóng, phát hành - He released the prisoner. - False
+Reliable - Tính từ - Đáng tin cậy, tin tưởng được - He is a reliable person. - False
+Religion - Danh từ - Tôn giáo - He follows the Buddhist religion. - False
+Remain - Động từ - Lại, ở lại - He remained silent. - False
+Remember - Động từ - Nhớ, ghi nhớ - He remembered her birthday. - False
+Remind - Động từ - Nhắc nhở - He reminded me to do my homework. - False
+Remove - Động từ - Di chuyển, loại bỏ - He removed the furniture from the room. - False
+Repeat - Động từ - Lặp lại, nhắc lại - He repeated the instructions. - False
+Reply - Động từ - Trả lời, đáp lại - He replied to my email. - False
+Report - Danh từ - Báo cáo, thông tin - He wrote a report on the incident. - False
+Represent - Động từ - Đại diện, thể hiện - He represented his country in the Olympics. - False
+Request - Danh từ - Yêu cầu, đề nghị - He made a request for help. - False
+Require - Động từ - Yêu cầu, cần thiết - He requires a lot of money to live. - False
+Respect - Danh từ - Tôn trọng, kính trọng - He has a lot of respect for his elders. - False
+Ring - Danh từ - Chiếc nhẫn, tiếng chuông - He wore a ring on his finger. - False
+Rise - Động từ - Nâng lên, mọc lên - The sun rises in the east. - False
+River - Danh từ - Sông - He swam in the river. - False
+Road - Danh từ - Con đường - He drove down the road. - False
+Rock - Danh từ - Hòn đá, nhạc rock - He listened to rock music. - False
+Role - Danh từ - Vai trò, chức vụ - He played a role in the movie. - False
+Safe - Tính từ - An toàn, bảo đảm - He is in a safe place. - False
+Same - Tính từ - Giống nhau, tương tự - He is the same age as me. - False
+Sand - Danh từ - Cát - He played in the sand. - False
+Satisfy - Động từ - Làm hài lòng, thỏa mãn - He was satisfied with the results. - False
+Save - Động từ - Lưu, tiết kiệm - He saved money for his future. - False
+Say - Động từ - Nói, nói ra - He said hello to me. - False
+Scale - Danh từ - Cân, thang đo - He weighed himself on the scale. - False
+School - Danh từ - Trường học - He goes to school every day. - False
+Science - Danh từ - Khoa học - He is studying science at university. - False
+Score - Danh từ - Điểm số, kết quả - He scored a goal in the game. - False
+Sea - Danh từ - Biển - He swam in the sea. - False
+Search - Động từ - Tìm kiếm, lục lọi - He searched for the lost key. - False
+Season - Danh từ - Mùa - He loves the summer season. - False
+Seat - Danh từ - Ghế, chỗ ngồi - He sat down on the seat. - False
+Second - Tính từ - Thứ hai, tiếp theo - He is the second child in the family. - False
+Secret - Danh từ - Bí mật - He kept it a secret. - False
+See - Động từ - Nhìn, thấy - He saw her at the park. - False
+Seek - Động từ - Tìm kiếm, theo đuổi - He sought help from his friends. - False
+Seem - Động từ - Dường như, có vẻ - He seems to be happy. - False
+Sell - Động từ - Bán, tiêu thụ - He sold his car. - False
+Send - Động từ - Gửi, chuyển đi - He sent me a letter. - False
+Sense - Danh từ - Giác quan, ý nghĩa - He has a good sense of humor. - False
+Sentence - Danh từ - Câu, bản án - He was sentenced to prison. - False
+Separate - Động từ - Chia tách, phân biệt - He separated the white clothes from the colored clothes. - False
+Series - Danh từ - Loạt, chuỗi - He watched a series on Netflix. - False
+Serious - Tính từ - Nghiêm túc, quan trọng - He is a serious person. - False
+Serve - Động từ - Phục vụ, cung cấp - He served food to the guests. - False
+Set - Động từ - Đặt, thiết lập - He set the table for dinner. - False
+Several - Tính từ - Một số, vài - He has several friends. - False
+Sex - Danh từ - Giới tính, tình dục - He is a male. - False
+Table - Danh từ - Bàn - He put the book on the table. - False
+Tail - Danh từ - Đuôi - He wagged his tail. - False
+Take - Động từ - Lấy, mang - He took the book from the table. - False
+Talk - Động từ - Nói, trò chuyện - He talked to her about his day. - False
+Tall - Tính từ - Cao - He is a tall man. - False
+Taste - Danh từ - Vị, hương vị - He tasted the food. - False
+Tax - Danh từ - Thuế - He paid his taxes. - False
+Teach - Động từ - Dạy, giảng dạy - He teaches English. - False
+Team - Danh từ - Đội, nhóm - He is on the football team. - False
+Tear - Danh từ - Nước mắt - He shed a tear. - False
+Tell - Động từ - Nói, kể - He told me a story. - False
+Temperature - Danh từ - Nhiệt độ - The temperature is hot today. - False
+Ten - Số từ - Mười - He has ten fingers. - False
+Tennis - Danh từ - Quần vợt - He played tennis with his friends. - False
+Terrible - Tính từ - Khủng khiếp, tồi tệ - He had a terrible day. - False
+Test - Danh từ - Bài kiểm tra - He took a test in math. - False
+Thank - Động từ - Cảm ơn - He thanked her for her help. - False
+That - Đại từ - Đó, kia - That is a beautiful cat. - False
+The - Mạo từ - Cái, the - The cat is on the mat. - False
+Their - Đại từ sở hữu - Của họ - That is their car. - False
+Them - Đại từ - Họ - I saw them yesterday. - False
+Then - Trạng từ - Sau đó, rồi - He went home, then he went to bed. - False
+Theory - Danh từ - Lý thuyết, giả thuyết - He is studying the theory of relativity. - False
+There - Trạng từ - Ở đó, kia - He is over there. - False
+These - Đại từ - Những này - These are my books. - False
+They - Đại từ - Họ - They are going to the park. - False
+Thick - Tính từ - Dày - He has thick hair. - False
+Thief - Danh từ - Kẻ trộm - He caught the thief. - False
+Thin - Tính từ - Mỏng - He is a thin man. - False
+Thing - Danh từ - Vật, thứ - He has many things to do. - False
+Think - Động từ - Suy nghĩ, tưởng tượng - He is thinking about his future. - False
+Third - Số từ - Thứ ba - He is the third child in the family. - False
+Traffic - Danh từ - Giao thông, vận tải - There is a lot of traffic on the road. - False
+Train - Danh từ - Tàu hỏa - He took the train to the city. - False
+Translate - Động từ - Dịch thuật, chuyển ngữ - He translated the book into English. - False
+Transport - Danh từ - Vận tải, di chuyển - He used public transport to get to work. - False
+Trap - Danh từ - Bẫy, cạm bẫy - He fell into a trap. - False
+Travel - Động từ - Du lịch, đi lại - He traveled around the world. - False
+Tree - Danh từ - Cây - He planted a tree in his garden. - False
+Trick - Danh từ - Thủ thuật, trò lừa - He played a trick on her. - False
+Trip - Danh từ - Chuyến đi, hành trình - He went on a trip to the beach. - False
+True - Tính từ - Đúng, chính xác - He is telling the truth. - False
+Trust - Danh từ - Niềm tin, sự tin tưởng - He has trust in her. - False
+Truth - Danh từ - Sự thật, chân lý - He always tells the truth. - False
+Try - Động từ - Cố gắng, thử - He tried to open the door. - False
+Turn - Động từ - Quay, xoay - He turned the key in the lock. - False
+Twelve - Số từ - Mười hai - He has twelve children. - False
+Twenty - Số từ - Hai mươi - He is twenty years old. - False
+Twin - Danh từ - Sinh đôi - He has a twin sister. - False
+Two - Số từ - Hai - He has two children. - False
+Type - Danh từ - Loại, kiểu - He is a good type of person. - False
+Typical - Tính từ - Điển hình, thường gặp - He is a typical example of a good student. - False
+Ugly - Tính từ - Xấu xí, quê mùa - He is an ugly man. - False
+Umbrella - Danh từ - Cái ô - He used an umbrella to protect himself from the rain. - False
+Unable - Tính từ - Không thể, không có khả năng - He is unable to walk. - False
+Uncle - Danh từ - Chú, bác (nam) - He has a kind uncle. - False
+Under - Trạng từ - Dưới, bên dưới - He put the book under the table. - False
+Understand - Động từ - Hiểu, thông hiểu - He understands the problem. - False
+University - Danh từ - Đại học - He goes to university. - False
+Unless - Liên từ - Trừ phi, nếu không - He will not go unless you invite him. - False
+Until - Giới từ - Cho đến khi, cho tới - He waited until she arrived. - False
+Up - Trạng từ - Lên, trên - He went up the stairs. - False
+Upon - Giới từ - Trên, ở trên - He put the book upon the table. - False
+Upset - Tính từ - Buồn bã, thất vọng - He is upset about the news. - False
+Us - Đại từ - Chúng tôi - He gave us a gift. - False
+Use - Động từ - Sử dụng, dùng - He uses a computer for his work. - False
+Usually - Trạng từ - Thường thường, hay - He usually goes to bed at 10 pm. - False
+Vacant - Tính từ - Trống, bỏ trống - The position is vacant. - False
+Vacation - Danh từ - Kỳ nghỉ, ngày lễ - He is going on vacation next week. - False
+Valley - Danh từ - Thung lũng - He walked through the valley. - False
+Valuable - Tính từ - Giá trị, quý giá - He has a valuable collection of stamps. - False
+Volume - Danh từ - Khối lượng, âm lượng - He turned up the volume on the radio. - False
+Volunteer - Danh từ - Người tình nguyện - He is a volunteer at the local soup kitchen. - False
+Vote - Động từ - Bỏ phiếu, bầu cử - He voted in the last election. - False
+Wage - Danh từ - Lương, tiền công - He earns a high wage. - False
+Wait - Động từ - Chờ đợi - He waited for her at the bus stop. - False
+Wake - Động từ - Thức dậy, đánh thức - He woke up early in the morning. - False
+Walk - Động từ - Đi bộ - He walked to the park. - False
+Wall - Danh từ - Tường, vách - He painted the wall white. - False
+Want - Động từ - Muốn, cần - He wants to go to the beach. - False
+War - Danh từ - Chiến tranh - There is a war in that country. - False
+Warm - Tính từ - Ấm áp, nóng - It is a warm day. - False
+Wash - Động từ - Giặt, rửa - He washed the dishes. - False
+Waste - Danh từ - Chất thải, lãng phí - He threw away the waste. - False
+Watch - Động từ - Xem, quan sát - He watched the movie. - False
+Water - Danh từ - Nước - He drank a glass of water. - False
+Wave - Danh từ - Sóng, lượn sóng - He rode the waves. - False
+Way - Danh từ - Cách, đường đi - He showed me the way to the park. - False
+We - Đại từ - Chúng tôi - We are going to the park. - False
+Weak - Tính từ - Yếu, yếu ớt - He is weak from the illness. - False
+Wealth - Danh từ - Tài sản, giàu có - He is a wealthy man. - False
+

@@ -93,7 +93,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         cbB_Infor = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        menuItem_Open = new javax.swing.JMenuItem();
         menuItem_Save = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         menuItem_Exit = new javax.swing.JMenuItem();
@@ -198,15 +197,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Tài liệu");
-
-        menuItem_Open.setText("Mở tài liệu");
-        menuItem_Open.setActionCommand("");
-        menuItem_Open.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItem_OpenActionPerformed(evt);
-            }
-        });
-        jMenu1.add(menuItem_Open);
 
         menuItem_Save.setText("Lưu");
         jMenu1.add(menuItem_Save);
@@ -440,32 +430,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         return input.trim(); // Trả về toàn bộ chuỗi nếu không có dấu gạch ngang
     }
 
-    private void menuItem_OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_OpenActionPerformed
-         JFileChooser fileChooser = new JFileChooser(); // Tạo một đối tượng JFileChooser
-
-        int returnValue = fileChooser.showOpenDialog(null); // Hiển thị hộp thoại mở tệp và chờ người dùng chọn tệp
-
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile(); // Lấy tệp mà người dùng đã chọn
-
-            // Cập nhật đường dẫn file hiện tại
-            currentFilePath = selectedFile.getAbsolutePath();
-
-            // Xử lý dữ liệu từ tệp đã chọn ở đây
-            try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
-                // Đọc từng dòng của tệp và xử lý dữ liệu
-                String line;
-                while ((line = br.readLine()) != null) {
-                    // Xử lý dữ liệu ở đây
-                    System.out.println(line); // In dữ liệu ra màn hình như là một ví dụ
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi đọc file!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_menuItem_OpenActionPerformed
-
     private void menu_AboutMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_AboutMeActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Quản lý tự điển version 1.0!");
     }//GEN-LAST:event_menu_AboutMeActionPerformed
@@ -587,7 +551,6 @@ public class DictionaryApp extends javax.swing.JFrame {
     private java.awt.Label label_Vidu;
     private javax.swing.JMenuItem menuItem_Exit;
     private javax.swing.JMenuItem menuItem_Infor;
-    private javax.swing.JMenuItem menuItem_Open;
     private javax.swing.JMenuItem menuItem_Save;
     private javax.swing.JMenuItem menuItem_UserManual;
     private javax.swing.JMenu menu_AboutMe;

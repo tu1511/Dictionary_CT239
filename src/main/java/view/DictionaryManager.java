@@ -50,7 +50,6 @@ public class DictionaryManager extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         label_TiengAnh = new javax.swing.JLabel();
         label_LoaiTu = new javax.swing.JLabel();
-        tF_LoaiTu = new javax.swing.JTextField();
         label_TiengViet = new javax.swing.JLabel();
         tF_TiengViet = new javax.swing.JTextField();
         label_ViDu = new javax.swing.JLabel();
@@ -65,6 +64,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         table_Data = new javax.swing.JTable();
         tF_tiengAnh = new javax.swing.JTextField();
         btn_Delete = new javax.swing.JButton();
+        cbb_Loaitu = new javax.swing.JComboBox<>();
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         menuItem_Save = new javax.swing.JMenuItem();
@@ -104,8 +104,6 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         label_LoaiTu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         label_LoaiTu.setText("Loại từ :");
-
-        tF_LoaiTu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         label_TiengViet.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         label_TiengViet.setText("Nghĩa tiếng Việt :");
@@ -205,6 +203,8 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         });
 
+        cbb_Loaitu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danh từ", "Động Từ", "Tính từ", "Trạng từ" }));
+
         jMenu6.setText("Tài liệu");
 
         menuItem_Save.setText("Lưu");
@@ -253,7 +253,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                                 .addGap(33, 33, 33)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label_LoaiTu)
-                                    .addComponent(tF_LoaiTu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbb_Loaitu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(label_TiengAnh)
@@ -306,14 +306,15 @@ public class DictionaryManager extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(tF_tiengAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbb_Loaitu)
+                            .addComponent(tF_tiengAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                         .addGap(0, 0, 0)
                         .addComponent(label_ViDu))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tF_TiengViet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tF_LoaiTu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(6, 6, 6)
                 .addComponent(tF_TViDu, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,7 +336,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 //    chức năng thêm từ
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         String tiengAnh = tF_tiengAnh.getText();
-        String loaiTu = tF_LoaiTu.getText();
+        String loaiTu = cbb_Loaitu.getSelectedItem().toString();
         String tiengViet = tF_TiengViet.getText();
         String viDu = tF_TViDu.getText();
 
@@ -365,7 +366,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
             DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
             tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
-            tF_LoaiTu.setText(model.getValueAt(selectedRow, 2).toString());
+            cbb_Loaitu.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
             tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
             tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
         }
@@ -375,7 +376,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         int selectedRow = table_Data.getSelectedRow();   
         // Lấy thông tin từ các JTextField
         String tiengAnh = tF_tiengAnh.getText();
-        String loaiTu = tF_LoaiTu.getText();
+        String loaiTu = cbb_Loaitu.getSelectedItem().toString();
         String tiengViet = tF_TiengViet.getText();
         String viDu = tF_TViDu.getText();
 
@@ -514,7 +515,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 
     private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
         tF_tiengAnh.setText("");
-        tF_LoaiTu.setText("");
+        cbb_Loaitu.setSelectedIndex(0);
         tF_TiengViet.setText("");
         tF_TViDu.setText("");
     }//GEN-LAST:event_btn_reloadActionPerformed
@@ -525,7 +526,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
             DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
             tF_tiengAnh.setText(data.getValueAt(selectedRow, 1).toString());
-            tF_LoaiTu.setText(data.getValueAt(selectedRow, 2).toString());
+            cbb_Loaitu.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
             tF_TiengViet.setText(data.getValueAt(selectedRow, 3).toString());
             tF_TViDu.setText(data.getValueAt(selectedRow, 4).toString());
         }
@@ -611,6 +612,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JButton btn_Save;
     private javax.swing.JButton btn_Update;
     public javax.swing.JButton btn_reload;
+    private javax.swing.JComboBox<String> cbb_Loaitu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -633,7 +635,6 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItem_Exit;
     public javax.swing.JMenuItem menuItem_Save;
     private javax.swing.JMenuItem menuItem_UserManual;
-    public javax.swing.JTextField tF_LoaiTu;
     public javax.swing.JTextField tF_TViDu;
     public javax.swing.JTextField tF_TiengViet;
     public javax.swing.JTextField tF_tiengAnh;

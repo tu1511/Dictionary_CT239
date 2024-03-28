@@ -33,15 +33,6 @@
             <Property name="text" type="java.lang.String" value="T&#xe0;i li&#x1ec7;u"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItem_Open">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="M&#x1edf; t&#xe0;i li&#x1ec7;u"/>
-                <Property name="actionCommand" type="java.lang.String" value=""/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItem_OpenActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem_Save">
               <Properties>
                 <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
