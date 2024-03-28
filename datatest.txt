@@ -1,5 +1,5 @@
 Abandon - �?ộng từ - B�? rơi, từ b�? - He abandoned his family. -true
-Ability - Danh từ - Khả năng, năng lực - She has a natural ability for music. - false
+Ability - Danh từ - Khả năng, năng lực - She has a natural ability for music. -false
 Abundant - Tính từ - Dồi dào, phong phú - The country is abundant in natural resources. - false
 Accept - �?ộng từ - Chấp nhận, nhận - I accept your apology. - false
 Access - Danh từ - Tiếp cận, quy�?n truy cập - We need access to the internet. - false

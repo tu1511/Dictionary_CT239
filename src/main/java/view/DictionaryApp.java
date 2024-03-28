@@ -14,12 +14,17 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+import model.Dictionary;
+import model.DictionaryModel;
 
 /**
  *
  * @author LENOVO
  */
 public class DictionaryApp extends javax.swing.JFrame {
+    
+    DictionaryModel model = new DictionaryModel();
     
     private List<String> dictionary = new ArrayList<>();
     private String currentFilePath = "datatest.txt";
@@ -317,7 +322,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_TraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraCuuActionPerformed
-         // Lấy từ cần tra từ text field
+       // Lấy từ cần tra từ text field
         String tuCanTim = tF_Infor.getText().trim();
 
         if (tuCanTim.isEmpty()) {
@@ -326,47 +331,25 @@ public class DictionaryApp extends javax.swing.JFrame {
             return;
         }
 
-        // Tìm kiếm từ trong file data.txt
-        boolean timThay = false;
+        // Tìm kiếm từ trong từ điển
+        Dictionary word = model.searchWord(tuCanTim);
+        if (word != null) {
+            // Hiển thị thông tin từ vựng tìm thấy
+            label_TiengAnh.setText("Tiếng Anh: " + word.getEnglish());
+            label_LoaiTu.setText("Loại từ: " + word.getType());
+            label_Nghia.setText("Nghĩa: " + word.getMeaning());
+            label_Vidu.setText("Ví dụ: " + word.getExample());
 
-        try (BufferedReader br = new BufferedReader(new FileReader(currentFilePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // Tách dữ liệu trên mỗi dòng bằng dấu gạch ngang
-                String[] parts = line.split("-");
-                if (parts.length >= 4) { // Đảm bảo có đủ thông tin về từ vựng
-                    String tiengAnh = parts[0].trim();
-
-                    // Kiểm tra nếu từ tiếng Anh trong dòng hiện tại trùng với từ cần tìm
-                    if (tiengAnh.equalsIgnoreCase(tuCanTim)) {
-                        // Hiển thị thông tin từ vựng tìm thấy
-                        String loaiTu = parts[1].trim();
-                        String tiengViet = parts[2].trim();
-                        String viDu = parts[3].trim();
-
-                        // Hiển thị thông tin từ vựng
-                        label_TiengAnh.setText("Tiếng Anh: " + tiengAnh);
-                        label_LoaiTu.setText("Loại từ: " + loaiTu);
-                        label_Nghia.setText("Nghĩa: " + tiengViet);
-                        label_Vidu.setText("Ví dụ: " + viDu);
-
-                        timThay = true;
-                        performSearch(tuCanTim);
-                        break; // Dừng vòng lặp khi tìm thấy từ vựng
-                    }
-                }
-            }
-
-            if (!timThay) {
-                // Hiển thị thông báo nếu không tìm thấy từ trong từ điển
-                JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi đọc file từ điển!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
+            // Hiển thị thông báo tìm thấy từ
+            JOptionPane.showMessageDialog(this, "Đã tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // Hiển thị thông báo nếu không tìm thấy từ trong từ điển
+            JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        }   
     }//GEN-LAST:event_btn_TraCuuActionPerformed
 
+
+    
     private void performSearch(String keyword) {
         // Thêm từ tìm kiếm mới vào danh sách
         recentSearches.add(keyword);
@@ -398,13 +381,16 @@ public class DictionaryApp extends javax.swing.JFrame {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                dictionary.add(line.trim());
+                if (line.contains("-false")) {
+                    dictionary.add(line.trim());
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "An error occurred while reading the dictionary file!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
     private void updateSuggestions() {
         String input = tF_Infor.getText().trim().toLowerCase();

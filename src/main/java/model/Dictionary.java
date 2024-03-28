@@ -87,8 +87,12 @@ public class Dictionary {
         return result;
     }
 
-    void setMean(String mean) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    void setMean(String meaning) {
+        this.meaning = meaning;
+    }
+
+    public String getEnglish() {
+        return this.word;
     }
 
 }
