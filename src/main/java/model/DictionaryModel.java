@@ -42,7 +42,7 @@ public class DictionaryModel {
         List<Node> bucket = table[index];
         // Duyệt từng node trong bucket để tìm từ cần tìm
         for (Node node : bucket) {
-            if (node.getKey().equals(english)) {
+            if (node.getKey().equals(english) && !node.getValue().isActive()) {
                 return node.getValue();
             }
         }
