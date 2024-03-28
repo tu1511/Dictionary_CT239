@@ -1,6 +1,6 @@
-Abandon - �?ộng từ - B�? rơi, từ b�? - He abandoned his family. -true
-Ability - Danh từ - Khả năng, năng lực - She has a natural ability for music. -false
-Abundant - Tính từ - Dồi dào, phong phú - The country is abundant in natural resources. - false
+abandon- �?ộng từ - B�? rơi, từ b�? - He abandoned his family. -false
+ability- Danh từ - Khả năng, năng lực - She has a natural ability for music. -false
+Abundant - Tính từ - Dồi dào, phong phú - The country is abundant in natural resources. -false
 Accept - �?ộng từ - Chấp nhận, nhận - I accept your apology. - false
 Access - Danh từ - Tiếp cận, quy�?n truy cập - We need access to the internet. - false
 Accident - Danh từ - Tai nạn, sự cố - It was a terrible accident. - false
@@ -74,3 +74,5 @@ Floor - Danh từ - Sàn nhà, tầng nhà - He lives on the third floor. - fals
 add-�?ộng Từ-thêm-I add a lot of items to table-true
 add-�?ộng Từ-thêm-I add a lot of items to table-true
 add-Danh từ-thêm-i add you-true
+add-�?ộng Từ-thêm vào-i add you ne-true
+hi-Động Từ-xin chào-hi i am tu-false

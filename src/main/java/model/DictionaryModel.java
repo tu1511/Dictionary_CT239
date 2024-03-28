@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DictionaryModel {
     private final int SIZE = 100; // Số lượng buckets
-    private List<Node>[] table;
+    private LinkedList<Node>[] table;
 
     // Constructor
     public DictionaryModel() {
@@ -30,24 +30,37 @@ public class DictionaryModel {
     // Thêm một từ vào từ điển
     public void addWord(String english, String type, String mean, String example) {
         int index = hashFunction(english);
-        Dictionary word = new Dictionary(english, type, mean, example);
-        word.setActive(false); // Đặt trạng thái mặc định là "false"
-        Node newNode = new Node(english, word);
-        table[index].add(newNode);    
-    }
-
-    // Tìm kiếm một từ trong từ điển
-    public Dictionary searchWord(String english) {
-        int index = hashFunction(english);
-        List<Node> bucket = table[index];
-        // Duyệt từng node trong bucket để tìm từ cần tìm
-        for (Node node : bucket) {
-            if (node.getKey().equals(english) && !node.getValue().isActive()) {
-                return node.getValue();
+        for (Node node : table[index]) {
+            if (node.getKey().equals(english)) {
+                // Từ đã tồn tại, không cần thêm mới
+                return;
             }
         }
-        return null; // Không tìm thấy
+        // Từ chưa tồn tại, thêm mới vào bảng
+        Dictionary word = new Dictionary(english, type, mean, example);
+        word.setActive(false);
+        Node newNode = new Node(english, word);
+        table[index].add(newNode);
     }
+    // Tìm kiếm một từ trong từ điển
+    public Dictionary searchWord(String english) {
+    int index = hashFunction(english);
+    LinkedList<Node> bucket = (LinkedList<Node>) table[index];
+
+    System.out.println("Bucket at index " + index + ":");
+    for (Node node : bucket) {
+        System.out.println("Key: " + node.getKey() + ", Value: " + node.getValue());
+    }
+
+    // Duyệt từng node trong bucket để tìm từ cần tìm
+    for (Node node : bucket) {
+        if (node.getKey().equals(english)) {// && !node.getValue().isActive()
+            return node.getValue();
+        }
+    }
+    return null; // Không tìm thấy
+}
+
 
     // Xóa một từ khỏi từ điển
     public void removeWord(String english, boolean isDeleted) {
@@ -127,17 +140,9 @@ public class DictionaryModel {
     }
     
     public void setValueAt(Object value, int row, int column) {
-//        super.setValueAt(value, row, column); // Gọi phương thức của lớp cha để thiết lập giá trị mới
-
-        // Kiểm tra xem cột được cập nhật có phải là cột trạng thái hay không
         if (column == 4 && value instanceof Boolean) {
-            // Trạng thái mới của từ
             boolean isActive = (boolean) value;
-
-            // Lấy từ ứng với hàng được cập nhật
-            String english = (String) getValueAt(row, 1); // Giả sử cột thứ 2 chứa từ tiếng Anh
-
-            // Gọi phương thức removeWord để cập nhật trạng thái của từ
+            String english = (String) getValueAt(row, 1);
             removeWord(english, !isActive);
         }
     }

@@ -518,8 +518,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
         int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
+        if (selectedRow != -1) {
             DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
             tF_tiengAnh.setText(data.getValueAt(selectedRow, 1).toString());
             cbb_Loaitu.setSelectedItem(model.getValueAt(selectedRow, 2).toString());

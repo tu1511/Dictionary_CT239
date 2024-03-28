@@ -14,7 +14,6 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
 import model.Dictionary;
 import model.DictionaryModel;
 
@@ -27,7 +26,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     DictionaryModel model = new DictionaryModel();
     
     private List<String> dictionary = new ArrayList<>();
-    private String currentFilePath = "datatest.txt";
+    private final String currentFilePath = "datatest.txt";
     private  List<String> recentSearches = new ArrayList<>();
     
     public String getCurrentFilePath() {
@@ -390,6 +389,9 @@ public class DictionaryApp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "An error occurred while reading the dictionary file!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+  
+
 
 
     private void updateSuggestions() {
