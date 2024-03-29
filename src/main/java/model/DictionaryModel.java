@@ -138,7 +138,7 @@ public class DictionaryModel {
 
         return null;
     }
-    
+
     public void setValueAt(Object value, int row, int column) {
         if (column == 4 && value instanceof Boolean) {
             boolean isActive = (boolean) value;
