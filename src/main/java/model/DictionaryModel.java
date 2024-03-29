@@ -1,25 +1,34 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 public class DictionaryModel {
     private final int SIZE = 100; // Số lượng buckets
-    private LinkedList<LinkList>[] table;
+    public LinkList[] table;
 
+    public int getSIZE() {
+        return SIZE;
+    }
+
+    public LinkList[] getTable() {
+        return table;
+    }
+
+    
     // Constructor
     public DictionaryModel() {
-        table = new LinkedList[SIZE];
+        table = new LinkList[SIZE];
         for (int i = 0; i < SIZE; i++) {
-            table[i] = new LinkedList<>();
+            table[i] = new LinkList();
         }
     }
 
     // Hàm băm
-    private int hashFunction(String key) {
+    public int hashFunction(String key) {
         int sum = 0;
         // Tính tổng mã ASCII của các ký tự trong key
         for (int i = 0; i < key.length(); i++) {
@@ -28,80 +37,17 @@ public class DictionaryModel {
         // Chiết lượng sum để phù hợp với SIZE
         return sum % SIZE;
     }
-
-    // Thêm một từ vào từ điển
-    public void addWord(String english, String type, String mean, String example) {
-        int index = hashFunction(english);
-        for (LinkList node : table[index]) {
-            if (node.getEnglish().equals(english)) {
-                // Từ đã tồn tại, không cần thêm mới
-                return;
-            }
-        }
-        // Từ chưa tồn tại, thêm mới vào bảng
-        Data word = new Data(english, type, mean, example);
-        word.setActive(false);
-        LinkList newNode = new LinkList(word);
-        table[index].add(newNode);
-    }
-
-    // Tìm kiếm một từ trong từ điển
-    public Data searchWord(String english) {
-        int index = hashFunction(english);
-        LinkedList<LinkList> bucket = table[index];
-
-        System.out.println("Bucket at index " + index + ":");
-        for (LinkList node : bucket) {
-            System.out.println("Key: " + node.getEnglish() + ", Value: " + node.getData());
-        }
-
-        // Duyệt từng node trong bucket để tìm từ cần tìm
-        for (LinkList node : bucket) {
-            if (node.getEnglish().equals(english)) {
-                return node.getData();
-            }
-        }
-        return null; // Không tìm thấy
-    }
-
-    // Xóa một từ khỏi từ điển
-    public void removeWord(String english, boolean isDeleted) {
-        int index = hashFunction(english);
-        List<LinkList> bucket = table[index];
-        // Duyệt từng node trong bucket để tìm và xóa từ cần xóa
-        for (int i = bucket.size() - 1; i >= 0; i--) {
-            LinkList node = bucket.get(i);
-            if (node.getEnglish().equals(english)) {
-                // Thay đổi trạng thái của từ
-                node.getData().setActive(isDeleted);
-                // Xóa nút từ danh sách liên kết
-                bucket.remove(i);
-                return; // Đã xóa
-            }
-        }
-    }
-
-    // Cập nhật thông tin của một từ trong từ điển
-    public void updateWord(String english, String type, String mean, String example) {
-        Data word = searchWord(english);
-        if (word != null) {
-            word.setType(type);
-            word.setMeaning(mean);
-            word.setExample(example);
-        } else {
-            // Xử lý khi từ không tồn tại
-        }
-    }
-
-    // Ghi từ điển vào file
+    
     public void writeFile(String fileName) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
-            for (LinkedList<LinkList> bucket : table) {
-                for (LinkList node : bucket) {
-                    Data word = node.getData();
+            for (LinkList bucket : table) {
+                Node current = bucket.getHead();
+                while (current != null) {
+                    Data word = current.getValue();
                     String line = word.getWord() + "-" + word.getType() + "-" + word.getMeaning() + "-" + word.getExample() + "-" + word.isActive();
                     bw.write(line);
                     bw.newLine();
+                    current = current.getNext();
                 }
             }
         } catch (IOException e) {
@@ -109,9 +55,7 @@ public class DictionaryModel {
         }
     }
 
-    // Đọc từ điển từ file
-    public LinkList[] readFile(String fileName) {
-        LinkList[] ds = new LinkList[SIZE];
+    public void readFile(String fileName) {
         FileReader fr = null;
         try {
             fr = new FileReader(fileName);
@@ -128,11 +72,7 @@ public class DictionaryModel {
                     Data word = new Data(english, type, meaning, example);
                     word.setActive(isActive);
                     int t = hashFunction(english);
-                    LinkList newNode = new LinkList(word);
-                    if (ds[t] == null) {
-                        ds[t] = new LinkList();
-                    }
-                    ds[t].addToTail(newNode);
+                    table[t].addToTail(word);
                 }
             }
             br.close();
@@ -147,13 +87,12 @@ public class DictionaryModel {
                 e.printStackTrace();
             }
         }
-        return ds;
     }
 
     public int getRowCount() {
         int count = 0;
-        for (LinkedList<LinkList> bucket : table) {
-            count += bucket.size();
+        for (LinkList bucket : table) {
+            count += bucket.getSize();
         }
         return count;
     }
@@ -171,11 +110,14 @@ public class DictionaryModel {
 
         // Tìm bucket chứa dữ liệu cho rowIndex
         int currentRow = 0;
-        for (LinkedList<LinkList> bucket : table) {
-            int bucketSize = bucket.size();
+        for (LinkList bucket : table) {
+            int bucketSize = bucket.getSize();
             if (rowIndex < currentRow + bucketSize) {
-                LinkList node = bucket.get(rowIndex - currentRow);
-                Data data = node.getData();
+                Node current = bucket.getHead();
+                for (int i = 0; i < rowIndex - currentRow; i++) {
+                    current = current.getNext();
+                }
+                Data data = current.getValue();
                 switch (columnIndex) {
                     case 0:
                         return rowIndex + 1; // Số thứ tự
@@ -200,8 +142,25 @@ public class DictionaryModel {
     public void setValueAt(Object value, int row, int column) {
         if (column == 4 && value instanceof Boolean) {
             boolean isActive = (boolean) value;
-            String english = (String) getValueAt(row, 1);
-            removeWord(english, !isActive);
+            int currentRow = 0;
+            for (LinkList bucket : table) {
+                int bucketSize = bucket.getSize();
+                if (row < currentRow + bucketSize) {
+                    Node current = bucket.getHead();
+                    for (int i = 0; i < row - currentRow; i++) {
+                        current = current.getNext();
+                    }
+                    Data word = current.getValue();
+                    word.setActive(isActive);
+                    return;
+                }
+                currentRow += bucketSize;
+            }
         }
+    }
+
+    public LinkList[] getList() {
+        // Trả về bảng table chứa toàn bộ danh sách từ điển
+        return table;
     }
 }

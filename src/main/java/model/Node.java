@@ -36,7 +36,7 @@ public class Node {
         this.next = next;
     }
     
-     public String getData() {
+    public String getData() {
         return (value.getEnglish()+"-"+value.getType()+"-"+value.getMeaning()+"-"+value.getExample() +"-false"+"\n");
     }
 

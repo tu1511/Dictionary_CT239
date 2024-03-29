@@ -66,6 +66,48 @@ public class LinkList {
         }
         size++;
     }
+    
+    public void insertAt(Data value, int position) {
+        if (position < 0 || position > size) {
+            throw new IllegalArgumentException("Invalid position");
+        }
+
+        // Tạo một nút mới với giá trị cần thêm
+        Node newNode = new Node(value);
+
+        // Trường hợp đặc biệt: nếu danh sách rỗng hoặc muốn thêm vào đầu danh sách
+        if (position == 0) {
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+            } else {
+                newNode.setNext(head);
+                head = newNode;
+            }
+        } 
+        // Trường hợp đặc biệt: nếu muốn thêm vào cuối danh sách
+        else if (position == size) {
+            tail.setNext(newNode);
+            tail = newNode;
+        } 
+        // Thêm vào vị trí khác
+        else {
+            // Tìm nút tại vị trí trước vị trí cần thêm
+            Node previous = head;
+            for (int i = 0; i < position - 1; i++) {
+                previous = previous.getNext();
+            }
+
+            // Cập nhật liên kết của nút mới
+            newNode.setNext(previous.getNext());
+
+            // Cập nhật liên kết của nút trước nút mới
+            previous.setNext(newNode);
+        }
+
+        // Tăng kích thước danh sách
+        size++;
+    }
 
     // Xóa nút từ danh sách
     public void delete(Node node) {
@@ -109,6 +151,10 @@ public class LinkList {
             System.out.println("Value: " + current.getValue().toString());
             current = current.getNext();
         }
+    }
+
+    public Data getData(Node node) {
+        return node != null ? node.getValue() : null;
     }
 
    

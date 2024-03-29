@@ -11,6 +11,7 @@ view\DictionaryManager$10.class
 model\DictionaryModel.class
 view\DictionaryApp$4.class
 view\DictionaryManager$5.class
+model\LinkList.class
 view\DictionaryApp$11.class
 view\DictionaryApp$7.class
 view\DictionaryApp$8.class
@@ -18,12 +19,12 @@ view\DictionaryManager$8.class
 controller\DictionaryController.class
 view\DictionaryManager$1.class
 view\DictionaryManager$3.class
+model\Data.class
 view\DictionaryManager$12.class
 view\DictionaryApp$1.class
 view\DictionaryManager$6.class
 view\DictionaryApp$5.class
 view\DictionaryApp$6.class
-model\Dictionary.class
 view\DictionaryManager$9.class
 view\DictionaryManager$4.class
 view\DictionaryApp$3.class
