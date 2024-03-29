@@ -341,6 +341,11 @@ public class DictionaryManager extends javax.swing.JFrame {
         String tiengViet = tF_TiengViet.getText();
         String viDu = tF_TViDu.getText();
 
+        if (tiengAnh.isEmpty() || loaiTu.isEmpty() || tiengViet.isEmpty() || viDu.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         model.addWord(tiengAnh, loaiTu, tiengViet, viDu);
         try {
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("datatest.txt", true), "UTF-8");
