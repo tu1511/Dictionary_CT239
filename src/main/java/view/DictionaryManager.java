@@ -504,10 +504,18 @@ public class DictionaryManager extends javax.swing.JFrame {
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) {
             DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-            tF_tiengAnh.setText(data.getValueAt(selectedRow, 1).toString());
-            cbb_Loaitu.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
-            tF_TiengViet.setText(data.getValueAt(selectedRow, 3).toString());
-            tF_TViDu.setText(data.getValueAt(selectedRow, 4).toString());
+            String tiengAnh = data.getValueAt(selectedRow, 1).toString();
+            String loaiTu = data.getValueAt(selectedRow, 2).toString();
+            String tiengViet = data.getValueAt(selectedRow, 3).toString();
+            String viDu = data.getValueAt(selectedRow, 4).toString();
+
+            tF_tiengAnh.setText(tiengAnh);
+            cbb_Loaitu.setSelectedItem(loaiTu);
+            tF_TiengViet.setText(tiengViet);
+            tF_TViDu.setText(viDu);
+        } else {
+            // Hiển thị thông báo nếu không có hàng nào được chọn
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một hàng để cập nhật!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_UpdateActionPerformed
 
@@ -516,31 +524,36 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItem_SaveActionPerformed
 
     private void saveToFile() {
-    File file = new File("datatest.txt");
-    try {
-        FileWriter fileWriter = new FileWriter(file, false); // Mở file để ghi đè nội dung
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+         File file = new File("datatest.txt");
+         try {
+             if (!file.exists()) {
+                 file.createNewFile(); // Tạo file mới nếu nó không tồn tại
+             }
 
-        // Ghi lại toàn bộ dữ liệu từ bảng vào tệp tin
-        for (int i = 0; i < model.getRowCount(); i++) {
-            for (int j = 1; j < model.getColumnCount() - 1; j++) { // -1 để loại bỏ cột trạng thái
-                bufferedWriter.write(model.getValueAt(i, j).toString());
-                bufferedWriter.write("-");
-            }
-            // Ghi trạng thái của từ (true/false)
-            bufferedWriter.write(model.getValueAt(i, model.getColumnCount() - 1).toString());
-            bufferedWriter.newLine();
-        }
+             FileWriter fileWriter = new FileWriter(file, false); // Mở file để ghi đè nội dung
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-        bufferedWriter.close();
-        fileWriter.close();
-        JOptionPane.showMessageDialog(null, "Dữ liệu đã được lưu lại vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+             // Ghi lại toàn bộ dữ liệu từ bảng vào tệp tin
+             for (int i = 0; i < model.getRowCount(); i++) {
+                 for (int j = 1; j < model.getColumnCount() - 1; j++) { // -1 để loại bỏ cột trạng thái
+                     bufferedWriter.write(model.getValueAt(i, j).toString());
+                     bufferedWriter.write("-");
+                 }
+                 // Ghi trạng thái của từ (true/false)
+                 bufferedWriter.write(model.getValueAt(i, model.getColumnCount() - 1).toString());
+                 bufferedWriter.newLine();
+             }
 
-    } catch (IOException ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    }
-}
+             bufferedWriter.close();
+             fileWriter.close();
+             JOptionPane.showMessageDialog(null, "Dữ liệu đã được lưu lại vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+         } catch (IOException ex) {
+             ex.printStackTrace();
+             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+         }
+     }
+    
 
 
 //    Chức năng load dữ liệu từ file lưu trữ lên
