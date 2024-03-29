@@ -399,53 +399,54 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SaveActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-       String[] options = {"Có", "Không"};
-       int selectedRow = table_Data.getSelectedRow();
-       if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
-           int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-           if (dialogResult == JOptionPane.YES_OPTION) {
-               DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-               String selectedWord = data.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
+        String[] options = {"Có", "Không"};
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
+            int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
+                String selectedWord = data.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
 
-               // Lấy trạng thái từ từ dòng được chọn
-               String isActiveString = data.getValueAt(selectedRow, 4).toString();
-               boolean isActive = Boolean.parseBoolean(isActiveString);
+                // Lấy trạng thái từ từ dòng được chọn
+                String isActiveString = data.getValueAt(selectedRow, 4).toString();
+                boolean isActive = Boolean.parseBoolean(isActiveString);
 
-               // Nếu trạng thái là false, chuyển thành true và thực hiện xóa dòng
-               if (!isActive) {
-                   // Thay đổi trạng thái thành true
-                   data.setValueAt(true, selectedRow, 4);
+                // Kiểm tra và gọi phương thức delete từ LinkList trong model
+                if (!isActive) {
+                    // Thay đổi trạng thái thành true
+                    data.setValueAt(true, selectedRow, 4);
+                    int bucketIndex = model.hashFunction(selectedWord); // Sử dụng từ tiếng Anh để tìm bucket
+                    model.table[bucketIndex].delete(selectedWord); // Gọi phương thức delete từ LinkList trong model và truyền từ tiếng Anh cần xóa
+                }
 
-                   // Thay đổi dữ liệu trong file từ "-false" thành "-true"
-                   try {
-                       File file = new File("datatest.txt");
-                       BufferedReader reader = new BufferedReader(new FileReader(file));
-                       String line;
-                       String input = "";
-                       while ((line = reader.readLine()) != null) {
-                           if (line.contains(selectedWord)) {
-                               line = line.replace("-false", "-true");
-                           }
-                           input += line + '\n';
-                       }
-                       reader.close();
-                       FileWriter writer = new FileWriter(file);
-                       writer.write(input);
-                       writer.close();
-                   } catch (IOException ex) {
-                       ex.printStackTrace();
-                       JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi cập nhật dữ liệu trong tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                   }
-               }
+                  try {
+                        File file = new File("datatest.txt");
+                        BufferedReader reader = new BufferedReader(new FileReader(file));
+                        String line;
+                        String input = "";
+                        while ((line = reader.readLine()) != null) {
+                            if (line.contains(selectedWord)) {
+                                line = line.replace("-false", "-true");
+                            }
+                            input += line + '\n';
+                        }
+                        reader.close();
+                        FileWriter writer = new FileWriter(file);
+                        writer.write(input);
+                        writer.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi cập nhật dữ liệu trong tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    }
+                
+                // Xóa dòng khỏi bảng
+                data.removeRow(selectedRow);
 
-               // Xóa dòng khỏi bảng
-               data.removeRow(selectedRow);
-
-               JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-           }
-       } else {
-           JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-       }
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
     private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
@@ -578,6 +579,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
 
 
