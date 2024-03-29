@@ -10,9 +10,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
 
-import model.Dictionary;
+import model.Data;
 import model.DictionaryModel;
-import model.Node;
+import model.LinkList;
 
 public class DictionaryManager extends javax.swing.JFrame {
 
@@ -345,19 +345,15 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-        model.addWord(tiengAnh, loaiTu, tiengViet, viDu);
-        try {
-            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream("datatest.txt", true), "UTF-8");
-            try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-                String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
-                bufferedWriter.write(data);
-                bufferedWriter.newLine();
-            }
-            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
-            // Sau khi thêm từ mới, load lại dữ liệu từ tệp tin
-            loadDataFromFile(currentFilePath);
+        model.addWord(tiengAnh, loaiTu, tiengViet, viDu+ "-false");
+        
+        JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("datatest.txt", true))) {
+            String data = tiengAnh + "-" + loaiTu + "-" + tiengViet + "-" + viDu + "-false";
+            bufferedWriter.write(data);
+            bufferedWriter.newLine();
+            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi ghi dữ liệu vào tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -405,53 +401,53 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SaveActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-     String[] options = {"Có", "Không"};
-    int selectedRow = table_Data.getSelectedRow();
-    if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
-        int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-            String selectedWord = data.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
+       String[] options = {"Có", "Không"};
+       int selectedRow = table_Data.getSelectedRow();
+       if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
+           int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+           if (dialogResult == JOptionPane.YES_OPTION) {
+               DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
+               String selectedWord = data.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
 
-            // Lấy trạng thái từ từ dòng được chọn
-            String isActiveString = data.getValueAt(selectedRow, 4).toString();
-            boolean isActive = Boolean.parseBoolean(isActiveString);
+               // Lấy trạng thái từ từ dòng được chọn
+               String isActiveString = data.getValueAt(selectedRow, 4).toString();
+               boolean isActive = Boolean.parseBoolean(isActiveString);
 
-            // Nếu trạng thái là false, chuyển thành true và thực hiện xóa dòng
-            if (!isActive) {
-                // Thay đổi trạng thái thành true
-                data.setValueAt(true, selectedRow, 4);
-                
-                // Thay đổi dữ liệu trong file từ "-false" thành "-true"
-                try {
-                    File file = new File("datatest.txt");
-                    BufferedReader reader = new BufferedReader(new FileReader(file));
-                    String line;
-                    String input = "";
-                    while ((line = reader.readLine()) != null) {
-                        if (line.contains(selectedWord)) {
-                            line = line.replace("-false", "-true");
-                        }
-                        input += line + '\n';
-                    }
-                    reader.close();
-                    FileWriter writer = new FileWriter(file);
-                    writer.write(input);
-                    writer.close();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi cập nhật dữ liệu trong tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+               // Nếu trạng thái là false, chuyển thành true và thực hiện xóa dòng
+               if (!isActive) {
+                   // Thay đổi trạng thái thành true
+                   data.setValueAt(true, selectedRow, 4);
 
-            // Xóa dòng khỏi bảng
-            data.removeRow(selectedRow);
+                   // Thay đổi dữ liệu trong file từ "-false" thành "-true"
+                   try {
+                       File file = new File("datatest.txt");
+                       BufferedReader reader = new BufferedReader(new FileReader(file));
+                       String line;
+                       String input = "";
+                       while ((line = reader.readLine()) != null) {
+                           if (line.contains(selectedWord)) {
+                               line = line.replace("-false", "-true");
+                           }
+                           input += line + '\n';
+                       }
+                       reader.close();
+                       FileWriter writer = new FileWriter(file);
+                       writer.write(input);
+                       writer.close();
+                   } catch (IOException ex) {
+                       ex.printStackTrace();
+                       JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi cập nhật dữ liệu trong tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                   }
+               }
 
-            JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-    }
+               // Xóa dòng khỏi bảng
+               data.removeRow(selectedRow);
+
+               JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+           }
+       } else {
+           JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+       }
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
     private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
@@ -529,35 +525,31 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItem_SaveActionPerformed
 
     private void saveToFile() {
-         File file = new File("datatest.txt");
-         try {
-             if (!file.exists()) {
-                 file.createNewFile(); // Tạo file mới nếu nó không tồn tại
-             }
+        File file = new File("datatest.txt");
+        try {
+            FileWriter fileWriter = new FileWriter(file, false); // Mở file để ghi đè nội dung
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-             FileWriter fileWriter = new FileWriter(file, false); // Mở file để ghi đè nội dung
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            // Ghi lại toàn bộ dữ liệu từ bảng vào tệp tin
+            for (int i = 0; i < model.getRowCount(); i++) {
+                for (int j = 1; j < model.getColumnCount() - 1; j++) { // -1 để loại bỏ cột trạng thái
+                    bufferedWriter.write(model.getValueAt(i, j).toString());
+                    bufferedWriter.write("-");
+                }
+                // Ghi trạng thái của từ (true/false)
+                bufferedWriter.write(model.getValueAt(i, model.getColumnCount() - 1).toString());
+                bufferedWriter.newLine();
+            }
 
-             // Ghi lại toàn bộ dữ liệu từ bảng vào tệp tin
-             for (int i = 0; i < model.getRowCount(); i++) {
-                 for (int j = 1; j < model.getColumnCount() - 1; j++) { // -1 để loại bỏ cột trạng thái
-                     bufferedWriter.write(model.getValueAt(i, j).toString());
-                     bufferedWriter.write("-");
-                 }
-                 // Ghi trạng thái của từ (true/false)
-                 bufferedWriter.write(model.getValueAt(i, model.getColumnCount() - 1).toString());
-                 bufferedWriter.newLine();
-             }
+            bufferedWriter.close();
+            fileWriter.close();
+            JOptionPane.showMessageDialog(null, "Dữ liệu đã được lưu lại vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
-             bufferedWriter.close();
-             fileWriter.close();
-             JOptionPane.showMessageDialog(null, "Dữ liệu đã được lưu lại vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-
-         } catch (IOException ex) {
-             ex.printStackTrace();
-             JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-         }
-     }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }  
     
 
 

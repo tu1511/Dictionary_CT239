@@ -14,7 +14,7 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import model.Dictionary;
+import model.Data;
 import model.DictionaryModel;
 
 /**
@@ -331,7 +331,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
 
         // Tìm kiếm từ trong từ điển
-        Dictionary word = model.searchWord(tuCanTim);
+        Data word = model.searchWord(tuCanTim);
         if (word != null) {
             // Hiển thị thông tin từ vựng tìm thấy
             label_TiengAnh.setText("Tiếng Anh: " + word.getEnglish());

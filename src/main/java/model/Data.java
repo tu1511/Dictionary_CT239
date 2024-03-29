@@ -1,13 +1,13 @@
 package model;
 
-public class Dictionary {
+public class Data {
     private String word;
     private String type;
     private String meaning;
     private String example;
     private boolean isActive = false;
 
-    public Dictionary(String word, String type, String meaning, String example) {
+    public Data(String word, String type, String meaning, String example) {
         this.word = word;
         this.type = type;
         this.meaning = meaning;
@@ -55,7 +55,7 @@ public class Dictionary {
     }
     
     public void setIsDeleted(boolean isDeleted) {
-    this.isActive = !isDeleted;
+        this.isActive = !isDeleted;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Dictionary {
             return true;
         if (obj == null || getClass() != obj.getClass())
             return false;
-        Dictionary that = (Dictionary) obj;
+        Data that = (Data) obj;
         return isActive == that.isActive && 
                word.equals(that.word) && 
                type.equals(that.type) && 
