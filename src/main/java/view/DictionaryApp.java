@@ -351,7 +351,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         model.readFile("datatest.txt");
         Node result = model.getTable()[model.hashFunction(tuCanTim)].search(tuCanTim);
 
-        if (result != null) {
+        if (result != null && result.getData().contains("-false")) {
             // Nếu từ được tìm thấy, hiển thị thông tin lên textArea
             String info = result.getData();
             TextArea_data.setText(info);
@@ -409,22 +409,20 @@ public class DictionaryApp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "An error occurred while reading the dictionary file!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-  
-
-
 
     private void updateSuggestions() {
         String input = tF_Infor.getText().trim().toLowerCase();
         DefaultComboBoxModel<String> modelBox = new DefaultComboBoxModel<>();
 
-        // Đọc dữ liệu từ tệp và thêm vào modelBox nếu từ bắt đầu bằng input
-        try (BufferedReader reader = new BufferedReader(new FileReader(currentFilePath))) {
+        // Đọc dữ liệu từ tệp và thêm vào modelBox nếu từ bắt đầu bằng input và có trạng thái -false
+        try (BufferedReader reader = new BufferedReader(new FileReader("datatest.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String englishWord = getEnglishWord(line); // Lấy từ tiếng Anh từ chuỗi
-                if (englishWord.toLowerCase().startsWith(input)) {
-                    modelBox.addElement(englishWord);
+                if (line.endsWith("-false")) {
+                    String englishWord = getEnglishWord(line); // Lấy từ tiếng Anh từ chuỗi
+                    if (englishWord.toLowerCase().startsWith(input)) {
+                        modelBox.addElement(englishWord);
+                    }
                 }
             }
         } catch (IOException ex) {
@@ -434,7 +432,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         cbB_Infor.setModel(modelBox);
         cbB_Infor.setPopupVisible(!input.isEmpty());
     }
-
 
 
     // Phương thức để lấy từ tiếng Anh từ chuỗi có định dạng "từ - mô tả"
