@@ -361,10 +361,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         Data word = new Data(english, type, meaning, example);
         // Tính chỉ số bucket dựa trên tiếng Anh
-        int bucket = model.hashFunction(english);
-        
-
-        
+        int bucket = model.hashFunction(english);  
 
         // Kiểm tra xem bucketIndex có hợp lệ không
         if (bucket >= 0 && bucket < model.getSIZE()) {
@@ -399,29 +396,33 @@ public class DictionaryManager extends javax.swing.JFrame {
     }
     
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
-//        int selectedRow = table_Data.getSelectedRow();   
-//        // Lấy thông tin từ các JTextField
-//        String tiengAnh = tF_tiengAnh.getText();
-//        String loaiTu = cbb_Loaitu.getSelectedItem().toString();
-//        String tiengViet = tF_TiengViet.getText();
-//        String viDu = tF_TViDu.getText();
-//
-//        // Kiểm tra xem các trường dữ liệu có trống không
-//        if (tiengAnh.isEmpty() || loaiTu.isEmpty() || tiengViet.isEmpty() || viDu.isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//
-//        DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-//        data.setValueAt(tiengAnh, selectedRow, 1);
-//        data.setValueAt(loaiTu, selectedRow, 2);
-//        data.setValueAt(tiengViet, selectedRow, 3);
-//        data.setValueAt(viDu, selectedRow, 4);
-//
-//        // Cập nhật thông tin từ trong DictionaryModel
-//        model.updateWord(tiengAnh, loaiTu, tiengViet, viDu + "-false");
-//
-//        JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        int selectedRow = table_Data.getSelectedRow();   
+        // Lấy thông tin từ các JTextField
+        String tiengAnh = tF_tiengAnh.getText();
+        String loaiTu = cbb_Loaitu.getSelectedItem().toString();
+        String tiengViet = tF_TiengViet.getText();
+        String viDu = tF_TViDu.getText();
+
+        // Kiểm tra xem các trường dữ liệu có trống không
+        if (tiengAnh.isEmpty() || loaiTu.isEmpty() || tiengViet.isEmpty() || viDu.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
+        data.setValueAt(tiengAnh, selectedRow, 1);
+        data.setValueAt(loaiTu, selectedRow, 2);
+        data.setValueAt(tiengViet, selectedRow, 3);
+        data.setValueAt(viDu, selectedRow, 4);
+        
+        int bucket = model.hashFunction(tiengAnh);
+        Data newValue = new Data(tiengAnh, loaiTu, tiengViet, viDu);
+        model.getTable()[bucket].updateNode(tiengAnh, newValue);
+        
+        model.writeFile(currentFilePath);
+        loadDataFromFile(currentFilePath);
+
+        JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btn_SaveActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
@@ -434,7 +435,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                 String selectedWord = data.getValueAt(selectedRow, 1).toString(); 
 
                   try {
-                        File file = new File("datatest.txt");
+                        File file = new File(currentFilePath);
                         BufferedReader reader = new BufferedReader(new FileReader(file));
                         String line;
                         String input = "";

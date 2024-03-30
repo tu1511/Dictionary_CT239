@@ -71,6 +71,34 @@ public class LinkList {
         }
     }
 
+    public void updateNode(String oldValue, Data newValue) {
+        Node current = head;
+        Node prev = null;
+
+        // Tìm nút chứa dữ liệu cần cập nhật
+        while (current != null && !current.getValue().getWord().equals(oldValue)) {
+            prev = current;
+            current = current.getNext();
+        }
+
+        // Nếu tìm thấy nút chứa dữ liệu cần cập nhật
+        if (current != null) {
+            // Xóa nút đó khỏi danh sách liên kết
+            if (prev == null) {
+                // Nếu nút cần xóa là nút đầu tiên
+                head = current.getNext();
+            } else {
+                // Nếu nút cần xóa không phải là nút đầu tiên
+                prev.setNext(current.getNext());
+            }
+            size--;
+
+            // Thêm một nút mới chứa dữ liệu mới vào danh sách liên kết
+            addToTail(newValue);
+        }
+    }
+
+    
     // Tìm kiếm nút chứa từ có giá trị là word
     public Node search(String word) {
         Node current = head;
@@ -91,6 +119,8 @@ public class LinkList {
             current = current.getNext();
         }
     }
+    
+   
 
     // Lấy dữ liệu từ một nút
     public Data getData(Node node) {

@@ -1,16 +1,5 @@
-hi-ð?ng t?-xin chào-hi i love you-true
-hi-ð?ng t?-xin chào-hi i love you-true
-hi-ð?ng t?-xin chào-hi i love you-true
-hi-ð?ng t?-xin chào-hi i love you-true
-abandon- �??ng t?-B? roi, t? b?-He abandoned his family.-true
-abandon- �??ng t?-B? roi, t? b?-He abandoned his family.-true
-abandon- �??ng t?-B? roi, t? b?-He abandoned his family.-true
-abandon- �??ng t?-B? roi, t? b?-He abandoned his family.-true
+hi-Danh t?-xin ch�o-hi i love you so much-false
+cat-Danh t?-con m?o-my cat ? so cute va b? ngu-true
+abandon- �??ng t?-B? roi, t? b?-He abandoned his family.-false
 abundant-Tính t?-D?i dào, phong phú-The country is abundant in natural resources.-true
-abundant-Tính t?-D?i dào, phong phú-The country is abundant in natural resources.-true
-abundant-Tính t?-D?i dào, phong phú-The country is abundant in natural resources.-true
-abundant-Tính t?-D?i dào, phong phú-The country is abundant in natural resources.-true
-ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-true
-ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-true
-ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-true
 ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-true
