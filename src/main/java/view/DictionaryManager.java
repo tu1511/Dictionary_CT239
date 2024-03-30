@@ -254,7 +254,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +293,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                     .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jMenu6.setText("Tài liệu");
@@ -339,9 +339,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 29, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -425,25 +423,13 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SaveActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-        String[] options = {"Có", "Không"};
+         String[] options = {"Có", "Không"};
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
             int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
             if (dialogResult == JOptionPane.YES_OPTION) {
                 DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-                String selectedWord = data.getValueAt(selectedRow, 1).toString(); // Lấy từ tiếng Anh của dòng được chọn
-
-                // Lấy trạng thái từ từ dòng được chọn
-                String isActiveString = data.getValueAt(selectedRow, 4).toString();
-                boolean isActive = Boolean.parseBoolean(isActiveString);
-
-                // Kiểm tra và gọi phương thức delete từ LinkList trong model
-                if (!isActive) {
-                    // Thay đổi trạng thái thành true
-                    data.setValueAt(true, selectedRow, 4);
-                    int bucketIndex = model.hashFunction(selectedWord); // Sử dụng từ tiếng Anh để tìm bucket
-                    model.table[bucketIndex].delete(selectedWord); // Gọi phương thức delete từ LinkList trong model và truyền từ tiếng Anh cần xóa
-                }
+                String selectedWord = data.getValueAt(selectedRow, 1).toString(); 
 
                   try {
                         File file = new File("datatest.txt");

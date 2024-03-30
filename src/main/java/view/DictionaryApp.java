@@ -92,11 +92,12 @@ public class DictionaryApp extends javax.swing.JFrame {
         btn_Exit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_Manager = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TextArea_data = new javax.swing.JTextArea();
         cbB_Infor = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textArea_recentSearches = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItem_Save = new javax.swing.JMenuItem();
@@ -172,8 +173,6 @@ public class DictionaryApp extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         TextArea_data.setEditable(false);
@@ -186,12 +185,19 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
         );
+
+        textArea_recentSearches.setEditable(false);
+        textArea_recentSearches.setColumns(20);
+        textArea_recentSearches.setRows(5);
+        jScrollPane3.setViewportView(textArea_recentSearches);
 
         jMenu1.setText("Tài liệu");
 
@@ -263,13 +269,9 @@ public class DictionaryApp extends javax.swing.JFrame {
                                 .addComponent(btn_Exit))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1)
-                                        .addGap(52, 52, 52)))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
@@ -297,14 +299,14 @@ public class DictionaryApp extends javax.swing.JFrame {
                     .addComponent(btn_Infor)
                     .addComponent(btn_Exit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbB_Infor)
-                        .addGap(72, 72, 72)
+                        .addGap(60, 60, 60)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
@@ -345,7 +347,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         updateRecentSearches();
     }
 
-    // Hàm cập nhật hiển thị của jScrollPane1 dựa trên danh sách các từ đã tìm kiếm gần đây
     private void updateRecentSearches() {
         // Tạo một StringBuilder để xây dựng nội dung cần hiển thị
         StringBuilder sb = new StringBuilder();
@@ -355,14 +356,18 @@ public class DictionaryApp extends javax.swing.JFrame {
             sb.append(search).append("\n"); // Thêm từ và một dòng xuống mới
         }
 
-        // Tạo một JTextArea để hiển thị nội dung
-        JTextArea textArea = new JTextArea(sb.toString());
-        textArea.setFont(new Font("Arial", Font.PLAIN, 14));
-        textArea.setEditable(false); // Đảm bảo không thể chỉnh sửa nội dung
-
-        // Đặt textArea vào jScrollPane1
-        jScrollPane1.setViewportView(textArea);
+        // Đảm bảo textArea_recentSearches là một JTextArea và hiển thị nội dung
+        if (textArea_recentSearches instanceof JTextArea) {
+            JTextArea textArea = (JTextArea) textArea_recentSearches;
+            textArea.setText(sb.toString());
+            textArea.setCaretPosition(0); // Đặt con trỏ về đầu dòng
+        } else {
+            System.err.println("textArea_recentSearches không phải là một JTextArea.");
+        }
     }
+
+
+
 
     private void loadDictionaryFromFile(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -517,8 +522,8 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JLabel labelName;
@@ -529,5 +534,6 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItem_UserManual;
     private javax.swing.JMenu menu_AboutMe;
     private javax.swing.JTextField tF_Infor;
+    private javax.swing.JTextArea textArea_recentSearches;
     // End of variables declaration//GEN-END:variables
 }
