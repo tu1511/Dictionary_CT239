@@ -2,27 +2,15 @@ package model;
 
 public class LinkList {
     private int size;
-    private Node tail;
     private Node head;
 
     public LinkList() {
         this.size = 0;
-        this.tail = null;
         this.head = null;
-    }
-    
-    public LinkList(int size, Node tail, Node head) {
-        this.size = size;
-        this.tail = tail;
-        this.head = head;
     }
 
     public int getSize() {
         return size;
-    }
-
-    public Node getTail() {
-        return tail;
     }
 
     public Node getHead() {
@@ -33,20 +21,11 @@ public class LinkList {
         this.size = size;
     }
 
-    public void setTail(Node tail) {
-        this.tail = tail;
-    }
-
-    public void setHead(Node head) {
-        this.head = head;
-    } 
-    
     // Thêm một nút vào đầu danh sách
     public void addToHead(Data value) {
         Node newNode = new Node(value);
         if (head == null) {
             head = newNode;
-            tail = newNode;
         } else {
             newNode.setNext(head);
             head = newNode;
@@ -57,86 +36,69 @@ public class LinkList {
     // Thêm một nút vào cuối danh sách
     public void addToTail(Data value) {
         Node newNode = new Node(value);
-        if (tail == null) {
+        if (head == null) {
             head = newNode;
-            tail = newNode;
         } else {
-            tail.setNext(newNode);
-            tail = newNode;
+            Node current = head;
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(newNode);
         }
         size++;
     }
-    
+
+    // Chèn một nút vào vị trí position
     public void insertAt(Data value, int position) {
         if (position < 0 || position > size) {
             throw new IllegalArgumentException("Invalid position");
         }
 
-        // Tạo một nút mới với giá trị cần thêm
         Node newNode = new Node(value);
 
-        // Trường hợp đặc biệt: nếu danh sách rỗng hoặc muốn thêm vào đầu danh sách
         if (position == 0) {
-            if (head == null) {
-                head = newNode;
-                tail = newNode;
-            } else {
-                newNode.setNext(head);
-                head = newNode;
-            }
-        } 
-        // Trường hợp đặc biệt: nếu muốn thêm vào cuối danh sách
-        else if (position == size) {
-            tail.setNext(newNode);
-            tail = newNode;
-        } 
-        // Thêm vào vị trí khác
-        else {
-            // Tìm nút tại vị trí trước vị trí cần thêm
-            Node previous = head;
+            newNode.setNext(head);
+            head = newNode;
+        } else {
+            Node current = head;
             for (int i = 0; i < position - 1; i++) {
-                previous = previous.getNext();
+                current = current.getNext();
             }
-
-            // Cập nhật liên kết của nút mới
-            newNode.setNext(previous.getNext());
-
-            // Cập nhật liên kết của nút trước nút mới
-            previous.setNext(newNode);
+            newNode.setNext(current.getNext());
+            current.setNext(newNode);
         }
 
-        // Tăng kích thước danh sách
         size++;
     }
 
+    // Xóa một nút chứa từ có giá trị là word
     public void delete(String word) {
-        Node current = head;
-        Node previous = null;
+        if (head == null) {
+            return;
+        }
 
-        while (current != null) {
-            if (current.getValue().getWord().equals(word)) {
-                if (previous == null) {
-                    head = current.getNext();
-                } else {
-                    previous.setNext(current.getNext());
-                    if (current.getNext() == null) {
-                        tail = previous;
-                    }
-                }
+        if (head.getValue().getWord().equals(word)) {
+            head = head.getNext();
+            size--;
+            return;
+        }
+
+        Node current = head;
+        while (current.getNext() != null) {
+            if (current.getNext().getValue().getWord().equals(word)) {
+                current.setNext(current.getNext().getNext());
                 size--;
                 return;
             }
-            previous = current;
             current = current.getNext();
         }
     }
 
-
-    // Tìm kiếm nút trong danh sách
-    public Node search(Data value) {
+    // Tìm kiếm nút chứa từ có giá trị là word
+    public Node search(String word) {
         Node current = head;
         while (current != null) {
-            if (current.getValue().equals(value)) {
+            if (current.getValue().getWord().equals(word)) {
                 return current;
             }
             current = current.getNext();
@@ -153,9 +115,8 @@ public class LinkList {
         }
     }
 
+    // Lấy dữ liệu từ một nút
     public Data getData(Node node) {
         return node != null ? node.getValue() : null;
     }
-
-   
 }

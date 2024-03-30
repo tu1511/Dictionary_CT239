@@ -14,9 +14,11 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 import model.Data;
-//import model.DictionaryModel;
+import model.DictionaryModel;
 import model.LinkList;
+import model.Node;
 
 /**
  *
@@ -25,7 +27,7 @@ import model.LinkList;
 public class DictionaryApp extends javax.swing.JFrame {
     
 //    DictionaryModel model = new DictionaryModel();
-    LinkList model = new LinkList();
+    DictionaryModel model = new DictionaryModel();
     
     private List<String> dictionary = new ArrayList<>();
     private final String currentFilePath = "datatest.txt";
@@ -323,30 +325,27 @@ public class DictionaryApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_TraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraCuuActionPerformed
-       // Lấy từ cần tra từ text field
-//        String tuCanTim = tF_Infor.getText().trim();
+//         String tuCanTim = tF_Infor.getText().trim();
 //
-//        if (tuCanTim.isEmpty()) {
-//            // Hiển thị thông báo nếu không nhập từ cần tra
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-//            return;
+//    if (tuCanTim.isEmpty()) {
+//        // Hiển thị thông báo nếu không nhập từ cần tra
+//        System.out.println("Vui lòng nhập từ cần tra vào ô nhập liệu!");
+//        return;
+//    }
+//
+//    // Duyệt qua mảng các buckets trong DictionaryModel
+//    for (LinkList bucket : model.getTable()) {
+//        // In ra tất cả các từ tiếng Anh trong bucket
+//        Node current = bucket.getHead();
+//        while (current != null) {
+//            Data word = current.getValue();
+//            System.out.println("Tiếng Anh: " + word.getEnglish());
+//            current = current.getNext();
 //        }
-//
-//        // Tìm kiếm từ trong từ điển
-//        Data word = model.searchWord(tuCanTim);
-//        if (word != null) {
-//            // Hiển thị thông tin từ vựng tìm thấy
-//            label_TiengAnh.setText("Tiếng Anh: " + word.getEnglish());
-//            label_LoaiTu.setText("Loại từ: " + word.getType());
-//            label_Nghia.setText("Nghĩa: " + word.getMeaning());
-//            label_Vidu.setText("Ví dụ: " + word.getExample());
-//
-//            // Hiển thị thông báo tìm thấy từ
-//            JOptionPane.showMessageDialog(this, "Đã tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-//        } else {
-//            // Hiển thị thông báo nếu không tìm thấy từ trong từ điển
-//            JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-//        }   
+//    }
+        model.printDictionary();
+        // Nếu không tìm thấy từ cần tra trong toàn bộ danh sách
+//        JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btn_TraCuuActionPerformed
 
 

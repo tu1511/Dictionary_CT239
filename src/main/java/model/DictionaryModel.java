@@ -163,4 +163,12 @@ public class DictionaryModel {
         // Trả về bảng table chứa toàn bộ danh sách từ điển
         return table;
     }
+    
+    public void printDictionary() {
+        for (int i = 0; i < SIZE; i++) {
+            System.out.println("Bucket " + i + ":");
+            table[i].print();
+            System.out.println();
+        }
+    }
 }

@@ -1,5 +1,0 @@
-addd-Ð?ng T?-thêm-thêm nè-true
-addd-Ð?ng T?-thêm-thêm nè-true
-abandon- Ð?ng t?-B? roi, t? b?-He abandoned his family.-true
-ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-false
-abundant-Tính t?-D?i dào, phong phú-The country is abundant in natural resources.-false

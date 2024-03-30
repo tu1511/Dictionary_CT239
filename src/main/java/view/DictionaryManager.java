@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 
 import model.Data;
 import model.DictionaryModel;
-import model.LinkList;
 
 public class DictionaryManager extends javax.swing.JFrame {
 
@@ -25,6 +24,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         // Gọi phương thức để load dữ liệu khi ứng dụng được khởi động
+        model.readFile(currentFilePath);
         loadDataFromFile(currentFilePath);
     }
     
@@ -336,7 +336,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     
 //    chức năng thêm từ
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
-       String tiengAnh = tF_tiengAnh.getText();
+         String tiengAnh = tF_tiengAnh.getText();
         String loaiTu = cbb_Loaitu.getSelectedItem().toString();
         String tiengViet = tF_TiengViet.getText();
         String viDu = tF_TViDu.getText();
@@ -348,14 +348,20 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         Data newData = new Data(tiengAnh, loaiTu, tiengViet, viDu + "-false");
 
-        // Tính toán chỉ số bucket dựa trên tiếng Anh
+        // Tính chỉ số bucket dựa trên tiếng Anh
         int bucketIndex = model.hashFunction(tiengAnh);
 
-        // Thêm dữ liệu mới vào danh sách tại vị trí 0 của bucket tương ứng
-        model.table[bucketIndex].insertAt(newData, 0);
+        // Kiểm tra xem bucketIndex có hợp lệ không
+        if (bucketIndex >= 0 && bucketIndex < model.getSIZE()) {
+            // Thêm dữ liệu mới vào bucket tương ứng
+            model.getTable()[bucketIndex].addToTail(newData);
 
-        // Hiển thị thông báo sau khi thêm dữ liệu vào danh sách
-        JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            // Hiển thị thông báo sau khi thêm dữ liệu vào danh sách
+            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // Hiển thị thông báo nếu chỉ số bucket không hợp lệ
+            JOptionPane.showMessageDialog(null, "Chỉ số bucket không hợp lệ!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btn_AddActionPerformed
 
 //chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu

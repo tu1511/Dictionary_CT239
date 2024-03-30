@@ -5,16 +5,6 @@ public class Node {
     private Node next;
 
     // Constructor
-    public Node(String key, Data value) {
-        this.value = value;
-        this.next = null;
-    }
-
-    public Node() {
-        this.value = null;
-        this.next = null;
-    }
-
     public Node(Data value) {
         this.value = value;
         this.next = null;
