@@ -17,6 +17,7 @@ view\DictionaryApp$7.class
 view\DictionaryApp$8.class
 view\DictionaryManager$8.class
 controller\DictionaryController.class
+model\Test.class
 view\DictionaryManager$1.class
 view\DictionaryManager$3.class
 model\Data.class

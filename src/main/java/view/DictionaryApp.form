@@ -315,42 +315,35 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="label_Nghia" alignment="1" pref="469" max="32767" attributes="0"/>
-                      <Component id="label_TiengAnh" alignment="0" max="32767" attributes="0"/>
-                      <Component id="label_LoaiTu" alignment="1" max="32767" attributes="0"/>
-                      <Component id="label_Vidu" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
+              <Component id="jScrollPane2" alignment="0" pref="404" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="label_TiengAnh" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Component id="label_LoaiTu" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="label_Nghia" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="label_Vidu" min="-2" pref="63" max="-2" attributes="0"/>
-                  <EmptySpace pref="132" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jScrollPane2" alignment="0" pref="330" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="java.awt.Label" name="label_Nghia">
-        </Component>
-        <Component class="java.awt.Label" name="label_TiengAnh">
-        </Component>
-        <Component class="java.awt.Label" name="label_LoaiTu">
-        </Component>
-        <Component class="java.awt.Label" name="label_Vidu">
-        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="TextArea_data">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="16" style="1"/>
+                </Property>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JComboBox" name="cbB_Infor">

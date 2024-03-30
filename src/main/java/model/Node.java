@@ -27,7 +27,7 @@ public class Node {
     }
     
     public String getData() {
-        return (value.getEnglish()+"-"+value.getType()+"-"+value.getMeaning()+"-"+value.getExample() +"-false"+"\n");
+        return ("Từ tiếng anh\t   : "+value.getEnglish()+"\n\n Loại từ\t   : "+value.getType()+"\n\n Nghĩa tiếng việt : "+value.getMeaning()+"\n\n Ví dụ\t   : "+value.getExample());
     }
 
     @Override

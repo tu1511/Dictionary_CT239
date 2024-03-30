@@ -48,29 +48,6 @@ public class LinkList {
         size++;
     }
 
-    // Chèn một nút vào vị trí position
-    public void insertAt(Data value, int position) {
-        if (position < 0 || position > size) {
-            throw new IllegalArgumentException("Invalid position");
-        }
-
-        Node newNode = new Node(value);
-
-        if (position == 0) {
-            newNode.setNext(head);
-            head = newNode;
-        } else {
-            Node current = head;
-            for (int i = 0; i < position - 1; i++) {
-                current = current.getNext();
-            }
-            newNode.setNext(current.getNext());
-            current.setNext(newNode);
-        }
-
-        size++;
-    }
-
     // Xóa một nút chứa từ có giá trị là word
     public void delete(String word) {
         if (head == null) {
