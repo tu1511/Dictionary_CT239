@@ -109,29 +109,6 @@ public class LinkList {
         size++;
     }
 
-    // Xóa nút từ danh sách
-//    public void delete(Node node) {
-//        Node current = head;
-//        Node previous = null;
-//
-//        while (current != null) {
-//            if (current == node) {
-//                if (previous == null) {
-//                    head = current.getNext();
-//                } else {
-//                    previous.setNext(current.getNext());
-//                    if (current.getNext() == null) {
-//                        tail = previous;
-//                    }
-//                }
-//                size--;
-//                return;
-//            }
-//            previous = current;
-//            current = current.getNext();
-//        }
-//    }
-    
     public void delete(String word) {
         Node current = head;
         Node previous = null;
