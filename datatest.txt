@@ -1,5 +1,9 @@
 hi-Danh t?-xin chào-hi i love you so much-false
-cat-Danh t?-con m?o-my cat ? so cute va b? ngu-true
+cat-Danh t?-con m?o-my cat ? so cute va b? ngu-false
+dog-Danh t?-con chó-my dog is cute-false
 abandon- Ã??ng t?-B? roi, t? b?-He abandoned his family.-false
+cart-Danh t?-gi? hàng-my cart is poor-false
+hello-Ð?ng T?-xin chào-hello nè-false
 abundant-TÃ­nh t?-D?i dÃ o, phong phÃº-The country is abundant in natural resources.-true
 ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-true
+Cat-Danh t?-cc-i am huhud-false

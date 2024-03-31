@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 
 import model.Data;
 import model.DictionaryModel;
+import model.LinkList;
+import model.Node;
 
 public class DictionaryManager extends javax.swing.JFrame {
 
@@ -348,6 +350,58 @@ public class DictionaryManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
 //    chức năng thêm từ
+    
+//     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {                                        
+//        String english = tF_tiengAnh.getText();
+//        String type = cbb_Loaitu.getSelectedItem().toString();
+//        String vietnamese = tF_TiengViet.getText();
+//        String example = tF_TViDu.getText();
+//
+//        if (english.isEmpty() || type.isEmpty() || vietnamese.isEmpty() || example.isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+//            return;
+//        }
+//
+//        Data word = new Data(english, type, vietnamese, example);
+//        int bucket = model.hashFunction(english);
+//        LinkList bucketList = model.getTable()[bucket];
+//
+//        // Kiểm tra xem từ đã tồn tại trong danh sách từ điển hay không
+//        Node existingNode = bucketList.search(english);
+//
+//        if (existingNode != null) {
+//            // Từ đã tồn tại trong danh sách từ điển
+//            if (existingNode.getValue().getExample().equals("true")) {
+//                // Từ đã bị đánh dấu là đã xóa, hỏi người dùng có muốn khôi phục dữ liệu cho từ này không
+//                int option = JOptionPane.showConfirmDialog(null, "Từ này đã tồn tại và đã bị xóa. Bạn có muốn khôi phục dữ liệu cho từ này không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+//                if (option == JOptionPane.YES_OPTION) {
+//                    // Khôi phục dữ liệu cho từ này
+//                    existingNode.getValue().setExample("false");
+//                    model.getTable()[bucket].updateNode(english, existingNode.getValue());
+//                    JOptionPane.showMessageDialog(null, "Dữ liệu cho từ đã được khôi phục!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//                }
+//            } else {
+//                // Từ đã tồn tại và chưa bị xóa, hỏi người dùng có muốn cập nhật dữ liệu cho từ này không
+//                int option = JOptionPane.showConfirmDialog(null, "Từ này đã tồn tại. Bạn có muốn cập nhật dữ liệu cho từ này không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+//                if (option == JOptionPane.YES_OPTION) {
+//                    // Cập nhật dữ liệu cho từ này
+//                    // Điều chỉnh các giá trị của từ dựa trên thông tin từ các JTextField
+//                    // Ví dụ: existingNode.getValue().setVietnamese(vietnamese);
+//                    // Sau khi cập nhật xong, cần gọi phương thức updateNode để cập nhật dữ liệu trong DictionaryModel
+//                    model.getTable()[bucket].updateNode(english, existingNode.getValue());
+//                    JOptionPane.showMessageDialog(null, "Dữ liệu cho từ đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//                }
+//            }
+//        } else {
+//            // Từ không tồn tại trong danh sách từ điển, thêm từ mới vào danh sách
+//            bucketList.addToHead(word);
+//            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//            model.printDictionary();
+//            model.writeFile("datatest.txt");
+//            loadDataFromFile(currentFilePath);
+//        }
+//    }          
+    
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         String english = tF_tiengAnh.getText();
         String type = cbb_Loaitu.getSelectedItem().toString();

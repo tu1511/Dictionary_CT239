@@ -348,10 +348,10 @@ public class DictionaryApp extends javax.swing.JFrame {
             return;
         }
         
-        model.readFile("datatest.txt");
+        model.readFile(currentFilePath);
         Node result = model.getTable()[model.hashFunction(tuCanTim)].search(tuCanTim);
 
-        if (result != null && result.getData().contains("-false")) {
+        if (result != null && !result.getData().contains("-true")) {
             // Nếu từ được tìm thấy, hiển thị thông tin lên textArea
             String info = result.getData();
             TextArea_data.setText(info);
