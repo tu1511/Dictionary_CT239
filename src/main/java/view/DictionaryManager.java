@@ -19,14 +19,19 @@ public class DictionaryManager extends javax.swing.JFrame {
 
     DictionaryModel model = new DictionaryModel();
     public String currentFilePath = "datatest.txt";
+    DefaultTableModel tableModel;
+    
+    public LinkList[] list = model.readFile(currentFilePath);
     
     public DictionaryManager() {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tableModel = (DefaultTableModel) table_Data.getModel();
         setLocationRelativeTo(null);
         
         // Gọi phương thức để load dữ liệu khi ứng dụng được khởi động
-        model.readFile(currentFilePath);
+       // model.readFile(currentFilePath);
+       tableModel.setRowCount(0);
         loadDataFromFile(currentFilePath);
     }
     
@@ -171,27 +176,12 @@ public class DictionaryManager extends javax.swing.JFrame {
         table_Data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table_Data.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Bucket", "Tiếng Anh", "Loại từ", "Nghĩa", "Ví dụ"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(table_Data);
 
         tF_tiengAnh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -419,16 +409,15 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         // Kiểm tra xem bucketIndex có hợp lệ không
         if (bucket >= 0 && bucket < model.getSIZE()) {
-            // Thêm dữ liệu mới vào bucket tương ứng
-            model.getTable()[bucket].addToHead(word);
-            // Hiển thị thông báo sau khi thêm dữ liệu vào danh sách
+           
+            list[bucket].addToHead(word);
+            tableModel.setRowCount(0);
+            loadDataFromFile(currentFilePath);
+
             JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             System.out.println("Danh sách từ điển sau khi nhập:");
             model.printDictionary();
 
-            // Ghi danh sách từ điển vào tệp
-            model.writeFile("datatest.txt");
-            loadDataFromFile(currentFilePath);
         } else {
             // Hiển thị thông báo nếu chỉ số bucket không hợp lệ
             JOptionPane.showMessageDialog(null, "Chỉ số bucket không hợp lệ!", "Thông báo", JOptionPane.WARNING_MESSAGE);
@@ -452,28 +441,21 @@ public class DictionaryManager extends javax.swing.JFrame {
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
         int selectedRow = table_Data.getSelectedRow();   
         // Lấy thông tin từ các JTextField
-        String tiengAnh = tF_tiengAnh.getText();
-        String loaiTu = cbb_Loaitu.getSelectedItem().toString();
-        String tiengViet = tF_TiengViet.getText();
-        String viDu = tF_TViDu.getText();
+        String english = tF_tiengAnh.getText();
+        String type = cbb_Loaitu.getSelectedItem().toString();
+        String meaning = tF_TiengViet.getText();
+        String example = tF_TViDu.getText();
 
-        // Kiểm tra xem các trường dữ liệu có trống không
-        if (tiengAnh.isEmpty() || loaiTu.isEmpty() || tiengViet.isEmpty() || viDu.isEmpty()) {
+        if (english.isEmpty() || type.isEmpty() || meaning.isEmpty() || example.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
+        int bucket = model.hashFunction(english);
+        Data word = new Data(english, type, meaning, example);
 
-        DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-        data.setValueAt(tiengAnh, selectedRow, 1);
-        data.setValueAt(loaiTu, selectedRow, 2);
-        data.setValueAt(tiengViet, selectedRow, 3);
-        data.setValueAt(viDu, selectedRow, 4);
-        
-        int bucket = model.hashFunction(tiengAnh);
-        Data newValue = new Data(tiengAnh, loaiTu, tiengViet, viDu);
-        model.getTable()[bucket].updateNode(tiengAnh, newValue);
-        
-        model.writeFile(currentFilePath);
+        list[bucket].addToHead(word);
+        tableModel.setRowCount(0);
         loadDataFromFile(currentFilePath);
 
         JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -520,14 +502,12 @@ public class DictionaryManager extends javax.swing.JFrame {
 
     private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
         String[] options = {"Có", "Không"};
-        int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
+        int choice = JOptionPane.showOptionDialog(null, "Bạn có muốn lưu dữ liệu trước khi thoát không?", "WARNING",
               JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
         if (choice == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        } else {
-            WindowEvent windowClosing = new WindowEvent((Window)evt.getSource(), WindowEvent.WINDOW_CLOSING);
-            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
-        }
+            model.writeFile(list);
+        } 
+        System.exit(0); 
     }//GEN-LAST:event_btn_ExitActionPerformed
 
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
@@ -567,7 +547,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         cbb_Loaitu.setSelectedIndex(0);
         tF_TiengViet.setText("");
         tF_TViDu.setText("");
-        
+        tableModel.setRowCount(0);
         loadDataFromFile(currentFilePath);
     }//GEN-LAST:event_btn_reloadActionPerformed
 
@@ -621,36 +601,46 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }  
     
+//DefaultTableModel tableModel = (DefaultTableModel) table_Data.getModel();
+//        tableModel.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
+//
+//        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"))) {
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                String[] rowData = line.split("-");
+//                if (rowData.length >= 5) { // Kiểm tra xem dòng có đúng định dạng dữ liệu hay không
+//                    String isActiveString = rowData[4]; // Trạng thái từ
+//                    boolean isActive = Boolean.parseBoolean(isActiveString);
+//                    if (!isActive) { // Chỉ thêm dòng có trạng thái là false vào bảng
+//                        int bucket = model.hashFunction(rowData[0]); // Số bucket
+//                        Object[] row = new Object[rowData.length + 1];
+//                        row[0] = bucket;
+//                        System.arraycopy(rowData, 0, row, 1, rowData.length);
+//                        tableModel.addRow(row);
+//                    }
+//                }
+//            }
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//        }
 
 
-//    Chức năng load dữ liệu từ file lưu trữ lên
-   public void loadDataFromFile(String filePath) {
-        DefaultTableModel tableModel = (DefaultTableModel) table_Data.getModel();
-        tableModel.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
-
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] rowData = line.split("-");
-                if (rowData.length >= 5) { // Kiểm tra xem dòng có đúng định dạng dữ liệu hay không
-                    String isActiveString = rowData[4]; // Trạng thái từ
-                    boolean isActive = Boolean.parseBoolean(isActiveString);
-                    if (!isActive) { // Chỉ thêm dòng có trạng thái là false vào bảng
-                        int bucket = model.hashFunction(rowData[0]); // Số bucket
-                        Object[] row = new Object[rowData.length + 1];
-                        row[0] = bucket;
-                        System.arraycopy(rowData, 0, row, 1, rowData.length);
-                        tableModel.addRow(row);
+    //    Chức năng load dữ liệu từ file lưu trữ lên
+       public void loadDataFromFile(String filePath) {
+           
+            for (int i = 0; i < 100; i++) {
+                if (list[i] != null) {
+                    Node currentNode = list[i].getHead();
+                    while(currentNode != null) {
+                        tableModel.addRow(new Object[] {
+                            i,currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
+                        });
+                        currentNode = currentNode.getNext();
                     }
                 }
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-
 
 
 

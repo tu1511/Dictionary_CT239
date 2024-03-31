@@ -35,7 +35,7 @@ public class Test {
         dictionary.printDictionary();
 
         // Ghi danh sách từ điển vào tệp
-        dictionary.writeFile("datatest.txt");
+        //dictionary.writeFile("datatest.txt");
 
         // Tìm kiếm từ vựng
         System.out.println("Nhập từ cần tìm kiếm:");

@@ -38,9 +38,27 @@ public class DictionaryModel {
         return sum % SIZE;
     }
     
-    public void writeFile(String fileName) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
-            for (LinkList bucket : table) {
+//    public void writeFile(String fileName) {
+//        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+//            for (LinkList bucket : table) {
+//                Node current = bucket.getHead();
+//                while (current != null) {
+//                    Data word = current.getValue();
+//                    String line = word.getWord() + "-" + word.getType() + "-" + word.getMeaning() + "-" + word.getExample() + "-" + word.isActive();
+//                    bw.write(line);
+//                    bw.newLine();
+//                    current = current.getNext();
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+    
+    public void writeFile(LinkList[] list) {
+       
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("datatest.txt"))) {
+            for (LinkList bucket : list) {
                 Node current = bucket.getHead();
                 while (current != null) {
                     Data word = current.getValue();
@@ -55,7 +73,7 @@ public class DictionaryModel {
         }
     }
 
-    public void readFile(String fileName) {
+    public LinkList[] readFile(String fileName) {
         FileReader fr = null;
         try {
             fr = new FileReader(fileName);
@@ -87,7 +105,11 @@ public class DictionaryModel {
                 e.printStackTrace();
             }
         }
+        return table;
     }
+    
+    
+
 
     public int getRowCount() {
         int count = 0;
