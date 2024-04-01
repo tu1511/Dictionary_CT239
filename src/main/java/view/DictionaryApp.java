@@ -447,7 +447,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void searchWord() {
-        String tuCanTim = tF_Infor.getText().trim().toLowerCase();
+        String tuCanTim = tF_Infor.getText().trim();
 
         if (tuCanTim.isEmpty()) {
             // Hiển thị thông báo nếu không nhập từ cần tra
