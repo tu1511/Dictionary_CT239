@@ -1,7 +1,5 @@
 package view;
 
-
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -34,9 +32,6 @@ public class DictionaryManager extends javax.swing.JFrame {
        tableModel.setRowCount(0);
         loadDataFromFile(currentFilePath);
     }
-    
-   
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -97,7 +92,6 @@ public class DictionaryManager extends javax.swing.JFrame {
         setTitle("Quản lý tự điển");
         setBackground(new java.awt.Color(102, 255, 204));
         setMinimumSize(new java.awt.Dimension(850, 604));
-        setPreferredSize(new java.awt.Dimension(863, 605));
         setSize(new java.awt.Dimension(850, 604));
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
@@ -182,6 +176,12 @@ public class DictionaryManager extends javax.swing.JFrame {
                 "Bucket", "Tiếng Anh", "Loại từ", "Nghĩa", "Ví dụ"
             }
         ));
+        table_Data.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table_Data.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_DataMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_Data);
 
         tF_tiengAnh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -288,8 +288,10 @@ public class DictionaryManager extends javax.swing.JFrame {
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
+        jMenu6.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu6.setText("Tài liệu");
 
+        menuItem_Save.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\save.png"));
         menuItem_Save.setText("Lưu");
         menuItem_Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,6 +301,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         jMenu6.add(menuItem_Save);
         jMenu6.add(jSeparator2);
 
+        menuItem_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\close.png"));
         menuItem_Exit.setText("Thoát");
         menuItem_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,8 +312,10 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         jMenuBar3.add(jMenu6);
 
+        jMenu7.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\infor.png"));
         jMenu7.setText("Thông tin");
 
+        menuItem_UserManual.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\help.png"));
         menuItem_UserManual.setText("Hướng dẫn sử dụng");
         menuItem_UserManual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,59 +344,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-//    chức năng thêm từ
-    
-//     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {                                        
-//        String english = tF_tiengAnh.getText();
-//        String type = cbb_Loaitu.getSelectedItem().toString();
-//        String vietnamese = tF_TiengViet.getText();
-//        String example = tF_TViDu.getText();
-//
-//        if (english.isEmpty() || type.isEmpty() || vietnamese.isEmpty() || example.isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//
-//        Data word = new Data(english, type, vietnamese, example);
-//        int bucket = model.hashFunction(english);
-//        LinkList bucketList = model.getTable()[bucket];
-//
-//        // Kiểm tra xem từ đã tồn tại trong danh sách từ điển hay không
-//        Node existingNode = bucketList.search(english);
-//
-//        if (existingNode != null) {
-//            // Từ đã tồn tại trong danh sách từ điển
-//            if (existingNode.getValue().getExample().equals("true")) {
-//                // Từ đã bị đánh dấu là đã xóa, hỏi người dùng có muốn khôi phục dữ liệu cho từ này không
-//                int option = JOptionPane.showConfirmDialog(null, "Từ này đã tồn tại và đã bị xóa. Bạn có muốn khôi phục dữ liệu cho từ này không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-//                if (option == JOptionPane.YES_OPTION) {
-//                    // Khôi phục dữ liệu cho từ này
-//                    existingNode.getValue().setExample("false");
-//                    model.getTable()[bucket].updateNode(english, existingNode.getValue());
-//                    JOptionPane.showMessageDialog(null, "Dữ liệu cho từ đã được khôi phục!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-//                }
-//            } else {
-//                // Từ đã tồn tại và chưa bị xóa, hỏi người dùng có muốn cập nhật dữ liệu cho từ này không
-//                int option = JOptionPane.showConfirmDialog(null, "Từ này đã tồn tại. Bạn có muốn cập nhật dữ liệu cho từ này không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-//                if (option == JOptionPane.YES_OPTION) {
-//                    // Cập nhật dữ liệu cho từ này
-//                    // Điều chỉnh các giá trị của từ dựa trên thông tin từ các JTextField
-//                    // Ví dụ: existingNode.getValue().setVietnamese(vietnamese);
-//                    // Sau khi cập nhật xong, cần gọi phương thức updateNode để cập nhật dữ liệu trong DictionaryModel
-//                    model.getTable()[bucket].updateNode(english, existingNode.getValue());
-//                    JOptionPane.showMessageDialog(null, "Dữ liệu cho từ đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-//                }
-//            }
-//        } else {
-//            // Từ không tồn tại trong danh sách từ điển, thêm từ mới vào danh sách
-//            bucketList.addToHead(word);
-//            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-//            model.printDictionary();
-//            model.writeFile("datatest.txt");
-//            loadDataFromFile(currentFilePath);
-//        }
-//    }          
-    
+//    chức năng thêm từ       
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         String english = tF_tiengAnh.getText();
         String type = cbb_Loaitu.getSelectedItem().toString();
@@ -424,19 +377,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_AddActionPerformed
 
-//chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
-    public void table_DataMouseClicked(java.awt.event.MouseEvent evt) {                                       
-        // Lấy chỉ số của dòng được chọn
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
-            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
-            cbb_Loaitu.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
-            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
-            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
-        }
-    }
+
     
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
         int selectedRow = table_Data.getSelectedRow();   
@@ -501,13 +442,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
     private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
-        String[] options = {"Có", "Không"};
-        int choice = JOptionPane.showOptionDialog(null, "Bạn có muốn lưu dữ liệu trước khi thoát không?", "WARNING",
-              JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
-        if (choice == JOptionPane.YES_OPTION) {
-            model.writeFile(list);
-        } 
-        System.exit(0); 
+        Exit();
     }//GEN-LAST:event_btn_ExitActionPerformed
 
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
@@ -521,25 +456,15 @@ public class DictionaryManager extends javax.swing.JFrame {
                  + "1. Thêm từ mới: Nhập từ tiếng Anh, loại từ, nghĩa tiếng Việt và ví dụ, sau đó nhấn nút Thêm từ.\n"
                  + "2. Cập nhật từ: Chọn một dòng trong bảng, nhấn nút cập nhật từ để hiển thị thông tin và thay đổi\nthông tin và nhấn nút Lưu để cập nhật lại thông tin từ vựng.\n"
                  + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút Xóa từ.\n"
-                 + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu.\n"
-                 + "5. Thoát: Đóng chương trình.\n\n"
-                 + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
+                 + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu và load lại dữ liệu.\n"
+                 + "5. Lưu: Lưu lại dữ liệu sau khi thêm, cập nhập hoặc xóa từ.\n"
+                 + "6. Thoát: Đóng chương trình.\n\n"
+                 + "Chú ý: Bạn cần lưu dữ liệu trước khi thoát ứng dụng sau các thao tác thêm, cập nhật hoặc xóa từ."
                  + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_UserManualActionPerformed
 
     private void menuItem_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_ExitActionPerformed
-        String[] options = {"Có", "Không"};
-        int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
-              JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
-        if (choice == JOptionPane.YES_OPTION) {
-            // Có
-            System.exit(0);
-        } else {
-            // Không
-            // Close the window without exiting the program
-            WindowEvent windowClosing = new WindowEvent((Window)evt.getSource(), WindowEvent.WINDOW_CLOSING);
-            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
-        }
+        Exit();
     }//GEN-LAST:event_menuItem_ExitActionPerformed
 
     private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
@@ -571,84 +496,56 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_UpdateActionPerformed
 
     private void menuItem_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_SaveActionPerformed
-        saveToFile();
+        model.writeFile(list);
     }//GEN-LAST:event_menuItem_SaveActionPerformed
-
-    private void saveToFile() {
-        File file = new File("datatest.txt");
-        try {
-            FileWriter fileWriter = new FileWriter(file, false); // Mở file để ghi đè nội dung
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-            // Ghi lại toàn bộ dữ liệu từ bảng vào tệp tin
-            for (int i = 0; i < model.getRowCount(); i++) {
-                for (int j = 1; j < model.getColumnCount() - 1; j++) { // -1 để loại bỏ cột trạng thái
-                    bufferedWriter.write(model.getValueAt(i, j).toString());
-                    bufferedWriter.write("-");
-                }
-                // Ghi trạng thái của từ (true/false)
-                bufferedWriter.write(model.getValueAt(i, model.getColumnCount() - 1).toString());
-                bufferedWriter.newLine();
-            }
-
-            bufferedWriter.close();
-            fileWriter.close();
-            JOptionPane.showMessageDialog(null, "Dữ liệu đã được lưu lại vào tệp tin!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi lưu dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
-    }  
     
-//DefaultTableModel tableModel = (DefaultTableModel) table_Data.getModel();
-//        tableModel.setRowCount(0); // Xóa dữ liệu cũ trước khi load dữ liệu mới
-//
-//        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"))) {
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                String[] rowData = line.split("-");
-//                if (rowData.length >= 5) { // Kiểm tra xem dòng có đúng định dạng dữ liệu hay không
-//                    String isActiveString = rowData[4]; // Trạng thái từ
-//                    boolean isActive = Boolean.parseBoolean(isActiveString);
-//                    if (!isActive) { // Chỉ thêm dòng có trạng thái là false vào bảng
-//                        int bucket = model.hashFunction(rowData[0]); // Số bucket
-//                        Object[] row = new Object[rowData.length + 1];
-//                        row[0] = bucket;
-//                        System.arraycopy(rowData, 0, row, 1, rowData.length);
-//                        tableModel.addRow(row);
-//                    }
-//                }
-//            }
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi đọc dữ liệu từ tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-//        }
-
+//chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
+    private void table_DataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_DataMouseClicked
+        // Lấy chỉ số của dòng được chọn
+        
+        tF_tiengAnh.setEditable(false);
+        cbb_Loaitu.setEditable(false);
+        tF_TiengViet.setEditable(false);
+        tF_TViDu.setEditable(false);
+        
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
+            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
+            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
+            cbb_Loaitu.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
+            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
+            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
+        }
+    }//GEN-LAST:event_table_DataMouseClicked
 
     //    Chức năng load dữ liệu từ file lưu trữ lên
-       public void loadDataFromFile(String filePath) {
-           
-            for (int i = 0; i < 100; i++) {
-                if (list[i] != null) {
-                    Node currentNode = list[i].getHead();
-                    while(currentNode != null) {
-                        tableModel.addRow(new Object[] {
-                            i,currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
-                        });
-                        currentNode = currentNode.getNext();
-                    }
+    public void loadDataFromFile(String filePath) {           
+        for (int i = 0; i < 100; i++) {
+            if (list[i] != null) {
+                Node currentNode = list[i].getHead();
+                while(currentNode != null) {
+                    tableModel.addRow(new Object[] {
+                        i,currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
+                    });
+                    currentNode = currentNode.getNext();
                 }
             }
         }
+    }
 
+    private void Exit() {
+        String[] options = {"Có", "Không"};
+        int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
+              JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
+        if (choice == JOptionPane.YES_OPTION) {
+            // Có
+            System.exit(0);
+        } else {
 
-
-   
-
-
-
-
+        }
+    }
+       
     /**
      * @param args the command line arguments
      */

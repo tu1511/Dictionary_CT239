@@ -1,12 +1,11 @@
 hi-Danh t?-xin ch?o-hi i love you so much-true
-hi-Danh t?-xin chào-hi i love you so much-true
 cat-Danh t?-con m?o, con chó-my cat ? so cute va b? ngu-true
 dog-Danh t?-con chó-my dog is cute-false
+pig-Danh t?-con heo-heo heo á-false
 abandon- Ã??ng t?-B? roi, t? b?-He abandoned his family.-true
+fish-Danh t?-con cá-fish sidnd-false
 cart-Danh t?-gi? hàng-my cart is poor-false
-hello-Danh t?-xin chàoo-hello-false
-hello-Danh t?-xin chàoo-hello-false
-hello-Danh t?-xin chafo-hello-false
+dogs-Danh t?-nhi?u con chó-i love some f=dogs-false
 abundant-TÃ­nh t?-D?i dÃ o, phong phÃº-The country is abundant in natural resources.-true
 ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-true
 Cat-Danh t?-cc-i am huhud-false

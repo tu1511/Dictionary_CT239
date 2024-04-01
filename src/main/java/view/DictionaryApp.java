@@ -4,7 +4,6 @@
  */
 package view;
 
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -14,8 +13,6 @@ import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
-import model.Data;
 import model.DictionaryModel;
 import model.LinkList;
 import model.Node;
@@ -25,18 +22,18 @@ import model.Node;
  * @author LENOVO
  */
 public class DictionaryApp extends javax.swing.JFrame {
-    
+
 //    DictionaryModel model = new DictionaryModel();
     DictionaryModel model = new DictionaryModel();
-    
+
     private List<String> dictionary = new ArrayList<>();
     private final String currentFilePath = "datatest.txt";
-    private  List<String> recentSearches = new ArrayList<>();
-    
+    private List<String> recentSearches = new ArrayList<>();
+
     public String getCurrentFilePath() {
         return currentFilePath;
     }
-    
+
     public DictionaryApp() {
 
         initComponents();
@@ -46,12 +43,10 @@ public class DictionaryApp extends javax.swing.JFrame {
                 secondFrame.setVisible(true); // Hiển thị SecondFrame
                 dispose(); // Đóng FirstFrame
             }
-            
+
         });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        
-        loadDictionaryFromFile(currentFilePath);
 
         // Listen for changes in tF_Infor
         tF_Infor.getDocument().addDocumentListener(new DocumentListener() {
@@ -96,12 +91,12 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TextArea_data = new javax.swing.JTextArea();
-        cbB_Infor = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         textArea_recentSearches = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList_Infor = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        menuItem_Save = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         menuItem_Exit = new javax.swing.JMenuItem();
         menu_AboutMe = new javax.swing.JMenu();
@@ -137,8 +132,13 @@ public class DictionaryApp extends javax.swing.JFrame {
         labelTraCuu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelTraCuu.setText("Nhập từ cần tra cứu");
 
-        tF_Infor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tF_Infor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tF_Infor.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        tF_Infor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tF_InforActionPerformed(evt);
+            }
+        });
 
         btn_TraCuu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_TraCuu.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\search.png"));
@@ -150,7 +150,8 @@ public class DictionaryApp extends javax.swing.JFrame {
         });
 
         btn_Infor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_Infor.setText("Thông tin");
+        btn_Infor.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\history.png"));
+        btn_Infor.setText("Lịch sử");
         btn_Infor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_InforActionPerformed(evt);
@@ -172,11 +173,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         btn_Manager.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Manager.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\setting.png"));
         btn_Manager.setText("Quản lý");
-        btn_Manager.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ManagerActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -190,16 +186,12 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
         );
-
-        cbB_Infor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         textArea_recentSearches.setEditable(false);
         textArea_recentSearches.setColumns(20);
@@ -207,85 +199,92 @@ public class DictionaryApp extends javax.swing.JFrame {
         textArea_recentSearches.setRows(5);
         jScrollPane3.setViewportView(textArea_recentSearches);
 
+        jList_Infor.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList_InforValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jList_Infor);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTraCuu)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(tF_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_TraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btn_Manager, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(152, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator1)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(28, 28, 28)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cbB_Infor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tF_Infor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btn_TraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btn_Manager, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                                    .addComponent(btn_Infor)
-                                    .addGap(47, 47, 47)
-                                    .addComponent(btn_Exit)
-                                    .addGap(27, 27, 27))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(265, 265, 265)
-                                            .addComponent(labelName))
-                                        .addComponent(labelTraCuu))
-                                    .addGap(290, 290, 290)))))
-                    .addContainerGap()))
+                            .addGap(293, 293, 293)
+                            .addComponent(labelName)
+                            .addGap(296, 296, 296))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jSeparator1)
+                            .addContainerGap())))
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(702, 702, 702)
+                    .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 33, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(49, 49, 49)
+                .addComponent(labelTraCuu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_TraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tF_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Manager, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(labelName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(7, 7, 7)
-                    .addComponent(labelTraCuu)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tF_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_TraCuu)
-                        .addComponent(btn_Manager)
-                        .addComponent(btn_Infor)
-                        .addComponent(btn_Exit))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(cbB_Infor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(404, Short.MAX_VALUE)))
+                    .addGap(29, 29, 29)
+                    .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(430, Short.MAX_VALUE)))
         );
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu1.setText("Tài liệu");
-
-        menuItem_Save.setText("Lưu");
-        jMenu1.add(menuItem_Save);
         jMenu1.add(jSeparator3);
 
+        menuItem_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\close.png"));
         menuItem_Exit.setText("Thoát");
         menuItem_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,6 +295,7 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        menu_AboutMe.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\infor.png"));
         menu_AboutMe.setText("Thông tin");
         menu_AboutMe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,6 +303,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             }
         });
 
+        menuItem_UserManual.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\help.png"));
         menuItem_UserManual.setText("Hướng dẫn sử dụng");
         menuItem_UserManual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,6 +312,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         });
         menu_AboutMe.add(menuItem_UserManual);
 
+        menuItem_Infor.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\infor.png"));
         menuItem_Infor.setText("Thông tin phần mềm");
         menuItem_Infor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,32 +342,9 @@ public class DictionaryApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_TraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TraCuuActionPerformed
-        String tuCanTim = tF_Infor.getText().trim();
-
-        if (tuCanTim.isEmpty()) {
-            // Hiển thị thông báo nếu không nhập từ cần tra
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
-        model.readFile(currentFilePath);
-        Node result = model.getTable()[model.hashFunction(tuCanTim)].search(tuCanTim);
-
-        if (result != null && !result.getData().contains("-true")) {
-            // Nếu từ được tìm thấy, hiển thị thông tin lên textArea
-            String info = result.getData();
-            TextArea_data.setText(info);
-            
-            performSearch(tuCanTim);
-            updateRecentSearches();
-        } else {
-            // Nếu không tìm thấy từ trong từ điển, hiển thị thông báo
-            JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        }
+        searchWord();
     }//GEN-LAST:event_btn_TraCuuActionPerformed
 
-
-    
     private void performSearch(String keyword) {
         // Thêm từ tìm kiếm mới vào danh sách
         recentSearches.add(keyword);
@@ -393,35 +372,25 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
     }
 
-
-
-
-    private void loadDictionaryFromFile(String filePath) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.contains("-false")) {
-                    dictionary.add(line.trim());
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "An error occurred while reading the dictionary file!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
     private void updateSuggestions() {
         String input = tF_Infor.getText().trim().toLowerCase();
-        DefaultComboBoxModel<String> modelBox = new DefaultComboBoxModel<>();
+        
+        // Kiểm tra xem nếu JTextField trống thì không cần đề xuất từ
+        if (input.isEmpty()) {
+            jList_Infor.setModel(new DefaultListModel<>()); // Xóa danh sách từ hiện tại
+            return;
+        }
+        
+        DefaultListModel<String> modelList = new DefaultListModel<>();
 
-        // Đọc dữ liệu từ tệp và thêm vào modelBox nếu từ bắt đầu bằng input và có trạng thái -false
-        try (BufferedReader reader = new BufferedReader(new FileReader("datatest.txt"))) {
+        // Đọc dữ liệu từ tệp và thêm vào modelList nếu từ bắt đầu bằng input và có trạng thái -false
+        try (BufferedReader reader = new BufferedReader(new FileReader(currentFilePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.endsWith("-false")) {
                     String englishWord = getEnglishWord(line); // Lấy từ tiếng Anh từ chuỗi
                     if (englishWord.toLowerCase().startsWith(input)) {
-                        modelBox.addElement(englishWord);
+                        modelList.addElement(englishWord);
                     }
                 }
             }
@@ -429,10 +398,9 @@ public class DictionaryApp extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        cbB_Infor.setModel(modelBox);
-        cbB_Infor.setPopupVisible(!input.isEmpty());
+        jList_Infor.setModel(modelList);
+        jList_Infor.setVisibleRowCount(Math.min(modelList.getSize(), 5)); // Hiển thị tối đa 5 hàng
     }
-
 
     // Phương thức để lấy từ tiếng Anh từ chuỗi có định dạng "từ - mô tả"
     private String getEnglishWord(String input) {
@@ -448,63 +416,103 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_AboutMeActionPerformed
 
     private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
-        String[] options = {"Có", "Không"};
-        int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
-              JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
-        if (choice == JOptionPane.YES_OPTION) {
-            // Có
-            System.exit(0);
-        } else {
-            // Không
-            // Close the window without exiting the program
-            WindowEvent windowClosing = new WindowEvent((Window)evt.getSource(), WindowEvent.WINDOW_CLOSING);
-            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
-        }
+        Exit();
     }//GEN-LAST:event_btn_ExitActionPerformed
 
-    private void btn_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InforActionPerformed
-         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
-                 + "1. Tra cứu từ: Nhập từ tiếng Anh vào trong thanh tìm kiếm sau đó nhấn nút Tra cứu.\n"
-                 + "2. Quản lý tự điển: chọn vào nút đó để chuyển sang giao diện điều chỉnh thông tin từ vựng.\n"
-                 + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút Xóa từ.\n"
-                 + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu.\n"
-                 + "5. Thoát: Đóng chương trình.\n\n"
-                 + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
-                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btn_InforActionPerformed
-
     private void menuItem_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_ExitActionPerformed
-        String[] options = {"Có", "Không"};
-        int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
-              JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
-        if (choice == JOptionPane.YES_OPTION) {
-            // Có
-            System.exit(0);
-        } else {
-            // Không
-            // Close the window without exiting the program
-            WindowEvent windowClosing = new WindowEvent((Window)evt.getSource(), WindowEvent.WINDOW_CLOSING);
-            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(windowClosing);
-        }
+        Exit();
     }//GEN-LAST:event_menuItem_ExitActionPerformed
 
     private void menuItem_UserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_UserManualActionPerformed
         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
                 + "1. Tra cứu từ: Nhập từ tiếng Anh vào trong thanh tìm kiếm sau đó nhấn nút Tra cứu.\n"
-                 + "2. Quản lý tự điển: chọn vào nút đó để chuyển sang giao diện điều chỉnh thông tin từ vựng.\n"
-                 + "3. Thoát: Đóng chương trình.\n\n"
-                 + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
-                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
+                + "2. Quản lý tự điển: chọn vào nút đó để chuyển sang giao diện điều chỉnh thông tin từ vựng.\n"
+                + "3. Thoát: Đóng chương trình.\n\n"
+                + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
+                + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_UserManualActionPerformed
 
     private void menuItem_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_InforActionPerformed
-        JOptionPane.showMessageDialog(this, "Phiên bản phần mềm: \n"+"Quản lý tự điển version 1.0!","Phiên bản", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Phiên bản phần mềm: \n" + "Quản lý tự điển version 1.0!", "Phiên bản", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_InforActionPerformed
 
-    private void btn_ManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManagerActionPerformed
+    private void jList_InforValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList_InforValueChanged
+        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
+            // Lấy phần tử được chọn trong JList
+            String selectedWord = (String) jList_Infor.getSelectedValue();
+            if (selectedWord != null) {
+                // Hiển thị thông tin của từ được chọn trong JTextArea
+                displayWordInfo(selectedWord);
+            }
+        }
+    }//GEN-LAST:event_jList_InforValueChanged
+
+    private void tF_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tF_InforActionPerformed
+        searchWord();
+    }//GEN-LAST:event_tF_InforActionPerformed
+
+    private void btn_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InforActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ManagerActionPerformed
-            
+    }//GEN-LAST:event_btn_InforActionPerformed
+
+    private void searchWord() {
+        String tuCanTim = tF_Infor.getText().trim().toLowerCase();
+
+        if (tuCanTim.isEmpty()) {
+            // Hiển thị thông báo nếu không nhập từ cần tra
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        LinkList[] list = model.readFile(currentFilePath);
+        int bucket = model.hashFunction(tuCanTim);
+
+        if (list[bucket] != null) {
+            // Tìm kiếm từ trong danh sách liên kết
+            Node result = list[bucket].search(tuCanTim);
+            if (result != null && !result.getValue().isActive()) {
+                String info = result.getData();
+                TextArea_data.setText(info);
+
+                performSearch(tuCanTim);
+                updateRecentSearches();
+                return;
+            }
+        }
+
+        // Nếu không tìm thấy từ trong từ điển hoặc từ đã bị xóa, hiển thị thông báo
+        JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    
+    private void displayWordInfo(String selectedWord) {
+        LinkList[] list = model.readFile(currentFilePath);
+        int bucket = model.hashFunction(selectedWord);
+
+        if (list[bucket] != null) {
+            // Tìm kiếm từ trong danh sách liên kết
+            Node result = list[bucket].search(selectedWord);
+            if (result != null && !result.getValue().isActive() == true) {
+                String info = result.getData();
+                TextArea_data.setText(info);
+                return;
+            } else {
+                TextArea_data.setText("Không tìm thấy thông tin cho từ \"" + selectedWord + "\"");
+            }
+        }
+    }
+
+    private void Exit() {
+        String[] options = {"Có", "Không"};
+        int choice = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn thoát?", "WARNING",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
+        if (choice == JOptionPane.YES_OPTION) {
+            // Có
+            System.exit(0);
+        } else {
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -531,8 +539,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DictionaryApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -547,14 +554,15 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JButton btn_Infor;
     private javax.swing.JButton btn_Manager;
     private javax.swing.JButton btn_TraCuu;
-    private javax.swing.JComboBox<String> cbB_Infor;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList_Infor;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
@@ -563,7 +571,6 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JLabel labelTraCuu;
     private javax.swing.JMenuItem menuItem_Exit;
     private javax.swing.JMenuItem menuItem_Infor;
-    private javax.swing.JMenuItem menuItem_Save;
     private javax.swing.JMenuItem menuItem_UserManual;
     private javax.swing.JMenu menu_AboutMe;
     private javax.swing.JTextField tF_Infor;

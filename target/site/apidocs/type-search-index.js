@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"model","l":"Data"},{"p":"view","l":"DictionaryApp"},{"p":"controller","l":"DictionaryController"},{"p":"view","l":"DictionaryManager"},{"p":"model","l":"DictionaryModel"},{"p":"model","l":"LinkList"},{"p":"model","l":"Node"},{"p":"model","l":"Test"}];updateSearchResults();
