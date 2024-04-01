@@ -1,13 +1,54 @@
-hi-Danh t?-xin ch?o-hi i love you so much-true
-cat-Danh t?-con m?o, con ch�-my cat ? so cute va b? ngu-true
-dog-Danh t?-con ch�-my dog is cute-false
-pig-Danh t?-con heo-heo heo �-false
-abandon- �??ng t?-B? roi, t? b?-He abandoned his family.-true
-fish-Danh t?-con c�-fish sidnd-false
-cart-Danh t?-gi? h�ng-my cart is poor-false
-dogs-Danh t?-nhi?u con ch�-i love some f=dogs-false
-abundant-Tính t?-D?i dào, phong phú-The country is abundant in natural resources.-true
-ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-true
-Cat-Danh t?-cc-i am huhud-false
-bbb-Danh t?-cc nef-fdfav ffefea-false
-cc-Danh t?- vvrefer ccc-ccccc-false
+abandon- Ð?ng t?-B? roi, t? b?-He abandoned his family.-false
+ability-Danh t?-Kh? nang, nang l?c-She has a natural ability for music.-false
+abundant-Tính t?-D?i dào, phong phú-The country is abundant in natural resources.-false
+Accept - Ð?ng t? - Ch?p nh?n, nh?n - I accept your apology. - false
+Access - Danh t? - Ti?p c?n, quy?n truy c?p - We need access to the internet. - false
+Accident - Danh t? - Tai n?n, s? c? - It was a terrible accident. - false
+Accompany - Ð?ng t? - Ði cùng, tháp tùng - He accompanied her to the party. - false
+Accomplish - Ð?ng t? - Hoàn thành, d?t du?c - He accomplished his goal. - false
+Accurate - Tính t? - Chính xác, dúng d?n - The information is accurate. - false
+Achieve - Ð?ng t? - Ð?t du?c, thành t?u - She achieved great success in her career. - false
+Backpack - Danh t? - Ba lô - He carried his backpack on his back. - false
+Bacteria - Danh t? - Vi khu?n - Bacteria can cause disease. - false
+Balance - Danh t? - S? cân b?ng - She lost her balance and fell. - false
+Balloon - Danh t? - Bong bóng - The children played with balloons. - false
+Banana - Danh t? - Chu?i - I like to eat bananas. - false
+Band - Danh t? - Nhóm nh?c, ban nh?c - The band played a concert. - false
+Bank - Danh t? - Ngân hàng - She went to the bank to deposit money. - false
+Barbecue - Danh t? - Ti?c nu?ng - We had a barbecue in the backyard. - false
+Bargain - Danh t? - Món h?i, th?a thu?n - He got a bargain on the car. - false
+Bark - Danh t? - V? cây - The dog barked at the tree. - false
+Calculate - Ð?ng t? - Tính toán, suy tính - He calculated the cost of the project. - false
+Calendar - Danh t? - L?ch - She marked the date on the calendar. - false
+Call - Ð?ng t? - G?i di?n, g?i - He called her on the phone. - false
+Calm - Tính t? - Bình tinh, êm d?m - The sea was calm and peaceful. - false
+Camera - Danh t? - Máy ?nh - He took a picture with his camera. - false
+Campaign - Danh t? - Chi?n d?ch - They campaigned for a better environment. - false
+Can - Danh t? - Lon, h?p - He opened a can of soup. - false
+Cancel - Ð?ng t? - H?y b?, thu h?i - He canceled the meeting. - false
+Candy - Danh t? - K?o - The children love candy. - false
+Captain - Danh t? - Thuy?n tru?ng, d?i tru?ng - He was the captain of the ship. - false
+Danger - Danh t? - Nguy hi?m - It is dangerous to swim in the ocean. - false
+Dare - Ð?ng t? - Dám, thách th?c - I dare you to jump off the cliff. - false
+Dark - Tính t? - T?i, den - It was a dark and stormy night. - false
+Daughter - Danh t? - Con gái - She has two daughters. - false
+Day - Danh t? - Ngày - Today is a beautiful day. - false
+Dead - Tính t? - Ch?t, dã ch?t - The animal was dead. - false
+Deal - Danh t? - Th?a thu?n, giao d?ch - They made a deal. - false
+Dear - Tính t? - Quý m?n, yêu thuong - She is a dear friend. - false
+Decision - Danh t? - Quy?t d?nh - He made a difficult decision. - false
+Deep - Tính t? - Sâu - The ocean is very deep. - false
+Earth - Danh t? - Trái d?t - We live on Earth. - false
+Easy - Tính t? - D? dàng - The test was easy. - false
+Face - Danh t? - Khuôn m?t, guong m?t - He had a kind face. - false
+Factory - Danh t? - Nhà máy - He worked in a factory. - false
+Fail - Ð?ng t? - Th?t b?i, không thành công - He failed the test. - false
+Fair - Tính t? - Công b?ng, h?p lý - It was a fair deal. - false
+Fall - Ð?ng t? - Roi, ngã - She fell down the stairs. - false
+Family - Danh t? - Gia dình - He has a large family. - false
+Famous - Tính t? - N?i ti?ng, danh ti?ng - He is a famous actor. - false
+Fan - Danh t? - Qu?t, ngu?i hâm m? - She is a fan of the band. - false
+Fantastic - Tính t? - Tuy?t v?i, phi thu?ng - It was a fantastic experience. - false
+Far - Tính t? - Xa - The house is far from the city. - false
+Fast - Tính t? - Nhanh, t?c d? - He ran fast. - false
+Fat - Tính t? - Béo, m?p - He is a fat man. - false
