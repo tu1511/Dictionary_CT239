@@ -34,29 +34,10 @@ public class DictionaryModel {
         for (int i = 0; i < key.length(); i++) {
             sum += (int) key.charAt(i);
         }
-        // Chiết lượng sum để phù hợp với SIZE
         return sum % SIZE;
     }
     
-//    public void writeFile(String fileName) {
-//        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
-//            for (LinkList bucket : table) {
-//                Node current = bucket.getHead();
-//                while (current != null) {
-//                    Data word = current.getValue();
-//                    String line = word.getWord() + "-" + word.getType() + "-" + word.getMeaning() + "-" + word.getExample() + "-" + word.isActive();
-//                    bw.write(line);
-//                    bw.newLine();
-//                    current = current.getNext();
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-    
-    public void writeFile(LinkList[] list) {
-       
+    public void writeFile(LinkList[] list) { 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("datatest.txt"))) {
             for (LinkList bucket : list) {
                 Node current = bucket.getHead();
@@ -107,9 +88,6 @@ public class DictionaryModel {
         }
         return table;
     }
-    
-    
-
 
     public int getRowCount() {
         int count = 0;
@@ -120,7 +98,6 @@ public class DictionaryModel {
     }
 
     public int getColumnCount() {
-        // Số cột của dữ liệu
         return 5; // Ví dụ: Tiếng Anh, Loại từ, Tiếng Việt, Ví dụ, Trạng thái
     }
 
@@ -182,7 +159,6 @@ public class DictionaryModel {
     }
 
     public LinkList[] getList() {
-        // Trả về bảng table chứa toàn bộ danh sách từ điển
         return table;
     }
     

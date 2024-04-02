@@ -5,7 +5,7 @@ public class Data {
     private String type;
     private String meaning;
     private String example;
-    private boolean isActive = false;
+    private  boolean isActive = false;
 
     public Data(String word, String type, String meaning, String example) {
         this.word = word;

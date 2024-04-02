@@ -1,9 +1,6 @@
 package view;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
@@ -26,10 +23,8 @@ public class DictionaryManager extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tableModel = (DefaultTableModel) table_Data.getModel();
         setLocationRelativeTo(null);
-        
-        // Gọi phương thức để load dữ liệu khi ứng dụng được khởi động
-       // model.readFile(currentFilePath);
-       tableModel.setRowCount(0);
+ 
+        tableModel.setRowCount(0);
         loadDataFromFile(currentFilePath);
     }
     @SuppressWarnings("unchecked")
@@ -368,17 +363,11 @@ public class DictionaryManager extends javax.swing.JFrame {
             loadDataFromFile(currentFilePath);
 
             JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            System.out.println("Danh sách từ điển sau khi nhập:");
-            model.printDictionary();
-
         } else {
-            // Hiển thị thông báo nếu chỉ số bucket không hợp lệ
             JOptionPane.showMessageDialog(null, "Chỉ số bucket không hợp lệ!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
 
-
-    
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
         int selectedRow = table_Data.getSelectedRow();   
         // Lấy thông tin từ các JTextField
@@ -474,6 +463,8 @@ public class DictionaryManager extends javax.swing.JFrame {
         tF_TViDu.setText("");
         tableModel.setRowCount(0);
         loadDataFromFile(currentFilePath);
+        System.out.println("Danh sách từ điển sau khi nhập:");
+        model.printDictionary();
     }//GEN-LAST:event_btn_reloadActionPerformed
 
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
@@ -501,8 +492,6 @@ public class DictionaryManager extends javax.swing.JFrame {
     
 //chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
     private void table_DataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_DataMouseClicked
-        // Lấy chỉ số của dòng được chọn
-        
         tF_tiengAnh.setEditable(false);
         cbb_Loaitu.setEditable(false);
         tF_TiengViet.setEditable(false);
@@ -511,11 +500,11 @@ public class DictionaryManager extends javax.swing.JFrame {
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) { // Đảm bảo có dòng được chọn
             // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
-            DefaultTableModel model = (DefaultTableModel) table_Data.getModel();
-            tF_tiengAnh.setText(model.getValueAt(selectedRow, 1).toString());
-            cbb_Loaitu.setSelectedItem(model.getValueAt(selectedRow, 2).toString());
-            tF_TiengViet.setText(model.getValueAt(selectedRow, 3).toString());
-            tF_TViDu.setText(model.getValueAt(selectedRow, 4).toString());
+           // DefaultTableModel tableModel = (DefaultTableModel) table_Data.getModel();
+            tF_tiengAnh.setText(tableModel.getValueAt(selectedRow, 1).toString());
+            cbb_Loaitu.setSelectedItem(tableModel.getValueAt(selectedRow, 2).toString());
+            tF_TiengViet.setText(tableModel.getValueAt(selectedRow, 3).toString());
+            tF_TViDu.setText(tableModel.getValueAt(selectedRow, 4).toString());
         }
     }//GEN-LAST:event_table_DataMouseClicked
 
@@ -524,10 +513,12 @@ public class DictionaryManager extends javax.swing.JFrame {
         for (int i = 0; i < 100; i++) {
             if (list[i] != null) {
                 Node currentNode = list[i].getHead();
-                while(currentNode != null) {
-                    tableModel.addRow(new Object[] {
-                        i,currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
-                    });
+                while (currentNode != null) {
+                    if (!currentNode.getValue().isActive()) {
+                        tableModel.addRow(new Object[] {
+                            i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
+                        });
+                    }
                     currentNode = currentNode.getNext();
                 }
             }
@@ -618,7 +609,4 @@ public class DictionaryManager extends javax.swing.JFrame {
     public javax.swing.JTextField tF_tiengAnh;
     private javax.swing.JTable table_Data;
     // End of variables declaration//GEN-END:variables
-
-   
-    
 }
