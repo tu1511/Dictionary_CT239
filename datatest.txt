@@ -1,6 +1,6 @@
 Campaign- Danh từ- Chiến dịch- They campaigned for a better environment.-true
-Earth- Danh từ- Trái đất- We live on Earth.-false
-Friend- Danh từ- Bạn bè- He is my best friend.-false
+Earth- Danh từ- Trái đất- We live on Earth.-true
+Friend- Danh từ- Bạn bè- He is my best friend.-true
 Join- Động từ- Tham gia, kết hợp- He joined the club.-false
 Member- Danh từ- Thành viên- He is a member of the club.-false
 None- Đại từ- Không ai, không cái nào- None of them were ready.-false
@@ -334,6 +334,7 @@ King- Danh từ- Vua- He was the king of the country.-false
 Machine- Danh từ- Máy móc- He works in a machine shop.-false
 Match- Danh từ- Trận đấu, cuộc thi- It was a close match.-false
 Or- Liên từ- Hoặc- You can have tea or coffee, whichever you prefer.-false
+Cart-Danh từ-giỏ hàng-cart cart-false
 Access- Danh từ- Tiếp cận, quyền truy cập- We need access to the internet.-false
 Calendar- Danh từ- Lịch- She marked the date on the calendar.-false
 Fish- Danh từ- Cá- He caught a fish.-false

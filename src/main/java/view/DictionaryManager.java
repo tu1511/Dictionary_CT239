@@ -415,6 +415,9 @@ public class DictionaryManager extends javax.swing.JFrame {
                         FileWriter writer = new FileWriter(file);
                         writer.write(input);
                         writer.close();
+                        
+                        btn_reloadActionPerformed(evt);
+                        
                     } catch (IOException ex) {
                         ex.printStackTrace();
                         JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi cập nhật dữ liệu trong tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -532,9 +535,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         if (choice == JOptionPane.YES_OPTION) {
             // Có
             System.exit(0);
-        } else {
-
-        }
+        } 
     }
        
     /**
