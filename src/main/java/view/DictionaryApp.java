@@ -20,6 +20,8 @@ public class DictionaryApp extends javax.swing.JFrame {
     private List<String> dictionary = new ArrayList<>();
     private final String currentFilePath = "datatest.txt";
     private List<String> recentSearches = new ArrayList<>();
+    
+    LinkList list[] = new LinkList[100];
 
     public String getCurrentFilePath() {
         return currentFilePath;
@@ -28,14 +30,14 @@ public class DictionaryApp extends javax.swing.JFrame {
     public DictionaryApp() {
 
         initComponents();
-        btn_Manager.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DictionaryManager secondFrame = new DictionaryManager(); // Tạo một instance mới của SecondFrame
-                secondFrame.setVisible(true); // Hiển thị SecondFrame
-                dispose(); // Đóng FirstFrame
-            }
-
-        });
+//        btn_Manager.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                DictionaryManager secondFrame = new DictionaryManager(); // Tạo một instance mới của SecondFrame
+//                secondFrame.setVisible(true); // Hiển thị SecondFrame
+//                dispose(); // Đóng FirstFrame
+//            }
+//
+//        });
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -165,6 +167,11 @@ public class DictionaryApp extends javax.swing.JFrame {
         btn_Manager.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_Manager.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\setting.png"));
         btn_Manager.setText("Quản lý");
+        btn_Manager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ManagerActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_Manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 75, 115, 37));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -385,6 +392,33 @@ public class DictionaryApp extends javax.swing.JFrame {
 //        jList_History.setPreferredSize(new Dimension(0, 0)); 
 //        jList_History.setVisible(false);
     }//GEN-LAST:event_jPanel2MouseClicked
+
+    public String e = new String(), t = new String(), m = new String(), ex = new String();
+    
+    public void openForm(String english, String type, String meaning, String example, LinkList[] li, DictionaryManager dictionaryManager) {
+        for (int i = 0; i < 100; i++) {
+            if(li[i] != null) {
+                list[i] = new LinkList(li[i]);
+             
+            }
+        }
+        
+        e = new String(english);
+        t = new String(type);
+        m = new String(meaning);
+        ex = new String(example);
+        
+        
+        //dictionaryManager.close();
+        this.setVisible(true);
+    }
+    
+    private void btn_ManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManagerActionPerformed
+        DictionaryApp dictionaryApp = new DictionaryApp();
+        DictionaryManager dictionaryManager = new DictionaryManager();
+        this.setVisible(false);
+        dictionaryManager.openForm(e, t, m, ex, list, dictionaryApp);
+    }//GEN-LAST:event_btn_ManagerActionPerformed
 
     private void searchWord() {
         String tuCanTim = tF_Infor.getText().trim();

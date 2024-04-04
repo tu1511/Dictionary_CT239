@@ -9,6 +9,11 @@ public class LinkList {
         this.head = null;
     }
 
+    public LinkList(LinkList list) {
+        this.size = list.size;
+        this.head = list.head;
+    }
+
     public int getSize() {
         return size;
     }

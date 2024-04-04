@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -23,9 +25,13 @@ public class DictionaryManager extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tableModel = (DefaultTableModel) table_Data.getModel();
         setLocationRelativeTo(null);
- 
+        
+        table_Data.getTableHeader().setFont(new Font("Arial",Font.BOLD,16));
+        table_Data.getTableHeader().setOpaque(false);
+        table_Data.getTableHeader().setForeground(Color.red);
+      
         tableModel.setRowCount(0);
-        loadDataFromFile(currentFilePath);
+        loadDataFromFile(list);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -162,7 +168,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         });
 
-        table_Data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        table_Data.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         table_Data.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -171,6 +177,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                 "Bucket", "Tiếng Anh", "Loại từ", "Nghĩa", "Ví dụ"
             }
         ));
+        table_Data.setRowHeight(25);
         table_Data.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         table_Data.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -178,6 +185,16 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(table_Data);
+        if (table_Data.getColumnModel().getColumnCount() > 0) {
+            table_Data.getColumnModel().getColumn(0).setMinWidth(70);
+            table_Data.getColumnModel().getColumn(0).setMaxWidth(70);
+            table_Data.getColumnModel().getColumn(1).setMinWidth(140);
+            table_Data.getColumnModel().getColumn(1).setMaxWidth(140);
+            table_Data.getColumnModel().getColumn(2).setMinWidth(140);
+            table_Data.getColumnModel().getColumn(2).setMaxWidth(140);
+            table_Data.getColumnModel().getColumn(3).setMinWidth(200);
+            table_Data.getColumnModel().getColumn(3).setMaxWidth(200);
+        }
 
         tF_tiengAnh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -215,32 +232,31 @@ public class DictionaryManager extends javax.swing.JFrame {
                         .addComponent(label_TiengViet))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tF_tiengAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label_ViDu))
-                        .addGap(33, 33, 33)
-                        .addComponent(cbb_Loaitu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(tF_TiengViet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
                         .addComponent(tF_TViDu, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tF_tiengAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label_ViDu))
+                                .addGap(33, 33, 33)
+                                .addComponent(cbb_Loaitu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(tF_TiengViet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -271,16 +287,17 @@ public class DictionaryManager extends javax.swing.JFrame {
                             .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(6, 6, 6)
                 .addComponent(tF_TViDu, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jMenu6.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
@@ -360,7 +377,7 @@ public class DictionaryManager extends javax.swing.JFrame {
            
             list[bucket].addToHead(word);
             tableModel.setRowCount(0);
-            loadDataFromFile(currentFilePath);
+            loadDataFromFile(list);
 
             JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -383,49 +400,33 @@ public class DictionaryManager extends javax.swing.JFrame {
         
         int bucket = model.hashFunction(english);
         Data word = new Data(english, type, meaning, example);
-
+        list[bucket].delete(word.getEnglish());
         list[bucket].addToHead(word);
         tableModel.setRowCount(0);
-        loadDataFromFile(currentFilePath);
-
+        loadDataFromFile(list);
+        
         JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btn_SaveActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-         String[] options = {"Có", "Không"};
-        int selectedRow = table_Data.getSelectedRow();
+        String[] options = {"Có", "Không"};
+    int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
             int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
             if (dialogResult == JOptionPane.YES_OPTION) {
                 DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-                String selectedWord = data.getValueAt(selectedRow, 1).toString(); 
+                String selectedWord = data.getValueAt(selectedRow, 1).toString();
 
-                  try {
-                        File file = new File(currentFilePath);
-                        BufferedReader reader = new BufferedReader(new FileReader(file));
-                        String line;
-                        String input = "";
-                        while ((line = reader.readLine()) != null) {
-                            if (line.contains(selectedWord)) {
-                                line = line.replace("-false", "-true");
-                            }
-                            input += line + '\n';
-                        }
-                        reader.close();
-                        FileWriter writer = new FileWriter(file);
-                        writer.write(input);
-                        writer.close();
-                        
-                        btn_reloadActionPerformed(evt);
-                        
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                        JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi cập nhật dữ liệu trong tệp tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                int bucket = model.hashFunction(selectedWord);
+                if (list[bucket] != null) {
+                    Node result = list[bucket].search(selectedWord);
+                    if (result != null && !result.getValue().isActive()) {
+                        result.getValue().setActive(true);
                     }
-                
+                }
+                btn_reloadActionPerformed(evt);
                 // Xóa dòng khỏi bảng
                 data.removeRow(selectedRow);
-
                 JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
@@ -437,12 +438,39 @@ public class DictionaryManager extends javax.swing.JFrame {
         Exit();
     }//GEN-LAST:event_btn_ExitActionPerformed
 
+    public void close(){
+        this.setVisible(false);
+    }
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
         DictionaryApp dictionaryApp = new DictionaryApp();
-        dictionaryApp.setVisible(true);
-        this.dispose();
+        DictionaryManager dictionaryManager = new DictionaryManager();
+        
+        String english = tF_tiengAnh.getText();
+        String type = cbb_Loaitu.getSelectedItem().toString();
+        String meaning = tF_TiengViet.getText();
+        String example = tF_TViDu.getText();
+        this.close();
+        dictionaryApp.openForm(english, type, meaning, example, list, dictionaryManager);
     }//GEN-LAST:event_btn_ReturnActionPerformed
 
+    public void openForm(String english, String type, String meaning, String example, LinkList[] l, DictionaryApp dictionaryApp) {
+        tF_tiengAnh.setText(english);
+        cbb_Loaitu.setSelectedItem(type);
+        tF_TiengViet.setText(meaning);
+        tF_TViDu.setText(example);
+        
+        for (int i = 0; i < 100; i++) {
+            if(l[i] != null) {
+                list[i] = new LinkList(l[i]);
+            }
+        }
+        
+        dictionaryApp.setVisible(false);
+        this.setVisible(true);
+        tableModel.setRowCount(0);
+        loadDataFromFile(list);
+    }
+    
     private void menuItem_UserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_UserManualActionPerformed
         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
                  + "1. Thêm từ mới: Nhập từ tiếng Anh, loại từ, nghĩa tiếng Việt và ví dụ, sau đó nhấn nút Thêm từ.\n"
@@ -465,7 +493,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         tF_TiengViet.setText("");
         tF_TViDu.setText("");
         tableModel.setRowCount(0);
-        loadDataFromFile(currentFilePath);
+        loadDataFromFile(list);
         System.out.println("Danh sách từ điển sau khi nhập:");
         model.printDictionary();
     }//GEN-LAST:event_btn_reloadActionPerformed
@@ -473,16 +501,10 @@ public class DictionaryManager extends javax.swing.JFrame {
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) {
-            DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-            String tiengAnh = data.getValueAt(selectedRow, 1).toString();
-            String loaiTu = data.getValueAt(selectedRow, 2).toString();
-            String tiengViet = data.getValueAt(selectedRow, 3).toString();
-            String viDu = data.getValueAt(selectedRow, 4).toString();
-
-            tF_tiengAnh.setText(tiengAnh);
-            cbb_Loaitu.setSelectedItem(loaiTu);
-            tF_TiengViet.setText(tiengViet);
-            tF_TViDu.setText(viDu);
+            tF_tiengAnh.setEditable(true);
+            cbb_Loaitu.setEditable(true);
+            tF_TiengViet.setEditable(true);
+            tF_TViDu.setEditable(true);
         } else {
             // Hiển thị thông báo nếu không có hàng nào được chọn
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một hàng để cập nhật!", "Thông báo", JOptionPane.WARNING_MESSAGE);
@@ -512,7 +534,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_table_DataMouseClicked
 
     //    Chức năng load dữ liệu từ file lưu trữ lên
-    public void loadDataFromFile(String filePath) {           
+    public void loadDataFromFile(LinkList[] list) {           
         for (int i = 0; i < 100; i++) {
             if (list[i] != null) {
                 Node currentNode = list[i].getHead();
