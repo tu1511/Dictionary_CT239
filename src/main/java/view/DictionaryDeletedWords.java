@@ -87,6 +87,16 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(table_Data);
+        if (table_Data.getColumnModel().getColumnCount() > 0) {
+            table_Data.getColumnModel().getColumn(0).setMinWidth(70);
+            table_Data.getColumnModel().getColumn(0).setMaxWidth(70);
+            table_Data.getColumnModel().getColumn(1).setMinWidth(140);
+            table_Data.getColumnModel().getColumn(1).setMaxWidth(140);
+            table_Data.getColumnModel().getColumn(2).setMinWidth(140);
+            table_Data.getColumnModel().getColumn(2).setMaxWidth(140);
+            table_Data.getColumnModel().getColumn(3).setMinWidth(200);
+            table_Data.getColumnModel().getColumn(3).setMaxWidth(200);
+        }
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("DANH SÁCH TỪ ĐÃ XÓA");
