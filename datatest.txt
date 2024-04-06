@@ -1,2 +1,3 @@
-Hello-Danh từ- Thành viên hehe- He is a member of the club.-false
+Hello-Danh từ-cin chào-hello nice to miss you-true
+Campaign-Danh từ-Chiên dịch hehe-They campaigned for a better environment-false
 Member-Danh từ- Thành viên hehe- He is a member of the club.-false

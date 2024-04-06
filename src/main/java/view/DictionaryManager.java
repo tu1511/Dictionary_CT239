@@ -367,21 +367,43 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
-
-        Data word = new Data(english, type, meaning, example);
         // Tính chỉ số bucket dựa trên tiếng Anh
         int bucket = model.hashFunction(english);  
+        Node searchResult = list[bucket].search(english);
+        
+        if (searchResult != null && !searchResult.getValue().isActive()) { // Từ đã tồn tại trong danh sách và trạng thái false
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Từ '" + english + "' đã tồn tại trong danh sách. Bạn có muốn cập nhật thông tin không?", "Xác nhận cập nhật", JOptionPane.YES_NO_OPTION);
 
-        // Kiểm tra xem bucketIndex có hợp lệ không
-        if (bucket >= 0 && bucket < model.getSIZE()) {
-           
-            list[bucket].addToHead(word);
-            tableModel.setRowCount(0);
-            loadDataFromFile(list);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                // Cập nhật thông tin từ đã tồn tại
+                Data word = new Data(english, type, meaning, example);
+                list[bucket].delete(english);
+                list[bucket].addToHead(word);
+                tableModel.setRowCount(0);
+                loadDataFromFile(list);
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else if (searchResult != null && searchResult.getValue().isActive()) { // Từ đã tồn tại trong danh sách và trạng thái true
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Từ '" + english + "' đã từng tồn tại. Bạn có muốn khôi phục dữ liệu không?", "Xác nhận khôi phục", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                searchResult.getValue().setActive(false);
+                tableModel.setRowCount(0);
+                loadDataFromFile(list);
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được khôi phục!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            } 
+        }  else {
+            Data word = new Data(english, type, meaning, example);
+            // Kiểm tra xem bucketIndex có hợp lệ không
+            if (bucket >= 0 && bucket < model.getSIZE()) {
 
-            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Chỉ số bucket không hợp lệ!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                list[bucket].addToHead(word);
+                tableModel.setRowCount(0);
+                loadDataFromFile(list);
+
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Chỉ số bucket không hợp lệ!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btn_AddActionPerformed
 
@@ -410,7 +432,7 @@ public class DictionaryManager extends javax.swing.JFrame {
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
         String[] options = {"Có", "Không"};
-    int selectedRow = table_Data.getSelectedRow();
+        int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
             int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
             if (dialogResult == JOptionPane.YES_OPTION) {
@@ -427,6 +449,8 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_reloadActionPerformed(evt);
                 // Xóa dòng khỏi bảng
                 data.removeRow(selectedRow);
+                tableModel.setRowCount(0);
+                loadDataFromFile(list);
                 JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
@@ -533,6 +557,19 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_table_DataMouseClicked
 
+//    kiểm tra trạng thái của từ
+    public boolean isWordActive(String word) {
+        // Tìm kiếm từ trong danh sách và kiểm tra trạng thái của nó
+        int bucket = model.hashFunction(word);
+        if (list[bucket] != null) {
+            Node result = list[bucket].search(word);
+            if (result != null) {
+                return result.getValue().isActive();
+            }
+        }
+        return false;
+    }
+    
     //    Chức năng load dữ liệu từ file lưu trữ lên
     public void loadDataFromFile(LinkList[] list) {           
         for (int i = 0; i < 100; i++) {
@@ -540,6 +577,23 @@ public class DictionaryManager extends javax.swing.JFrame {
                 Node currentNode = list[i].getHead();
                 while (currentNode != null) {
                     if (!currentNode.getValue().isActive()) {
+                        tableModel.addRow(new Object[] {
+                            i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
+                        });
+                    }
+                    currentNode = currentNode.getNext();
+                }
+            }
+        }
+    }
+    
+    //    Chức năng load dữ liệu từ file lưu trữ lên
+    public void deletedWords(LinkList[] list) {           
+        for (int i = 0; i < 100; i++) {
+            if (list[i] != null) {
+                Node currentNode = list[i].getHead();
+                while (currentNode != null) {
+                    if (currentNode.getValue().isActive()) {
                         tableModel.addRow(new Object[] {
                             i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
                         });
