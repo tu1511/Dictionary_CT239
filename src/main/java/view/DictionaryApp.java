@@ -407,8 +407,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         t = new String(type);
         m = new String(meaning);
         ex = new String(example);
-        
-        
+               
         //dictionaryManager.close();
         this.setVisible(true);
     }
@@ -420,7 +419,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         dictionaryManager.openForm(e, t, m, ex, list, dictionaryApp);
     }//GEN-LAST:event_btn_ManagerActionPerformed
 
-    private void searchWord() {
+    public void searchWord() {
         String tuCanTim = tF_Infor.getText().trim();
 
         if (tuCanTim.isEmpty()) {
@@ -443,8 +442,6 @@ public class DictionaryApp extends javax.swing.JFrame {
                 return;
             }
         }
-
-        // Nếu không tìm thấy từ trong từ điển hoặc từ đã bị xóa, hiển thị thông báo
         JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }
     
