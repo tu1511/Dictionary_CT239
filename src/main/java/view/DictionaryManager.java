@@ -367,7 +367,6 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        // Tính chỉ số bucket dựa trên tiếng Anh
         int bucket = model.hashFunction(english);  
         Node searchResult = list[bucket].search(english);
         
