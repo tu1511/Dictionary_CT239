@@ -207,7 +207,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         });
 
-        cbb_Loaitu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danh từ", "Động Từ", "Tính từ", "Trạng từ" }));
+        cbb_Loaitu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danh từ", "Động Từ", "Tính từ", "Trạng từ", "Đại từ", "Giới từ", "Thán từ", "Liên từ", "Từ hạn định" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
