@@ -59,7 +59,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_Add = new javax.swing.JButton();
         btn_Update = new javax.swing.JButton();
         btn_reload = new javax.swing.JButton();
-        btn_Exit = new javax.swing.JButton();
+        btn_DeletedWords = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_Data = new javax.swing.JTable();
         tF_tiengAnh = new javax.swing.JTextField();
@@ -159,12 +159,12 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         });
 
-        btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\exit.png"));
-        btn_Exit.setText("Thoát");
-        btn_Exit.addActionListener(new java.awt.event.ActionListener() {
+        btn_DeletedWords.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_DeletedWords.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\listdeletedwords.png"));
+        btn_DeletedWords.setText("DS từ đã xóa");
+        btn_DeletedWords.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ExitActionPerformed(evt);
+                btn_DeletedWordsActionPerformed(evt);
             }
         });
 
@@ -246,16 +246,16 @@ public class DictionaryManager extends javax.swing.JFrame {
                                 .addComponent(tF_TiengViet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
+                                .addGap(37, 37, 37)
                                 .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
+                                .addGap(36, 36, 36)
                                 .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
+                                .addGap(39, 39, 39)
                                 .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btn_DeletedWords, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -264,7 +264,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Return, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Return, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(12, 12, 12)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,15 +289,15 @@ public class DictionaryManager extends javax.swing.JFrame {
                 .addComponent(tF_TViDu, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_DeletedWords, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         jMenu6.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
@@ -458,13 +458,22 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_DeleteActionPerformed
 
-    private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
-        Exit();
-    }//GEN-LAST:event_btn_ExitActionPerformed
+    private void btn_DeletedWordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletedWordsActionPerformed
+        DictionaryDeletedWords dictionaryDeletedWords = new DictionaryDeletedWords();
+        DictionaryManager dictionaryManager = new DictionaryManager();
+        
+        String english = tF_tiengAnh.getText();
+        String type = cbb_Loaitu.getSelectedItem().toString();
+        String meaning = tF_TiengViet.getText();
+        String example = tF_TViDu.getText();
+        this.close();
+        dictionaryDeletedWords.openForm(english, type, meaning, example, list, dictionaryManager);
+    }//GEN-LAST:event_btn_DeletedWordsActionPerformed
 
     public void close(){
         this.setVisible(false);
     }
+    
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
         DictionaryApp dictionaryApp = new DictionaryApp();
         DictionaryManager dictionaryManager = new DictionaryManager();
@@ -490,6 +499,24 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
         
         dictionaryApp.setVisible(false);
+        this.setVisible(true);
+        tableModel.setRowCount(0);
+        loadDataFromFile(list);
+    }
+    
+    public void openForm1(String english, String type, String meaning, String example, LinkList[] l, DictionaryDeletedWords dictionaryDeletedWords) {
+        tF_tiengAnh.setText(english);
+        cbb_Loaitu.setSelectedItem(type);
+        tF_TiengViet.setText(meaning);
+        tF_TViDu.setText(example);
+        
+        for (int i = 0; i < 100; i++) {
+            if(l[i] != null) {
+                list[i] = new LinkList(l[i]);
+            }
+        }
+        
+        dictionaryDeletedWords.setVisible(false);
         this.setVisible(true);
         tableModel.setRowCount(0);
         loadDataFromFile(list);
@@ -548,8 +575,6 @@ public class DictionaryManager extends javax.swing.JFrame {
         
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-            // Lấy dữ liệu từ dòng được chọn và cập nhật lên các JTextField
-           // DefaultTableModel tableModel = (DefaultTableModel) table_Data.getModel();
             tF_tiengAnh.setText(tableModel.getValueAt(selectedRow, 1).toString());
             cbb_Loaitu.setSelectedItem(tableModel.getValueAt(selectedRow, 2).toString());
             tF_TiengViet.setText(tableModel.getValueAt(selectedRow, 3).toString());
@@ -577,23 +602,6 @@ public class DictionaryManager extends javax.swing.JFrame {
                 Node currentNode = list[i].getHead();
                 while (currentNode != null) {
                     if (!currentNode.getValue().isActive()) {
-                        tableModel.addRow(new Object[] {
-                            i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
-                        });
-                    }
-                    currentNode = currentNode.getNext();
-                }
-            }
-        }
-    }
-    
-    //    Chức năng load dữ liệu từ file lưu trữ lên
-    public void deletedWords(LinkList[] list) {           
-        for (int i = 0; i < 100; i++) {
-            if (list[i] != null) {
-                Node currentNode = list[i].getHead();
-                while (currentNode != null) {
-                    if (currentNode.getValue().isActive()) {
                         tableModel.addRow(new Object[] {
                             i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
                         });
@@ -652,7 +660,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Add;
     private javax.swing.JButton btn_Delete;
-    private javax.swing.JButton btn_Exit;
+    private javax.swing.JButton btn_DeletedWords;
     private javax.swing.JButton btn_Return;
     private javax.swing.JButton btn_Save;
     private javax.swing.JButton btn_Update;
