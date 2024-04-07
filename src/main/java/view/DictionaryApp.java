@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +28,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     public DictionaryApp() {
 
         initComponents();
-//        btn_Manager.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                DictionaryManager secondFrame = new DictionaryManager(); // Tạo một instance mới của SecondFrame
-//                secondFrame.setVisible(true); // Hiển thị SecondFrame
-//                dispose(); // Đóng FirstFrame
-//            }
-//
-//        });
+//       
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -178,7 +169,7 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         TextArea_data.setEditable(false);
         TextArea_data.setColumns(20);
-        TextArea_data.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        TextArea_data.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TextArea_data.setRows(5);
         jScrollPane2.setViewportView(TextArea_data);
 
@@ -196,6 +187,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 132, -1, -1));
 
         jList_Infor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jList_Infor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jList_Infor.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jList_InforValueChanged(evt);
@@ -437,6 +429,8 @@ public class DictionaryApp extends javax.swing.JFrame {
             if (result != null && !result.getValue().isActive()) {
                 String info = result.getData();
                 TextArea_data.setText(info);
+                TextArea_data.setLineWrap(true);
+                TextArea_data.setWrapStyleWord(true);    
 
                 performSearch(tuCanTim);
                 return;

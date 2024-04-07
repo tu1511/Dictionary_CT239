@@ -15,7 +15,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     public String currentFilePath = "datatest.txt";
     LinkList l[] = new LinkList[100];
     DefaultTableModel tableModel;
-     public LinkList[] list = model.readFile(currentFilePath);
+    public LinkList[] list = model.readFile(currentFilePath);
     
     public DictionaryDeletedWords() {
         initComponents();
@@ -81,11 +81,6 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         ));
         table_Data.setRowHeight(25);
         table_Data.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        table_Data.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                table_DataMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(table_Data);
         if (table_Data.getColumnModel().getColumnCount() > 0) {
             table_Data.getColumnModel().getColumn(0).setMinWidth(70);
@@ -226,7 +221,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     public void openForm(String english, String type, String meaning, String example, LinkList[] li, DictionaryManager dictionaryManager) {
         for (int i = 0; i < 100; i++) {
             if(li[i] != null) {
-                list[i] = new LinkList(li[i]);
+                l[i] = new LinkList(li[i]);
              
             }
         }
@@ -259,13 +254,6 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         model.writeFile(list);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void table_DataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_DataMouseClicked
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
-            
-        }
-    }//GEN-LAST:event_table_DataMouseClicked
-
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         String[] options = {"Có", "Không"};
         int selectedRow = table_Data.getSelectedRow();
@@ -285,6 +273,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                 data.removeRow(selectedRow);
                 tableModel.setRowCount(0);
                 deletedWords(list);
+                
                 JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa vĩnh viễn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
@@ -319,10 +308,10 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_recoverActionPerformed
 
     //    Chức năng load dữ liệu từ file lưu trữ lên
-    public void deletedWords(LinkList[] list) {           
+    public void deletedWords(LinkList[] l) {           
         for (int i = 0; i < 100; i++) {
-            if (list[i] != null) {
-                Node currentNode = list[i].getHead();
+            if (l[i] != null) {
+                Node currentNode = l[i].getHead();
                 while (currentNode != null) {
                     if (currentNode.getValue().isActive()) {
                         tableModel.addRow(new Object[] {
