@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.JFrame;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import model.DictionaryModel;
 import model.LinkList;
 import model.Node;
@@ -15,9 +13,7 @@ public class DictionaryApp extends javax.swing.JFrame {
 
     DictionaryModel model = new DictionaryModel();
 
-    private List<String> dictionary = new ArrayList<>();
     private final String currentFilePath = "datatest.txt";
-    private List<String> recentSearches = new ArrayList<>();
     
     LinkList list[] = new LinkList[100];
 
@@ -27,36 +23,23 @@ public class DictionaryApp extends javax.swing.JFrame {
 
     public DictionaryApp() {
 
-        initComponents();
-//       
+        initComponents();   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
-        // Listen for changes in tF_Infor
-        tF_Infor.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-        });
+        
+        TextArea_data.setLineWrap(true);
+        TextArea_data.setWrapStyleWord(true);  
+        menu.add(panel);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu3 = new javax.swing.JMenu();
-        jFrame1 = new javax.swing.JFrame();
+        panel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        list_Data = new javax.swing.JList<>();
+        menu = new javax.swing.JPopupMenu();
         jPanel2 = new javax.swing.JPanel();
         labelName = new javax.swing.JLabel();
         labelTraCuu = new javax.swing.JLabel();
@@ -69,8 +52,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TextArea_data = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList_Infor = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -79,18 +60,33 @@ public class DictionaryApp extends javax.swing.JFrame {
         menuItem_UserManual = new javax.swing.JMenuItem();
         menuItem_Infor = new javax.swing.JMenuItem();
 
-        jMenu3.setText("jMenu3");
+        panel.setAlignmentX(0.0F);
+        panel.setAlignmentY(0.0F);
+        panel.setPreferredSize(new java.awt.Dimension(240, 229));
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jScrollPane3.setAlignmentX(0.0F);
+        jScrollPane3.setAlignmentY(0.0F);
+
+        list_Data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        list_Data.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                list_DataValueChanged(evt);
+            }
+        });
+        jScrollPane3.setViewportView(list_Data);
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
         );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        menu.setFocusable(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý tự điển");
@@ -120,6 +116,11 @@ public class DictionaryApp extends javax.swing.JFrame {
         tF_Infor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tF_InforActionPerformed(evt);
+            }
+        });
+        tF_Infor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tF_InforKeyReleased(evt);
             }
         });
         jPanel2.add(tF_Infor, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 75, 242, 36));
@@ -186,17 +187,6 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 132, -1, -1));
 
-        jList_Infor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jList_Infor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jList_Infor.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList_InforValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jList_Infor);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 132, 244, 381));
-
         jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu1.setText("Tài liệu");
         jMenu1.add(jSeparator3);
@@ -260,63 +250,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         searchWord();
     }//GEN-LAST:event_btn_TraCuuActionPerformed
 
-    private void performSearch(String keyword) {
-        // Thêm từ tìm kiếm mới vào danh sách
-        recentSearches.add(keyword);
-
-        // Cập nhật hiển thị trong jScrollPane1
-      //  updateRecentSearches();
-    }
-
-//    private void updateRecentSearches() {
-//        // Tạo một StringBuilder để xây dựng nội dung cần hiển thị
-//        StringBuilder sb = new StringBuilder();
-//
-//        // Duyệt qua danh sách các từ đã tìm kiếm gần đây và thêm chúng vào StringBuilder
-//        for (String search : recentSearches) {
-//            sb.append(search).append("\n"); // Thêm từ và một dòng xuống mới
-//        }
-//
-//        // Đảm bảo textArea_recentSearches là một JTextArea và hiển thị nội dung
-//        if (textArea_recentSearches instanceof JTextArea) {
-//            JTextArea textArea = (JTextArea) textArea_recentSearches;
-//            textArea.setText(sb.toString());
-//            textArea.setCaretPosition(0); // Đặt con trỏ về đầu dòng
-//        } else {
-//            System.err.println("textArea_recentSearches không phải là một JTextArea.");
-//        }
-//    }
-
-
-    private void updateSuggestions() {
-        String input = tF_Infor.getText().trim().toLowerCase();
-        
-        // Kiểm tra xem nếu JTextField trống thì không cần đề xuất từ
-        if (input.isEmpty()) {
-            jList_Infor.setModel(new DefaultListModel<>()); // Xóa danh sách từ hiện tại
-            return;
-        }
-        
-        DefaultListModel<String> modelList = new DefaultListModel<>();
-
-        // Đọc dữ liệu từ tệp và thêm vào modelList nếu từ bắt đầu bằng input và có trạng thái -false
-        try (BufferedReader reader = new BufferedReader(new FileReader(currentFilePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.endsWith("-false")) {
-                    String englishWord = getEnglishWord(line); // Lấy từ tiếng Anh từ chuỗi
-                    if (englishWord.toLowerCase().startsWith(input)) {
-                        modelList.addElement(englishWord);
-                    }
-                }
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        jList_Infor.setModel(modelList);
-        jList_Infor.setVisibleRowCount(Math.min(modelList.getSize(), 5)); // Hiển thị tối đa 5 hàng
-    }
 
     // Phương thức để lấy từ tiếng Anh từ chuỗi có định dạng "từ - mô tả"
     private String getEnglishWord(String input) {
@@ -352,21 +285,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Phiên bản phần mềm: \n" + "Quản lý tự điển version 1.0!", "Phiên bản", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_InforActionPerformed
 
-    private void jList_InforValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList_InforValueChanged
-        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
-            // Lấy phần tử được chọn trong JList
-            String selectedWord = (String) jList_Infor.getSelectedValue();
-            if (selectedWord != null) {
-                // Hiển thị thông tin của từ được chọn trong JTextArea
-                displayWordInfo(selectedWord);
-            }
-        }
-    }//GEN-LAST:event_jList_InforValueChanged
-
-    private void tF_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tF_InforActionPerformed
-        searchWord();
-    }//GEN-LAST:event_tF_InforActionPerformed
-
     private void btn_HistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HistoryActionPerformed
 //        DefaultListModel<String> historyModel = new DefaultListModel<>();
 //
@@ -391,7 +309,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         for (int i = 0; i < 100; i++) {
             if(li[i] != null) {
                 list[i] = new LinkList(li[i]);
-             
             }
         }
         
@@ -399,8 +316,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         t = new String(type);
         m = new String(meaning);
         ex = new String(example);
-               
-        //dictionaryManager.close();
+              
         this.setVisible(true);
     }
     
@@ -410,6 +326,53 @@ public class DictionaryApp extends javax.swing.JFrame {
         this.setVisible(false);
         dictionaryManager.openForm(e, t, m, ex, list, dictionaryApp);
     }//GEN-LAST:event_btn_ManagerActionPerformed
+
+    private void tF_InforKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyReleased
+        String tuCanTim = tF_Infor.getText().trim().toLowerCase();
+
+        if (tuCanTim.isEmpty()) {
+            list_Data.setModel(new DefaultListModel<>());
+            menu.setVisible(false);// Xóa danh sách từ hiện tại
+            return;
+        }
+        
+        menu.show(tF_Infor, 0, tF_Infor.getHeight());
+        
+        DefaultListModel<String> modelList = new DefaultListModel<>();
+
+        // Đọc dữ liệu từ tệp và thêm vào modelList nếu từ bắt đầu bằng input và có trạng thái -false
+        try (BufferedReader reader = new BufferedReader(new FileReader(currentFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.endsWith("-false")) {
+                    String englishWord = getEnglishWord(line); // Lấy từ tiếng Anh từ chuỗi
+                    if (englishWord.toLowerCase().startsWith(tuCanTim)) {
+                        modelList.addElement(englishWord);
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        list_Data.setModel(modelList);
+        list_Data.setVisibleRowCount(Math.min(modelList.getSize(), 5));
+    }//GEN-LAST:event_tF_InforKeyReleased
+
+    private void list_DataValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_DataValueChanged
+        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
+            String selectedWord = (String) list_Data.getSelectedValue();
+            if (selectedWord != null) {
+                displayWordInfo(selectedWord);
+                tF_Infor.setText(selectedWord);
+                menu.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_list_DataValueChanged
+
+    private void tF_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tF_InforActionPerformed
+        searchWord();
+    }//GEN-LAST:event_tF_InforActionPerformed
 
     public void searchWord() {
         String tuCanTim = tF_Infor.getText().trim();
@@ -428,11 +391,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             Node result = list[bucket].search(tuCanTim);
             if (result != null && !result.getValue().isActive()) {
                 String info = result.getData();
-                TextArea_data.setText(info);
-                TextArea_data.setLineWrap(true);
-                TextArea_data.setWrapStyleWord(true);    
-
-                performSearch(tuCanTim);
+                TextArea_data.setText(info);               
                 return;
             }
         }
@@ -506,23 +465,23 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JButton btn_History;
     private javax.swing.JButton btn_Manager;
     private javax.swing.JButton btn_TraCuu;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JList<String> jList_Infor;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelTraCuu;
+    private javax.swing.JList<String> list_Data;
+    private javax.swing.JPopupMenu menu;
     private javax.swing.JMenuItem menuItem_Exit;
     private javax.swing.JMenuItem menuItem_Infor;
     private javax.swing.JMenuItem menuItem_UserManual;
     private javax.swing.JMenu menu_AboutMe;
+    private javax.swing.JPanel panel;
     private javax.swing.JTextField tF_Infor;
     // End of variables declaration//GEN-END:variables
 }
