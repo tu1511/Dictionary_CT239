@@ -1,4 +1,3 @@
-Member-Danh từ-Thành viên hehe-He is a member of the club.-true
 Campaign-Danh từ-Chiến dịch-They campaigned for a better environment.-true
 Earth-Danh từ-Trái đất-We live on Earth.-true
 Friend-Danh từ-Bạn bè-He is my best friend.-true
@@ -13,6 +12,7 @@ Sell-Động từ-Bán, tiêu thụ-He sold his car.-false
 Set-Động từ-Đặt, thiết lập-He set the table for dinner.-false
 Us-Đại từ-Chúng tôi-He gave us a gift.-false
 Wall-Danh từ-Tường, vách-He painted the wall white.-false
+Heart-Danh từ-Trái tim-He wears his heart on his sleeve.-false
 Poem-Danh từ-Bài thơ-She wrote a beautiful poem.-true
 Ready-Tính từ-Sẵn sàng, chuẩn bị-He is ready to go.-false
 Say-Động từ-Nói, nói ra-He said hello to me.-false
@@ -88,6 +88,7 @@ Finish-Động từ-Hoàn thành, kết thúc-He finished his homework.-false
 Quick-Tính từ-Nhanh chóng, vội vã-He ran quickly.-false
 Recent-Tính từ-Gần đây, mới đây-He bought a recent book.-false
 Repeat-Động từ-Lặp lại, nhắc lại-He repeated the instructions.-false
+Heavy-Tính từ-Nặng-The box is too heavy for him to lift alone.-false
 Calculate-Động từ-Tính toán, suy tính-He calculated the cost of the project.-false
 Family-Danh từ-Gia đình-He has a large family.-false
 Increase-Động từ-Tăng, gia tăng-The population is increasing.-false
@@ -126,6 +127,8 @@ Other-Tính từ, Đại từ-Khác, người khác-Are there any other question
 Pocket-Danh từ-Túi, túi áo-He put his keys in his pocket.-false
 Secret-Danh từ-Bí mật-He kept it a secret.-false
 Vote-Động từ-Bỏ phiếu, bầu cử-He voted in the last election.-false
+Happy-Tính từ-Hạnh phúc, vui vẻ-He feels happy when he is with his friends.-false
+Holiday-Danh từ-Ngày lễ, kỳ nghỉ-He enjoys spending time with family during the holiday season.-false
 Forget-Động từ-Quên-He forgot his keys.-false
 Know-Động từ-Biết, hiểu-He knows how to do it.-false
 Regarding-Giới từ-Liên quan đến-He spoke regarding the matter.-false
@@ -221,6 +224,7 @@ Positive-Tính từ-Tích cực, tích hợp-He has a positive attitude towards 
 Usually-Trạng từ-Thường thường, hay-He usually goes to bed at 10 pm.-false
 Represent-Động từ-Đại diện, thể hiện-He represented his country in the Olympics.-false
 Position-Danh từ-Vị trí, tư thế-She adjusted her position in the chair.-false
+History-Danh từ-Lịch sử-He is studying ancient history in school.-false
 Question-Danh từ-Câu hỏi, vấn đề-He asked her a question.-false
 Important-Tính từ-Quan trọng-It is important to be on time.-false
 Information-Danh từ-Thông tin-He gave me some useful information.-false
@@ -231,6 +235,7 @@ Permission-Danh từ-Sự cho phép-He asked for permission to leave early.-fals
 Dead-Tính từ-Chết, đã chết-The animal was dead.-false
 Temperature-Danh từ-Nhiệt độ-The temperature is hot today.-false
 Face-Danh từ-Khuôn mặt, gương mặt-He had a kind face.-false
+Head-Danh từ-Đầu-He bumped his head against the door.-false
 Idea-Danh từ-Ý tưởng, ý kiến-He had a great idea.-false
 Band-Danh từ-Nhóm nhạc, ban nhạc-The band played a concert.-false
 Ice-Danh từ-Đá, băng-The water turned to ice.-false
@@ -271,6 +276,7 @@ Backpack-Danh từ-Ba lô-He carried his backpack on his back.-false
 Bark-Danh từ-Vỏ cây-The dog barked at the tree.-false
 Field-Danh từ-Cánh đồng, sân vận động-He played football in the field.-false
 Man-Danh từ-Người đàn ông-He is a tall man.-false
+High-Tính từ-Cao-He climbed to the top of the high mountain.-false
 Camera-Danh từ-Máy ảnh-He took a picture with his camera.-false
 Find-Động từ-Tìm thấy, phát hiện-He found the lost dog.-false
 Indeed-Trạng từ-Thật vậy, quả thực-He is indeed a talented artist.-false
@@ -278,6 +284,7 @@ Mean-Tính từ-Trung bình, tầm thường-He is a mean person.-false
 Place-Danh từ-Nơi, địa điểm-They visited many interesting places on their trip.-false
 See-Động từ-Nhìn, thấy-He saw her at the park.-false
 Teach-Động từ-Dạy, giảng dạy-He teaches English.-false
+Hat-Danh từ-Mũ-He wears a hat to protect himself from the sun.-false
 Dark-Tính từ-Tối, đen-It was a dark and stormy night.-false
 Day-Danh từ-Ngày-Today is a beautiful day.-false
 Fair-Tính từ-Công bằng, hợp lý-It was a fair deal.-false
@@ -295,6 +302,7 @@ Scale-Danh từ-Cân, thang đo-He weighed himself on the scale.-false
 Table-Danh từ-Bàn-He put the book on the table.-false
 Wage-Danh từ-Lương, tiền công-He earns a high wage.-false
 We-Đại từ-Chúng tôi-We are going to the park.-false
+Have-Động từ-Có, sở hữu-He has a dog as a pet.-false
 It-Đại từ-Nó-It is a beautiful day.-false
 Keep-Động từ-Giữ, giữ lại-He kept the money.-false
 No-Tính từ-Không-There is no water left.-false
@@ -334,6 +342,7 @@ King-Danh từ-Vua-He was the king of the country.-false
 Machine-Danh từ-Máy móc-He works in a machine shop.-false
 Match-Danh từ-Trận đấu, cuộc thi-It was a close match.-false
 Or-Liên từ-Hoặc-You can have tea or coffee, whichever you prefer.-false
+Help-Động từ-Giúp đỡ-He offered to help his neighbor carry groceries.-false
 Cart-Danh từ-giỏ hàng-cart cart-false
 Access-Danh từ-Tiếp cận, quyền truy cập-We need access to the internet.-false
 Calendar-Danh từ-Lịch-She marked the date on the calendar.-false
@@ -380,13 +389,3 @@ Then-Trạng từ-Sau đó, rồi-He went home, then he went to bed.-false
 Thick-Tính từ-Dày-He has thick hair.-false
 Unable-Tính từ-Không thể, không có khả năng-He is unable to walk.-false
 Walk-Động từ-Đi bộ-He walked to the park.-false
-Happy-Tính từ-Hạnh phúc, vui vẻ-He feels happy when he is with his friends.-false
-Hat-Danh từ-Mũ-He wears a hat to protect himself from the sun.-false
-Have-Động từ-Có, sở hữu-He has a dog as a pet.-false
-Head-Danh từ-Đầu-He bumped his head against the door.-false
-Heart-Danh từ-Trái tim-He wears his heart on his sleeve.-false
-Heavy-Tính từ-Nặng-The box is too heavy for him to lift alone.-false
-Help-Động từ-Giúp đỡ-He offered to help his neighbor carry groceries.-false
-High-Tính từ-Cao-He climbed to the top of the high mountain.-false
-History-Danh từ-Lịch sử-He is studying ancient history in school.-false
-Holiday-Danh từ-Ngày lễ, kỳ nghỉ-He enjoys spending time with family during the holiday season.-false
