@@ -356,7 +356,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-//    chức năng thêm từ       
+    // Phương thức thêm từ
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         String english = tF_tiengAnh.getText();
         String type = cbb_Loaitu.getSelectedItem().toString();
@@ -405,7 +405,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btn_AddActionPerformed
-
+    // Phương thức cập nhật dữ liệu từ
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
         int selectedRow = table_Data.getSelectedRow();   
         // Lấy thông tin từ các JTextField
@@ -428,7 +428,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btn_SaveActionPerformed
-
+    // Phương thức xóa mềm từ
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
         String[] options = {"Có", "Không"};
         int selectedRow = table_Data.getSelectedRow();
@@ -456,7 +456,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_DeleteActionPerformed
-
+    // Phương thức chuyển đổi frame không mất dữ liệu
     private void btn_DeletedWordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletedWordsActionPerformed
         DictionaryDeletedWords dictionaryDeletedWords = new DictionaryDeletedWords();
         DictionaryManager dictionaryManager = new DictionaryManager();
@@ -472,7 +472,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     public void close(){
         this.setVisible(false);
     }
-    
+    // Phương thức quay lại frame mẹ
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
         DictionaryApp dictionaryApp = new DictionaryApp();
         DictionaryManager dictionaryManager = new DictionaryManager();
@@ -536,7 +536,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     private void menuItem_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_ExitActionPerformed
         Exit();
     }//GEN-LAST:event_menuItem_ExitActionPerformed
-
+    // Phương thức load lại dữ liệu từ dslk
     private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
         tF_tiengAnh.setText("");
         cbb_Loaitu.setSelectedIndex(0);
@@ -547,7 +547,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         System.out.println("Danh sách từ điển sau khi nhập:");
         model.printDictionary();
     }//GEN-LAST:event_btn_reloadActionPerformed
-
+    // Phương thức chọn tù cần cập nhật đưa lên lại các trường
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) {
@@ -560,12 +560,12 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một hàng để cập nhật!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_UpdateActionPerformed
-
+    // Phương thức ghi dữ liệu vào file
     private void menuItem_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_SaveActionPerformed
         model.writeFile(list);
     }//GEN-LAST:event_menuItem_SaveActionPerformed
     
-//chức năng chọn vào một dòng trên bảng rồi lấy dữ liệu
+    //Phương thức chọn vào một dòng trên bảng rồi lấy dữ liệu
     private void table_DataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_DataMouseClicked
         tF_tiengAnh.setEditable(false);
         cbb_Loaitu.setEditable(false);
@@ -580,21 +580,8 @@ public class DictionaryManager extends javax.swing.JFrame {
             tF_TViDu.setText(tableModel.getValueAt(selectedRow, 4).toString());
         }
     }//GEN-LAST:event_table_DataMouseClicked
-
-//    kiểm tra trạng thái của từ
-    public boolean isWordActive(String word) {
-        // Tìm kiếm từ trong danh sách và kiểm tra trạng thái của nó
-        int bucket = model.hashFunction(word);
-        if (list[bucket] != null) {
-            Node result = list[bucket].search(word);
-            if (result != null) {
-                return result.getValue().isActive();
-            }
-        }
-        return false;
-    }
     
-    //    Chức năng load dữ liệu từ file lưu trữ lên
+    //    Phương thức load dữ liệu từ file lưu trữ
     public void loadDataFromFile(LinkList[] list) {           
         for (int i = 0; i < 100; i++) {
             if (list[i] != null) {

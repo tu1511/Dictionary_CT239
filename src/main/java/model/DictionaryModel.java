@@ -27,7 +27,7 @@ public class DictionaryModel {
         }
     }
 
-    // Hàm băm
+    //    Phương thức hàm băm từ tiếng anh
     public int hashFunction(String key) {
         int sum = 0;
         // Tính tổng mã ASCII của các ký tự trong key
@@ -36,7 +36,7 @@ public class DictionaryModel {
         }
         return sum % SIZE;
     }
-    
+    //    Phương thức ghi dữ liệu vào file lưu trữ
     public void writeFile(LinkList[] list) { 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("datatest.txt"))) {
             for (LinkList bucket : list) {

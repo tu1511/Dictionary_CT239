@@ -234,7 +234,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         //dictionaryManager.close();
         this.setVisible(true);
     }
-    
+    //    Phương thức quay lại frame mẹ
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
         DictionaryDeletedWords dictionaryDeletedWords = new DictionaryDeletedWords();
         DictionaryManager dictionaryManager = new DictionaryManager();
@@ -249,11 +249,11 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         Exit();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
+    //    Phương thức ghi dữ liệu vào file lưu trữ
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         model.writeFile(list);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+    //    Phương thức xóa từ vĩnh viễn
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         String[] options = {"Có", "Không"};
         int selectedRow = table_Data.getSelectedRow();
@@ -280,7 +280,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_deleteActionPerformed
-
+    //    Phương thức khôi phục dữ liệu
     private void btn_recoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_recoverActionPerformed
         String[] options = {"Có", "Không"};
         int selectedRow = table_Data.getSelectedRow();
@@ -307,7 +307,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_recoverActionPerformed
 
-    //    Chức năng load dữ liệu từ file lưu trữ lên
+    //    Phương thức load dữ liệu từ file lưu trữ
     public void deletedWords(LinkList[] l) {           
         for (int i = 0; i < 100; i++) {
             if (l[i] != null) {

@@ -135,11 +135,6 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         tF_Infor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tF_Infor.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        tF_Infor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tF_InforActionPerformed(evt);
-            }
-        });
         tF_Infor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tF_InforKeyPressed(evt);
@@ -315,7 +310,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_HistoryActionPerformed
 
     public String e = new String(), t = new String(), m = new String(), ex = new String();
-    
+    // Phương thức chuyển đổi frame không mất dữ liệu
     public void openForm(String english, String type, String meaning, String example, LinkList[] li, DictionaryManager dictionaryManager) {
         for (int i = 0; i < 100; i++) {
             if(li[i] != null) {
@@ -337,7 +332,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         this.setVisible(false);
         dictionaryManager.openForm(e, t, m, ex, list, dictionaryApp);
     }//GEN-LAST:event_btn_ManagerActionPerformed
-
+    // Phương thức lấy từ đang tìm để gợi ý   
     private void tF_InforKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyReleased
         String selectedWord = tF_Infor.getText().trim().toLowerCase();
 
@@ -369,7 +364,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         list_Data.setModel(modelList);
         list_Data.setVisibleRowCount(Math.min(modelList.getSize(), 5));
     }//GEN-LAST:event_tF_InforKeyReleased
-
+    // Phương thức chọn từ trong danh sách gợi ý hiển thị dữ liệu
     private void list_DataValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_DataValueChanged
         if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
             String selectedWord = (String) list_Data.getSelectedValue();
@@ -381,11 +376,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_list_DataValueChanged
-
-    private void tF_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tF_InforActionPerformed
-      //  searchWord();
-    }//GEN-LAST:event_tF_InforActionPerformed
-
+    // Phương thức chọn từ trong danh sách từ đã tra cứu hiển thị dữ liệu
     private void list_HistoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_HistoryValueChanged
         if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
             String selectedWord = (String) list_History.getSelectedValue();
@@ -399,33 +390,28 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_list_HistoryValueChanged
 
     private void list_DataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_list_DataKeyPressed
-        int selectedIndex = list_Data.getSelectedIndex();
-        int maxIndex = list_Data.getModel().getSize() - 1;
-
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            searchWord();
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            if (selectedIndex > 0) {
-                list_Data.setSelectedIndex(selectedIndex - 1);
-            }
-        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (selectedIndex < maxIndex) {
-                list_Data.setSelectedIndex(selectedIndex + 1);
-            }
-        }
+//        int selectedIndex = list_Data.getSelectedIndex();
+//        int maxIndex = list_Data.getModel().getSize() - 1;
+//
+//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            searchWord();
+//        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+//            if (selectedIndex > 0) {
+//                list_Data.setSelectedIndex(selectedIndex - 1);
+//            }
+//        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+//            if (selectedIndex < maxIndex) {
+//                list_Data.setSelectedIndex(selectedIndex + 1);
+//            }
+//        }
     }//GEN-LAST:event_list_DataKeyPressed
 
     private void tF_InforKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            list_Data.requestFocus();
-            if (list_Data.getModel().getSize() > 0) {
-                list_Data.setSelectedIndex(0);
-            }
-        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             searchWord();
         }
     }//GEN-LAST:event_tF_InforKeyPressed
-
+    // Phương thức tìm kiếm từ đang nhập
     public void searchWord() {
         String selectedWord = tF_Infor.getText().trim();
 
@@ -452,7 +438,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         showSearchHistory();
     }
     
-    
+    // Phương thức chọn từ trong danh sách hiển thị dữ liệu
     private void displayWordInfo(String selectedWord) {
         LinkList[] list = model.readFile(currentFilePath);
         int bucket = model.hashFunction(selectedWord);
@@ -470,7 +456,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
     }
 
-     // Hàm để thêm từ khóa tìm kiếm vào lịch sử
+     // Phương thức để thêm từ khóa tìm kiếm vào lịch sử
     private void addToSearchHistory(String keyword) {
         if (searchHistory.contains(keyword)) {
             searchHistory.remove(keyword);
@@ -478,7 +464,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         searchHistory.add(0,keyword);
     }
 
-    // Hàm để hiển thị lịch sử tìm kiếm
+    // Phương thức để hiển thị lịch sử tìm kiếm
     private void showSearchHistory() {
         DefaultListModel<String> data_model = new DefaultListModel<>();
         for (String keyword : searchHistory) {
@@ -486,7 +472,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
         list_History.setModel(data_model);
     }
-    
+    // Phương thức chọn thoát
     private void Exit() {
         String[] options = {"Có", "Không"};
         int choice = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn thoát?", "WARNING",

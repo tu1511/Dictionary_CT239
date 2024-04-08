@@ -26,7 +26,7 @@ public class LinkList {
         this.size = size;
     }
 
-    // Thêm một nút vào đầu danh sách
+    // Phương thức thêm một nút vào đầu danh sách
     public void addToHead(Data value) {
         Node newNode = new Node(value);
         if (head == null) {
@@ -38,7 +38,7 @@ public class LinkList {
         size++;
     }
 
-    // Thêm một nút vào cuối danh sách
+    // Phương thức thêm một nút vào cuối danh sách
     public void addToTail(Data value) {
         Node newNode = new Node(value);
         if (head == null) {
@@ -53,7 +53,7 @@ public class LinkList {
         size++;
     }
 
-    // Xóa một nút chứa từ có giá trị là word
+    // Phương thức xóa một nút chứa từ có giá trị là word
     public void delete(String word) {
         if (head == null) {
             return;
@@ -75,7 +75,7 @@ public class LinkList {
             current = current.getNext();
         }
     }
-
+    // Phương thức  cập nhật thông tin của nút
     public void updateNode(String oldValue, Data newValue) {
         Node current = head;
         Node prev = null;
@@ -104,7 +104,7 @@ public class LinkList {
     }
 
     
-    // Tìm kiếm nút chứa từ có giá trị là word
+    // Phương thức tìm kiếm nút chứa từ có giá trị là word
     public Node search(String word) {
         Node current = head;
         while (current != null) {
@@ -116,7 +116,7 @@ public class LinkList {
         return null;
     }
 
-    // In ra danh sách
+    // Phương thức in ra danh sách
     public void print() {
         Node current = head;
         while (current != null) {
@@ -127,7 +127,7 @@ public class LinkList {
     
    
 
-    // Lấy dữ liệu từ một nút
+    // Phương thức lấy dữ liệu từ một nút
     public Data getData(Node node) {
         return node != null ? node.getValue() : null;
     }
