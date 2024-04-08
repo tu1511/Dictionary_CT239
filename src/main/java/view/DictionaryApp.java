@@ -1,8 +1,8 @@
 package view;
 
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.JFrame;
 import model.DictionaryModel;
@@ -16,10 +16,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     private final String currentFilePath = "datatest.txt";
     
     LinkList list[] = new LinkList[100];
-
-    public String getCurrentFilePath() {
-        return currentFilePath;
-    }
+    private ArrayList<String> searchHistory = new ArrayList<>();
 
     public DictionaryApp() {
 
@@ -74,6 +71,11 @@ public class DictionaryApp extends javax.swing.JFrame {
         jScrollPane3.setAlignmentY(0.0F);
 
         list_Data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        list_Data.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                list_DataKeyPressed(evt);
+            }
+        });
         list_Data.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 list_DataValueChanged(evt);
@@ -94,17 +96,23 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         menu.setFocusable(false);
 
+        list_History.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        list_History.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                list_HistoryValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(list_History);
 
         javax.swing.GroupLayout panel_HistoryLayout = new javax.swing.GroupLayout(panel_History);
         panel_History.setLayout(panel_HistoryLayout);
         panel_HistoryLayout.setHorizontalGroup(
             panel_HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
         );
         panel_HistoryLayout.setVerticalGroup(
             panel_HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -133,6 +141,9 @@ public class DictionaryApp extends javax.swing.JFrame {
             }
         });
         tF_Infor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tF_InforKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tF_InforKeyReleased(evt);
             }
@@ -328,9 +339,9 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ManagerActionPerformed
 
     private void tF_InforKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyReleased
-        String tuCanTim = tF_Infor.getText().trim().toLowerCase();
+        String selectedWord = tF_Infor.getText().trim().toLowerCase();
 
-        if (tuCanTim.isEmpty()) {
+        if (selectedWord.isEmpty()) {
             list_Data.setModel(new DefaultListModel<>());
             menu.setVisible(false);// Xóa danh sách từ hiện tại
             return;
@@ -346,7 +357,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             while ((line = reader.readLine()) != null) {
                 if (line.endsWith("-false")) {
                     String englishWord = getEnglishWord(line); // Lấy từ tiếng Anh từ chuỗi
-                    if (englishWord.toLowerCase().startsWith(tuCanTim)) {
+                    if (englishWord.toLowerCase().startsWith(selectedWord)) {
                         modelList.addElement(englishWord);
                     }
                 }
@@ -364,38 +375,81 @@ public class DictionaryApp extends javax.swing.JFrame {
             String selectedWord = (String) list_Data.getSelectedValue();
             if (selectedWord != null) {
                 displayWordInfo(selectedWord);
-                tF_Infor.setText(selectedWord);
+              //  tF_Infor.setText(selectedWord);
+                addToSearchHistory(selectedWord);
                 menu.setVisible(false);
             }
         }
     }//GEN-LAST:event_list_DataValueChanged
 
     private void tF_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tF_InforActionPerformed
-        searchWord();
+      //  searchWord();
     }//GEN-LAST:event_tF_InforActionPerformed
 
-    public void searchWord() {
-        String tuCanTim = tF_Infor.getText().trim();
+    private void list_HistoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_HistoryValueChanged
+        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
+            String selectedWord = (String) list_History.getSelectedValue();
+            if (selectedWord != null) {
+                displayWordInfo(selectedWord);
+                tF_Infor.setText(selectedWord);
+                addToSearchHistory(selectedWord);
+                menu_History.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_list_HistoryValueChanged
 
-        if (tuCanTim.isEmpty()) {
-            // Hiển thị thông báo nếu không nhập từ cần tra
+    private void list_DataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_list_DataKeyPressed
+        int selectedIndex = list_Data.getSelectedIndex();
+        int maxIndex = list_Data.getModel().getSize() - 1;
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            searchWord();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            if (selectedIndex > 0) {
+                list_Data.setSelectedIndex(selectedIndex - 1);
+            }
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            if (selectedIndex < maxIndex) {
+                list_Data.setSelectedIndex(selectedIndex + 1);
+            }
+        }
+    }//GEN-LAST:event_list_DataKeyPressed
+
+    private void tF_InforKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            list_Data.requestFocus();
+            if (list_Data.getModel().getSize() > 0) {
+                list_Data.setSelectedIndex(0);
+            }
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            searchWord();
+        }
+    }//GEN-LAST:event_tF_InforKeyPressed
+
+    public void searchWord() {
+        String selectedWord = tF_Infor.getText().trim();
+
+        if (selectedWord.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
+        addToSearchHistory(selectedWord);
         LinkList[] list = model.readFile(currentFilePath);
-        int bucket = model.hashFunction(tuCanTim);
+        int bucket = model.hashFunction(selectedWord);
 
         if (list[bucket] != null) {
             // Tìm kiếm từ trong danh sách liên kết
-            Node result = list[bucket].search(tuCanTim);
+            Node result = list[bucket].search(selectedWord);
             if (result != null && !result.getValue().isActive()) {
                 String info = result.getData();
-                TextArea_data.setText(info);               
+                TextArea_data.setText(info);  
+                showSearchHistory();
                 return;
             }
         }
-        JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + tuCanTim + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + selectedWord + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        showSearchHistory();
     }
     
     
@@ -416,6 +470,23 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
     }
 
+     // Hàm để thêm từ khóa tìm kiếm vào lịch sử
+    private void addToSearchHistory(String keyword) {
+        if (searchHistory.contains(keyword)) {
+            searchHistory.remove(keyword);
+        }
+        searchHistory.add(0,keyword);
+    }
+
+    // Hàm để hiển thị lịch sử tìm kiếm
+    private void showSearchHistory() {
+        DefaultListModel<String> data_model = new DefaultListModel<>();
+        for (String keyword : searchHistory) {
+            data_model.addElement(keyword);
+        }
+        list_History.setModel(data_model);
+    }
+    
     private void Exit() {
         String[] options = {"Có", "Không"};
         int choice = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn thoát?", "WARNING",
