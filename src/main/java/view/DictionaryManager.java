@@ -524,8 +524,8 @@ public class DictionaryManager extends javax.swing.JFrame {
     private void menuItem_UserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_UserManualActionPerformed
         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
                  + "1. Thêm từ mới: Nhập từ tiếng Anh, loại từ, nghĩa tiếng Việt và ví dụ, sau đó nhấn nút Thêm từ.\n"
-                 + "2. Cập nhật từ: Chọn một dòng trong bảng, nhấn nút cập nhật từ để hiển thị thông tin và thay đổi\nthông tin và nhấn nút Lưu để cập nhật lại thông tin từ vựng.\n"
-                 + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút Xóa từ.\n"
+                 + "2. Cập nhật từ: Chọn một dòng trong bảng, nhấn nút \"Cập nhật\" cho phép cập nhật và thay đổi\nthông tin và nhấn nút Lưu để cập nhật lại thông tin từ vựng.\n"
+                 + "3. Xóa từ: Chọn một dòng trong bảng và nhấn nút \"Xóa\" để xóa mềm.\n"
                  + "4. Reload: Xóa thông tin đang nhập trên các ô nhập liệu và load lại dữ liệu.\n"
                  + "5. Lưu: Lưu lại dữ liệu sau khi thêm, cập nhập hoặc xóa từ.\n"
                  + "6. Thoát: Đóng chương trình.\n\n"

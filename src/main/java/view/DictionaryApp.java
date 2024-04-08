@@ -296,8 +296,8 @@ public class DictionaryApp extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
                 + "1. Tra cứu từ: Nhập từ tiếng Anh vào trong thanh tìm kiếm sau đó nhấn nút Tra cứu.\n"
                 + "2. Quản lý tự điển: chọn vào nút đó để chuyển sang giao diện điều chỉnh thông tin từ vựng.\n"
-                + "3. Thoát: Đóng chương trình.\n\n"
-                + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần thêm, cập nhật hoặc xóa từ."
+                + "3. Lịch sử: Hiển thị từ đã tra cứu.\n"
+                + "4. Thoát: Đóng chương trình.\n\n"
                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_UserManualActionPerformed
 

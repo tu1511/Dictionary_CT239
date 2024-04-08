@@ -53,7 +53,7 @@ public class DictionaryModel {
             e.printStackTrace();
         }
     }
-
+    //    Phương thức đọc dữ liệu từ file lưu trữ
     public LinkList[] readFile(String fileName) {
         FileReader fr = null;
         try {

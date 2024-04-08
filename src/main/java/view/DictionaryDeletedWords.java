@@ -196,6 +196,11 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\help.png"));
         jMenuItem3.setText("Hướng dẫn sử dụng");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -306,6 +311,15 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn dữ liệu để khôi phục!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_recoverActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
+                + "1. Khôi phục: Chọn từ và nhấn vào \"Khôi phục\" để khôi phục dữ liệu.\n"
+                + "2. Xóa: Chọn từ và nhấn vào \"Xóa\" để xóa vĩnh viễn dữ liệu của từ đã chọn.\n"
+                + "3. Thoát: Đóng chương trình.\n\n"
+                + "Chú ý: Bạn cần lưu dữ liệu sau mỗi lần khôi phục hoặc xóa từ."
+                + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     //    Phương thức load dữ liệu từ file lưu trữ
     public void deletedWords(LinkList[] l) {           
