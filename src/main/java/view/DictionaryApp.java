@@ -30,6 +30,8 @@ public class DictionaryApp extends javax.swing.JFrame {
         TextArea_data.setLineWrap(true);
         TextArea_data.setWrapStyleWord(true);  
         menu.add(panel);
+        
+        menu_History.add(panel_History);
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +42,10 @@ public class DictionaryApp extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         list_Data = new javax.swing.JList<>();
         menu = new javax.swing.JPopupMenu();
+        panel_History = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list_History = new javax.swing.JList<>();
+        menu_History = new javax.swing.JPopupMenu();
         jPanel2 = new javax.swing.JPanel();
         labelName = new javax.swing.JLabel();
         labelTraCuu = new javax.swing.JLabel();
@@ -88,6 +94,19 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         menu.setFocusable(false);
 
+        jScrollPane1.setViewportView(list_History);
+
+        javax.swing.GroupLayout panel_HistoryLayout = new javax.swing.GroupLayout(panel_History);
+        panel_History.setLayout(panel_HistoryLayout);
+        panel_HistoryLayout.setHorizontalGroup(
+            panel_HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+        );
+        panel_HistoryLayout.setVerticalGroup(
+            panel_HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý tự điển");
         setBackground(new java.awt.Color(51, 255, 204));
@@ -96,11 +115,6 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(829, 571));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
-            }
-        });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelName.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -178,14 +192,14 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 132, -1, -1));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 132, 760, -1));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu1.setText("Tài liệu");
@@ -286,22 +300,8 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItem_InforActionPerformed
 
     private void btn_HistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HistoryActionPerformed
-//        DefaultListModel<String> historyModel = new DefaultListModel<>();
-//
-//        // Thêm các từ đã tra cứu từ recentSearches vào model
-//        for (String search : recentSearches) {
-//            historyModel.addElement(search);
-//        }
-//
-//        // Đặt model cho JList_History để hiển thị danh sách từ đã tra cứu
-//        jList_History.setModel(historyModel);
-//        jList_History.setVisible(true);
+        menu_History.show(btn_History,0, btn_History.getHeight());
     }//GEN-LAST:event_btn_HistoryActionPerformed
-
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-//        jList_History.setPreferredSize(new Dimension(0, 0)); 
-//        jList_History.setVisible(false);
-    }//GEN-LAST:event_jPanel2MouseClicked
 
     public String e = new String(), t = new String(), m = new String(), ex = new String();
     
@@ -469,6 +469,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
@@ -476,12 +477,15 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelTraCuu;
     private javax.swing.JList<String> list_Data;
+    private javax.swing.JList<String> list_History;
     private javax.swing.JPopupMenu menu;
     private javax.swing.JMenuItem menuItem_Exit;
     private javax.swing.JMenuItem menuItem_Infor;
     private javax.swing.JMenuItem menuItem_UserManual;
     private javax.swing.JMenu menu_AboutMe;
+    private javax.swing.JPopupMenu menu_History;
     private javax.swing.JPanel panel;
+    private javax.swing.JPanel panel_History;
     private javax.swing.JTextField tF_Infor;
     // End of variables declaration//GEN-END:variables
 }
