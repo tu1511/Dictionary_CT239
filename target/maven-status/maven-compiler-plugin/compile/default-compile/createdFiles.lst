@@ -21,7 +21,6 @@ view\DictionaryApp$11.class
 view\DictionaryApp$7.class
 view\DictionaryApp$8.class
 view\DictionaryManager$8.class
-controller\DictionaryController.class
 model\Test.class
 view\DictionaryManager$1.class
 view\DictionaryDeletedWords$4.class
@@ -31,11 +30,13 @@ view\DictionaryDeletedWords.class
 model\Data.class
 view\DictionaryManager$12.class
 view\DictionaryApp$1.class
+view\DictionaryDeletedWords$9.class
 view\DictionaryManager$6.class
 view\DictionaryApp$5.class
 view\DictionaryDeletedWords$2.class
 view\DictionaryApp$6.class
 view\DictionaryManager$9.class
+DictionaryController.class
 view\DictionaryApp$12.class
 view\DictionaryManager$4.class
 view\DictionaryApp$3.class

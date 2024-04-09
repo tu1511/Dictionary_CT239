@@ -1,7 +1,6 @@
-Campaign-Danh từ-Chiến dịch-They campaigned for a better environment.-true
-Earth-Danh từ-Trái đất-We live on Earth.-true
+Earth-Danh từ-Trái đất-We live on Earth.-false
 Friend-Danh từ-Bạn bè-He is my best friend.-true
-Join-Động từ-Tham gia, kết hợp-He joined the club.-true
+Join-Động từ-Tham gia, kết hợp-He joined the club.-false
 None-Đại từ-Không ai, không cái nào-None of them were ready.-false
 Raise-Động từ-Nâng lên, tăng cao-He raised his hand.-false
 Reduce-Động từ-Giảm, giảm bớt-He reduced the price of the car.-false
@@ -13,13 +12,12 @@ Set-Động từ-Đặt, thiết lập-He set the table for dinner.-false
 Us-Đại từ-Chúng tôi-He gave us a gift.-false
 Wall-Danh từ-Tường, vách-He painted the wall white.-false
 Heart-Danh từ-Trái tim-He wears his heart on his sleeve.-false
-Poem-Danh từ-Bài thơ-She wrote a beautiful poem.-true
+Poem-Danh từ-Bài thơ-She wrote a beautiful poem.-false
 Ready-Tính từ-Sẵn sàng, chuẩn bị-He is ready to go.-false
 Say-Động từ-Nói, nói ra-He said hello to me.-false
 Tax-Danh từ-Thuế-He paid his taxes.-false
 Tell-Động từ-Nói, kể-He told me a story.-false
 That-Đại từ-Đó, kia-That is a beautiful cat.-false
-Use-Động từ-Sử dụng, dùng-He uses a computer for his work.-true
 Easy-Tính từ-Dễ dàng-The test was easy.-false
 Father-Danh từ-Cha, bố-He is a good father.-false
 Open-Tính từ, Động từ-Mở, mở cửa-The store is open on Sundays.-false

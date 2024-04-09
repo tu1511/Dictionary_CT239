@@ -13,10 +13,10 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
 
     DictionaryModel model = new DictionaryModel();
     public String currentFilePath = "datatest.txt";
-    LinkList l[] = new LinkList[100];
     DefaultTableModel tableModel;
-    public LinkList[] list = model.readFile(currentFilePath);
     
+    public LinkList[] list = model.readFile(currentFilePath);
+    LinkList l[] = new LinkList[100];
     public DictionaryDeletedWords() {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,6 +26,8 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         table_Data.getTableHeader().setFont(new Font("Arial",Font.BOLD,16));
         table_Data.getTableHeader().setOpaque(false);
         table_Data.getTableHeader().setForeground(Color.red);
+        
+        setResizable(false);
         
         tableModel.setRowCount(0);
         deletedWords(list);
@@ -48,9 +50,10 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         btn_close = new javax.swing.JButton();
         btn_recover = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
+        btn_Reload = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btn_Save = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -123,6 +126,15 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
             }
         });
 
+        btn_Reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Reload.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\reload.png"));
+        btn_Reload.setText("Đặt lại");
+        btn_Reload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ReloadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,6 +147,8 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                 .addContainerGap(269, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Reload, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(btn_recover, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,26 +172,27 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_recover, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Reload, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(433, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(133, 133, 133)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(27, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(39, Short.MAX_VALUE)))
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu1.setText("Tài liệu");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\save.png"));
-        jMenuItem1.setText("Lưu");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        btn_Save.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\save.png"));
+        btn_Save.setText("Lưu");
+        btn_Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                btn_SaveActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(btn_Save);
         jMenu1.add(jSeparator1);
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\close.png"));
@@ -223,28 +238,25 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
 
     public String e = new String(), t = new String(), m = new String(), ex = new String();
     
-    public void openForm(String english, String type, String meaning, String example, LinkList[] li, DictionaryManager dictionaryManager) {
+    public void openForm2(String english, String type, String meaning, String example, LinkList[] li, DictionaryManager dictionaryManager) {
         for (int i = 0; i < 100; i++) {
             if(li[i] != null) {
                 l[i] = new LinkList(li[i]);
              
             }
         }
-        
         e = new String(english);
         t = new String(type);
         m = new String(meaning);
-        ex = new String(example);
-               
-        //dictionaryManager.close();
+        ex = new String(example);           
         this.setVisible(true);
     }
     //    Phương thức quay lại frame mẹ
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
         DictionaryDeletedWords dictionaryDeletedWords = new DictionaryDeletedWords();
         DictionaryManager dictionaryManager = new DictionaryManager();
-        this.setVisible(false);
-        dictionaryManager.openForm1(e, t, m, ex, l, dictionaryDeletedWords);
+        this.setVisible(false);    
+//        dictionaryManager.openForm1(e, t, m, ex, l, dictionaryDeletedWords);
     }//GEN-LAST:event_btn_ReturnActionPerformed
 
     private void btn_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_closeActionPerformed
@@ -255,10 +267,10 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         Exit();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
     //    Phương thức ghi dữ liệu vào file lưu trữ
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
         model.writeFile(list);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-    //    Phương thức xóa từ vĩnh viễn
+    }//GEN-LAST:event_btn_SaveActionPerformed
+    //    Phương thức xóa mềm khi trạng thái falsevaf xóa từ vĩnh viễn khi true
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         String[] options = {"Có", "Không"};
         int selectedRow = table_Data.getSelectedRow();
@@ -294,17 +306,23 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
             if (dialogResult == JOptionPane.YES_OPTION) {
                 DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
                 String selectedWord = data.getValueAt(selectedRow, 1).toString();
-
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
                     Node result = list[bucket].search(selectedWord);
                     if (result != null && result.getValue().isActive()) {
                         result.getValue().setActive(false);
+                        System.out.println("Danh sách từ điển sau khi nhập:");
+                         for (int i = 0; i < list.length; i++) {
+                            System.out.println("Bucket " + i + ":");
+                            list[i].print();
+                            System.out.println();
+                        }
                     }
                 }
-                data.removeRow(selectedRow);
+//                data.removeRow(selectedRow);
                 tableModel.setRowCount(0);
                 deletedWords(list);
+                
                 JOptionPane.showMessageDialog(null, "Dữ liệu đã được khôi phục!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
@@ -321,13 +339,35 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void btn_ReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReloadActionPerformed
+        tableModel.setRowCount(0);
+        loadDataFromFileFalse(list);
+    }//GEN-LAST:event_btn_ReloadActionPerformed
+
     //    Phương thức load dữ liệu từ file lưu trữ
-    public void deletedWords(LinkList[] l) {           
+    public void deletedWords(LinkList[] li) {           
         for (int i = 0; i < 100; i++) {
-            if (l[i] != null) {
-                Node currentNode = l[i].getHead();
+            if (li[i] != null) {
+                Node currentNode = li[i].getHead();
                 while (currentNode != null) {
                     if (currentNode.getValue().isActive()) {
+                        tableModel.addRow(new Object[] {
+                            i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
+                        });
+                    }
+                    currentNode = currentNode.getNext();
+                }
+            }
+        }
+    }
+    
+    
+    public void loadDataFromFileFalse(LinkList[] list) {           
+        for (int i = 0; i < 100; i++) {
+            if (list[i] != null) {
+                Node currentNode = list[i].getHead();
+                while (currentNode != null) {
+                    if (!currentNode.getValue().isActive()) {
                         tableModel.addRow(new Object[] {
                             i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
                         });
@@ -384,7 +424,9 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Reload;
     private javax.swing.JButton btn_Return;
+    private javax.swing.JMenuItem btn_Save;
     private javax.swing.JButton btn_close;
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_recover;
@@ -392,7 +434,6 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
@@ -400,4 +441,5 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable table_Data;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -17,6 +17,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     DictionaryModel model = new DictionaryModel();
     public String currentFilePath = "datatest.txt";
     DefaultTableModel tableModel;
+    public String[] options = {"Có", "Không"};
     
     public LinkList[] list = model.readFile(currentFilePath);
     
@@ -26,12 +27,14 @@ public class DictionaryManager extends javax.swing.JFrame {
         tableModel = (DefaultTableModel) table_Data.getModel();
         setLocationRelativeTo(null);
         
-        table_Data.getTableHeader().setFont(new Font("Arial",Font.BOLD,16));
+        table_Data.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,16));
         table_Data.getTableHeader().setOpaque(false);
         table_Data.getTableHeader().setForeground(Color.red);
       
+        setResizable(false);
+        
         tableModel.setRowCount(0);
-        loadDataFromFile(list);
+        loadDataFromFile(list); 
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -428,50 +431,57 @@ public class DictionaryManager extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btn_SaveActionPerformed
-    // Phương thức xóa mềm từ
+    //    Phương thức xóa mềm khi trạng thái falsevaf xóa từ vĩnh viễn khi true
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
         String[] options = {"Có", "Không"};
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
             int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
             if (dialogResult == JOptionPane.YES_OPTION) {
-                DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
-                String selectedWord = data.getValueAt(selectedRow, 1).toString();
+                String selectedWord = tableModel.getValueAt(selectedRow, 1).toString();
 
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
                     Node result = list[bucket].search(selectedWord);
                     if (result != null && !result.getValue().isActive()) {
                         result.getValue().setActive(true);
+                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        tableModel.setRowCount(0);
+                        loadDataFromFile(list);
+                    } else if (result != null && result.getValue().isActive()) {
+                        list[bucket].delete(selectedWord);
+                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa vĩnh viễn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        tableModel.setRowCount(0);
+                        deletedWords(list);
                     }
                 }
-                btn_reloadActionPerformed(evt);
-                // Xóa dòng khỏi bảng
-                data.removeRow(selectedRow);
-                tableModel.setRowCount(0);
-                loadDataFromFile(list);
-                JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_DeleteActionPerformed
     // Phương thức chuyển đổi frame không mất dữ liệu
+//    private void btn_DeletedWordsActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+//        DictionaryDeletedWords dictionaryDeletedWords = new DictionaryDeletedWords();
+//        DictionaryManager dictionaryManager = new DictionaryManager();
+//        
+//        String english = tF_tiengAnh.getText();
+//        String type = cbb_Loaitu.getSelectedItem().toString();
+//        String meaning = tF_TiengViet.getText();
+//        String example = tF_TViDu.getText();
+//        this.close();
+//        dictionaryDeletedWords.openForm2(english, type, meaning, example, list, dictionaryManager);
+//    }              
+    
     private void btn_DeletedWordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletedWordsActionPerformed
-        DictionaryDeletedWords dictionaryDeletedWords = new DictionaryDeletedWords();
-        DictionaryManager dictionaryManager = new DictionaryManager();
-        
-        String english = tF_tiengAnh.getText();
-        String type = cbb_Loaitu.getSelectedItem().toString();
-        String meaning = tF_TiengViet.getText();
-        String example = tF_TViDu.getText();
-        this.close();
-        dictionaryDeletedWords.openForm(english, type, meaning, example, list, dictionaryManager);
+       tableModel.setRowCount(0);
+       deletedWords(list);
     }//GEN-LAST:event_btn_DeletedWordsActionPerformed
 
     public void close(){
         this.setVisible(false);
     }
+    
     // Phương thức quay lại frame mẹ
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
         DictionaryApp dictionaryApp = new DictionaryApp();
@@ -503,23 +513,23 @@ public class DictionaryManager extends javax.swing.JFrame {
         loadDataFromFile(list);
     }
     
-    public void openForm1(String english, String type, String meaning, String example, LinkList[] l, DictionaryDeletedWords dictionaryDeletedWords) {
-        tF_tiengAnh.setText(english);
-        cbb_Loaitu.setSelectedItem(type);
-        tF_TiengViet.setText(meaning);
-        tF_TViDu.setText(example);
-        
-        for (int i = 0; i < 100; i++) {
-            if(l[i] != null) {
-                list[i] = new LinkList(l[i]);
-            }
-        }
-        
-        dictionaryDeletedWords.setVisible(false);
-        this.setVisible(true);
-        tableModel.setRowCount(0);
-        loadDataFromFile(list);
-    }
+//    public void openForm1(String english, String type, String meaning, String example, LinkList[] l, DictionaryDeletedWords dictionaryDeletedWords) {
+//        tF_tiengAnh.setText(english);
+//        cbb_Loaitu.setSelectedItem(type);
+//        tF_TiengViet.setText(meaning);
+//        tF_TViDu.setText(example);
+//        
+//        for (int i = 0; i < 100; i++) {
+//            if(l[i] != null) {
+//                list[i] = new LinkList(l[i]);
+//            }
+//        }
+//        
+//        dictionaryDeletedWords.setVisible(false);
+//        this.setVisible(true);
+//        tableModel.setRowCount(0);
+//        loadDataFromFile(list);
+//    }
     
     private void menuItem_UserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_UserManualActionPerformed
         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
@@ -544,8 +554,9 @@ public class DictionaryManager extends javax.swing.JFrame {
         tF_TViDu.setText("");
         tableModel.setRowCount(0);
         loadDataFromFile(list);
-        System.out.println("Danh sách từ điển sau khi nhập:");
-        model.printDictionary();
+//        Kiểm tra bảng băm lưu trữ
+//        System.out.println("Danh sách từ điển sau khi nhập:");
+//        model.printDictionary();
     }//GEN-LAST:event_btn_reloadActionPerformed
     // Phương thức chọn tù cần cập nhật đưa lên lại các trường
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
@@ -565,7 +576,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         model.writeFile(list);
     }//GEN-LAST:event_menuItem_SaveActionPerformed
     
-    //Phương thức chọn vào một dòng trên bảng rồi lấy dữ liệu
+    //Phương thức chọn vào một dòng trên bảng rồi lấy dữ liệu, nếu đang ở từ đã xóa hỏi có muốn khôi phục hayy không
     private void table_DataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_DataMouseClicked
         tF_tiengAnh.setEditable(false);
         cbb_Loaitu.setEditable(false);
@@ -573,7 +584,28 @@ public class DictionaryManager extends javax.swing.JFrame {
         tF_TViDu.setEditable(false);
         
         int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Đảm bảo có dòng được chọn
+        String[] options = {"Xóa vĩnh viễn", "Khôi phục", "Hủy"};
+        
+        String selectedWord = table_Data.getValueAt(selectedRow, 1).toString();
+        int bucket = model.hashFunction(selectedWord);
+        Node result = list[bucket].search(selectedWord);
+        
+        if (list[bucket] != null && selectedRow != -1 && result.getValue().isActive()) {
+            int dialogResult = JOptionPane.showOptionDialog(null, "Vui lòng chọn một trong các lựa chọn sau!", "Điều chỉnh từ đã xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                // Xóa vĩnh viễn
+                list[bucket].delete(selectedWord);
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa vĩnh viễn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                tableModel.setRowCount(0);
+                deletedWords(list);
+            } else if (dialogResult == JOptionPane.NO_OPTION) {
+                // Khôi phục
+                result.getValue().setActive(false);
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được khôi phục!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                tableModel.setRowCount(0);
+                deletedWords(list);
+            }
+        } else {
             tF_tiengAnh.setText(tableModel.getValueAt(selectedRow, 1).toString());
             cbb_Loaitu.setSelectedItem(tableModel.getValueAt(selectedRow, 2).toString());
             tF_TiengViet.setText(tableModel.getValueAt(selectedRow, 3).toString());
@@ -597,9 +629,25 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         }
     }
+    //    Phương thức load dữ liệu từ đã xóa trong file lưu trữ
+    public void deletedWords(LinkList[] li) {           
+        for (int i = 0; i < 100; i++) {
+            if (li[i] != null) {
+                Node currentNode = li[i].getHead();
+                while (currentNode != null) {
+                    if (currentNode.getValue().isActive()) {
+                        tableModel.addRow(new Object[] {
+                            i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
+                        });
+                    }
+                    currentNode = currentNode.getNext();
+                }
+            }
+        }
+    }
+
 
     private void Exit() {
-        String[] options = {"Có", "Không"};
         int choice = JOptionPane.showOptionDialog(null, "Chưa lưu dữ liệu! Bạn có chắc chắn muốn thoát?", "WARNING",
               JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
         if (choice == JOptionPane.YES_OPTION) {

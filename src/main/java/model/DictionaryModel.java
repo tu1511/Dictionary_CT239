@@ -8,22 +8,27 @@ import java.io.IOException;
 
 public class DictionaryModel {
     private final int SIZE = 100; // Số lượng buckets
-    public LinkList[] table;
+    public LinkList[] list;
 
     public int getSIZE() {
         return SIZE;
     }
 
-    public LinkList[] getTable() {
-        return table;
+    public LinkList[] getList() {
+        // Kiểm tra nếu dữ liệu đã được đọc từ file thì trả về dữ liệu đó
+        if (list != null) {
+            return list;
+        } else { // Nếu không, đọc dữ liệu từ file và trả về
+            list = readFile("datatest.txt");
+            return list;
+        }
     }
-
     
     // Constructor
     public DictionaryModel() {
-        table = new LinkList[SIZE];
+        list = new LinkList[SIZE];
         for (int i = 0; i < SIZE; i++) {
-            table[i] = new LinkList();
+            list[i] = new LinkList();
         }
     }
 
@@ -71,7 +76,7 @@ public class DictionaryModel {
                     Data word = new Data(english, type, meaning, example);
                     word.setActive(isActive);
                     int t = hashFunction(english);
-                    table[t].addToTail(word);
+                    list[t].addToTail(word);
                 }
             }
             br.close();
@@ -86,12 +91,12 @@ public class DictionaryModel {
                 e.printStackTrace();
             }
         }
-        return table;
+        return list;
     }
 
     public int getRowCount() {
         int count = 0;
-        for (LinkList bucket : table) {
+        for (LinkList bucket : list) {
             count += bucket.getSize();
         }
         return count;
@@ -109,7 +114,7 @@ public class DictionaryModel {
 
         // Tìm bucket chứa dữ liệu cho rowIndex
         int currentRow = 0;
-        for (LinkList bucket : table) {
+        for (LinkList bucket : list) {
             int bucketSize = bucket.getSize();
             if (rowIndex < currentRow + bucketSize) {
                 Node current = bucket.getHead();
@@ -142,7 +147,7 @@ public class DictionaryModel {
         if (column == 4 && value instanceof Boolean) {
             boolean isActive = (boolean) value;
             int currentRow = 0;
-            for (LinkList bucket : table) {
+            for (LinkList bucket : list) {
                 int bucketSize = bucket.getSize();
                 if (row < currentRow + bucketSize) {
                     Node current = bucket.getHead();
@@ -157,15 +162,11 @@ public class DictionaryModel {
             }
         }
     }
-
-    public LinkList[] getList() {
-        return table;
-    }
     
     public void printDictionary() {
         for (int i = 0; i < SIZE; i++) {
             System.out.println("Bucket " + i + ":");
-            table[i].print();
+            list[i].print();
             System.out.println();
         }
     }

@@ -16,7 +16,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     private final String currentFilePath = "datatest.txt";
     
     LinkList list[] = new LinkList[100];
-    private ArrayList<String> searchHistory = new ArrayList<>();
+    private final ArrayList<String> searchHistory = new ArrayList<>();
 
     public DictionaryApp() {
 
@@ -27,7 +27,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         TextArea_data.setLineWrap(true);
         TextArea_data.setWrapStyleWord(true);  
         menu.add(panel);
-        
+        setResizable(false);
         menu_History.add(panel_History);
     }
 
@@ -421,12 +421,12 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
 
         addToSearchHistory(selectedWord);
-        LinkList[] list = model.readFile(currentFilePath);
-        int bucket = model.hashFunction(selectedWord);
+//        LinkList[] list = model.readFile(currentFilePath);
+        
 
-        if (list[bucket] != null) {
+        if (model.getList()[model.hashFunction(selectedWord)] != null) {
             // Tìm kiếm từ trong danh sách liên kết
-            Node result = list[bucket].search(selectedWord);
+            Node result = model.getList()[model.hashFunction(selectedWord)].search(selectedWord);
             if (result != null && !result.getValue().isActive()) {
                 String info = result.getData();
                 TextArea_data.setText(info);  

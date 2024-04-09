@@ -27,7 +27,7 @@ public class Test {
 
             Data word = new Data(english, type, meaning, example);
             int hash = dictionary.hashFunction(english);
-            dictionary.getTable()[hash].addToTail(word);
+            dictionary.getList()[hash].addToTail(word);
         }
 
         // In ra danh sách từ điển sau khi nhập
@@ -40,7 +40,7 @@ public class Test {
         // Tìm kiếm từ vựng
         System.out.println("Nhập từ cần tìm kiếm:");
         String tuCanTim = scanner.nextLine();
-        Node result = dictionary.getTable()[dictionary.hashFunction(tuCanTim)].search(tuCanTim);
+        Node result = dictionary.getList()[dictionary.hashFunction(tuCanTim)].search(tuCanTim);
 
         if (result != null) {
             // Nếu từ được tìm thấy, hiển thị thông tin
