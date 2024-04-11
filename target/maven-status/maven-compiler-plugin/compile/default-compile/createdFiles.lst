@@ -8,7 +8,6 @@ view\DictionaryManager.class
 view\DictionaryManager$11.class
 model\Node.class
 view\DictionaryDeletedWords$8.class
-view\DictionaryApp$13.class
 view\DictionaryApp.class
 view\DictionaryDeletedWords$1.class
 view\DictionaryManager$10.class
@@ -18,10 +17,12 @@ view\DictionaryManager$5.class
 model\LinkList.class
 view\DictionaryDeletedWords$3.class
 view\DictionaryApp$11.class
+view\DictionaryManager$13.class
 view\DictionaryApp$7.class
 view\DictionaryApp$8.class
 view\DictionaryManager$8.class
 model\Test.class
+view\DictionaryManager$14.class
 view\DictionaryManager$1.class
 view\DictionaryDeletedWords$4.class
 view\DictionaryDeletedWords$6.class

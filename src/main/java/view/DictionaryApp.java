@@ -12,12 +12,10 @@ import model.Node;
 public class DictionaryApp extends javax.swing.JFrame {
 
     DictionaryModel model = new DictionaryModel();
-
-    private final String currentFilePath = "datatest.txt";
     
     LinkList list[] = new LinkList[100];
     private final ArrayList<String> searchHistory = new ArrayList<>();
-
+    public String currentFilePath = "datatest.txt";
     public DictionaryApp() {
 
         initComponents();   
@@ -27,7 +25,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         TextArea_data.setLineWrap(true);
         TextArea_data.setWrapStyleWord(true);  
         menu.add(panel);
-        setResizable(false);
         menu_History.add(panel_History);
     }
 
@@ -55,6 +52,9 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TextArea_data = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        list_Infor = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -65,17 +65,12 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         panel.setAlignmentX(0.0F);
         panel.setAlignmentY(0.0F);
-        panel.setPreferredSize(new java.awt.Dimension(240, 229));
+        panel.setPreferredSize(new java.awt.Dimension(310, 229));
 
         jScrollPane3.setAlignmentX(0.0F);
         jScrollPane3.setAlignmentY(0.0F);
 
         list_Data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        list_Data.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                list_DataKeyPressed(evt);
-            }
-        });
         list_Data.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 list_DataValueChanged(evt);
@@ -87,7 +82,9 @@ public class DictionaryApp extends javax.swing.JFrame {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,11 +105,13 @@ public class DictionaryApp extends javax.swing.JFrame {
         panel_History.setLayout(panel_HistoryLayout);
         panel_HistoryLayout.setHorizontalGroup(
             panel_HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+            .addGroup(panel_HistoryLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panel_HistoryLayout.setVerticalGroup(
             panel_HistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,18 +121,18 @@ public class DictionaryApp extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(850, 604));
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(829, 571));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1500, 1500));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelName.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelName.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         labelName.setText("TỰ ĐIỂN ANH - VIỆT");
-        jPanel2.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 6, -1, 31));
+        jPanel2.add(labelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, 60));
 
-        labelTraCuu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelTraCuu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelTraCuu.setText("Nhập từ cần tra cứu");
-        jPanel2.add(labelTraCuu, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 49, -1, -1));
+        jPanel2.add(labelTraCuu, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 72, -1, 40));
 
-        tF_Infor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tF_Infor.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         tF_Infor.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         tF_Infor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -143,9 +142,9 @@ public class DictionaryApp extends javax.swing.JFrame {
                 tF_InforKeyReleased(evt);
             }
         });
-        jPanel2.add(tF_Infor, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 75, 242, 36));
+        jPanel2.add(tF_Infor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 310, 40));
 
-        btn_TraCuu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_TraCuu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_TraCuu.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\search.png"));
         btn_TraCuu.setText("Tra cứu");
         btn_TraCuu.addActionListener(new java.awt.event.ActionListener() {
@@ -153,10 +152,10 @@ public class DictionaryApp extends javax.swing.JFrame {
                 btn_TraCuuActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_TraCuu, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 76, 118, 36));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 43, 817, -1));
+        jPanel2.add(btn_TraCuu, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 150, 40));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1520, -1));
 
-        btn_History.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_History.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_History.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\history.png"));
         btn_History.setText("Lịch sử");
         btn_History.addActionListener(new java.awt.event.ActionListener() {
@@ -164,9 +163,9 @@ public class DictionaryApp extends javax.swing.JFrame {
                 btn_HistoryActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_History, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 75, 108, 37));
+        jPanel2.add(btn_History, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 110, 180, 40));
 
-        btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\exit.png"));
         btn_Exit.setText("Thoát");
         btn_Exit.addActionListener(new java.awt.event.ActionListener() {
@@ -174,9 +173,9 @@ public class DictionaryApp extends javax.swing.JFrame {
                 btn_ExitActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(702, 75, 94, 37));
+        jPanel2.add(btn_Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 110, 160, 40));
 
-        btn_Manager.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Manager.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_Manager.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\setting.png"));
         btn_Manager.setText("Quản lý");
         btn_Manager.addActionListener(new java.awt.event.ActionListener() {
@@ -184,33 +183,57 @@ public class DictionaryApp extends javax.swing.JFrame {
                 btn_ManagerActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 75, 115, 37));
+        jPanel2.add(btn_Manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 160, 40));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1500, 1000));
 
         TextArea_data.setEditable(false);
         TextArea_data.setColumns(20);
-        TextArea_data.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        TextArea_data.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         TextArea_data.setRows(5);
+        TextArea_data.setMinimumSize(new java.awt.Dimension(1500, 1500));
         jScrollPane2.setViewportView(TextArea_data);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+            .addGap(0, 1128, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 132, 760, -1));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 1130, 720));
+
+        list_Infor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        list_Infor.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jScrollPane4.setViewportView(list_Infor);
+
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 310, 720));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\heart.png"));
+        jButton1.setText("Từ yêu thích");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 110, 220, 40));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu1.setText("Tài liệu");
         jMenu1.add(jSeparator3);
 
+        menuItem_Exit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         menuItem_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\close.png"));
         menuItem_Exit.setText("Thoát");
         menuItem_Exit.addActionListener(new java.awt.event.ActionListener() {
@@ -230,6 +253,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             }
         });
 
+        menuItem_UserManual.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         menuItem_UserManual.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\help.png"));
         menuItem_UserManual.setText("Hướng dẫn sử dụng");
         menuItem_UserManual.addActionListener(new java.awt.event.ActionListener() {
@@ -239,6 +263,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         });
         menu_AboutMe.add(menuItem_UserManual);
 
+        menuItem_Infor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         menuItem_Infor.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\infor.png"));
         menuItem_Infor.setText("Thông tin phần mềm");
         menuItem_Infor.addActionListener(new java.awt.event.ActionListener() {
@@ -256,11 +281,14 @@ public class DictionaryApp extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1531, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 935, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -299,6 +327,11 @@ public class DictionaryApp extends javax.swing.JFrame {
                 + "3. Lịch sử: Hiển thị từ đã tra cứu.\n"
                 + "4. Thoát: Đóng chương trình.\n\n"
                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
+        for (int i = 0; i < 100; i++) {
+            System.out.println("Bucket " + i + ":");
+            list[i].print();
+            System.out.println();
+        }
     }//GEN-LAST:event_menuItem_UserManualActionPerformed
 
     private void menuItem_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_InforActionPerformed
@@ -332,27 +365,26 @@ public class DictionaryApp extends javax.swing.JFrame {
         this.setVisible(false);
         dictionaryManager.openForm(e, t, m, ex, list, dictionaryApp);
     }//GEN-LAST:event_btn_ManagerActionPerformed
+    
     // Phương thức lấy từ đang tìm để gợi ý   
     private void tF_InforKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyReleased
-        String selectedWord = tF_Infor.getText().trim().toLowerCase();
-
-        if (selectedWord.isEmpty()) {
+        String input = tF_Infor.getText().trim().toLowerCase();
+        if (input.isEmpty()) {
             list_Data.setModel(new DefaultListModel<>());
-            menu.setVisible(false);// Xóa danh sách từ hiện tại
+            menu.setVisible(false); // Ẩn danh sách từ đề xuất
             return;
         }
-        
+
         menu.show(tF_Infor, 0, tF_Infor.getHeight());
-        
+
         DefaultListModel<String> modelList = new DefaultListModel<>();
 
-        // Đọc dữ liệu từ tệp và thêm vào modelList nếu từ bắt đầu bằng input và có trạng thái -false
-        try (BufferedReader reader = new BufferedReader(new FileReader(currentFilePath))) {
+         try (BufferedReader reader = new BufferedReader(new FileReader(currentFilePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.endsWith("-false")) {
                     String englishWord = getEnglishWord(line); // Lấy từ tiếng Anh từ chuỗi
-                    if (englishWord.toLowerCase().startsWith(selectedWord)) {
+                    if (englishWord.toLowerCase().startsWith(input)) {
                         modelList.addElement(englishWord);
                     }
                 }
@@ -370,7 +402,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             String selectedWord = (String) list_Data.getSelectedValue();
             if (selectedWord != null) {
                 displayWordInfo(selectedWord);
-              //  tF_Infor.setText(selectedWord);
+                tF_Infor.setText(selectedWord);
                 addToSearchHistory(selectedWord);
                 menu.setVisible(false);
             }
@@ -389,23 +421,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_list_HistoryValueChanged
 
-    private void list_DataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_list_DataKeyPressed
-//        int selectedIndex = list_Data.getSelectedIndex();
-//        int maxIndex = list_Data.getModel().getSize() - 1;
-//
-//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-//            searchWord();
-//        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-//            if (selectedIndex > 0) {
-//                list_Data.setSelectedIndex(selectedIndex - 1);
-//            }
-//        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-//            if (selectedIndex < maxIndex) {
-//                list_Data.setSelectedIndex(selectedIndex + 1);
-//            }
-//        }
-    }//GEN-LAST:event_list_DataKeyPressed
-
     private void tF_InforKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             searchWord();
@@ -413,51 +428,35 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_tF_InforKeyPressed
     // Phương thức tìm kiếm từ đang nhập
     public void searchWord() {
-        String selectedWord = tF_Infor.getText().trim();
-
+        String selectedWord = tF_Infor.getText().trim().toLowerCase();
         if (selectedWord.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             return;
-        }
-
-        addToSearchHistory(selectedWord);
-//        LinkList[] list = model.readFile(currentFilePath);
+        }       
+        displayWordInfo(model.formatter(selectedWord));
+        showSearchHistory();
+    }
+    
+    // Phương thức chọn từ trong danh sách hiển thị dữ liệu
+    public void displayWordInfo(String selectedWord) {
+        int bucket = model.hashFunction(selectedWord);
         
-
-        if (model.getList()[model.hashFunction(selectedWord)] != null) {
+        if (list[bucket] != null) {
             // Tìm kiếm từ trong danh sách liên kết
-            Node result = model.getList()[model.hashFunction(selectedWord)].search(selectedWord);
+            Node result = list[bucket].search(selectedWord);
             if (result != null && !result.getValue().isActive()) {
                 String info = result.getData();
-                TextArea_data.setText(info);  
+                TextArea_data.setText(info); 
+                addToSearchHistory(selectedWord);
                 showSearchHistory();
                 return;
             }
         }
         JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + selectedWord + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        showSearchHistory();
-    }
-    
-    // Phương thức chọn từ trong danh sách hiển thị dữ liệu
-    private void displayWordInfo(String selectedWord) {
-        LinkList[] list = model.readFile(currentFilePath);
-        int bucket = model.hashFunction(selectedWord);
-
-        if (list[bucket] != null) {
-            // Tìm kiếm từ trong danh sách liên kết
-            Node result = list[bucket].search(selectedWord);
-            if (result != null && !result.getValue().isActive() == true) {
-                String info = result.getData();
-                TextArea_data.setText(info);
-                return;
-            } else {
-                TextArea_data.setText("Không tìm thấy thông tin cho từ \"" + selectedWord + "\"");
-            }
-        }
     }
 
      // Phương thức để thêm từ khóa tìm kiếm vào lịch sử
-    private void addToSearchHistory(String keyword) {
+    public void addToSearchHistory(String keyword) {
         if (searchHistory.contains(keyword)) {
             searchHistory.remove(keyword);
         }
@@ -465,7 +464,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     }
 
     // Phương thức để hiển thị lịch sử tìm kiếm
-    private void showSearchHistory() {
+    public void showSearchHistory() {
         DefaultListModel<String> data_model = new DefaultListModel<>();
         for (String keyword : searchHistory) {
             data_model.addElement(keyword);
@@ -522,6 +521,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JButton btn_History;
     private javax.swing.JButton btn_Manager;
     private javax.swing.JButton btn_TraCuu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -529,12 +529,14 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JLabel labelName;
     private javax.swing.JLabel labelTraCuu;
     private javax.swing.JList<String> list_Data;
     private javax.swing.JList<String> list_History;
+    private javax.swing.JList<String> list_Infor;
     private javax.swing.JPopupMenu menu;
     private javax.swing.JMenuItem menuItem_Exit;
     private javax.swing.JMenuItem menuItem_Infor;

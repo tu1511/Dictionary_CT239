@@ -170,4 +170,12 @@ public class DictionaryModel {
             System.out.println();
         }
     }
+    
+    
+    public String formatter(String input) {
+        if (!input.isEmpty()) {
+            input = Character.toUpperCase(input.charAt(0)) + input.substring(1).toLowerCase().trim();
+        }
+        return input;
+    }
 }

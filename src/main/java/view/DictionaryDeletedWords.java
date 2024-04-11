@@ -311,12 +311,13 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                     Node result = list[bucket].search(selectedWord);
                     if (result != null && result.getValue().isActive()) {
                         result.getValue().setActive(false);
-                        System.out.println("Danh sách từ điển sau khi nhập:");
-                         for (int i = 0; i < list.length; i++) {
-                            System.out.println("Bucket " + i + ":");
-                            list[i].print();
-                            System.out.println();
-                        }
+                        System.out.println(result.getValue());
+//                        System.out.println("Danh sách từ điển sau khi nhập:");
+//                         for (int i = 0; i < list.length; i++) {
+//                            System.out.println("Bucket " + i + ":");
+//                            list[i].print();
+//                            System.out.println();
+//                        }
                     }
                 }
 //                data.removeRow(selectedRow);
