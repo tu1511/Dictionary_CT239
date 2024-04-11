@@ -26,7 +26,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         tableModel = (DefaultTableModel) table_Data.getModel();
         setLocationRelativeTo(null);
         
-        table_Data.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,16));
+        table_Data.getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,24));
         table_Data.getTableHeader().setOpaque(false);
         table_Data.getTableHeader().setForeground(Color.black);
      
@@ -48,7 +48,6 @@ public class DictionaryManager extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jPanel2 = new javax.swing.JPanel();
-        label_Name = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         label_TiengAnh = new javax.swing.JLabel();
         label_LoaiTu = new javax.swing.JLabel();
@@ -69,6 +68,8 @@ public class DictionaryManager extends javax.swing.JFrame {
         cbb_Loaitu = new javax.swing.JComboBox<>();
         btn_ListData = new javax.swing.JButton();
         btn_recover = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        label_Name = new javax.swing.JLabel();
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         menuItem_Save = new javax.swing.JMenuItem();
@@ -97,36 +98,38 @@ public class DictionaryManager extends javax.swing.JFrame {
         setTitle("Quản lý tự điển");
         setBackground(new java.awt.Color(102, 255, 204));
         setMinimumSize(new java.awt.Dimension(850, 604));
+        setPreferredSize(new java.awt.Dimension(1531, 964));
         setSize(new java.awt.Dimension(850, 604));
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel2.setMinimumSize(new java.awt.Dimension(1531, 964));
         jPanel2.setPreferredSize(new java.awt.Dimension(890, 605));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 68, 1510, -1));
 
-        label_Name.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        label_Name.setText("QUẢN LÝ TỰ ĐIỂN");
-        jPanel2.add(label_Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 24, 319, -1));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 68, 823, -1));
-
-        label_TiengAnh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        label_TiengAnh.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_TiengAnh.setText("Từ tiếng Anh :");
-        jPanel2.add(label_TiengAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        jPanel2.add(label_TiengAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
-        label_LoaiTu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        label_LoaiTu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_LoaiTu.setText("Loại từ :");
-        jPanel2.add(label_LoaiTu, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
+        jPanel2.add(label_LoaiTu, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
 
-        label_TiengViet.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        label_TiengViet.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_TiengViet.setText("Nghĩa tiếng Việt :");
-        jPanel2.add(label_TiengViet, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
-        jPanel2.add(tF_TiengViet, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 180, 40));
+        jPanel2.add(label_TiengViet, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, -1));
 
-        label_ViDu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tF_TiengViet.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel2.add(tF_TiengViet, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 340, 50));
+
+        label_ViDu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_ViDu.setText("Ví dụ : ");
-        jPanel2.add(label_ViDu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
-        jPanel2.add(tF_TViDu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 605, 70));
+        jPanel2.add(label_ViDu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
-        btn_Save.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tF_TViDu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel2.add(tF_TViDu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 810, 50));
+
+        btn_Save.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_Save.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\save.png"));
         btn_Save.setText("Lưu");
         btn_Save.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +137,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_SaveActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 92, 40));
+        jPanel2.add(btn_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 290, 120, 40));
 
         btn_Return.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_Return.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\back.png"));
@@ -146,7 +149,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         });
         jPanel2.add(btn_Return, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 20, 36, 36));
 
-        btn_Add.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Add.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_Add.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\add.png"));
         btn_Add.setText("Thêm từ");
         btn_Add.addActionListener(new java.awt.event.ActionListener() {
@@ -154,9 +157,9 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_AddActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 140, 40));
+        jPanel2.add(btn_Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 210, 40));
 
-        btn_Update.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Update.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_Update.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\update.png"));
         btn_Update.setText("Cập nhật");
         btn_Update.addActionListener(new java.awt.event.ActionListener() {
@@ -164,9 +167,9 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_UpdateActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 115, 40));
+        jPanel2.add(btn_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 180, 40));
 
-        btn_reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_reload.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_reload.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\reload.png"));
         btn_reload.setText("Đặt lại");
         btn_reload.setToolTipText("");
@@ -175,9 +178,9 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_reloadActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_reload, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 115, 40));
+        jPanel2.add(btn_reload, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 150, 40));
 
-        btn_DeletedWords.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_DeletedWords.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_DeletedWords.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\listdeletedwords.png"));
         btn_DeletedWords.setText("Từ đã xóa");
         btn_DeletedWords.addActionListener(new java.awt.event.ActionListener() {
@@ -185,9 +188,9 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_DeletedWordsActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_DeletedWords, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 160, 40));
+        jPanel2.add(btn_DeletedWords, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 290, 220, 40));
 
-        table_Data.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        table_Data.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         table_Data.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -205,22 +208,22 @@ public class DictionaryManager extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table_Data);
         if (table_Data.getColumnModel().getColumnCount() > 0) {
-            table_Data.getColumnModel().getColumn(0).setMinWidth(70);
-            table_Data.getColumnModel().getColumn(0).setMaxWidth(70);
-            table_Data.getColumnModel().getColumn(1).setMinWidth(140);
-            table_Data.getColumnModel().getColumn(1).setMaxWidth(140);
-            table_Data.getColumnModel().getColumn(2).setMinWidth(140);
-            table_Data.getColumnModel().getColumn(2).setMaxWidth(140);
-            table_Data.getColumnModel().getColumn(3).setMinWidth(200);
-            table_Data.getColumnModel().getColumn(3).setMaxWidth(200);
+            table_Data.getColumnModel().getColumn(0).setMinWidth(150);
+            table_Data.getColumnModel().getColumn(0).setMaxWidth(150);
+            table_Data.getColumnModel().getColumn(1).setMinWidth(160);
+            table_Data.getColumnModel().getColumn(1).setMaxWidth(160);
+            table_Data.getColumnModel().getColumn(2).setMinWidth(200);
+            table_Data.getColumnModel().getColumn(2).setMaxWidth(200);
+            table_Data.getColumnModel().getColumn(3).setMinWidth(380);
+            table_Data.getColumnModel().getColumn(3).setMaxWidth(380);
         }
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 758, 270));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 1400, 520));
 
-        tF_tiengAnh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel2.add(tF_tiengAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 180, 40));
+        tF_tiengAnh.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel2.add(tF_tiengAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 250, 50));
 
-        btn_Delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Delete.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_Delete.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\delete.png"));
         btn_Delete.setText("Xóa từ");
         btn_Delete.addActionListener(new java.awt.event.ActionListener() {
@@ -228,12 +231,13 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_DeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 115, 40));
+        jPanel2.add(btn_Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 290, 180, 40));
 
+        cbb_Loaitu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         cbb_Loaitu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danh từ", "Động Từ", "Tính từ", "Trạng từ", "Đại từ", "Giới từ", "Thán từ", "Liên từ", "Từ hạn định" }));
-        jPanel2.add(cbb_Loaitu, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 180, 40));
+        jPanel2.add(cbb_Loaitu, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 170, 50));
 
-        btn_ListData.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_ListData.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_ListData.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\listData.png"));
         btn_ListData.setText("Danh sách từ");
         btn_ListData.addActionListener(new java.awt.event.ActionListener() {
@@ -241,9 +245,9 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_ListDataActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_ListData, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 160, 40));
+        jPanel2.add(btn_ListData, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 290, 220, 40));
 
-        btn_recover.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_recover.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_recover.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\recover.png"));
         btn_recover.setText("Khôi phục");
         btn_recover.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +255,32 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_recoverActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_recover, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 140, 40));
+        jPanel2.add(btn_recover, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 210, 40));
+
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
+
+        label_Name.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        label_Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_Name.setText("QUẢN LÝ TỰ ĐIỂN");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(387, 387, 387)
+                .addComponent(label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(427, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1530, 70));
 
         jMenu6.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu6.setText("Tài liệu");
@@ -298,12 +327,14 @@ public class DictionaryManager extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1531, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -710,6 +741,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
