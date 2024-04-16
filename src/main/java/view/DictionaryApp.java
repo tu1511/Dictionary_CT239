@@ -442,7 +442,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     public void displayWordInfo(String selectedWord) {
         int bucket = model.hashFunction(selectedWord);
         if (list[bucket] != null) {
-            Node result = list[bucket].search(selectedWord);
+            Node result = list[bucket].searchNode(selectedWord);
             if (result != null && !result.getValue().isActive()) {
                 String info = result.getData();
                 TextArea_data.setText(info); 

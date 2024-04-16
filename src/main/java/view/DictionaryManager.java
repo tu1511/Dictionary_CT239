@@ -366,7 +366,7 @@ public class DictionaryManager extends javax.swing.JFrame {
             return;
         }
         int bucket = model.hashFunction(english);  
-        Node searchResult = list[bucket].search(english);
+        Node searchResult = list[bucket].searchNode(english);
         
         if (searchResult != null && !searchResult.getValue().isActive()) { // Từ đã tồn tại trong danh sách và trạng thái false
             int dialogResult = JOptionPane.showConfirmDialog(null, "Từ '" + english + "' đã tồn tại trong danh sách. Bạn có muốn cập nhật thông tin không?", "Xác nhận cập nhật", JOptionPane.YES_NO_OPTION);
@@ -569,7 +569,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                 String selectedWord = data.getValueAt(selectedRow, 1).toString();
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
-                    Node result = list[bucket].search(selectedWord);
+                    Node result = list[bucket].searchNode(selectedWord);
                     if (result != null && result.getValue().isActive()) {
                         recover(result);
                     }
@@ -601,7 +601,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     
     public void update(Data word) {       
         int bucket = model.hashFunction(model.formatter(tF_tiengAnh.getText()));
-        list[bucket].delete(word.getEnglish());
+        list[bucket].deleteNode(word.getEnglish());
         list[bucket].addToHead(word);
         tableModel.setRowCount(0);
         loadDataFromFile(list);
@@ -617,7 +617,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                 String selectedWord = tableModel.getValueAt(selectedRow, 1).toString();
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
-                    Node result = list[bucket].search(selectedWord);
+                    Node result = list[bucket].searchNode(selectedWord);
                     if (result != null && !result.getValue().isActive()) {
                         result.getValue().setActive(true);
                         JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -625,7 +625,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                         loadDataFromFile(list);
                         reloadData();
                     } else if (result != null && result.getValue().isActive()) {
-                        list[bucket].delete(selectedWord);
+                        list[bucket].deleteNode(selectedWord);
                         JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa vĩnh viễn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                         tableModel.setRowCount(0);
                         deletedWords(list);
@@ -657,7 +657,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         tableModel.setRowCount(0);
         int bucket = model.hashFunction(selectedWord);
         if (list[bucket] != null) {
-            Node result = list[bucket].search(selectedWord);
+            Node result = list[bucket].searchNode(selectedWord);
             if (result != null && !result.getValue().isActive()) {
                 tF_search.setText("");
                 tableModel.addRow(new Object[] {

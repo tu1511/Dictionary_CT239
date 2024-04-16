@@ -40,7 +40,7 @@ public class Test {
         // Tìm kiếm từ vựng
         System.out.println("Nhập từ cần tìm kiếm:");
         String tuCanTim = scanner.nextLine();
-        Node result = dictionary.getList()[dictionary.hashFunction(tuCanTim)].search(tuCanTim);
+        Node result = dictionary.getList()[dictionary.hashFunction(tuCanTim)].searchNode(tuCanTim);
 
         if (result != null) {
             // Nếu từ được tìm thấy, hiển thị thông tin

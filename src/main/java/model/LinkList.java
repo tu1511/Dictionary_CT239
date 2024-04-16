@@ -54,7 +54,7 @@ public class LinkList {
     }
 
     // Phương thức xóa một nút chứa từ có giá trị là word
-    public void delete(String word) {
+    public void deleteNode(String word) {
         if (head == null) {
             return;
         }
@@ -105,7 +105,7 @@ public class LinkList {
 
     
     // Phương thức tìm kiếm nút chứa từ có giá trị là word
-    public Node search(String word) {
+    public Node searchNode(String word) {
         Node current = head;
         while (current != null) {
             if (current.getValue().getWord().equals(word)) {

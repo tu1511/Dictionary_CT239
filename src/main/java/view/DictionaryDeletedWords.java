@@ -282,9 +282,9 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
 
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
-                    Node result = list[bucket].search(selectedWord);
+                    Node result = list[bucket].searchNode(selectedWord);
                     if (result != null && result.getValue().isActive()) {
-                        list[bucket].delete(selectedWord);
+                        list[bucket].deleteNode(selectedWord);
                     }
                 }
                 data.removeRow(selectedRow);
@@ -308,7 +308,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                 String selectedWord = data.getValueAt(selectedRow, 1).toString();
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
-                    Node result = list[bucket].search(selectedWord);
+                    Node result = list[bucket].searchNode(selectedWord);
                     if (result != null && result.getValue().isActive()) {
                         result.getValue().setActive(false);
                         System.out.println(result.getValue());
