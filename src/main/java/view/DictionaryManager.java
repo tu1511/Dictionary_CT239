@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
@@ -289,9 +290,9 @@ public class DictionaryManager extends javax.swing.JFrame {
         jPanel2.add(lb_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, -1, -1));
 
         tF_search.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        tF_search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tF_searchActionPerformed(evt);
+        tF_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tF_searchKeyPressed(evt);
             }
         });
         jPanel2.add(tF_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 390, 40));
@@ -639,9 +640,11 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_recoverActionPerformed
 
-    private void tF_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tF_searchActionPerformed
-        searchData();
-    }//GEN-LAST:event_tF_searchActionPerformed
+    private void tF_searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_searchKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            searchData();
+        }
+    }//GEN-LAST:event_tF_searchKeyPressed
         
     public void searchData() {
         String selectedWord = model.formatter(tF_search.getText());

@@ -12,17 +12,20 @@ import model.Node;
 public class DictionaryApp extends javax.swing.JFrame {
 
     DictionaryModel model = new DictionaryModel();
+    DictionaryManager manager = new DictionaryManager();
     
     LinkList list[] = new LinkList[100];
     private final ArrayList<String> searchHistory = new ArrayList<>();
     public String currentFilePath = "datatest.txt";
+    public String e = new String(), t = new String(), m = new String(), ex = new String();
+    DefaultListModel<String> modelList_Suggested = new DefaultListModel<>();
+    
     public DictionaryApp() {
-
         initComponents();   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        if (checkEmty(list)) {
+        if (checkEmpty(list)) {
             list = model.readFile(currentFilePath);
         }
         
@@ -76,7 +79,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         jScrollPane3.setAlignmentX(0.0F);
         jScrollPane3.setAlignmentY(0.0F);
 
-        list_Data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         list_Data.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 list_DataValueChanged(evt);
@@ -99,7 +101,7 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         menu.setFocusable(false);
 
-        list_History.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        list_History.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         list_History.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 list_HistoryValueChanged(evt);
@@ -226,6 +228,11 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         list_Infor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         list_Infor.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        list_Infor.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                list_InforValueChanged(evt);
+            }
+        });
         jScrollPane4.setViewportView(list_Infor);
 
         jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 310, 720));
@@ -304,16 +311,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         searchWord();
     }//GEN-LAST:event_btn_TraCuuActionPerformed
 
-
-    // Phương thức để lấy từ tiếng Anh từ chuỗi có định dạng "từ - mô tả"
-    private String getEnglishWord(String input) {
-        int dashIndex = input.indexOf('-');
-        if (dashIndex != -1) {
-            return input.substring(0, dashIndex).trim();
-        }
-        return input.trim(); // Trả về toàn bộ chuỗi nếu không có dấu gạch ngang
-    }
-
     private void menu_AboutMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_AboutMeActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Quản lý tự điển version 1.0!");
     }//GEN-LAST:event_menu_AboutMeActionPerformed
@@ -333,11 +330,6 @@ public class DictionaryApp extends javax.swing.JFrame {
                 + "3. Lịch sử: Hiển thị từ đã tra cứu.\n"
                 + "4. Thoát: Đóng chương trình.\n\n"
                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
-        for (int i = 0; i < 100; i++) {
-            System.out.println("Bucket " + i + ":");
-            list[i].print();
-            System.out.println();
-        }
     }//GEN-LAST:event_menuItem_UserManualActionPerformed
 
     private void menuItem_InforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_InforActionPerformed
@@ -348,24 +340,24 @@ public class DictionaryApp extends javax.swing.JFrame {
         menu_History.show(btn_History,0, btn_History.getHeight());
     }//GEN-LAST:event_btn_HistoryActionPerformed
 
-    public String e = new String(), t = new String(), m = new String(), ex = new String();
     // Phương thức chuyển đổi frame không mất dữ liệu
     public void openForm(String english, String type, String meaning, String example, LinkList[] li, DictionaryManager dictionaryManager) {
         for (int i = 0; i < 100; i++) {
             if(li[i] != null) {
                 list[i] = new LinkList(li[i]);
             }
-        }
-        
+        }        
         e = new String(english);
         t = new String(type);
         m = new String(meaning);
         ex = new String(example);
+        
         this.listData();
         this.setVisible(true);
     }
     
-    public boolean checkEmty(LinkList[] l) {
+    //    Phương thức kiểm tra list có chứa dữ liệu hay không
+    public boolean checkEmpty(LinkList[] l) {
         for (int i = 0; i < 100; i++) {
             if (l[i] != null) {
                 return false;
@@ -375,14 +367,114 @@ public class DictionaryApp extends javax.swing.JFrame {
     }
     
     private void btn_ManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManagerActionPerformed
-        DictionaryApp dictionaryApp = new DictionaryApp();
-        DictionaryManager dictionaryManager = new DictionaryManager();
-        this.setVisible(false);
-        dictionaryManager.openForm(e, t, m, ex, list, dictionaryApp);
+        frameTransfer();
     }//GEN-LAST:event_btn_ManagerActionPerformed
     
+    //  Phương thức chuyển đổi frame
+    public void frameTransfer() {
+        DictionaryApp dictionaryApp = new DictionaryApp();
+        this.setVisible(false);
+        manager.openForm(e, t, m, ex, list, dictionaryApp);
+    }
     // Phương thức lấy từ đang tìm để gợi ý   
     private void tF_InforKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyReleased
+        showSuggested();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            menu.setVisible(false);
+        }
+    }//GEN-LAST:event_tF_InforKeyReleased
+    // Phương thức chọn từ trong danh sách gợi ý hiển thị dữ liệu
+    private void list_DataValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_DataValueChanged
+        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
+            String selectedWord = (String) list_Data.getSelectedValue();
+            if (selectedWord != null) {
+                displayWordInfo(selectedWord);
+                tF_Infor.setText("");
+                addToSearchHistory(selectedWord);
+                menu.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_list_DataValueChanged
+    // Phương thức chọn từ trong danh sách từ đã tra cứu hiển thị dữ liệu
+    private void list_HistoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_HistoryValueChanged
+        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
+            String selectedWord = (String) list_History.getSelectedValue();
+            if (selectedWord != null) {
+                displayWordInfo(selectedWord);
+                tF_Infor.setText("");
+                addToSearchHistory(selectedWord);
+                menu_History.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_list_HistoryValueChanged
+
+    private void tF_InforKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            searchWord();
+        }
+    }//GEN-LAST:event_tF_InforKeyPressed
+
+    private void list_InforValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_InforValueChanged
+        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
+            String selectedWord = (String) list_Infor.getSelectedValue();
+            if (selectedWord != null) {
+                displayWordInfo(selectedWord);
+                tF_Infor.setText("");
+                addToSearchHistory(selectedWord);
+            }
+        }
+    }//GEN-LAST:event_list_InforValueChanged
+    // Phương thức tìm kiếm từ đang nhập
+    public void searchWord() {
+        String selectedWord = tF_Infor.getText().trim().toLowerCase();
+        if (selectedWord.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }       
+        displayWordInfo(model.formatter(selectedWord));
+        showSearchHistory();
+    }
+    
+    // Phương thức chọn từ trong danh sách hiển thị dữ liệu
+    public void displayWordInfo(String selectedWord) {
+        int bucket = model.hashFunction(selectedWord);
+        if (list[bucket] != null) {
+            Node result = list[bucket].search(selectedWord);
+            if (result != null && !result.getValue().isActive()) {
+                String info = result.getData();
+                TextArea_data.setText(info); 
+                addToSearchHistory(selectedWord);
+                showSearchHistory();
+            }
+            else {
+                int option = JOptionPane.showConfirmDialog(null, "Từ \"" + selectedWord + "\" không có trong từ điển. Bạn có muốn thêm nó không?", "Thêm từ mới", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    frameTransfer();
+                    manager.tF_tiengAnh.setText(selectedWord);                   
+                }
+                tF_Infor.setText("");
+            }
+        }
+    }
+
+     // Phương thức để thêm từ khóa tìm kiếm vào lịch sử
+    public void addToSearchHistory(String keyword) {
+        if (searchHistory.contains(keyword)) {
+            searchHistory.remove(keyword);
+        }
+        searchHistory.add(0,keyword);
+    }
+
+    // Phương thức để hiển thị lịch sử tìm kiếm
+    public void showSearchHistory() {
+        DefaultListModel<String> modelList_History = new DefaultListModel<>();
+        for (String keyword : searchHistory) {
+            modelList_History.addElement(keyword);
+        }
+        list_History.setModel(modelList_History);
+    }
+    
+    public void showSuggested() {
         String input = tF_Infor.getText().trim().toLowerCase();
         if (input.isEmpty()) {
             list_Data.setModel(new DefaultListModel<>());
@@ -392,7 +484,6 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         menu.show(tF_Infor, 0, tF_Infor.getHeight());
         DefaultListModel<String> modelList = new DefaultListModel<>();
-
         for (int i = 0; i < 100; i++) {
             if (list[i] != null) {
                 Node currentNode = list[i].getHead();
@@ -408,100 +499,24 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         list_Data.setModel(modelList);
         list_Data.setVisibleRowCount(Math.min(modelList.getSize(), 5));
-    }//GEN-LAST:event_tF_InforKeyReleased
-    // Phương thức chọn từ trong danh sách gợi ý hiển thị dữ liệu
-    private void list_DataValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_DataValueChanged
-        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
-            String selectedWord = (String) list_Data.getSelectedValue();
-            if (selectedWord != null) {
-                displayWordInfo(selectedWord);
-                tF_Infor.setText(selectedWord);
-                addToSearchHistory(selectedWord);
-                menu.setVisible(false);
-            }
-        }
-    }//GEN-LAST:event_list_DataValueChanged
-    // Phương thức chọn từ trong danh sách từ đã tra cứu hiển thị dữ liệu
-    private void list_HistoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list_HistoryValueChanged
-        if (!evt.getValueIsAdjusting()) { // Đảm bảo sự kiện chỉ được kích hoạt một lần
-            String selectedWord = (String) list_History.getSelectedValue();
-            if (selectedWord != null) {
-                displayWordInfo(selectedWord);
-                tF_Infor.setText(selectedWord);
-                addToSearchHistory(selectedWord);
-                menu_History.setVisible(false);
-            }
-        }
-    }//GEN-LAST:event_list_HistoryValueChanged
-
-    private void tF_InforKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            searchWord();
-        }
-    }//GEN-LAST:event_tF_InforKeyPressed
-    // Phương thức tìm kiếm từ đang nhập
-    public void searchWord() {
-        String selectedWord = tF_Infor.getText().trim().toLowerCase();
-        if (selectedWord.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }       
-        displayWordInfo(model.formatter(selectedWord));
-        showSearchHistory();
-    }
-    
-    // Phương thức chọn từ trong danh sách hiển thị dữ liệu
-    public void displayWordInfo(String selectedWord) {
-        int bucket = model.hashFunction(selectedWord);
-       
-        if (list[bucket] != null) {
-            // Tìm kiếm từ trong danh sách liên kết
-            Node result = list[bucket].search(selectedWord);
-            if (result != null && !result.getValue().isActive()) {
-                String info = result.getData();
-                TextArea_data.setText(info); 
-                addToSearchHistory(selectedWord);
-                showSearchHistory();
-                return;
-            }
-        }
-        JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + selectedWord + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-     // Phương thức để thêm từ khóa tìm kiếm vào lịch sử
-    public void addToSearchHistory(String keyword) {
-        if (searchHistory.contains(keyword)) {
-            searchHistory.remove(keyword);
-        }
-        searchHistory.add(0,keyword);
-    }
-
-    // Phương thức để hiển thị lịch sử tìm kiếm
-    public void showSearchHistory() {
-        DefaultListModel<String> data_model = new DefaultListModel<>();
-        for (String keyword : searchHistory) {
-            data_model.addElement(keyword);
-        }
-        list_History.setModel(data_model);
     }
     
     public void listData() {
-        DefaultListModel<String> modelList = new DefaultListModel<>();
-        list_Infor.setModel(modelList);
-        modelList.clear();
+        list_Infor.setModel(modelList_Suggested);
+        modelList_Suggested.clear();
         
         for (int i = 0; i < 100; i++) {
             if (list[i] != null) {
                 Node currentNode = list[i].getHead();
                 while (currentNode != null) {
                     if (!currentNode.getValue().isActive()) 
-                    modelList.addElement(currentNode.getValue().getEnglish());
+                    modelList_Suggested.addElement(currentNode.getValue().getEnglish());
                     currentNode = currentNode.getNext();
                 }
             }
         }
 
-        list_Infor.setModel(modelList);
+        list_Infor.setModel(modelList_Suggested);
     }
 
     // Phương thức chọn thoát
