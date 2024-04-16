@@ -22,10 +22,16 @@ public class DictionaryApp extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
+        if (checkEmty(list)) {
+            list = model.readFile(currentFilePath);
+        }
+        
         TextArea_data.setLineWrap(true);
         TextArea_data.setWrapStyleWord(true);  
         menu.add(panel);
         menu_History.add(panel_History);
+        
+        listData();
     }
 
     @SuppressWarnings("unchecked")
@@ -355,8 +361,17 @@ public class DictionaryApp extends javax.swing.JFrame {
         t = new String(type);
         m = new String(meaning);
         ex = new String(example);
-              
+        this.listData();
         this.setVisible(true);
+    }
+    
+    public boolean checkEmty(LinkList[] l) {
+        for (int i = 0; i < 100; i++) {
+            if (l[i] != null) {
+                return false;
+            }
+        }
+        return true;
     }
     
     private void btn_ManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ManagerActionPerformed
@@ -376,21 +391,19 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
 
         menu.show(tF_Infor, 0, tF_Infor.getHeight());
-
         DefaultListModel<String> modelList = new DefaultListModel<>();
 
-         try (BufferedReader reader = new BufferedReader(new FileReader(currentFilePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.endsWith("-false")) {
-                    String englishWord = getEnglishWord(line); // Lấy từ tiếng Anh từ chuỗi
-                    if (englishWord.toLowerCase().startsWith(input)) {
-                        modelList.addElement(englishWord);
+        for (int i = 0; i < 100; i++) {
+            if (list[i] != null) {
+                Node currentNode = list[i].getHead();
+                while (currentNode != null) {
+                    String englishWord = currentNode.getValue().getEnglish().toLowerCase();
+                    if (englishWord.startsWith(input)) {
+                        modelList.addElement(model.formatter(englishWord));
                     }
+                    currentNode = currentNode.getNext();
                 }
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
         }
 
         list_Data.setModel(modelList);
@@ -440,7 +453,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     // Phương thức chọn từ trong danh sách hiển thị dữ liệu
     public void displayWordInfo(String selectedWord) {
         int bucket = model.hashFunction(selectedWord);
-        
+       
         if (list[bucket] != null) {
             // Tìm kiếm từ trong danh sách liên kết
             Node result = list[bucket].search(selectedWord);
@@ -471,6 +484,26 @@ public class DictionaryApp extends javax.swing.JFrame {
         }
         list_History.setModel(data_model);
     }
+    
+    public void listData() {
+        DefaultListModel<String> modelList = new DefaultListModel<>();
+        list_Infor.setModel(modelList);
+        modelList.clear();
+        
+        for (int i = 0; i < 100; i++) {
+            if (list[i] != null) {
+                Node currentNode = list[i].getHead();
+                while (currentNode != null) {
+                    if (!currentNode.getValue().isActive()) 
+                    modelList.addElement(currentNode.getValue().getEnglish());
+                    currentNode = currentNode.getNext();
+                }
+            }
+        }
+
+        list_Infor.setModel(modelList);
+    }
+
     // Phương thức chọn thoát
     private void Exit() {
         String[] options = {"Có", "Không"};

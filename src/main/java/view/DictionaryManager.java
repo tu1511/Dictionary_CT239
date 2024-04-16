@@ -70,6 +70,8 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_recover = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         label_Name = new javax.swing.JLabel();
+        lb_search = new javax.swing.JLabel();
+        tF_search = new javax.swing.JTextField();
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         menuItem_Save = new javax.swing.JMenuItem();
@@ -199,7 +201,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                 "Bucket", "Tiếng Anh", "Loại từ", "Nghĩa", "Ví dụ"
             }
         ));
-        table_Data.setRowHeight(25);
+        table_Data.setRowHeight(30);
         table_Data.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         table_Data.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -281,6 +283,18 @@ public class DictionaryManager extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1530, 70));
+
+        lb_search.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lb_search.setText("Tìm kiếm:");
+        jPanel2.add(lb_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, -1, -1));
+
+        tF_search.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        tF_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tF_searchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(tF_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 390, 40));
 
         jMenu6.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu6.setText("Tài liệu");
@@ -551,6 +565,10 @@ public class DictionaryManager extends javax.swing.JFrame {
         cbb_Loaitu.setSelectedIndex(0);
         tF_TiengViet.setText("");
         tF_TViDu.setText("");
+        tF_tiengAnh.setEditable(true);
+        cbb_Loaitu.setEditable(true);
+        tF_TiengViet.setEditable(true);
+        tF_TViDu.setEditable(true);
     }
 // Phương thức chọn tù cần cập nhật đưa lên lại các trường
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
@@ -620,26 +638,41 @@ public class DictionaryManager extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btn_recoverActionPerformed
+
+    private void tF_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tF_searchActionPerformed
+        searchData();
+    }//GEN-LAST:event_tF_searchActionPerformed
         
-//    public void search() {
-//        String selectedWord = tF_search.getText().trim();
-//
-//        if (selectedWord.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-//            return;
-//        }
-//        int bucket = model.hashFunction(selectedWord);
-//         if (list[model.hashFunction(selectedWord)] != null) {
-//            // Tìm kiếm từ trong danh sách liên kết
-//            Node currentNode = list[model.hashFunction(selectedWord)].search(selectedWord);
-//            if (currentNode != null && !currentNode.getValue().isActive()) {
-//                  tableModel.addRow(new Object[] {
-//                            bucket, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
-//                        });
-//            }
-//        }
-//        JOptionPane.showMessageDialog(this, "Không tìm thấy từ \"" + selectedWord + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-//    }
+    public void searchData() {
+        String selectedWord = model.formatter(tF_search.getText());
+
+        if (selectedWord.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập từ cần tra vào ô nhập liệu!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        tableModel.setRowCount(0);
+        int bucket = model.hashFunction(selectedWord);
+        if (list[bucket] != null) {
+            Node result = list[bucket].search(selectedWord);
+            if (result != null && !result.getValue().isActive()) {
+                tF_search.setText("");
+                tableModel.addRow(new Object[] {
+                    bucket, result.getValue().getEnglish(), result.getValue().getType(), result.getValue().getMeaning(), result.getValue().getExample()
+                });
+            } else {
+                loadDataFromFile(list);
+                int option = JOptionPane.showConfirmDialog(null, "Từ \"" + selectedWord + "\" không có trong từ điển. Bạn có muốn thêm nó không?", "Thêm từ mới", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.YES_OPTION) {
+                    tF_tiengAnh.setText(selectedWord);
+                }
+                tF_search.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Không tìm thấy từ \"" + selectedWord + "\" trong từ điển!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
     
     //    Phương thức load dữ liệu từ file lưu trữ
     public void loadDataFromFile(LinkList[] list) {           
@@ -751,11 +784,13 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JLabel label_TiengAnh;
     private javax.swing.JLabel label_TiengViet;
     private javax.swing.JLabel label_ViDu;
+    private javax.swing.JLabel lb_search;
     private javax.swing.JMenuItem menuItem_Exit;
     public javax.swing.JMenuItem menuItem_Save;
     private javax.swing.JMenuItem menuItem_UserManual;
     public javax.swing.JTextField tF_TViDu;
     public javax.swing.JTextField tF_TiengViet;
+    private javax.swing.JTextField tF_search;
     public javax.swing.JTextField tF_tiengAnh;
     private javax.swing.JTable table_Data;
     // End of variables declaration//GEN-END:variables
