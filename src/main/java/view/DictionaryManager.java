@@ -13,13 +13,13 @@ import model.LinkList;
 import model.Node;
 
 public class DictionaryManager extends javax.swing.JFrame {
-
+  
+    DictionaryApp app = new DictionaryApp();
     DictionaryModel model = new DictionaryModel();
-    public String currentFilePath = "datatest.txt";
     DefaultTableModel tableModel;
     public String[] options = {"Có", "Không"};
     
-    public LinkList[] list = model.readFile(currentFilePath);
+    public LinkList[] list = model.readFile(app.getCurrentFilePath());
     
     public DictionaryManager() {
         initComponents();

@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.event.KeyEvent;
-import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -12,14 +11,17 @@ import model.Node;
 public class DictionaryApp extends javax.swing.JFrame {
 
     DictionaryModel model = new DictionaryModel();
-    DictionaryManager manager = new DictionaryManager();
     
     LinkList list[] = new LinkList[100];
     private final ArrayList<String> searchHistory = new ArrayList<>();
-    public String currentFilePath = "datatest.txt";
+    private String currentFilePath = "datatest.txt";
     public String e = new String(), t = new String(), m = new String(), ex = new String();
     DefaultListModel<String> modelList_Suggested = new DefaultListModel<>();
-    
+    public String[] options = {"Có", "Không"};
+
+    public String getCurrentFilePath() {
+        return currentFilePath;
+    }
     public DictionaryApp() {
         initComponents();   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -371,7 +373,8 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ManagerActionPerformed
     
     //  Phương thức chuyển đổi frame
-    public void frameTransfer() {
+    public void frameTransfer() {      
+        DictionaryManager manager = new DictionaryManager();
         DictionaryApp dictionaryApp = new DictionaryApp();
         this.setVisible(false);
         manager.openForm(e, t, m, ex, list, dictionaryApp);
@@ -449,6 +452,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             else {
                 int option = JOptionPane.showConfirmDialog(null, "Từ \"" + selectedWord + "\" không có trong từ điển. Bạn có muốn thêm nó không?", "Thêm từ mới", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
+                    DictionaryManager manager = new DictionaryManager();
                     frameTransfer();
                     manager.tF_tiengAnh.setText(selectedWord);                   
                 }
@@ -520,8 +524,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     }
 
     // Phương thức chọn thoát
-    private void Exit() {
-        String[] options = {"Có", "Không"};
+    private void Exit() {        
         int choice = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn thoát?", "WARNING",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
         if (choice == JOptionPane.YES_OPTION) {
