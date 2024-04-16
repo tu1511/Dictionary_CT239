@@ -1,3 +1,4 @@
+Hello-Thán từ-xin chào-Hello I am Tu-false
 Earth-Danh từ-Trái đất hihi-We live on Earth.-true
 Friend-Danh từ-Bạn bè-He is my best friend.-true
 Join-Động từ-Tham gia, kết hợp-He joined the club.-false

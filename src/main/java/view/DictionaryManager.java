@@ -34,7 +34,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_ListData.setVisible(false);
         
         tableModel.setRowCount(0);
-        loadDataFromFile(list); 
+        loadDataFromFile(list);         
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -354,7 +354,6 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
     // Phương thức thêm từ
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         String english = model.formatter(tF_tiengAnh.getText());
@@ -371,45 +370,24 @@ public class DictionaryManager extends javax.swing.JFrame {
         
         if (searchResult != null && !searchResult.getValue().isActive()) { // Từ đã tồn tại trong danh sách và trạng thái false
             int dialogResult = JOptionPane.showConfirmDialog(null, "Từ '" + english + "' đã tồn tại trong danh sách. Bạn có muốn cập nhật thông tin không?", "Xác nhận cập nhật", JOptionPane.YES_NO_OPTION);
-
             if (dialogResult == JOptionPane.YES_OPTION) {
                 // Cập nhật thông tin từ đã tồn tại
                 Data word = new Data(english, type, meaning, example);
-                list[bucket].delete(english);
-                list[bucket].addToHead(word);
-                tableModel.setRowCount(0);
-                loadDataFromFile(list);
-                reloadData();
-                JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                update(word);
             }
         } else if (searchResult != null && searchResult.getValue().isActive()) { // Từ đã tồn tại trong danh sách và trạng thái true
             int dialogResult = JOptionPane.showConfirmDialog(null, "Từ '" + english + "' đã từng tồn tại. Bạn có muốn khôi phục dữ liệu không?", "Xác nhận khôi phục", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.YES_OPTION) {
-                searchResult.getValue().setActive(false);
-                tableModel.setRowCount(0);
-                loadDataFromFile(list);
-                reloadData();
-                JOptionPane.showMessageDialog(null, "Dữ liệu đã được khôi phục!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                recover(searchResult);
             } 
         }  else {
             Data word = new Data(english, type, meaning, example);
-            // Kiểm tra xem bucketIndex có hợp lệ không
-            if (bucket >= 0 && bucket < model.getSIZE()) {
-
-                list[bucket].addToHead(word);
-                tableModel.setRowCount(0);
-                loadDataFromFile(list);
-                reloadData();
-                JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Chỉ số bucket không hợp lệ!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-            }
+            add(word);
         }
     }//GEN-LAST:event_btn_AddActionPerformed
     // Phương thức cập nhật dữ liệu từ
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
         int selectedRow = table_Data.getSelectedRow();   
-        // Lấy thông tin từ các JTextField
         String english = model.formatter(tF_tiengAnh.getText());
         String type = cbb_Loaitu.getSelectedItem().toString();
         String meaning = tF_TiengViet.getText();
@@ -420,46 +398,14 @@ public class DictionaryManager extends javax.swing.JFrame {
             return;
         }
         
-        int bucket = model.hashFunction(english);
         Data word = new Data(english, type, meaning, example);
-        list[bucket].delete(word.getEnglish());
-        list[bucket].addToHead(word);
-        tableModel.setRowCount(0);
-        loadDataFromFile(list);
-        reloadData();
-        JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        update(word);
     }//GEN-LAST:event_btn_SaveActionPerformed
     //    Phương thức xóa mềm khi trạng thái falsevaf xóa từ vĩnh viễn khi true
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-        String[] options = {"Có", "Không"};
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
-            int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-            if (dialogResult == JOptionPane.YES_OPTION) {
-                String selectedWord = tableModel.getValueAt(selectedRow, 1).toString();
-
-                int bucket = model.hashFunction(selectedWord);
-                if (list[bucket] != null) {
-                    Node result = list[bucket].search(selectedWord);
-                    if (result != null && !result.getValue().isActive()) {
-                        result.getValue().setActive(true);
-                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                        tableModel.setRowCount(0);
-                        loadDataFromFile(list);
-                        reloadData();
-                    } else if (result != null && result.getValue().isActive()) {
-                        list[bucket].delete(selectedWord);
-                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa vĩnh viễn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                        tableModel.setRowCount(0);
-                        deletedWords(list);
-                        reloadData();
-                    }
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        }
+        delete();
     }//GEN-LAST:event_btn_DeleteActionPerformed
+ 
     // Phương thức chuyển đổi frame không mất dữ liệu
 //    private void btn_DeletedWordsActionPerformed(java.awt.event.ActionEvent evt) {                                                 
 //        DictionaryDeletedWords dictionaryDeletedWords = new DictionaryDeletedWords();
@@ -471,14 +417,15 @@ public class DictionaryManager extends javax.swing.JFrame {
 //        String example = tF_TViDu.getText();
 //        this.close();
 //        dictionaryDeletedWords.openForm2(english, type, meaning, example, list, dictionaryManager);
-//    }              
+//    }  
     
+    // Phương thức chuyển sang danh sách từ đã xóa
     private void btn_DeletedWordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletedWordsActionPerformed
-       tableModel.setRowCount(0);
-       deletedWords(list);
-       label_Name.setText("DANH SÁCH TỪ ĐÃ XÓA");
-       btn_DeletedWords.setVisible(false);
-       btn_ListData.setVisible(true);
+        tableModel.setRowCount(0);
+        deletedWords(list);
+        label_Name.setText("DANH SÁCH TỪ ĐÃ XÓA");
+        btn_DeletedWords.setVisible(false);
+        btn_ListData.setVisible(true);
         btn_Add.setVisible(false);
         btn_recover.setVisible(true);
     }//GEN-LAST:event_btn_DeletedWordsActionPerformed
@@ -489,15 +436,13 @@ public class DictionaryManager extends javax.swing.JFrame {
     
     // Phương thức quay lại frame mẹ
     private void btn_ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReturnActionPerformed
-        DictionaryApp dictionaryApp = new DictionaryApp();
-        DictionaryManager dictionaryManager = new DictionaryManager();
-        
+        DictionaryManager dictionaryManager = new DictionaryManager();       
         String english = model.formatter(tF_tiengAnh.getText());
         String type = cbb_Loaitu.getSelectedItem().toString();
         String meaning = tF_TiengViet.getText();
         String example = tF_TViDu.getText();
         this.close();
-        dictionaryApp.openForm(english, type, meaning, example, list, dictionaryManager);
+        app.openForm(english, type, meaning, example, list, dictionaryManager);
     }//GEN-LAST:event_btn_ReturnActionPerformed
 
     public void openForm(String english, String type, String meaning, String example, LinkList[] l, DictionaryApp dictionaryApp) {
@@ -580,7 +525,6 @@ public class DictionaryManager extends javax.swing.JFrame {
             tF_TiengViet.setEditable(true);
             tF_TViDu.setEditable(true);
         } else {
-            // Hiển thị thông báo nếu không có hàng nào được chọn
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một hàng để cập nhật!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_UpdateActionPerformed
@@ -597,10 +541,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         tF_TViDu.setEditable(false);
         
         int selectedRow = table_Data.getSelectedRow();
-        
-        String selectedWord = table_Data.getValueAt(selectedRow, 1).toString();
-       
-        
+                   
         if (selectedRow != -1 ) {
             tF_tiengAnh.setText(tableModel.getValueAt(selectedRow, 1).toString());
             cbb_Loaitu.setSelectedItem(tableModel.getValueAt(selectedRow, 2).toString());
@@ -630,14 +571,12 @@ public class DictionaryManager extends javax.swing.JFrame {
                 if (list[bucket] != null) {
                     Node result = list[bucket].search(selectedWord);
                     if (result != null && result.getValue().isActive()) {
-                        result.getValue().setActive(false);                  
+                        recover(result);
                     }
                 }
-                reloadData();
-                tableModel.setRowCount(0);
-                deletedWords(list);
             }
         }
+
     }//GEN-LAST:event_btn_recoverActionPerformed
 
     private void tF_searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_searchKeyPressed
@@ -646,6 +585,67 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tF_searchKeyPressed
         
+    public void add(Data word) {       
+        int bucket = model.hashFunction(model.formatter(tF_tiengAnh.getText()));
+        if (bucket >= 0 && bucket < model.getSIZE()) {
+            list[bucket].addToHead(word);
+            tableModel.setRowCount(0);
+            loadDataFromFile(list);
+            reloadData();
+            JOptionPane.showMessageDialog(null, "Dữ liệu đã được thêm vào danh sách!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Chỉ số bucket không hợp lệ!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    
+    public void update(Data word) {       
+        int bucket = model.hashFunction(model.formatter(tF_tiengAnh.getText()));
+        list[bucket].delete(word.getEnglish());
+        list[bucket].addToHead(word);
+        tableModel.setRowCount(0);
+        loadDataFromFile(list);
+        reloadData();
+        JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void delete() {
+        int selectedRow = table_Data.getSelectedRow();
+        if (selectedRow != -1) {
+            int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                String selectedWord = tableModel.getValueAt(selectedRow, 1).toString();
+                int bucket = model.hashFunction(selectedWord);
+                if (list[bucket] != null) {
+                    Node result = list[bucket].search(selectedWord);
+                    if (result != null && !result.getValue().isActive()) {
+                        result.getValue().setActive(true);
+                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        tableModel.setRowCount(0);
+                        loadDataFromFile(list);
+                        reloadData();
+                    } else if (result != null && result.getValue().isActive()) {
+                        list[bucket].delete(selectedWord);
+                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa vĩnh viễn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                        tableModel.setRowCount(0);
+                        deletedWords(list);
+                        reloadData();
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public void recover(Node result){
+        result.getValue().setActive(false);
+        reloadData();
+        tableModel.setRowCount(0);
+        loadDataFromFile(list);  
+        JOptionPane.showMessageDialog(null, "Dữ liệu đã được khôi phục!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     public void searchData() {
         String selectedWord = model.formatter(tF_search.getText());
 
