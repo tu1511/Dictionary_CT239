@@ -32,7 +32,7 @@ public class Test {
 
         // In ra danh sách từ điển sau khi nhập
         System.out.println("Danh sách từ điển sau khi nhập:");
-        dictionary.printDictionary();
+//        dictionary.printDictionary(list);
 
         // Ghi danh sách từ điển vào tệp
         //dictionary.writeFile("datatest.txt");

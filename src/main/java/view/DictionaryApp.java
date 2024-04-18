@@ -230,6 +230,11 @@ public class DictionaryApp extends javax.swing.JFrame {
 
         list_Infor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         list_Infor.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        list_Infor.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Gợi ý:" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         list_Infor.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 list_InforValueChanged(evt);

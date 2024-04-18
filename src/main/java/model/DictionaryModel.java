@@ -42,8 +42,8 @@ public class DictionaryModel {
         return sum % SIZE;
     }
     //    Phương thức ghi dữ liệu vào file lưu trữ
-    public void writeFile(LinkList[] list) { 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("datatest.txt"))) {
+    public void writeFile(LinkList[] list, String link) { 
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(link))) {
             for (LinkList bucket : list) {
                 Node current = bucket.getHead();
                 while (current != null) {
@@ -59,10 +59,10 @@ public class DictionaryModel {
         }
     }
     //    Phương thức đọc dữ liệu từ file lưu trữ
-    public LinkList[] readFile(String fileName) {
+    public LinkList[] readFile(String link) {
         FileReader fr = null;
         try {
-            fr = new FileReader(fileName);
+            fr = new FileReader(link);
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
@@ -163,7 +163,7 @@ public class DictionaryModel {
         }
     }
     
-    public void printDictionary() {
+    public void printDictionary(LinkList[] list) {
         for (int i = 0; i < SIZE; i++) {
             System.out.println("Bucket " + i + ":");
             list[i].print();

@@ -15,7 +15,8 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     public String currentFilePath = "datatest.txt";
     DefaultTableModel tableModel;
     
-    public LinkList[] list = model.readFile(currentFilePath);
+//    public LinkList[] list = model.readFile(currentFilePath);
+    public LinkList[] list = new LinkList[100];
     LinkList l[] = new LinkList[100];
     public DictionaryDeletedWords() {
         initComponents();
@@ -44,13 +45,13 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btn_Return = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table_Data = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btn_close = new javax.swing.JButton();
         btn_recover = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
         btn_Reload = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_Data = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btn_Save = new javax.swing.JMenuItem();
@@ -60,11 +61,12 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 604));
+        setPreferredSize(new java.awt.Dimension(1531, 964));
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 255));
         jPanel1.setForeground(new java.awt.Color(102, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(850, 604));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1531, 964));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1531, 964));
 
         btn_Return.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\back.png"));
         btn_Return.addActionListener(new java.awt.event.ActionListener() {
@@ -72,29 +74,6 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                 btn_ReturnActionPerformed(evt);
             }
         });
-
-        table_Data.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        table_Data.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Bucket", "Tiếng Anh", "Loại từ", "Nghĩa", "Ví dụ"
-            }
-        ));
-        table_Data.setRowHeight(25);
-        table_Data.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(table_Data);
-        if (table_Data.getColumnModel().getColumnCount() > 0) {
-            table_Data.getColumnModel().getColumn(0).setMinWidth(70);
-            table_Data.getColumnModel().getColumn(0).setMaxWidth(70);
-            table_Data.getColumnModel().getColumn(1).setMinWidth(140);
-            table_Data.getColumnModel().getColumn(1).setMaxWidth(140);
-            table_Data.getColumnModel().getColumn(2).setMinWidth(140);
-            table_Data.getColumnModel().getColumn(2).setMaxWidth(140);
-            table_Data.getColumnModel().getColumn(3).setMinWidth(200);
-            table_Data.getColumnModel().getColumn(3).setMaxWidth(200);
-        }
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("DANH SÁCH TỪ ĐÃ XÓA");
@@ -135,51 +114,75 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
             }
         });
 
+        table_Data.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        table_Data.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Bucket", "Tiếng Anh", "Loại từ", "Nghĩa", "Ví dụ"
+            }
+        ));
+        table_Data.setRowHeight(30);
+        table_Data.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table_Data.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table_Data.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_DataMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table_Data);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btn_Return, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Reload, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(btn_recover, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(46, 46, 46)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(60, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btn_recover, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(btn_Return, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(540, 540, 540)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(699, 699, 699)
+                        .addComponent(btn_Reload, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(btn_Return, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_Return, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_recover, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Reload, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(433, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(133, 133, 133)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(39, Short.MAX_VALUE)))
+                    .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Reload, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
@@ -226,11 +229,11 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1525, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 816, Short.MAX_VALUE)
         );
 
         pack();
@@ -268,7 +271,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
     //    Phương thức ghi dữ liệu vào file lưu trữ
     private void btn_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SaveActionPerformed
-        model.writeFile(list);
+//        model.writeFile(list);
     }//GEN-LAST:event_btn_SaveActionPerformed
     //    Phương thức xóa mềm khi trạng thái falsevaf xóa từ vĩnh viễn khi true
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
@@ -344,6 +347,12 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
         tableModel.setRowCount(0);
         loadDataFromFileFalse(list);
     }//GEN-LAST:event_btn_ReloadActionPerformed
+
+    private void table_DataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_DataMouseClicked
+    
+
+     
+    }//GEN-LAST:event_table_DataMouseClicked
 
     //    Phương thức load dữ liệu từ file lưu trữ
     public void deletedWords(LinkList[] li) {           

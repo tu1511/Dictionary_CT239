@@ -119,6 +119,10 @@ public class LinkList {
     // Phương thức in ra danh sách
     public void print() {
         Node current = head;
+        if(current == null) {
+            System.out.println("Danh sach rong!");
+            return;
+        }
         while (current != null) {
             System.out.println("Value: " + current.getValue().toString());
             current = current.getNext();

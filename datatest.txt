@@ -14,7 +14,6 @@ Us-Đại từ-Chúng tôi-He gave us a gift.-false
 Wall-Danh từ-Tường, vách-He painted the wall white.-false
 Heart-Danh từ-Trái tim-He wears his heart on his sleeve.-false
 Poem-Danh từ-Bài thơ-She wrote a beautiful poem.-false
-Ready-Tính từ-Sẵn sàng, chuẩn bị-He is ready to go.-false
 Say-Động từ-Nói, nói ra-He said hello to me.-false
 Tax-Danh từ-Thuế-He paid his taxes.-false
 Tell-Động từ-Nói, kể-He told me a story.-false
