@@ -1,1 +1,2 @@
-Hello-Thán từ-xin chào-Hello I am Tu-false
+Join-Động từ-Tham gia, kết hợp-He joined the club.-false
+Earth-Danh từ-Trái đất hihi-We live on Earth.-true
