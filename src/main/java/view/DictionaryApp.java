@@ -65,7 +65,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         TextArea_data = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         list_Infor = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -243,11 +242,6 @@ public class DictionaryApp extends javax.swing.JFrame {
         jScrollPane4.setViewportView(list_Infor);
 
         jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 310, 720));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\heart.png"));
-        jButton1.setText("Từ yêu thích");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 110, 220, 40));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu1.setText("Tài liệu");
@@ -577,7 +571,6 @@ public class DictionaryApp extends javax.swing.JFrame {
     private javax.swing.JButton btn_History;
     private javax.swing.JButton btn_Manager;
     private javax.swing.JButton btn_TraCuu;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;

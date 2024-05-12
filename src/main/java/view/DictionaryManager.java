@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
@@ -128,17 +129,17 @@ public class DictionaryManager extends javax.swing.JFrame {
 
         label_TiengViet.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_TiengViet.setText("Nghĩa tiếng Việt :");
-        jPanel2.add(label_TiengViet, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, -1));
+        jPanel2.add(label_TiengViet, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, -1, -1));
 
         tF_TiengViet.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel2.add(tF_TiengViet, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 340, 50));
+        jPanel2.add(tF_TiengViet, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 340, 50));
 
         label_ViDu.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         label_ViDu.setText("Ví dụ : ");
         jPanel2.add(label_ViDu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         tF_TViDu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel2.add(tF_TViDu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 810, 50));
+        jPanel2.add(tF_TViDu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 870, 50));
 
         btn_Save.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_Save.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\save.png"));
@@ -148,7 +149,7 @@ public class DictionaryManager extends javax.swing.JFrame {
                 btn_SaveActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 140, 120, 50));
+        jPanel2.add(btn_Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 140, 120, 50));
 
         btn_Return.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_Return.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\back.png"));
@@ -245,8 +246,8 @@ public class DictionaryManager extends javax.swing.JFrame {
         jPanel2.add(btn_Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 290, 180, 40));
 
         cbb_Loaitu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        cbb_Loaitu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danh từ", "Động Từ", "Tính từ", "Trạng từ", "Đại từ", "Giới từ", "Thán từ", "Liên từ", "Từ hạn định" }));
-        jPanel2.add(cbb_Loaitu, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 170, 50));
+        cbb_Loaitu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Danh từ", "Động từ", "Tính từ", "Trạng từ", "Đại từ", "Giới từ", "Thán từ", "Liên từ", "Từ hạn định" }));
+        jPanel2.add(cbb_Loaitu, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 220, 50));
 
         btn_ListData.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_ListData.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\listData.png"));
@@ -560,11 +561,23 @@ public class DictionaryManager extends javax.swing.JFrame {
         
         int selectedRow = table_Data.getSelectedRow();
                    
-        if (selectedRow != -1 ) {
+         if (selectedRow != -1) {
             tF_tiengAnh.setText(tableModel.getValueAt(selectedRow, 1).toString());
-            cbb_Loaitu.setSelectedItem(tableModel.getValueAt(selectedRow, 2).toString());
             tF_TiengViet.setText(tableModel.getValueAt(selectedRow, 3).toString());
             tF_TViDu.setText(tableModel.getValueAt(selectedRow, 4).toString());
+
+            // Clear combobox and add unique values from the table
+            cbb_Loaitu.removeAllItems();
+            HashSet<String> uniqueTypes = new HashSet<>();
+            for (int i = 0; i < tableModel.getRowCount(); i++) {
+                uniqueTypes.add(tableModel.getValueAt(i, 2).toString());
+            }
+            for (String type : uniqueTypes) {
+                cbb_Loaitu.addItem(type);
+            }
+
+            // Select the type of the selected row
+            cbb_Loaitu.setSelectedItem(tableModel.getValueAt(selectedRow, 2).toString());
         }
     }//GEN-LAST:event_table_DataMouseClicked
 
