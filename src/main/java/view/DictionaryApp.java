@@ -28,7 +28,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         if (checkEmpty(list)) {
-            list = model.readFile(currentFilePath);
+            list = model.readFile(currentFilePath, false);
         }
         
         TextArea_data.setLineWrap(true);

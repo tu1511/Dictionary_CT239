@@ -1,10 +1,6 @@
-Hello-Thán từ, Động từ-xin chào-Hello I am Tu-false
 Earth-Danh từ-Trái đất hihi-We live on Earth.-true
 Friend-Danh từ-Bạn bè-He is my best friend.-true
-Join-Động từ-Tham gia, kết hợp-He joined the club.-false
-None-Đại từ-Không ai, không cái nào-None of them were ready.-false
 Raise-Động từ-Nâng lên, tăng cao-He raised his hand.-false
-Reduce-Động từ-Giảm, giảm bớt-He reduced the price of the car.-false
 Refer-Động từ-Tham khảo, đề cập đến-He referred to the book for information.-false
 Reliable-Tính từ-Đáng tin cậy, tin tưởng được-He is a reliable person.-false
 Ring-Danh từ-Chiếc nhẫn, tiếng chuông-He wore a ring on his finger.-false

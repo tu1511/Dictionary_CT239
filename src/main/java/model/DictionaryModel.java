@@ -9,7 +9,8 @@ import java.io.IOException;
 public class DictionaryModel {
     private final int SIZE = 100; // Số lượng buckets
     public LinkList[] list;
-
+    public LinkList[] listDeleted;
+    
     public int getSIZE() {
         return SIZE;
     }
@@ -19,16 +20,29 @@ public class DictionaryModel {
         if (list != null) {
             return list;
         } else { // Nếu không, đọc dữ liệu từ file và trả về
-            list = readFile("datatest.txt");
+            list = readFile("datatest.txt", false);
             return list;
         }
     }
-    
+    public LinkList[] getListDeleted() {
+       // Kiểm tra nếu dữ liệu đã được đọc từ file thì trả về dữ liệu đó
+       if (listDeleted != null) {
+           return listDeleted;
+       } else { // Nếu không, đọc dữ liệu từ file và trả về
+           listDeleted = readFile("test.txt", true);
+           return listDeleted;
+       }
+    }
     // Constructor
     public DictionaryModel() {
         list = new LinkList[SIZE];
         for (int i = 0; i < SIZE; i++) {
             list[i] = new LinkList();
+        }
+        
+        listDeleted = new LinkList[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            listDeleted[i] = new LinkList();
         }
     }
 
@@ -59,7 +73,9 @@ public class DictionaryModel {
         }
     }
     //    Phương thức đọc dữ liệu từ file lưu trữ
-    public LinkList[] readFile(String link) {
+    public LinkList[] readFile(String link, boolean isDeletedList) {
+        LinkList[] list = isDeletedList ? getListDeleted() : getList();
+
         FileReader fr = null;
         try {
             fr = new FileReader(link);

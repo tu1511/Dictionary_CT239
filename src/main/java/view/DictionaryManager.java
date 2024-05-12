@@ -20,7 +20,8 @@ public class DictionaryManager extends javax.swing.JFrame {
     DefaultTableModel tableModel;
     public String[] options = {"Có", "Không"};
     
-    public LinkList[] list = model.readFile(app.getCurrentFilePath());
+    public LinkList[] list = model.readFile(app.getCurrentFilePath(), false);
+    public LinkList[] listDeleted = model.readFile("test.txt", true);
     public LinkList[] listFW = new LinkList[100];
     
     public DictionaryManager() {
@@ -440,13 +441,15 @@ public class DictionaryManager extends javax.swing.JFrame {
     
     // Phương thức chuyển sang danh sách từ đã xóa
     private void btn_DeletedWordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletedWordsActionPerformed
-        tableModel.setRowCount(0);
-        deletedWords(list);
+        tableModel.setRowCount(0); // Lấy danh sách các từ đã bị xóa từ model
+        deletedWords(listDeleted); // Đưa danh sách các từ đã bị xóa lên bảng
         label_Name.setText("DANH SÁCH TỪ ĐÃ XÓA");
         btn_DeletedWords.setVisible(false);
         btn_ListData.setVisible(true);
         btn_Add.setVisible(false);
         btn_recover.setVisible(true);
+        System.out.println("Danh sách từ điển sau khi nhập:");
+        model.printDictionary(model.listDeleted);
     }//GEN-LAST:event_btn_DeletedWordsActionPerformed
 
     public void close(){
@@ -550,6 +553,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     // Phương thức ghi dữ liệu vào file
     private void menuItem_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_SaveActionPerformed
         model.writeFile(list, app.getCurrentFilePath());
+        model.writeFile(model.listDeleted, "test.txt");
     }//GEN-LAST:event_menuItem_SaveActionPerformed
     
     //Phương thức chọn vào một dòng trên bảng rồi lấy dữ liệu, nếu đang ở từ đã xóa hỏi có muốn khôi phục hayy không
@@ -599,11 +603,13 @@ public class DictionaryManager extends javax.swing.JFrame {
                 DefaultTableModel data = (DefaultTableModel) table_Data.getModel();
                 String selectedWord = data.getValueAt(selectedRow, 1).toString();
                 int bucket = model.hashFunction(selectedWord);
-                if (list[bucket] != null) {
-                    Node result = list[bucket].searchNode(selectedWord);
-                    if (result != null && result.getValue().isActive()) {
-                        recover(result);
-                    }
+                if (model.listDeleted[bucket] != null) {
+                    Node result = model.listDeleted[bucket].searchNode(selectedWord);
+                    model.listDeleted[bucket].deleteNode(selectedWord);
+                    list[bucket].addToTail(result.getValue());
+                    JOptionPane.showMessageDialog(null, "Dữ liệu đã được khôi phục!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    tableModel.setRowCount(0);
+                    loadDataFromFile(list);
                 }
             }
         }
@@ -660,6 +666,35 @@ public class DictionaryManager extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Dữ liệu đã được cập nhật!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }
     
+//    public void delete() {
+//        int selectedRow = table_Data.getSelectedRow();
+//        if (selectedRow != -1) {
+//            int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn xóa dòng này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+//            if (dialogResult == JOptionPane.YES_OPTION) {
+//                String selectedWord = tableModel.getValueAt(selectedRow, 1).toString();
+//                int bucket = model.hashFunction(selectedWord);
+//                if (list[bucket] != null) {
+//                    Node result = list[bucket].searchNode(selectedWord);
+//                    if (result != null && !result.getValue().isActive()) {
+//                        result.getValue().setActive(true);
+//                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//                        tableModel.setRowCount(0);
+//                        loadDataFromFile(list);
+//                        reloadData();
+//                    } else if (result != null && result.getValue().isActive()) {
+//                        list[bucket].deleteNode(selectedWord);
+//                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa vĩnh viễn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+//                        tableModel.setRowCount(0);
+//                        deletedWords(list);
+//                        reloadData();
+//                    }
+//                }
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+//        }
+//    }
+    
     public void delete() {
         int selectedRow = table_Data.getSelectedRow();
         if (selectedRow != -1) {
@@ -669,18 +704,21 @@ public class DictionaryManager extends javax.swing.JFrame {
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
                     Node result = list[bucket].searchNode(selectedWord);
-                    if (result != null && !result.getValue().isActive()) {
-                        result.getValue().setActive(true);
-                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa khỏi bảng và trạng thái của từ đã được thay đổi!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                        tableModel.setRowCount(0);
-                        loadDataFromFile(list);
-                        reloadData();
-                    } else if (result != null && result.getValue().isActive()) {
-                        list[bucket].deleteNode(selectedWord);
-                        JOptionPane.showMessageDialog(null, "Dữ liệu đã được xóa vĩnh viễn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                        tableModel.setRowCount(0);
-                        deletedWords(list);
-                        reloadData();
+                    if (result != null) {
+                        // Kiểm tra xem từ đã bị xóa chưa
+                        if (!result.getValue().isActive()) {
+                            // Nếu chưa bị xóa, thực hiện xóa từ khỏi bảng chính và thêm vào bảng các từ đã xóa
+                            list[bucket].deleteNode(selectedWord);
+                            model.listDeleted[bucket].addToTail(result.getValue());
+                            JOptionPane.showMessageDialog(null, "Từ đã được thêm vào danh sách các từ đã xóa!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                            tableModel.setRowCount(0);
+                            loadDataFromFile(list);
+                            reloadData();
+                            System.out.println("Danh sách từ điển sau khi nhập:");
+                            model.printDictionary(model.listDeleted);    
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Từ đã bị xóa trước đó!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                 }
             }
@@ -688,9 +726,9 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một dòng để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }
-    
+
     public void recover(Node result){
-        result.getValue().setActive(false);
+      
         reloadData();
         tableModel.setRowCount(0);
         loadDataFromFile(list);  
@@ -750,11 +788,9 @@ public class DictionaryManager extends javax.swing.JFrame {
             if (li[i] != null) {
                 Node currentNode = li[i].getHead();
                 while (currentNode != null) {
-                    if (currentNode.getValue().isActive()) {
-                        tableModel.addRow(new Object[] {
-                            i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
-                        });
-                    }
+                    tableModel.addRow(new Object[] {
+                        i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
+                    });
                     currentNode = currentNode.getNext();
                 }
             }

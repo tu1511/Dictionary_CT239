@@ -58,7 +58,6 @@ public class LinkList {
         if (head == null) {
             return;
         }
-
         if (head.getValue().getWord().equals(word)) {
             head = head.getNext();
             size--;
