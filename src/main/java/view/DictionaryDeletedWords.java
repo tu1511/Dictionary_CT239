@@ -286,7 +286,7 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
                     Node result = list[bucket].searchNode(selectedWord);
-                    if (result != null && result.getValue().isActive()) {
+                    if (result != null ) {
                         list[bucket].deleteNode(selectedWord);
                     }
                 }
@@ -312,8 +312,8 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
                 int bucket = model.hashFunction(selectedWord);
                 if (list[bucket] != null) {
                     Node result = list[bucket].searchNode(selectedWord);
-                    if (result != null && result.getValue().isActive()) {
-                        result.getValue().setActive(false);
+                    if (result != null ) {
+//                        result.getValue().setActive(false);
                         System.out.println(result.getValue());
 //                        System.out.println("Danh sách từ điển sau khi nhập:");
 //                         for (int i = 0; i < list.length; i++) {
@@ -360,11 +360,10 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
             if (li[i] != null) {
                 Node currentNode = li[i].getHead();
                 while (currentNode != null) {
-                    if (currentNode.getValue().isActive()) {
+               
                         tableModel.addRow(new Object[] {
                             i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
                         });
-                    }
                     currentNode = currentNode.getNext();
                 }
             }
@@ -377,11 +376,11 @@ public class DictionaryDeletedWords extends javax.swing.JFrame {
             if (list[i] != null) {
                 Node currentNode = list[i].getHead();
                 while (currentNode != null) {
-                    if (!currentNode.getValue().isActive()) {
+                    
                         tableModel.addRow(new Object[] {
                             i, currentNode.getValue().getEnglish(), currentNode.getValue().getType(), currentNode.getValue().getMeaning(), currentNode.getValue().getExample()
                         });
-                    }
+                    
                     currentNode = currentNode.getNext();
                 }
             }

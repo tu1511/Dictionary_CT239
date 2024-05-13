@@ -12,7 +12,6 @@ view\DictionaryDeletedWords$3.class
 view\DictionaryManager$13.class
 view\DictionaryApp$8.class
 view\DictionaryManager$8.class
-model\Test.class
 view\DictionaryManager$1.class
 view\DictionaryDeletedWords$4.class
 view\DictionaryDeletedWords.class
@@ -44,6 +43,7 @@ model\Data.class
 view\DictionaryApp$14.class
 view\DictionaryDeletedWords$9.class
 view\DictionaryManager$6.class
+view\DictionaryManager$17.class
 view\DictionaryDeletedWords$2.class
 view\DictionaryApp$6.class
 view\DictionaryManager$9.class

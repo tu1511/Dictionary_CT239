@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -13,6 +14,7 @@ public class DictionaryApp extends javax.swing.JFrame {
     DictionaryModel model = new DictionaryModel();
     
     LinkList list[] = new LinkList[100];
+    LinkList listDe[] = new LinkList[100];
     private final ArrayList<String> searchHistory = new ArrayList<>();
     private String currentFilePath = "datatest.txt";
     public String e = new String(), t = new String(), m = new String(), ex = new String();
@@ -31,6 +33,8 @@ public class DictionaryApp extends javax.swing.JFrame {
             list = model.readFile(currentFilePath, false);
         }
         
+        Font font = new Font("Segoe UI", Font.BOLD, 20);
+        UIManager.put("OptionPane.messageFont", font);
         TextArea_data.setLineWrap(true);
         TextArea_data.setWrapStyleWord(true);  
         menu.add(panel);
@@ -81,6 +85,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         jScrollPane3.setAlignmentX(0.0F);
         jScrollPane3.setAlignmentY(0.0F);
 
+        list_Data.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         list_Data.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 list_DataValueChanged(evt);
@@ -166,7 +171,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1520, -1));
 
         btn_Edit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btn_Edit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\history.png"));
+        btn_Edit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\update.png"));
         btn_Edit.setText("Chỉnh sửa");
         btn_Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +198,7 @@ public class DictionaryApp extends javax.swing.JFrame {
                 btn_ManagerActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 160, 40));
+        jPanel2.add(btn_Manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 160, 40));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(1500, 1000));
@@ -338,9 +343,10 @@ public class DictionaryApp extends javax.swing.JFrame {
     private void menuItem_UserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_UserManualActionPerformed
         JOptionPane.showMessageDialog(this, "Hướng dẫn sử dụng:\n"
                 + "1. Tra cứu từ: Nhập từ tiếng Anh vào trong thanh tìm kiếm sau đó nhấn nút Tra cứu.\n"
-                + "2. Quản lý tự điển: chọn vào nút đó để chuyển sang giao diện điều chỉnh thông tin từ vựng.\n"
+                + "2. Quản lý tự điển: chọn vào nút đó để chuyển sang giao diện quản lý thông tin từ vựng.\n"
                 + "3. Lịch sử: Hiển thị từ đã tra cứu.\n"
-                + "4. Thoát: Đóng chương trình.\n\n"
+                + "4. Chỉnh sửa: Chuyển qua giao diện để chỉnh sửa thông tin từ.\n"
+                + "5. Thoát: Đóng chương trình.\n\n"
                 + "", "Hướng dẫn sử dụng", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_UserManualActionPerformed
 
@@ -353,10 +359,14 @@ public class DictionaryApp extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_EditActionPerformed
 
     // Phương thức chuyển đổi frame không mất dữ liệu
-    public void openForm(String english, String type, String meaning, String example, LinkList[] li, DictionaryManager dictionaryManager) {
+    public void openForm(String english, String type, String meaning, String example, LinkList[] li,  LinkList[] l, DictionaryManager dictionaryManager) {
         for (int i = 0; i < 100; i++) {
             if(li[i] != null) {
                 list[i] = new LinkList(li[i]);
+            } 
+            
+            if(l[i] != null) {
+                listDe[i] = new LinkList(l[i]);
             }
         }        
         e = new String(english);
@@ -387,9 +397,9 @@ public class DictionaryApp extends javax.swing.JFrame {
     //  Phương thức chuyển đổi frame
     public void frameTransfer() {      
         DictionaryManager manager = new DictionaryManager();
-        DictionaryApp dictionaryApp = new DictionaryApp();
+        DictionaryApp app = new DictionaryApp();
         this.setVisible(false);
-        manager.openForm(e, t, m, ex, list, dictionaryApp);
+        manager.openForm(e, t, m, ex, list, listDe, app);
     }
     
     public void frameTransferToEdit() {
@@ -397,7 +407,8 @@ public class DictionaryApp extends javax.swing.JFrame {
         DictionaryApp app = new DictionaryApp();
         int i=model.hashFunction(model.formatter(tF_Infor.getText()));
         this.setVisible(false);
-        manager.openform(model.formatter(tF_Infor.getText()),list, app,i);
+        manager.setWrite();
+        manager.openform(model.formatter(tF_Infor.getText()),list, listDe, app,i);
     }
     
     // Phương thức lấy từ đang tìm để gợi ý   
@@ -468,7 +479,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         int bucket = model.hashFunction(selectedWord);
         if (list[bucket] != null) {
             Node result = list[bucket].searchNode(selectedWord);
-            if (result != null && !result.getValue().isActive()) {
+            if (result != null) {
                 String info = result.getData();
                 TextArea_data.setText(info); 
                 addToSearchHistory(selectedWord);
@@ -531,21 +542,19 @@ public class DictionaryApp extends javax.swing.JFrame {
     public void listData() {
         list_Infor.setModel(modelList_Suggested);
         modelList_Suggested.clear();
-        
+
         for (int i = 0; i < 100; i++) {
             if (list[i] != null) {
                 Node currentNode = list[i].getHead();
                 while (currentNode != null) {
-                    if (!currentNode.getValue().isActive()) 
                     modelList_Suggested.addElement(currentNode.getValue().getEnglish());
                     currentNode = currentNode.getNext();
                 }
             }
+
+            list_Infor.setModel(modelList_Suggested);
         }
-
-        list_Infor.setModel(modelList_Suggested);
     }
-
     // Phương thức chọn thoát
     private void Exit() {        
         int choice = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn thoát?", "WARNING",

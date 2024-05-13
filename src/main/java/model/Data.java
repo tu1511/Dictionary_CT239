@@ -5,7 +5,7 @@ public class Data {
     private String type;
     private String meaning;
     private String example;
-    private  boolean isActive = false;
+//    private  boolean isActive = false;
 
     public Data(String word, String type, String meaning, String example) {
         this.word = word;
@@ -30,9 +30,9 @@ public class Data {
         return example;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
+//    public boolean isActive() {
+//        return isActive;
+//    }
 
     public void setWord(String word) {
         this.word = word;
@@ -50,17 +50,17 @@ public class Data {
         this.example = example;
     }
 
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
-    }
-    
-    public void setIsDeleted(boolean isDeleted) {
-        this.isActive = !isDeleted;
-    }
+//    public void setActive(boolean isActive) {
+//        this.isActive = isActive;
+//    }
+//    
+//    public void setIsDeleted(boolean isDeleted) {
+//        this.isActive = !isDeleted;
+//    }
 
     @Override
     public String toString() {
-        return "Word: " + word + "\nType: " + type + "\nMeaning: " + meaning + "\nExample: " + example + "\nActive: " + isActive;
+        return "Word: " + word + "\nType: " + type + "\nMeaning: " + meaning + "\nExample: " + example;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Data {
         if (obj == null || getClass() != obj.getClass())
             return false;
         Data that = (Data) obj;
-        return isActive == that.isActive && 
+        return 
                word.equals(that.word) && 
                type.equals(that.type) && 
                meaning.equals(that.meaning) && 
@@ -83,7 +83,6 @@ public class Data {
         result = 31 * result + type.hashCode();
         result = 31 * result + meaning.hashCode();
         result = 31 * result + example.hashCode();
-        result = 31 * result + (isActive ? 1 : 0);
         return result;
     }
 

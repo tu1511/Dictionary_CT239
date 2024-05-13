@@ -62,7 +62,7 @@ public class DictionaryModel {
                 Node current = bucket.getHead();
                 while (current != null) {
                     Data word = current.getValue();
-                    String line = word.getWord() + "-" + word.getType() + "-" + word.getMeaning() + "-" + word.getExample() + "-" + word.isActive();
+                    String line = word.getWord() + "-" + word.getType() + "-" + word.getMeaning() + "-" + word.getExample();
                     bw.write(line);
                     bw.newLine();
                     current = current.getNext();
@@ -83,14 +83,12 @@ public class DictionaryModel {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("-");
-                if (parts.length == 5) {
+                if (parts.length == 4) {
                     String english = parts[0];
                     String type = parts[1];
                     String meaning = parts[2];
                     String example = parts[3];
-                    boolean isActive = Boolean.parseBoolean(parts[4]);
                     Data word = new Data(english, type, meaning, example);
-                    word.setActive(isActive);
                     int t = hashFunction(english);
                     list[t].addToTail(word);
                 }
@@ -171,7 +169,6 @@ public class DictionaryModel {
                         current = current.getNext();
                     }
                     Data word = current.getValue();
-                    word.setActive(isActive);
                     return;
                 }
                 currentRow += bucketSize;
