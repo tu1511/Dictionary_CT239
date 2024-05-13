@@ -485,6 +485,30 @@ public class DictionaryManager extends javax.swing.JFrame {
         loadDataFromFile(list);
     }
     
+    public void openform(String english, LinkList[] l, DictionaryApp app, int k) {
+        app.setVisible(false);
+        this.setVisible(true);
+
+        for (int i = 0; i < 100; i++) {
+            if (l[i] != null) {
+                list[i] = new LinkList(l[i]);
+            }
+        }
+        if (list[k] != null) {
+            Node cNode = list[k].searchNode(english);
+            if (cNode != null) {
+                cbb_Loaitu.setSelectedItem(cNode.getValue().getType());
+                tF_TiengViet.setText(cNode.getValue().getMeaning());
+                tF_TViDu.setText(cNode.getValue().getExample());
+            }
+        }
+        tF_tiengAnh.setText(english);
+
+//        setWrite();
+        tableModel.setRowCount(0);
+        loadDataFromFile(list);
+
+    }
 //    public void openForm1(String english, String type, String meaning, String example, LinkList[] l, DictionaryDeletedWords dictionaryDeletedWords) {
 //        tF_tiengAnh.setText(english);
 //        cbb_Loaitu.setSelectedItem(type);

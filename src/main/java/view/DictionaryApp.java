@@ -57,7 +57,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         tF_Infor = new javax.swing.JTextField();
         btn_TraCuu = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        btn_History = new javax.swing.JButton();
+        btn_Edit = new javax.swing.JButton();
         btn_Exit = new javax.swing.JButton();
         btn_Manager = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -65,6 +65,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         TextArea_data = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         list_Infor = new javax.swing.JList<>();
+        btn_History = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -164,15 +165,15 @@ public class DictionaryApp extends javax.swing.JFrame {
         jPanel2.add(btn_TraCuu, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 150, 40));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 1520, -1));
 
-        btn_History.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btn_History.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\history.png"));
-        btn_History.setText("Lịch sử");
-        btn_History.addActionListener(new java.awt.event.ActionListener() {
+        btn_Edit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btn_Edit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\history.png"));
+        btn_Edit.setText("Chỉnh sửa");
+        btn_Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_HistoryActionPerformed(evt);
+                btn_EditActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_History, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 110, 180, 40));
+        jPanel2.add(btn_Edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 110, 180, 40));
 
         btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btn_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\exit.png"));
@@ -242,6 +243,16 @@ public class DictionaryApp extends javax.swing.JFrame {
         jScrollPane4.setViewportView(list_Infor);
 
         jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 310, 720));
+
+        btn_History.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btn_History.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\history.png"));
+        btn_History.setText("Lịch sử");
+        btn_History.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_HistoryActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_History, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 110, 180, 40));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu1.setText("Tài liệu");
@@ -337,9 +348,9 @@ public class DictionaryApp extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Phiên bản phần mềm: \n" + "Quản lý tự điển version 1.0!", "Phiên bản", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_menuItem_InforActionPerformed
 
-    private void btn_HistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HistoryActionPerformed
-        menu_History.show(btn_History,0, btn_History.getHeight());
-    }//GEN-LAST:event_btn_HistoryActionPerformed
+    private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditActionPerformed
+        frameTransferToEdit();
+    }//GEN-LAST:event_btn_EditActionPerformed
 
     // Phương thức chuyển đổi frame không mất dữ liệu
     public void openForm(String english, String type, String meaning, String example, LinkList[] li, DictionaryManager dictionaryManager) {
@@ -352,6 +363,8 @@ public class DictionaryApp extends javax.swing.JFrame {
         t = new String(type);
         m = new String(meaning);
         ex = new String(example);
+        
+        
         
         this.listData();
         this.setVisible(true);
@@ -378,6 +391,15 @@ public class DictionaryApp extends javax.swing.JFrame {
         this.setVisible(false);
         manager.openForm(e, t, m, ex, list, dictionaryApp);
     }
+    
+    public void frameTransferToEdit() {
+        DictionaryManager manager = new DictionaryManager();
+        DictionaryApp app = new DictionaryApp();
+        int i=model.hashFunction(model.formatter(tF_Infor.getText()));
+        this.setVisible(false);
+        manager.openform(model.formatter(tF_Infor.getText()),list, app,i);
+    }
+    
     // Phương thức lấy từ đang tìm để gợi ý   
     private void tF_InforKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_InforKeyReleased
         showSuggested();
@@ -403,7 +425,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             String selectedWord = (String) list_History.getSelectedValue();
             if (selectedWord != null) {
                 displayWordInfo(selectedWord);
-                tF_Infor.setText("");
+                tF_Infor.setText(selectedWord);
                 addToSearchHistory(selectedWord);
                 menu_History.setVisible(false);
             }
@@ -421,11 +443,15 @@ public class DictionaryApp extends javax.swing.JFrame {
             String selectedWord = (String) list_Infor.getSelectedValue();
             if (selectedWord != null) {
                 displayWordInfo(selectedWord);
-                tF_Infor.setText("");
+                tF_Infor.setText(selectedWord);
                 addToSearchHistory(selectedWord);
             }
         }
     }//GEN-LAST:event_list_InforValueChanged
+
+    private void btn_HistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HistoryActionPerformed
+        menu_History.show(btn_History,0, btn_History.getHeight());
+    }//GEN-LAST:event_btn_HistoryActionPerformed
     // Phương thức tìm kiếm từ đang nhập
     public void searchWord() {
         String selectedWord = tF_Infor.getText().trim().toLowerCase();
@@ -451,9 +477,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             else {
                 int option = JOptionPane.showConfirmDialog(null, "Từ \"" + selectedWord + "\" không có trong từ điển. Bạn có muốn thêm nó không?", "Thêm từ mới", JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
-                    DictionaryManager manager = new DictionaryManager();
-                    frameTransfer();
-                    manager.tF_tiengAnh.setText(selectedWord);                   
+                    frameTransferToEdit();
                 }
                 tF_Infor.setText("");
             }
@@ -567,6 +591,7 @@ public class DictionaryApp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TextArea_data;
+    private javax.swing.JButton btn_Edit;
     private javax.swing.JButton btn_Exit;
     private javax.swing.JButton btn_History;
     private javax.swing.JButton btn_Manager;
