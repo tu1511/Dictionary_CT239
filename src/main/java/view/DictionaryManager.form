@@ -172,6 +172,7 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[850, 604]"/>
     </Property>
+    <Property name="undecorated" type="boolean" value="true"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[850, 604]"/>
     </Property>
@@ -679,7 +680,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_FavoriteWords">
+        <Component class="javax.swing.JButton" name="btn_Exit">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="1"/>
@@ -687,10 +688,10 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.ImageIcon(System.getProperty(&quot;user.dir&quot;)+&quot;\\src\\main\\java\\icon\\listdeletedwords.png&quot;)" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#x1eeb; y&#xea;u th&#xed;ch"/>
+            <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_FavoriteWordsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ExitActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

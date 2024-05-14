@@ -134,6 +134,7 @@ public class DictionaryApp extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 255, 204));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(850, 604));
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(1500, 1500));
@@ -198,7 +199,7 @@ public class DictionaryApp extends javax.swing.JFrame {
                 btn_ManagerActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_Manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 160, 40));
+        jPanel2.add(btn_Manager, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 160, 40));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(1500, 1000));

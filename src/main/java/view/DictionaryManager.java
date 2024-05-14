@@ -19,10 +19,9 @@ public class DictionaryManager extends javax.swing.JFrame {
     DictionaryModel model = new DictionaryModel();
     DefaultTableModel tableModel;
     public String[] options = {"Có", "Không"}, options1 = {"Khôi phục", "Thêm mới"};
-    
+    public boolean status = true;
     public LinkList[] list = model.readFile(app.getCurrentFilePath(), false);
     public LinkList[] listDeleted = model.readFile("test.txt", true);
-    public LinkList[] listFW = new LinkList[100];
     
     public DictionaryManager() {
         initComponents();
@@ -85,7 +84,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         label_Name = new javax.swing.JLabel();
         lb_search = new javax.swing.JLabel();
         tF_search = new javax.swing.JTextField();
-        btn_FavoriteWords = new javax.swing.JButton();
+        btn_Exit = new javax.swing.JButton();
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         menuItem_Save = new javax.swing.JMenuItem();
@@ -133,6 +132,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         setTitle("Quản lý tự điển");
         setBackground(new java.awt.Color(102, 255, 204));
         setMinimumSize(new java.awt.Dimension(850, 604));
+        setUndecorated(true);
         setSize(new java.awt.Dimension(850, 604));
 
         jPanel2.setBackground(new java.awt.Color(0, 255, 255));
@@ -331,15 +331,15 @@ public class DictionaryManager extends javax.swing.JFrame {
         });
         jPanel2.add(tF_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 100, 390, 40));
 
-        btn_FavoriteWords.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btn_FavoriteWords.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\listdeletedwords.png"));
-        btn_FavoriteWords.setText("Từ yêu thích");
-        btn_FavoriteWords.addActionListener(new java.awt.event.ActionListener() {
+        btn_Exit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btn_Exit.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\listdeletedwords.png"));
+        btn_Exit.setText("Thoát");
+        btn_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_FavoriteWordsActionPerformed(evt);
+                btn_ExitActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_FavoriteWords, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 290, 220, 40));
+        jPanel2.add(btn_Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 290, 220, 40));
 
         jMenu6.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\icon\\file.png"));
         jMenu6.setText("Tài liệu");
@@ -453,9 +453,10 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
         Data word = new Data(english, type, meaning, example);
-        update(word);
+        if(status != false) {
+            update(word);
+        }       
     }//GEN-LAST:event_btn_SaveActionPerformed
     //    Phương thức xóa mềm khi trạng thái falsevaf xóa từ vĩnh viễn khi true
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
@@ -472,6 +473,8 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_ListData.setVisible(true);
         btn_Add.setVisible(false);
         btn_recover.setVisible(true);
+        status = false;
+        reloadData();
 //        System.out.println("Danh sách từ điển sau khi nhập:");
 //        model.printDictionary(model.listDeleted);
     }//GEN-LAST:event_btn_DeletedWordsActionPerformed
@@ -563,9 +566,6 @@ public class DictionaryManager extends javax.swing.JFrame {
         reloadData();
         tableModel.setRowCount(0);
         loadDataFromFile(list);
-//        Kiểm tra bảng băm lưu trữ
-        System.out.println("Danh sách từ điển sau khi nhập:");
-        model.printDictionary(list);
     }//GEN-LAST:event_btn_reloadActionPerformed
  
     public void reloadData() {
@@ -573,6 +573,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         cbb_Loaitu.setSelectedIndex(0);
         tF_TiengViet.setText("");
         tF_TViDu.setText("");
+        tF_search.setText("");
         tF_tiengAnh.setEditable(true);
         cbb_Loaitu.setEditable(true);
         tF_TiengViet.setEditable(true);
@@ -580,14 +581,17 @@ public class DictionaryManager extends javax.swing.JFrame {
     }
 // Phương thức chọn tù cần cập nhật đưa lên lại các trường
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
-        int selectedRow = table_Data.getSelectedRow();
+        int selectedRow = table_Data.getSelectedRow();     
         if (selectedRow != -1) {
-            tF_tiengAnh.setEditable(true);
-            cbb_Loaitu.setEditable(true);
-            tF_TiengViet.setEditable(true);
-            tF_TViDu.setEditable(true);
+            setWrite();
         } else {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn một hàng để cập nhật!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+        if(status == false) {
+            tF_tiengAnh.setEditable(false);
+            cbb_Loaitu.setEditable(false);
+            tF_TiengViet.setEditable(false);
+            tF_TViDu.setEditable(false);
         }
     }//GEN-LAST:event_btn_UpdateActionPerformed
     // Phương thức ghi dữ liệu vào file
@@ -632,6 +636,8 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_recover.setVisible(false);
         tableModel.setRowCount(0);
         loadDataFromFile(list);
+        status = true;
+        reloadData();
         table_Data.setSelectionMode(0);
         label_Name.setText("QUẢN LÝ TỰ ĐIỂN");
     }//GEN-LAST:event_btn_ListDataActionPerformed
@@ -678,26 +684,9 @@ public class DictionaryManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tF_searchKeyPressed
  
-    private void btn_FavoriteWordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FavoriteWordsActionPerformed
-        int selectedRow = table_Data.getSelectedRow();
-        if (selectedRow != -1) { // Kiểm tra xem có dòng nào được chọn không
-            int dialogResult = JOptionPane.showOptionDialog(null, "Bạn có chắc chắn muốn thêm từ này vào danh sách yêu thích?", "Xác nhận thêm từ vào danh sách yêu thích", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-            if (dialogResult == JOptionPane.YES_OPTION) {
-                String selectedWord = table_Data.getValueAt(selectedRow, 1).toString();
-                int bucket = model.hashFunction(selectedWord);
-                Node result = list[bucket].searchNode(selectedWord);
-                listFW[bucket].addToHead(result.getValue());
-                model.writeFile(listFW, "favoriteWords.txt");
-                reloadData();
-                JOptionPane.showMessageDialog(null, "Từ đã được thêm vào danh sách yêu thích!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn một từ từ danh sách để thêm vào danh sách yêu thích!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        }
-        tableModel.setRowCount(0);
-        loadDataFromFile(listFW);
-        model.printDictionary(listFW);
-    }//GEN-LAST:event_btn_FavoriteWordsActionPerformed
+    private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
+        Exit();
+    }//GEN-LAST:event_btn_ExitActionPerformed
 
     private void tF_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tF_searchKeyReleased
         showSuggested();
@@ -952,7 +941,7 @@ public class DictionaryManager extends javax.swing.JFrame {
     private javax.swing.JButton btn_Add;
     private javax.swing.JButton btn_Delete;
     private javax.swing.JButton btn_DeletedWords;
-    private javax.swing.JButton btn_FavoriteWords;
+    private javax.swing.JButton btn_Exit;
     private javax.swing.JButton btn_ListData;
     private javax.swing.JButton btn_Return;
     private javax.swing.JButton btn_Save;

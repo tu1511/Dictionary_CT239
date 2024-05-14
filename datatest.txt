@@ -4,18 +4,14 @@ Reliable-Tính từ-Đáng tin cậy, tin tưởng được-He is a reliable per
 Sell-Động từ-Bán, tiêu thụ-He sold his car. 
 Set-Động từ-Đặt, thiết lập-He set the table for dinner. 
 Us-Đại từ-Chúng tôi-He gave us a gift. 
-Wall-Danh từ-Tường, vách-He painted the wall white. 
 Heart-Danh từ-Trái tim-He wears his heart on his sleeve. 
 Friend-Danh từ-Bạn bè-He is my best friend. 
 Earth-Danh từ-Trái đất hihi-We live on Earth. 
-Hello-Thán từ, Động từ-Xin chào-hello I am Tu
 Poem-Danh từ-Bài thơ-She wrote a beautiful poem. 
 Tax-Danh từ-Thuế-He paid his taxes. 
 Tell-Động từ-Nói, kể-He told me a story. 
-That-Đại từ-Đó, kia-That is a beautiful cat. 
 Say-Động từ-Nói, nói ra-He said hello to me. 
 Father-Danh từ-Cha, bố-He is a good father. 
-Open-Tính từ, Động từ-Mở, mở cửa-The store is open on Sundays. 
 Pink-Tính từ, Danh từ-Hồng-She wore a pink dress to the party. 
 Please-Trạng từ, Động từ-Làm ơn, hãy-Please come to the party. 
 Role-Danh từ-Vai trò, chức vụ-He played a role in the movie. 
@@ -23,31 +19,24 @@ Thank-Động từ-Cảm ơn-He thanked her for her help.
 Finger-Danh từ-Ngón tay-He has five fingers on each hand. 
 Island-Danh từ-Đảo-They live on an island. 
 Nor-Liên từ-Cũng không, cũng không phải-She neither confirmed nor denied it. 
-Opera-Danh từ-Nhạc kịch-They went to see an opera at the theater. 
 Pencil-Danh từ-Bút chì-He drew a picture with a pencil. 
 Pop-Động từ-Bật lên, nổ-He heard the sound of a pop. 
 Rise-Động từ-Nâng lên, mọc lên-The sun rises in the east. 
 Thin-Tính từ-Mỏng-He is a thin man. 
 Traffic-Danh từ-Giao thông, vận tải-There is a lot of traffic on the road. 
-Uncle-Danh từ-Chú, bác (nam)-He has a kind uncle. 
 Wash-Động từ-Giặt, rửa-He washed the dishes. 
 Watch-Động từ-Xem, quan sát-He watched the movie. 
 Wave-Danh từ-Sóng, lượn sóng-He rode the waves. 
 Captain-Danh từ-Thuyền trưởng, đội trưởng-He was the captain of the ship. 
-From-Giới từ-Từ, xuất phát từ-He came from Vietnam. 
 Language-Danh từ-Ngôn ngữ-He speaks English fluently. 
 Last-Tính từ-Cuối cùng, sau cùng-He was the last to arrive. 
-Orange-Danh từ-Cam-He peeled an orange for a snack. 
 Paper-Danh từ-Giấy-He wrote his name on a piece of paper. 
-Police-Danh từ-Cảnh sát-The police arrested the thief. 
 Remain-Động từ-Lại, ở lại-He remained silent. 
 Second-Tính từ-Thứ hai, tiếp theo-He is the second child in the family. 
 Sex-Danh từ-Giới tính, tình dục-He is a male. 
-There-Trạng từ-Ở đó, kia-He is over there. 
 Many-Tính từ-Nhiều-He has many friends. 
 Nose-Danh từ-Mũi-He broke his nose in the accident. 
 Not-Phó từ-Không-She's not going to the party. 
-Reject-Động từ-Từ chối, bác bỏ-He rejected her proposal. 
 Relate-Động từ-Kể lại, liên quan đến-He related the story to his friends. 
 Release-Động từ-Giải phóng, phát hành-He released the prisoner. 
 These-Đại từ-Những này-These are my books. 
@@ -88,9 +77,7 @@ Increase-Động từ-Tăng, gia tăng-The population is increasing.
 Into-Giới từ-Vào trong-He went into the room. 
 Kiss-Động từ-Hôn-He kissed her on the cheek. 
 Noise-Danh từ-Tiếng ồn-The noise was deafening. 
-Notice-Động từ-Ghi nhận, chú ý-He noticed the changes in her behavior. 
 Our-Đại từ sở hữu-Của chúng tôi-This is our house. 
-Pause-Động từ, Danh từ-Tạm dừng, sự tạm nghỉ-He paused to catch his breath. 
 Pool-Danh từ-Hồ bơi-They went swimming in the pool. 
 Queen-Danh từ-Nữ hoàng-She is the queen of the country. 
 Sense-Danh từ-Giác quan, ý nghĩa-He has a good sense of humor. 
