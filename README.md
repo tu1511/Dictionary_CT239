@@ -22,7 +22,7 @@ trữ thông tin tự điển.
 
 #### Giao diện chính
 
-![Đăng nhập](src/main/java/imagse/homepage.png)
+![Đăng nhập](src/main/java/images/homepage.png)
 
 #### Đăng nhập
 
