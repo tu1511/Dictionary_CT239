@@ -60,7 +60,7 @@ trữ thông tin tự điển.
 
 **Maven**
 
-1. Download dự án về máy bằng link liên kết này:[Chat App](https://github.com/tu1511/CT240-ChatApp)
+1. Download dự án về máy bằng link liên kết này:[CT239-Dictionary](https://drive.google.com/file/d/1qPmXuNxKSMANdWW0a2Tl2awZD5_Vl8sc/view?usp=drive_link)
 2. IDE: đề xuất Netbeans (mới nhất)
 3. Cài đặt JDK >= 20 và apache maven (>= 3.x)
 4. Import dự án vào Netbean và sử dụng
