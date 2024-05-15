@@ -22,27 +22,27 @@ trữ thông tin tự điển.
 
 #### Giao diện chính "Tự điển Anh - Việt"
 
-![Giao diện chính](src/main/java/images/homepage.png)
+![Giao diện chính "Tự điển Anh - Việt"](src/main/java/images/homepage.png)
 
 #### Giao diện quản lý tự điển
 
-![Giao diện chính](src/main/java/images/management.png.png)
+![Giao diện quản lý tự điển](src/main/java/images/management.png)
 
 #### Giao diện quản lý từ đã xóa
 
-![Giao diện chính](src/main/java/images/managementDeleted.png)
+![Giao diện quản lý từ đã xóa](src/main/java/images/managementDeleted.png)
 
-#### Đăng nhập
+#### Tra cứu từ
 
-![Đăng nhập](src/main/resources/com/chatapp/image/Pic2.png)
+![Tra cứu từ](src/main/java/images/search.png)
 
-#### Giao diện chính
+#### Xem lịch sử từ đã tra cứu
 
-![Giao diện chính](src/main/resources/com/chatapp/image/Pic3.png)
+![Xem lịch sử từ đã tra cứu](src/main/java/images/history.png)
 
-#### Đổi mật khẩu
+#### Thêm từ
 
-![Đổi mật khẩu](src/main/resources/com/chatapp/image/Pic4.png)
+![Thêm từ](src/main/java/images/add.png)
 
 #### Đổi ảnh đại diện
 
@@ -78,11 +78,7 @@ trữ thông tin tự điển.
 
 - **Frontend**
   Java swing
-- **Backend**
-  Java
-- **Database**
-  MySql workbench
 - **Kiến trúc**
   Mô hình MVC
 
-# CT240 - 2024
+# CT239 - 2024
