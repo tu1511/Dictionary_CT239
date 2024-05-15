@@ -409,6 +409,12 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
+        if (english != null && !english.matches("[a-zA-Z]+") ) {
+            JOptionPane.showMessageDialog(null, "Từ thêm mới không hợp lệ", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         int bucket = model.hashFunction(english);
         Node searchResult = list[bucket].searchNode(english);
         Node searchResultDe = listDeleted[bucket].searchNode(english);
@@ -453,6 +459,10 @@ public class DictionaryManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        if (english != null && !english.matches("[a-zA-Z]+") ) {
+            JOptionPane.showMessageDialog(null, "Từ thêm mới không hợp lệ", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         Data word = new Data(english, type, meaning, example);
         if(status != false) {
             update(word);
@@ -474,7 +484,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         btn_Add.setVisible(false);
         btn_recover.setVisible(true);
         status = false;
-        reloadData();
+//        reloadData();
 //        System.out.println("Danh sách từ điển sau khi nhập:");
 //        model.printDictionary(model.listDeleted);
     }//GEN-LAST:event_btn_DeletedWordsActionPerformed
@@ -565,7 +575,11 @@ public class DictionaryManager extends javax.swing.JFrame {
     private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
         reloadData();
         tableModel.setRowCount(0);
-        loadDataFromFile(list);
+        if (status == false) {
+            deletedWords(listDeleted);
+        } else {
+            loadDataFromFile(list);
+        }   
     }//GEN-LAST:event_btn_reloadActionPerformed
  
     public void reloadData() {
@@ -637,7 +651,7 @@ public class DictionaryManager extends javax.swing.JFrame {
         tableModel.setRowCount(0);
         loadDataFromFile(list);
         status = true;
-        reloadData();
+//        reloadData();
         table_Data.setSelectionMode(0);
         label_Name.setText("QUẢN LÝ TỰ ĐIỂN");
     }//GEN-LAST:event_btn_ListDataActionPerformed

@@ -425,7 +425,7 @@ public class DictionaryApp extends javax.swing.JFrame {
             String selectedWord = (String) list_Data.getSelectedValue();
             if (selectedWord != null) {
                 displayWordInfo(selectedWord);
-                tF_Infor.setText("");
+                tF_Infor.setText(selectedWord);
                 addToSearchHistory(selectedWord);
                 menu.setVisible(false);
             }

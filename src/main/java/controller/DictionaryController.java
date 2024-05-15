@@ -1,10 +1,8 @@
 import javax.swing.JOptionPane;
 import model.DictionaryModel;
-import view.DictionaryDeletedWords;
 
 public class DictionaryController {
     private DictionaryModel model;
-    private DictionaryDeletedWords view;
 
 //    public DictionaryController(DictionaryModel model, DictionaryDeletedWords view) {
 //        this.model = model;
