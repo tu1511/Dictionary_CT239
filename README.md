@@ -20,9 +20,17 @@ trữ thông tin tự điển.
 
 ## 🖥️Giao diện người dùng
 
-#### Giao diện chính
+#### Giao diện chính "Tự điển Anh - Việt"
 
-![Đăng nhập](src/main/java/images/homepage.png)
+![Giao diện chính](src/main/java/images/homepage.png)
+
+#### Giao diện quản lý tự điển
+
+![Giao diện chính](src/main/java/images/management.png.png)
+
+#### Giao diện quản lý từ đã xóa
+
+![Giao diện chính](src/main/java/images/managementDeleted.png)
 
 #### Đăng nhập
 
