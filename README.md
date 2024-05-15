@@ -44,25 +44,17 @@ trữ thông tin tự điển.
 
 ![Thêm từ](src/main/java/images/add.png)
 
-#### Đổi ảnh đại diện
+#### Cập nhật từ
 
-![đổi ảnh đại diện](src/main/resources/com/chatapp/image/Pic5.png)
+![Cập nhật từ](src/main/java/images/update.png)
 
-#### Chọn người dùng để chat
+#### Xóa từ
 
-![chọn người dùng](src/main/resources/com/chatapp/image/Pic6.png)
+![Xóa từ](src/main/java/images/delete.png)
 
-#### Gửi file
+#### Khôi phục từ
 
-![Gửi file](src/main/resources/com/chatapp/image/Pic7.png)
-
-#### Gửi emoji
-
-![Gửi file](src/main/resources/com/chatapp/image/Pic8.png)
-
-### DEMO
-
-![Test](src/main/resources/com/chatapp/image/Pic9.png)
+![Khôi phục từ](src/main/java/images/recover.png)
 
 ## 🔧Cài đặt dự án
 
@@ -70,9 +62,8 @@ trữ thông tin tự điển.
 
 1. Download dự án về máy bằng link liên kết này:[Chat App](https://github.com/tu1511/CT240-ChatApp)
 2. IDE: đề xuất Netbeans (mới nhất)
-3. Cài đặt JDK 20 và apache maven (>= 3.x)
-4. Cài đặt MySql workbench và tạo cơ sở dữ liệu có tên là **chatapp**
-5. Click chọn tool có sẵn trên netbeans để clean và build dự án: ![Alt text](src/main/resources/com/chatapp/image/Pic10.png)
+3. Cài đặt JDK >= 20 và apache maven (>= 3.x)
+4. Import dự án vào Netbean và sử dụng
 
 ## 📺Công nghệ sử dụng
 
